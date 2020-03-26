@@ -1,0 +1,231 @@
+# Translation of WordPress.com - Themes - P2-breathe in Scottish Gaelic
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-04-21 22:59:27+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: gd_GB\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Lorg &hellip;"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "Lorg"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "Toraidhean luirg airson: %s"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Tha coltas nach urrainn dhuinn na tha a dhìth ort fhaighinn dhut. Feuch is dèan lorg."
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Deiseil gus do chiad phost fhoillseachadh? <a href=\"%1$s\">Toiseach tòiseachaidh</a>."
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Tha sinn duilich ach cha do lorg sinn dad airson na lorg thu. Feuch ris a-rithist le faclan-luirg eile."
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "Cha deach dad a lorg"
+
+#: inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr "%1$s <em>air</em> %2$s"
+
+#: index.php:27
+msgid "Recent Updates"
+msgstr "Ùrachaidhean o chionn goirid"
+
+#: index.php:31
+msgctxt "Month name"
+msgid "Updates from %s"
+msgstr "Ùrachaidhean o: %s"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Puist nas sine"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Puist nas ùire <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Seòladaireachd a’ phuist"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "Duilleag %s"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Tha an dà chuid beachdan is trackbacks dùinte."
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "Dath a' cheangail"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "Tha na beachdan dùinte ach 's urrainn dhut trackback fhàgail: <a class=\"trackback-link\" href=\"%s\" title=\"URL Trackback airson a' phuist agad\" rel=\"trackback\">URL Trackback</a>."
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "Tha na trackbacks dùinte ach is urrainn dhut <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">beachd a sgrìobhadh</a>."
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Air adhart <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Sgrìobh beachd</a> no fàg trackback: <a class=\"trackback-link\" href=\"%s\" title=\"URL Trackback airson a' phuist agad\" rel=\"trackback\">URL Trackback</a>."
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Air ais"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "Deasaich"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "Thoir leum gun t-susbaint"
+
+#: header.php:32
+msgid "Menu"
+msgstr "Clàr-taice"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "air"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "Am prìomh-chlàr-taice"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "Bàr-taoibh"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Ùrlar: %1$s le %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Le cumhachd phròiseil %s"
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Cum ort a leughadh <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "Duilleagan:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "Tha na beachdan dùinte."
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; Beachdan nas sine"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "Na beachdan as ùire &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "Seòladaireachd nam beachdan"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "Tasg-lannan"
+
+#: archive.php:62
+msgid "Links"
+msgstr "Ceanglaichean"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "Luaidhean"
+
+#: archive.php:53
+msgid "Images"
+msgstr "Dealbhan"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "Videothan"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "Tasg-lannan bliadhnail: %s"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "Asides"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "Tasg-lannan mìosail: %s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "Tasg-lannan an ùghdair: %s"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "Tasg-lannan làitheil: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "Tasg-lannan nan taga: %s"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Feuch na tasg-lannan mìosail. %1$s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "Tasg-lannan nan roinn-seòrsa: %s"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Roinnean-seòrsa a chleachdar as trice"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Ìoc! Chan urrainn dhuinn an duilleag seo a lorg."

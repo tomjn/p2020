@@ -1,0 +1,224 @@
+# Translation of WordPress.com - Themes - P2-breathe in Latvian
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-01-20 06:30:29+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: lv\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "Communication is oxygen. P2 \"Breathe\" is the first o2-enabled theme."
+msgstr "Saziņa ir skābeklis. P2 \"Breathe\" ir pirmā o2 iespējotā tēma."
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Meklēt tēmas"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "Meklēt"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "Meklēšanas rezultāti: %s"
+
+#: searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr "Meklēt"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Izskatās, ka mēs nevaram atrast to ko meklējat. Iespējams meklēšana var palīdzēt."
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Esat gatavi publicēt savu pirmo rakstu? <a href=\"%1$s\">Sāciet te</a>."
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Diemžēl, bet nekas netika atrasts. Mēģiniet vēlreiz izmantojot citus atslēgvārdus."
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "Nekas nav atrasts"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Atpakaļ ziņojums:"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Vecāki ieraksti"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Jaunāki ieraksti <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Ziņu izvēlne"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "Lapa %s"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Gan komentēšana gan atsauču veidošana ir šobrīd slēgta."
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "Saites krāsa"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "Komentāri ir slēgti, bet tu vari atstāt atsauci: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Atsauces URL</a>."
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Nākošais <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Iepriekšējais"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "Rediģēt"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "Doties uz saturu"
+
+#: header.php:32
+msgid "Menu"
+msgstr "Izvēlne"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "Primārā izvēlne"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "Sānumala"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Tēma: %1$s no %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Lepni darbina %s"
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Turpināt lasīt <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "Lapas:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "Komentāri ir slēgti."
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; Vecāki komentāri"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "Jaunāki komentāri &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "Komentāru navigācija"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "Arhīvi"
+
+#: archive.php:62
+msgid "Links"
+msgstr "Saites"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "Citāti"
+
+#: archive.php:53
+msgid "Images"
+msgstr "Attēli"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "Video"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "Gada arhīvs: %s"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "Malas"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "Mēneša arhīvs: %s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "Autora arhīvi: %s"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "Dienas arhīvs: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "Birku arhīvs: %s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "Kategoriju arhīvs: %s"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Mēģini meklēt mēnešu arhīvos. %1$s"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Visbiežāk lietotās kategorijas"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Izskatās, ka šajā vietā nekas netika atrasts. Mēģini kādu no zemāk redzamajām saitēm vai meklētāju!"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Hmm... Tāda lapa nav atrodama."

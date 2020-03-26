@@ -1,0 +1,226 @@
+# Translation of WordPress.com - Themes - P2-breathe in Chinese (Taiwan)
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-04-21 22:59:27+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: zh_TW\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "搜尋 &hellip;"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "搜尋"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "關於 <strong>%s</strong> 的搜尋結果"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "我們似乎找不到你正在尋找的項目。請嘗試搜尋功能。"
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "準備好發表你的第一篇文章了嗎? <a href=\"%1$s\">從這裡開始</a>"
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "抱歉，沒有項目符合你的搜尋字詞。請再嘗試其他不同的關鍵字！"
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "找不到任何內容"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "通告："
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> 較早文章"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "較新文章 <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "文章導航列"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "%s 頁"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "留言與引用通知功能關閉中"
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "鏈結顏色"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "留言功能關閉中，不過你可以留下引用通知：<a class=\"trackback-link\" href=\"%s\" title=\"文章的引用通知網址\" rel=\"trackback\">引用通知網址</a>。"
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "引用通知已關閉，但你可以<a class=\"comment-link\" href=\"#respond\" title=\"發表回應\">發表回應</a>。"
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "下一項 <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"發表回應\">發表回應</a>或發出引用通知：<a class=\"trackback-link\" href=\"%s\" title=\"文章的引用網址\" rel=\"trackback\">引用網址</a>。"
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> 前一項"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "編輯"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "跳至內容區"
+
+#: header.php:32
+msgid "Menu"
+msgstr "功能表清單"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "開啟"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "主選單"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "側邊欄"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "佈景主題：%1$s，發表者：%2$s。"
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "自豪的採用 %s </a> 與 <a href=\"http://wordpress.org/extend/themes/twentytwelve\">貳零壹貳主題</a>"
+
+#: content-single.php:33 content.php:33
+msgid "<br />Tags:"
+msgstr "<br />標籤："
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "繼續閱讀 <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "頁面："
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "迴響已關閉。"
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; 較早評論"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "較新評論 &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "評論導航列"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "文章存檔"
+
+#: archive.php:62
+msgid "Links"
+msgstr "連結"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "引文"
+
+#: archive.php:53
+msgid "Images"
+msgstr "圖片"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "影片"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "按年存檔：%s"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "旁白"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "按月存檔：%s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "作者 %s 的所有文章"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "按日存檔：%s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "標籤 <strong>%s</strong> 下的所有文章"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "嘗試搜尋每月封存檔。%1$s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "分類：%s"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "這個位置似乎沒有任何項目。要嘗試以下其中一個連結或進行搜尋嗎？"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "最常使用分類"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "糟糕！找不到該頁面。"

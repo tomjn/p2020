@@ -1,0 +1,257 @@
+# Translation of WordPress.com - Themes - P2-breathe in Icelandic
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-04-21 22:59:27+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n % 100 != 1 && n % 100 != 21 && n % 100 != 31 && n % 100 != 41 && n % 100 != 51 && n % 100 != 61 && n % 100 != 71 && n % 100 != 81 && n % 100 != 91);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: is\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "Communication is oxygen. P2 \"Breathe\" is the first o2-enabled theme."
+msgstr "Samskipti er súrefni. P2 \"Breathe\" er fyrsta þemað með o2-stuðning."
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Leita &hellip;"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "Leita"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "Leitarniðurstöður: %s"
+
+#: searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr "Leita"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Það lítur út fyrir að við finnum ekki það sem þú leitar að. Hugsanlega hjálpar til að nota leitina."
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Tilbúinn að gefa út þína fyrstu færslu? <a href=\"%1$s\">Byrjaðu hérna</a>."
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Afsakið, ekkert passaði við leitarskilyrði þín. Vinsamlega reyndu aftur með einhverjum öðrum leitarorðum."
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "Ekkert fannst"
+
+#: inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr "%1$s <em>þann</em> %2$s"
+
+#: index.php:27
+msgid "Recent Updates"
+msgstr "Nýlegar uppfærslur"
+
+#: index.php:31
+msgctxt "Month name"
+msgid "Updates from %s"
+msgstr "Uppfærslur frá %s"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Bakvísun:"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Eldri færslur"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Nýrri færslur <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Leiðarstýring færslu"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "Síða %s"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Lokað er fyrir bæði athugasemdir og bakrakningar."
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "Litur tengils"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "Lokað er fyrir athugasemdir, en þú getur skilið eftir bakrakningu: <a class=\"trackback-link\" href=\"%s\" title=\"Vefslóð bakrakningar fyrir færsluna þína\" rel=\"trackback\">vefslóð bakrakningar</a>."
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "Lokað er fyrir bakrakningar, en þú getur <a class=\"comment-link\" href=\"#respond\" title=\"Skrifa athugasemd\">skrifað athugasemd</a>."
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Næsta <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"Skrifa athugasemd\">Skrifaðu athugasemd</a> eða skildu eftir bakrakningu: <a class=\"trackback-link\" href=\"%s\" title=\"Vefslóð bakrakningar færslunnar þinnar\" rel=\"trackback\">vefslóð bakrakningar</a>."
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Fyrri"
+
+#: image.php:23
+msgid "Published <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr "Birt þann <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> kl <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Fara aftur í %7$s\" rel=\"gallery\">%8$s</a>"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "Leiðrétta"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "Fara að efni"
+
+#: header.php:32
+msgid "Menu"
+msgstr "Valmynd"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "virkt"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "Aðalvalmynd"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "Hliðarstika"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Þema: %1$s hannað af %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Knúið af %s með stolti"
+
+#: content-single.php:33 content.php:33
+msgid "<br />Tags:"
+msgstr "<br />Merki:"
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Halda áfram að lesa <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single.php:13 content.php:13
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "Færslur eftir %1$s ( @%2$s )"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "Síður:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "Lokað er fyrir athugasemdir."
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; Eldri athugasemdir"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "Nýrri athugasemdir &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "Leiðarkerfi athugasemda"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "Færslusöfn"
+
+#: archive.php:62
+msgid "Links"
+msgstr "Tenglar"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "Tilvitnanir"
+
+#: archive.php:53
+msgid "Images"
+msgstr "Myndir"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "Myndbönd"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "Árskipt greinasafn: %s"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "Innskot"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "Mánaðarskipt greinasafn: %s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "Greinasafn höfundar: %s"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "Dagskipt færslusafn: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "Greinasafn merkis: %s "
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Prófaðu að skoða sarpinn. %1$s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "Greinasafn flokks: %s"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Ekkert finnst á þessari slóð. Reyndu einhvern af hlekkjunum fyrir neðan eða notaðu leitarstikuna."
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Vinsælustu flokkarnir"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Úbbs! Þessi síða fannst ekki."

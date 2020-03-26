@@ -1,0 +1,259 @@
+# Copyright (C) 2020 p2020
+# This file is distributed under the same license as the p2020 package.
+msgid ""
+msgstr ""
+"Project-Id-Version: p2020\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: src/404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr ""
+
+#: src/404.php:27
+msgid "Most Used Categories"
+msgstr ""
+
+#. translators: %1$s: smiley
+#: src/404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr ""
+
+#: src/archive.php:23
+msgid "Category Archives: %s"
+msgstr ""
+
+#: src/archive.php:26
+msgid "Tag Archives: %s"
+msgstr ""
+
+#: src/archive.php:33
+msgid "Author Archives: %s"
+msgstr ""
+
+#: src/archive.php:41
+msgid "Daily Archives: %s"
+msgstr ""
+
+#: src/archive.php:44
+msgid "Monthly Archives: %s"
+msgstr ""
+
+#: src/archive.php:47
+msgid "Yearly Archives: %s"
+msgstr ""
+
+#: src/archive.php:50
+msgid "Asides"
+msgstr ""
+
+#: src/archive.php:53
+msgid "Images"
+msgstr ""
+
+#: src/archive.php:56
+msgid "Videos"
+msgstr ""
+
+#: src/archive.php:59
+msgid "Quotes"
+msgstr ""
+
+#: src/archive.php:62
+msgid "Links"
+msgstr ""
+
+#: src/archive.php:65
+msgid "Archives"
+msgstr ""
+
+#: src/comments.php:30, src/comments.php:50
+msgid "Comment navigation"
+msgstr ""
+
+#: src/comments.php:31, src/comments.php:51
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: src/comments.php:32, src/comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: src/comments.php:62
+msgid "Comments are closed."
+msgstr ""
+
+#: src/content-page.php:12, src/content-single.php:45, src/content.php:50, src/image.php:93
+msgid "Pages:"
+msgstr ""
+
+#: src/content-single.php:13, src/content.php:13
+msgid "Posts by %1$s ( @%2$s )"
+msgstr ""
+
+#: src/content-single.php:33, src/content.php:33
+msgid "<br />Tags:"
+msgstr ""
+
+#: src/content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: src/footer.php:16
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: src/footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr ""
+
+#: src/functions.php:76
+msgid "Primary Menu"
+msgstr ""
+
+#: src/functions.php:107
+msgid "Sidebar"
+msgstr ""
+
+#: src/functions.php:126
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr ""
+
+#: src/functions.php:129
+msgctxt "Serif: on or off"
+msgid "on"
+msgstr ""
+
+#: src/header.php:46, src/header.php:46
+msgid "Skip to content"
+msgstr ""
+
+#: src/image.php:23
+msgid "Published <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr ""
+
+#: src/image.php:34, src/image.php:107, src/inc/template-tags.php:71
+msgid "Edit"
+msgstr ""
+
+#: src/image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr ""
+
+#: src/image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: src/image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr ""
+
+#: src/image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr ""
+
+#: src/image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr ""
+
+#: src/image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr ""
+
+#: src/index.php:27
+msgid "Recent Updates"
+msgstr ""
+
+#: src/index.php:27, src/inc/extras.php:70
+msgid "Page %s"
+msgstr ""
+
+#: src/index.php:31
+msgctxt "Month name"
+msgid "Updates from %s"
+msgstr ""
+
+#: src/no-results.php:13
+msgid "Nothing Found"
+msgstr ""
+
+#: src/no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: src/no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr ""
+
+#: src/no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr ""
+
+#: src/search.php:17
+msgid "Search Results for: %s"
+msgstr ""
+
+#: src/searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr ""
+
+#: src/searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: src/searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#: src/inc/customizer.php:24
+msgid "Alternate Color"
+msgstr ""
+
+#: src/inc/customizer.php:35
+msgid "Link Color"
+msgstr ""
+
+#: src/inc/template-tags.php:34
+msgid "Post navigation"
+msgstr ""
+
+#: src/inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr ""
+
+#: src/inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr ""
+
+#: src/inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr ""
+
+#: src/inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: src/inc/template-tags.php:71
+msgid "Pingback:"
+msgstr ""
+
+#: src/inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr ""
