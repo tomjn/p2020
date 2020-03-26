@@ -1,0 +1,238 @@
+# Translation of WordPress.com - Themes - P2-breathe in Greek (Polytonic)
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-04-21 22:59:26+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Ψάξτε &hellip;"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "Ψάξτε"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "Ἀναζήτηση ἀποτελεσμάτων γιά: %s"
+
+#: searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr "Ψάξτε"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Μᾶλλον δὲν μποροῦμε νὰ βροῦμε αὐτὸ ποὺ ψάχνετε. Ἴσως βοηθήσει μιὰ ἀναζήτηση."
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Ἕτοιμος/-η γιὰ τὸ πρῶτο σας ἄρθρο; <a href=\"%1$s\">Ξεκινῆστε ἀπὸ δῶ</a>."
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Λυπούμεθα, ἀλλὰ τίποτε δὲν ταιριάζει μὲ τὶς λέξεις ἀναζήτησης. Παρακαλοῦμε ξαναδοκιμάστε μὲ διαφορετικὲς λέξεις-κλειδιά."
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "Δὲν βρέθηκε τίποτε"
+
+#: inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr "%1$s <em>στὶς</em> %2$s "
+
+#: index.php:27
+msgid "Recent Updates"
+msgstr "Πρόσφατες ἐνημερώσεις"
+
+#: index.php:31
+msgctxt "Month name"
+msgid "Updates from %s"
+msgstr "Ἐνημερώσεις ἀπὸ τὸν μῆνα %s"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Αὐτόματη εἰδοποίηση σύνδεσης:"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Παλαιότερα ἄρθρα"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Νεώτερα ἄρθρα <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Περιήγηση ἄρθρων"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "Σελίδα %s"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Σχόλια καὶ εἰδοποιήσεις συνδέσεων εἶναι ἐπὶ τοῦ παρόντος κλειστά."
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "Χρῶμα συνδέσμου"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "Τὰ σχόλια ἔχουν κλείσει ἀλλὰ μπορεῖτε νὰ ἀφήσετε μιὰ εἰδοποίηση σύνδεσης: <a class=\"trackback-link\" href=\"%s\" title=\"URL γιὰ εἰδοποίηση σύνδεσης πρὸς τὸ σχόλιό σας\" rel=\"trackback\">URL γιὰ εἰδοποίηση σύνδεσης</a>."
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "Οἱ εἰδοποιήσεις συνδέσεως ἔχουν κλείσει, ἀλλὰ μπορεῖτε νὰ <a class=\"comment-link\" href=\"#respond\" title=\"Ἀναρτῆστε σχόλιο\">ἀναρτήσετε σχόλιο</a>."
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Ἑπόμενα <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"Σχολιάστε\">Σχολιάστε</a> ἢ ἀφῆστε εἰδοποίηση σύνδεσης: <a class=\"trackback-link\" href=\"%s\" title=\"Ἡ URL γιὰ εἰδοποίηση σύνδεσης πρὸς τὸ ἄρθρο σας\" rel=\"trackback\">URL γιὰ εἰδοποίηση σύνδεσης</a>. "
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Προηγούμενα"
+
+#: image.php:23
+msgid "Published <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr "Δημοσιεύθηκε στὶς <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span>, <a href=\"%3$s\" title=\"Σύνδεσμος πρὸς τὴν εἰκόνα στὸ φυσικό της μέγεθος\">%4$s &times; %5$s</a> στὴν συλλογὴ <a href=\"%6$s\" title=\"Ἐπιστροφὴ στὴν συλλογὴ %7$s\" rel=\"gallery\">%8$s</a>"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "Ἐπεξεργασία"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "Πηγαίνετε στὸ περιεχόμενο τοῦ ἱστολογίου"
+
+#: header.php:32
+msgid "Menu"
+msgstr "Μενού"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "Πρωτεῦον μενού"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "Πλαϊνὴ στήλη"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Θέμα: %1$s ἀπὸ τὸν/τὴν %2$s"
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Λειτουργεῖ μὲ τὴν βοήθεια τοῦ %s"
+
+#: content-single.php:33 content.php:33
+msgid "<br />Tags:"
+msgstr "<br />Ἐτικέττες: "
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Συνέχεια <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single.php:13 content.php:13
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "Ἄρθρα τοῦ/τῆς %1$s ( @%2$s )"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "Σελίδες:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "Ἡ ὑποβολὴ σχολίων ἔχει κλείσει."
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; Παλαιότερα σχόλια"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "Νεότερα σχόλια &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "Πλοήγηση στὰ σχόλια"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "Ἀρχεῖα"
+
+#: archive.php:62
+msgid "Links"
+msgstr "Σύνδεσμοι"
+
+#: archive.php:53
+msgid "Images"
+msgstr "Εἰκόνες"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "Βίντεο"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "Ἐτήσια Ἀρχεῖα: %s"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "Μηνιαία Ἀρχεῖα: %s "
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "Ἀρχεῖα συγγραφέως: %s "
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "Ἡμερήσια ἀρχεῖα: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "Ἀρχεῖα ἐτικέττας: %s"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Προσπαθῆστε νὰ ψάξετε στὰ μηνιαῖα ἀρχεῖα. %1$s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "Ἀρχεῖα κατηγορίας: %s"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Στὴν τοποθεσία αὐτὴν δὲν βρέθηκε τίποτε. Ἂν θέλετε δοκιμάστε κάποιον ἀπὸ τοὺς κατωτέρω συνδέσμους ἢ μιὰν ἀναζήτηση."
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Οἱ πιὸ χρησιμοποιημένες κατηγορίες"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Ἡ σελίδα αὐτὴ δὲν βρέθηκε."

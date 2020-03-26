@@ -1,0 +1,247 @@
+# Translation of WordPress.com - Themes - P2-breathe in Dutch
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-04-21 22:59:27+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: nl\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Zoek &help;"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "Zoeken"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "Zoekresultaten voor: %s"
+
+#: searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr "zoeken"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Het lijkt erop dat wij niet kunnen vinden wat jij zoekt. Wellicht helpt de zoekfunctie."
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Klaar om je eerste bericht te publiceren? <a href=\"%1$s\">Start hier</a>."
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Helaas, er waren geen overeenkomsten met jouw zoekterm. Probeer het opnieuw met enkele andere zoekwoorden."
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "Niks gevonden"
+
+#: inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr "%1$s <em>op</em> %2$s"
+
+#: index.php:27
+msgid "Recent Updates"
+msgstr "Recente updates"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Oudere berichten"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Nieuwere berichten <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Navigatie door berichten"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "Pagina %s"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Reacties en trackbacks zijn beide gesloten op dit moment."
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "Link kleur"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "Je kan geen reacties meer toevoegen, maar laat gerust een trackback na: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL voor je bericht\" rel=\"trackback\">Trackback URL</a>."
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "Trackbacks zijn gesloten, maar je kan <a class=\"comment-link\" href=\"#respond\" title=\"Plaats een reactie\">een reactie plaatsen</a>."
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Volgende <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"Voeg een reactie toe\">Voeg een reactie toe</a> of laat een trackback achter: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL voor je bericht\" rel=\"trackback\">Trackback URL</a>."
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Vorige"
+
+#: image.php:23
+msgid "Published <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr "Gepubliceerd <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> op <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "Bewerk"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "Naar de inhoud springen"
+
+#: header.php:32
+msgid "Menu"
+msgstr "Menu"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "Hoofdmenu"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "Sidebar"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Thema: %1$s door %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Ondersteund door %s"
+
+#: content-single.php:33 content.php:33
+msgid "<br />Tags:"
+msgstr "<br />Tags:"
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Lees verder <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single.php:13 content.php:13
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "Berichten door %1$s ( @%2$s )"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "Pagina's:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "Reacties zijn gesloten."
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; Oudere reacties"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "Nieuwe reacties &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "Reactienavigatie"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "Archief"
+
+#: archive.php:62
+msgid "Links"
+msgstr "Links"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "Gezegden"
+
+#: archive.php:53
+msgid "Images"
+msgstr "Afbeeldingen"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "Video&#39;s"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "Jaarlijks archief: %s"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "Opmerkingen"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "Archief: %s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "Berichten van: %s"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "Dagelijks archief: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "Tagarchief: %s"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Probeer eens te zoeken in het maandelijks archief. %1$s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "Categorie archief: %s"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Het lijkt erop dat niets werd gevonden op deze locatie. Probeer dan misschien een van de links hieronder of een zoekopdracht?"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Meest gebruikte categorie&#235;n"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Oeps! Die pagina kon niet worden gevonden."

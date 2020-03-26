@@ -1,0 +1,248 @@
+# Translation of WordPress.com - Themes - P2-breathe in Urdu
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-12-12 06:39:16+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: ur_PK\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "Communication is oxygen. P2 \"Breathe\" is the first o2-enabled theme."
+msgstr "مواصلات آکسیجن ہے۔ P2 \"Breathe\" پہلی O2 فعال تھیم ہے۔"
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "تلاش کریں &hellip;"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "تلاش"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "تلاش کے نتائج برائے : %s"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "ایسا لگتا ہے کہ ہم وہ تلاش نہیں کر سکے جسے آپ ڈھونڈ رہے ہیں۔ شاید تلاش مدد کر سکے۔"
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "آپ اپنی پہلی پوسٹ شائع کرنے لیے تیار ہیں؟ <a href=\"%1$s\">یہاں سے شروع کریں</a>۔"
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "معاف کیجیے گا، لیکن آپ کی تلاش کردہ اصطلاح سے کچھ نہیں ملا سکا۔ براہ مہربانی کسی اور کی ورڈز سے دوبارہ تلاش کرنے کی کوشش کریں۔"
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "کچھ نہیں ملا"
+
+#: index.php:27
+msgid "Recent Updates"
+msgstr "تازہ ترین اپڈیٹس"
+
+#: inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr "%1$s <em>پر</em> %2$s"
+
+#: index.php:31
+msgctxt "Month name"
+msgid "Updates from %s"
+msgstr "اپڈیٹس منجانب %s"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "پنگ بیک:"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> پرانی پوسٹیں"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "نئی پوسٹیں <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "پوسٹوں کی نیویگیشن"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "صفحہ %s"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "تبصرے اور ٹریک بیکس دونوں فی الحال بند ہیں۔"
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "روابط کا رنگ"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "تبصرے بند ہیں، مگر آپ ٹریک بیکس کر سکتے ہیں: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">ٹریک بیک یوآرایل</a>۔"
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "ٹریک بیکس بند ہیں، مگر آپ <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">تبصرہ پوسٹ کر سکتے ہیں</a>۔"
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "آگے <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">تبصرہ پوسٹ کریں</a> یا ٹریک بیکس چھوڑیں: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">ٹریک بیک یوآرایل</a>."
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> پیچھے"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "تصحیح"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "چھوڑیں مواد پر جائیں"
+
+#: header.php:32
+msgid "Menu"
+msgstr "فہرست"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "جاری"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "درجہ اول مینو"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "بغلی ‌پٹی"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "تھیم: %1$s منجانب %2$s۔"
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "فخریہ تقویت شدہ منجانب %s"
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "<span class=\"meta-nav\">&rarr;</span> پڑھنا جاری رکھیں"
+
+#: content-single.php:33 content.php:33
+msgid "<br />Tags:"
+msgstr "<br />ٹیگز:"
+
+#: content-single.php:13 content.php:13
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "پوسٹ منجانب %1$s ( @%2$s )"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "صفحات:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "تبصرے بند ہیں۔"
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr;  سابقہ تبصرے"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "نئے تبصرے &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "تبصروں کی نیویگیشن"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "محفوظات"
+
+#: archive.php:62
+msgid "Links"
+msgstr "لنکس"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "حوالے"
+
+#: archive.php:53
+msgid "Images"
+msgstr "تصاویر"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "ویڈیوز"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "سالانہ محفوظات : %s"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "اطراف"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "ماہانہ محفوظات: %s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "مصنف کے محفوظات: %s"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "یومیہ محفوظات: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "ٹیگ کے محفوظات: %s"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "ماہانہ محفوظات میں دیکھنے کی کوشش کریں۔ %1$s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "زمرہ جات کے محفوظات: %s"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "ایسا لگتا ہے کہ اس مقام پر کچھ نہیں مل سکا۔ ہو سکتا ہے کہ ذیل کے لنکس میں سے کوشش یا تلاش کریں؟"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "زیادہ استعمال کردہ زمرے"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "اوہ، مطلوبہ صفحہ نہیں مل سکا۔"

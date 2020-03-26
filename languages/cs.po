@@ -1,0 +1,239 @@
+# Translation of WordPress.com - Themes - P2-breathe in Czech
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-11-22 12:02:03+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: cs_CZ\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "Hledat"
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Hledat &hellip;"
+
+#: searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr "Hledat"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "Výsledky vyhledávání: %s"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Požadovaný obsah se na webu bohužel nenachází. Můžete ale zkusit vyhledávání konkrétního klíčového slova."
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Omlouváme se, ale zadaný výraz nebyl na webu nalezen. Zkuste prosím hledat znovu nějaké jiné klíčové slovo."
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Chystáte se publikovat první příspěvek? <a href=\"%1$s\">Můžete začít rovnou zde</a>."
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "Nenalezeno"
+
+#: index.php:27
+msgid "Recent Updates"
+msgstr "Poslední aktualizace"
+
+#: inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr "v %1$s <em>dne</em> %2$s"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Novější příspěvky <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Starší příspěvky"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Navigace pro příspěvek"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "%s. stránka"
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "Barva odkazu"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Jak komentáře, tak zpětné odkazy, jsou momentálně uzavřeny. "
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "Zpětné odkazy jsou zavřeny, ale můžete <a class=\"comment-link\" href=\"#respond\" title=\"Zaslat komentář\">poslat komentář</a>."
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "Komentáře jsou zavřeny, ale můžete zanechat trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback pro váš příspěvek\" rel=\"trackback\">Adresa trackbacku</a>."
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"Poslat komentář\">Poslat komentář</a> zanechat trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL vašeho příspěvkut\" rel=\"trackback\">Trackback URL</a>. "
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Další <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Předchozí"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "Upravit"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "Přejít k obsahu webu"
+
+#: header.php:32
+msgid "Menu"
+msgstr "Menu"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "Postranní panel"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "Základní menu"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Šablona: %1$s od %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Používáme %s (v češtině)."
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Pokračování textu <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single.php:33 content.php:33
+msgid "<br />Tags:"
+msgstr "<br /> Tagy:"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "Stránky:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "Komentáře nejsou povoleny."
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "Novější komentáře &rarr;"
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; Starší komentáře"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "Navigace pro komentáře"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "Archiv"
+
+#: archive.php:62
+msgid "Links"
+msgstr "Odkazy"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "Citace"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "Video příspěvky"
+
+#: archive.php:53
+msgid "Images"
+msgstr "Obrázky"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "Poznámky"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "Roční archivy: %s"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "Archiv pro měsíc: %s"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "Denní archivy: %s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "Archiv autora: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "Archiv pro štítek: %s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "Archiv pro rubriku: %s"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Zkuste se podívat do měsíčních archivů. %1$s"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Nejpoužívanější kategorie"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Patrně jste chtěli zobrazit stránku, která se na webu bohužel nenachází. Můžete ale zkusit vyhledávání konkrétního klíčového slova."
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Omlouváme se, ale stránka nebyla nalezena."

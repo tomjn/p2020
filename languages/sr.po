@@ -1,0 +1,252 @@
+# Translation of WordPress.com - Themes - P2-breathe in Serbian
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-12-14 17:15:44+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: sr_RS\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Претрага &hellip;"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "Претражи"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "Резултати претраживања за: %s"
+
+#: searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr "Претрага: Унесите параметре"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Изгледа да не можемо да пронађемо оно што сте тражили. Можда ће претраживање помоћи."
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Спремни сте да објавите свој први чланак? <a href=\"%1$s\">Започните овде</a>."
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Нажалост, ваша претрага није донела резултате. Молимо вас, покушајте поново са другачијим параметрима."
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "Ништа није пронађено"
+
+#: inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr "%1$s <em>хна</em> %2$s"
+
+#: index.php:27
+msgid "Recent Updates"
+msgstr "Скорашње допуне"
+
+#: index.php:31
+msgctxt "Month name"
+msgid "Updates from %s"
+msgstr "Ажурирања од %s"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Повратни пинг:"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Старији чланци"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Новији чланци <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Кретање чланака"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "Страна %s"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Ни коментари ни повратне везе тренутно нису дозвољени."
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "Боја везе"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "Коментари нису дозвољени али можете оставити повратну везу: <a class=\"trackback-link\" href=\"%s\" title=\"URL повратне везе за ваш чланак\" rel=\"trackback\">URL повратне везе</a>."
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "Није дозвољено објављивање повратне везе али можете <a class=\"comment-link\" href=\"#respond\" title=\"Објави коментар\">објавити коментар</a>."
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Следеће <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"Објавите коментар\">Објавите коментар</a> или оставите повратну везу: <a class=\"trackback-link\" href=\"%s\" title=\"URL повратне везе за ваш чланак\" rel=\"trackback\">URL повратне везе</a>."
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Претходно"
+
+#: image.php:23
+msgid "Published <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr "Објављено <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> у <a href=\"%3$s\" title=\"Линк за пун приказ слике\">%4$s &times; %5$s</a> у <a href=\"%6$s\" title=\"Повратак на %7$s\" rel=\"gallery\">%8$s</a>"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "Уреди"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "Скочи на садржај"
+
+#: header.php:32
+msgid "Menu"
+msgstr "Мени"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "Примарни изборник"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "Бочна трака"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Тема: %1$s од %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Са поносом покреће %s"
+
+#: content-single.php:33 content.php:33
+msgid "<br />Tags:"
+msgstr "<br />Ознаке:"
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Наставите са читањем <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single.php:13 content.php:13
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "Чланци од %1$s ( @%2$s )"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "Стране:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "Затворено за коментаре."
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; Старији коментари"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "Новији коментари &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "Кретање коментара"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "Архиве"
+
+#: archive.php:62
+msgid "Links"
+msgstr "Везe"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "Цитати"
+
+#: archive.php:53
+msgid "Images"
+msgstr "Слике"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "Видео записи"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "Годишње архиве: %s"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "Са стране"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "Месечне архиве: %s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "Архиве аутора: %s"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "Дневне архиве: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "Архиве ознака: %s"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Покушајте са гледањем месечних архива. %1$s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "Архиве категорија: %s"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Ништа није нађено на овој локацији. Можда да покушате да пронађете тражени садржај међу доњим линковима или путем претраге?"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Најкоришћеније категорије"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Упс! Та страница није пронађена."

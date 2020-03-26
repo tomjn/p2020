@@ -1,0 +1,152 @@
+/*
+Global WP.com print styles.
+Thanks to HTML5 Boilerplate http://html5boilerplate.com/
+*/
+
+
+/* Screen-specific niceness. Modified HTML5 Boilerplate.
+------------------------------------------------------------------------------- */
+
+* {
+	background: transparent !important;
+	box-shadow: none !important;
+	text-indent: 0 !important;
+	text-shadow: none !important;
+	letter-spacing: normal !important;
+	word-spacing: normal !important;
+	border: none !important;
+}
+img {
+	max-width: 100%;
+}
+thead {
+	display: table-header-group; /* h5bp.com/t */
+}
+p,
+h2,
+h3 {
+	orphans: 3;
+	widows: 3;
+}
+a, a:visited {
+	color: #000 !important;
+	text-decoration: underline;
+}
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: 13pt !important;
+}
+
+/* Zeroise
+------------------------------------------------------------------------------- */
+
+body {
+	min-width: 0 !important;
+}
+img {
+	border-radius: 0 !important;
+	border-width: 0 !important;
+	padding: 0 !important;
+}
+.site {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static;
+}
+
+/* Typography
+------------------------------------------------------------------------------- */
+
+* {
+	font-family: inherit !important;
+	font-size: 97% !important;
+	line-height: 1.3 !important;
+}
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: 13pt !important;
+	color: #000 !important;
+}
+
+pre, code, kbd, tt {
+	border: 0 none !important;
+	font-family: Consolas, monospace !important;
+}
+table, th, td {
+	border: 1pt solid black !important;
+	border-collapse: collapse !important;
+	text-align: left;
+}
+th, td {
+	padding: .25em .5em !important;
+}
+.entry-content h2 {
+	font-size: 13pt;
+}
+
+.entry-content,
+.entry-summary,
+.comment-content,
+.entry-content h2,
+.comment-content h2,
+.entry-content h3,
+.comment-content h3,
+.entry-content p,
+.comment-content p,
+.entry-content li,
+.comment-content li,
+.entry-content tr,
+.comment-content tr,
+.entry-content img,
+.comment-content img, {
+	page-break-inside: avoid;
+}
+#mobile-navigation,
+#masthead,
+article.o2-app-new-post,
+.o2-app-new-post h2,
+#jp-post-flair,
+.actions,
+.comment-actions,
+.o2-actions,
+.o2-app-controls,
+.o2 .o2-app-new-post h2, .o2 .o2-app-page-title,
+.entry-tags,
+.o2-tags-array,
+.o2-post-comments-collapsed,
+.blog-credits,
+.comment-content div.comment-likes,
+.widget-area,
+.o2-app-footer,
+.o2-xpost-content,
+.o2-xpost-author,
+.o2-xpost-entry-date,
+.o2-xpost-avatar,
+.navigation,
+#respond,
+#o2-dock {
+	display: none !important;
+}
+.entry-meta a,
+.comment-meta,
+.comment-date,
+.comment-author {
+	text-decoration: none !important;
+}
+.entry-author,
+.comment-author {
+	font-weight: bold;
+}
+.comment-content,
+.entry-content {
+	margin-top: 10px;
+	margin-left: 43px;
+}
+.entry-content,
+.o2-post .entry-title {
+	margin-left: 71px !important;
+}
+.entry-meta .entry-date:after {
+	content: "Permalink: (" attr(href) ")" !important;
+	display: block;
+}

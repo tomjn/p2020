@@ -1,0 +1,238 @@
+# Translation of WordPress.com - Themes - P2-breathe in Korean
+# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-04-21 22:59:27+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: ko_KR\n"
+"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "검색 &hellip;"
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "검색"
+
+#: search.php:17
+msgid "Search Results for: %s"
+msgstr "검색 결과: %s"
+
+#: no-results.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "찾고 있는 것을 찾을 수 없는 것 같습니다. 검색이 도움이 될 수도 있습니다."
+
+#: no-results.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "첫 번째 글을 발행할 준비가 됐나요? <a href=\"%1$s\">여기서 시작하세요</a>."
+
+#: no-results.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "죄송하지만 검색어와 일치하는 것이 없습니다. 다른 검색어로 다시 시도해보세요."
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr "찾을 수 없음"
+
+#: inc/template-tags.php:176
+msgid "%1$s <em>on</em> %2$s"
+msgstr "%2$s<em>의</em> %1$s"
+
+#: index.php:27
+msgid "Recent Updates"
+msgstr "최근 업데이트"
+
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "핑백:"
+
+#: inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> 예전 글"
+
+#: inc/template-tags.php:48
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "다음 글 <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "글 네비게이션"
+
+#: inc/extras.php:70 index.php:27
+msgid "Page %s"
+msgstr "페이지 %s"
+
+#: image.php:105
+msgid "Both comments and trackbacks are currently closed."
+msgstr "현재 댓글 및 트랙백이 모두 닫혀있습니다."
+
+#: inc/customizer.php:35
+msgid "Link Color"
+msgstr "링크 색깔"
+
+#: image.php:101
+msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "댓글이 닫혀 있지만 트랙백을 남길 수 있습니다: <a class=\"trackback-link\" href=\"%s\" title=\"글의 트랙백 URL\" rel=\"trackback\">트랙백 URL</a>."
+
+#: image.php:103
+msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+msgstr "트랙백이 닫혀 있습니다. 하지만 <a class=\"comment-link\" href=\"#respond\" title=\"댓글 달기\">댓글을 달 수 있습니다</a>."
+
+#: image.php:39
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "다음 <span class=\"meta-nav\">&rarr;</span>"
+
+#: image.php:99
+msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr "<a class=\"comment-link\" href=\"#respond\" title=\"댓글 달기\">댓글을 달거나</a> 트랙백을 남기세요: <a class=\"trackback-link\" href=\"%s\" title=\"글의 트랙백 URL\" rel=\"trackback\">트랙백 URL</a>."
+
+#: image.php:38
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> 이전"
+
+#: image.php:34 image.php:107 inc/template-tags.php:71
+msgid "Edit"
+msgstr "편집"
+
+#: header.php:46
+msgid "Skip to content"
+msgstr "콘텐츠로 바로가기"
+
+#: header.php:32
+msgid "Menu"
+msgstr "메뉴"
+
+#: functions.php:116
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "끄기"
+
+#: functions.php:66
+msgid "Primary Menu"
+msgstr "주 메뉴"
+
+#: functions.php:97
+msgid "Sidebar"
+msgstr "사이드바"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "테마: %1$s(%2$s 제작)."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "%s의 지원을 받습니다"
+
+#: content-single.php:33 content.php:33
+msgid "<br />Tags:"
+msgstr "<br />태그:"
+
+#: content.php:49
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "계속 읽기 <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single.php:13 content.php:13
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "%1$s(@%2$s)의 글"
+
+#: content-page.php:12 content-single.php:45 content.php:50 image.php:93
+msgid "Pages:"
+msgstr "페이지:"
+
+#: comments.php:62
+msgid "Comments are closed."
+msgstr "댓글이 닫혀있습니다."
+
+#: comments.php:31 comments.php:51
+msgid "&larr; Older Comments"
+msgstr "&larr; 이전 댓글"
+
+#: comments.php:32 comments.php:52
+msgid "Newer Comments &rarr;"
+msgstr "다음 댓글 &rarr;"
+
+#: comments.php:30 comments.php:50
+msgid "Comment navigation"
+msgstr "댓글 탐색"
+
+#: archive.php:65
+msgid "Archives"
+msgstr "글 목록"
+
+#: archive.php:62
+msgid "Links"
+msgstr "링크"
+
+#: archive.php:59
+msgid "Quotes"
+msgstr "인용"
+
+#: archive.php:53
+msgid "Images"
+msgstr "이미지"
+
+#: archive.php:56
+msgid "Videos"
+msgstr "비디오"
+
+#: archive.php:47
+msgid "Yearly Archives: %s"
+msgstr "연도별 보관물: %s"
+
+#: archive.php:50
+msgid "Asides"
+msgstr "추가정보"
+
+#: archive.php:44
+msgid "Monthly Archives: %s"
+msgstr "월별 보관물: %s"
+
+#: archive.php:33
+msgid "Author Archives: %s"
+msgstr "글쓴이 글 목록: %s"
+
+#: archive.php:41
+msgid "Daily Archives: %s"
+msgstr "일별 보관물: %s"
+
+#: archive.php:26
+msgid "Tag Archives: %s"
+msgstr "태그 보관물: %s"
+
+#. translators: %1$s: smiley
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "월간 보관물을 확인해보세요. %1$s"
+
+#: archive.php:23
+msgid "Category Archives: %s"
+msgstr "카테고리 보관물: %s"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "이 위치에서 아무 것도 찾을 수 없는 것 같습니다. 아래의 링크 중 하나로 시도하거나 검색을 해보시는 것은 어떠세요?"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "가장 많이 사용된 카테고리"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "이런! 해당 페이지를 찾을 수 없습니다."
