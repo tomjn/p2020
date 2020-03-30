@@ -1,0 +1,28 @@
+{
+	"settings": {
+		"options": {
+			"show_on_front": "posts",
+			"blogdescription": "Welcome to your WordPress for Teams site!",
+			"stylesheet": "pub\/p2020"
+		},
+		"theme_mods": {},
+		"headstart": {
+			"mapped_id_options": [],
+			"mapped_id_theme_mods": []
+		}
+	},
+	"content": [
+		{
+			"post_title": "Welcome to WordPress for Teams!",
+			"post_content": "Hi there!",
+			"post_excerpt": "This is the excerpt for your very first post.",
+			"post_status": "publish",
+			"menu_order": 1,
+			"comment_status": "open",
+			"ping_status": "open",
+			"post_type": "post",
+			"hs_sharing": 1,
+			"hs_like_status": 1
+		}
+	]
+}
