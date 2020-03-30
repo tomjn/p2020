@@ -41,6 +41,12 @@ function enable_p2tenberg() {
  * Enable inline-terms for @-mentions autocomplete
  */
 function enable_inline_terms() {
+	wp_enqueue_script(
+		'inline-terms-mentions-js',
+		plugins_url( 'wpcom-mentions.js', WPMU_PLUGIN_DIR . '/inline-terms/inline-terms.php' ),
+		[ 'jquery.wpcom-proxy-request' ]
+	);
+
 	require_once( WPMU_PLUGIN_DIR . '/inline-terms/wpcom-email-templates.php' );
 	require_once( WPMU_PLUGIN_DIR . '/inline-terms/inline-terms.php' );
 	require_once( WPMU_PLUGIN_DIR . '/inline-terms/mentions.php' );
@@ -60,12 +66,62 @@ function enable_notifications() {
 
 	add_action( 'init', function() {
 		if ( ! wp_style_is( 'noticons', 'registered' ) ) {
-			wp_register_style( 'noticons', staticize_subdomain( '//wordpress.com/i/noticons/noticons.css' ), null, Notifications_UI::CACHE_BUSTER, 'all' );
+			wp_register_style(
+				'noticons',
+				staticize_subdomain( '//wordpress.com/i/noticons/noticons.css' ),
+				null,
+				Notifications_UI::CACHE_BUSTER,
+				'all' );
 		}
 	}, -1 );
 }
 
-add_action( 'after_setup_theme', 'enable_inline_terms', 1);
-add_action( 'after_setup_theme', 'enable_notifications', 1);
-add_action( 'after_setup_theme', 'enable_o2', 5 );
-add_action( 'after_setup_theme', 'enable_p2tenberg', 10 );
+/**
+ * Set Homepage display to latest posts.
+ */
+function set_homepage_display() {
+	$display = get_option( 'show_on_front' );
+	if ( $display !== 'posts' ) {
+		update_option( 'show_on_front', 'posts' );
+	}
+}
+
+function enable_o2_widgets() {
+	$sidebars = get_option( 'sidebars_widgets' );
+
+	if ( empty( $sidebars['sidebar-1'] ) ) {
+		$widget_no = 2;
+		$live_comments_widget_settings = [
+			$widget_no => [
+				'title' => __( 'Live Updates', 'p2020' ),
+				'kind' => 'both',
+				'number' => 10,
+			]
+		];
+		update_option( 'widget_o2-live-comments-widget', $live_comments_widget_settings );
+
+		$filter_widget_settings = [
+			$widget_no => [
+				'title' => __( 'Links', 'p2020' ),
+			]
+		];
+		update_option( 'widget_o2-filter-widget', $filter_widget_settings );
+
+		// Add widgets to sidebar
+		$sidebars['sidebar-1'] = [
+			'o2-live-comments-widget-' . $widget_no,
+			'o2-filter-widget-' . $widget_no,
+		];
+		$sidebars['wp_inactive_widgets'] = [];
+		$sidebars['array_version'] = 3;
+
+		update_option( 'sidebars_widgets', $sidebars );
+	}
+}
+
+add_action( 'after_setup_theme', 'enable_inline_terms', 100 );
+add_action( 'after_setup_theme', 'enable_notifications', 100 );
+add_action( 'after_setup_theme', 'enable_o2', 101 );
+add_action( 'after_setup_theme', 'set_homepage_display', 102 );
+add_action( 'after_setup_theme', 'enable_o2_widgets', 102 );
+add_action( 'after_setup_theme', 'enable_p2tenberg', 103 );
