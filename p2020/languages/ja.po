@@ -1,5 +1,5 @@
-# Translation of WordPress.com - Themes - P2-breathe in Japanese
-# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+# Translation of WordPress.com - Themes - P2020 in Japanese
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2017-04-21 22:59:27+0000\n"
@@ -9,12 +9,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: ja_JP\n"
-"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
 
 #. Description of the plugin/theme
 #: wp-content/themes/pub/p2020/style.css
-msgid "Communication is oxygen. P2 \"Breathe\" is the first o2-enabled theme."
-msgstr "コミュニケーションは、酸素です。P2 “Breathe” は o2 を有効化した最初のテーマです。"
+msgid "Communication is oxygen."
+msgstr "コミュニケーションは、酸素です。"
 
 #: searchform.php:10
 msgctxt "placeholder"

@@ -1,9 +1,18 @@
 <?php
 /**
- * P2 functions and definitions
+ * P2020 functions and definitions
  *
  * @package p2020
  */
+
+namespace P2020;
+
+/**
+ * Load My Team widget
+ */
+require( get_template_directory() . '/widgets/my-team.php' );
+
+add_action( 'widgets_init', __NAMESPACE__ . '\my_team_widget_init' );
 
 /**
  * Load partner plugins loader file.
@@ -21,7 +30,7 @@ if ( ! isset( $content_width ) )
  */
 require( get_template_directory() . '/inc/jetpack.php' );
 
-if ( ! function_exists( 'breathe_setup' ) ) :
+if ( ! function_exists( __NAMESPACE__ . '\setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -29,7 +38,7 @@ if ( ! function_exists( 'breathe_setup' ) ) :
  * before the init hook. The init hook is too late for some features, such as indicating
  * support post thumbnails.
  */
-function breathe_setup() {
+function setup() {
 
 	/**
 	 * Custom template tags for this theme.
@@ -81,103 +90,99 @@ function breathe_setup() {
 	 */
 	add_theme_support( 'post-formats', [ 'aside', 'image', 'video', 'quote', 'link' ] );
 }
-endif; // breathe_setup
-add_action( 'after_setup_theme', 'breathe_setup' );
+endif; // setup
+add_action( 'after_setup_theme', 'P2020\setup' );
 
 /**
  * Setup the WordPress core custom background feature.
  *
  * Hooks into the after_setup_theme action.
  */
-function breathe_register_custom_background() {
+function register_custom_background() {
 	$args = [
 		'default-color' => 'f1f1f1',
 		'default-image' => '',
 	];
 
-	add_theme_support( 'custom-background', apply_filters( 'breathe_custom_background_args', $args ) );
+	add_theme_support( 'custom-background', apply_filters( 'p2020_custom_background_args', $args ) );
 }
-add_action( 'after_setup_theme', 'breathe_register_custom_background' );
+add_action( 'after_setup_theme', 'P2020\register_custom_background' );
 
 /**
  * Register widgetized area and update sidebar with default widgets
  */
-function breathe_widgets_init() {
+function widgets_init() {
 	register_sidebar( [
 		'name' => __( 'Sidebar', 'p2020' ),
 		'id' => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget widget-myteam %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
+		'before_title' => '<div class="widget-title">',
+		'after_title' => '</div>',
 	] );
 }
-add_action( 'widgets_init', 'breathe_widgets_init' );
+add_action( 'widgets_init', 'P2020\widgets_init' );
 
 /**
  * Enqueue Google Fonts
  */
-function breathe_fonts() {
+function fonts() {
 	/**
 	 * translators: If there are characters in your language that are not supported
-	 * by Open Sans, translate this to 'off'. Do not translate into your own language.
+	 * by Inter, translate this to 'off'. Do not translate into your own language.
 	 */
-
-	if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'p2020' ) ) {
-		wp_register_style( 'breathe-open-sans', "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600" );
-	}
-	if ( 'off' !== _x( 'on', 'Serif: on or off', 'p2020' ) ) {
-		wp_register_style( 'breathe-serif', "https://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic" );
+	if ( 'off' !== _x( 'on', 'Sans: on or off', 'p2020' ) ) {
+		wp_register_style( 'p2020-sans', "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" );
 	}
 }
-add_action( 'init', 'breathe_fonts' );
+add_action( 'init', 'P2020\fonts' );
 
 /**
  * Enqueue font styles in custom header admin
  */
-function breathe_admin_fonts( $hook_suffix ) {
+function admin_fonts( $hook_suffix ) {
 	if ( 'appearance_page_custom-header' != $hook_suffix )
 		return;
 
-	wp_enqueue_style( 'breathe-open-sans' );
-	wp_enqueue_style( 'breathe-serif' );
+	wp_enqueue_style( 'p2020-sans' );
 }
-add_action( 'admin_enqueue_scripts', 'breathe_admin_fonts' );
+add_action( 'admin_enqueue_scripts', 'P2020\admin_fonts' );
 
 /**
  * Enqueue scripts and styles
  */
-function breathe_scripts() {
-	wp_enqueue_style( 'breathe-style', get_stylesheet_uri() );
-	wp_style_add_data( 'breathe-style', 'rtl', 'replace' );
-	//wp_enqueue_style( 'breathe-open-sans' );
-	wp_enqueue_style( 'breathe-serif' );
+function scripts() {
+	wp_enqueue_style( 'p2020-style', get_stylesheet_uri() );
+	wp_style_add_data( 'p2020-style', 'rtl', 'replace' );
+	wp_enqueue_style( 'p2020-sans' );
 
-	wp_enqueue_script( 'breathe-skip-link-focus-fix', get_template_directory_uri() . '/js/vendor/skip-link-focus-fix.js', [], '20130115', true );
+	wp_enqueue_script( 'p2020-skip-link-focus-fix', get_template_directory_uri() . '/js/vendor/skip-link-focus-fix.js', [], '20130115', true );
 
-	wp_enqueue_script( 'breathe-mobile-helper', get_template_directory_uri() . '/js/vendor/mobile-helper.js', [], '20130513', true );
-	wp_enqueue_script( 'breathe-js', get_template_directory_uri() . '/js/breathe.js', [ 'breathe-mobile-helper', 'o2-enquire' ], '20130513', true );
+	wp_enqueue_script( 'p2020-mobile-helper', get_template_directory_uri() . '/js/vendor/mobile-helper.js', [], '20130513', true );
+	wp_enqueue_script( 'p2020-js', get_template_directory_uri() . '/js/p2020.js', [ 'p2020-mobile-helper', 'o2-enquire' ], '20130513', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
 	if ( is_singular() && wp_attachment_is_image() ) {
-		wp_enqueue_script( 'breathe-keyboard-image-navigation', get_template_directory_uri() . '/js/vendor/keyboard-image-navigation.js', [ 'jquery' ], '20120202' );
+		wp_enqueue_script( 'p2020-keyboard-image-navigation', get_template_directory_uri() . '/js/vendor/keyboard-image-navigation.js', [ 'jquery' ], '20120202' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'breathe_scripts' );
+
+// Our stylesheets need to be loaded after the O2 stylesheets to take priority
+add_action( 'wp_enqueue_scripts', 'P2020\scripts', 11 );
 
 /**
  * Add a no-sidebar body class, if there are no widgets in the sidebar.
  */
-function breathe_check_no_sidebar( $body_classes ) {
+function check_no_sidebar( $body_classes ) {
 	if( ! is_active_sidebar( 'sidebar-1' ) )
 		$body_classes[] = 'no-sidebar';
 
 	return $body_classes;
 }
-add_filter( 'body_class', 'breathe_check_no_sidebar' );
+add_filter( 'body_class', 'P2020\check_no_sidebar' );
 
 /**
  * Implement the Custom Header feature

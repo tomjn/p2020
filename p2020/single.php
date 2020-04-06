@@ -5,6 +5,8 @@
  * @package p2020
  */
 
+use function P2020\content_nav;
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
@@ -13,7 +15,7 @@ get_header(); ?>
 		<header class="page-header">
 			<h2>
 			<span class="controls">
-				<?php do_action( 'breathe_view_controls' ); ?>
+				<?php do_action( 'p2020_view_controls' ); ?>
 			</span>
 			</h2>
 		</header><!-- .page-header -->
@@ -30,7 +32,7 @@ get_header(); ?>
 				?>
 			</aside>
 
-			<?php breathe_content_nav( 'nav-below' ); ?>
+			<?php content_nav( 'nav-below' ); ?>
 
 		<?php endwhile; // end of the loop. ?>
 

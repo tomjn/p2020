@@ -1,5 +1,5 @@
-# Translation of WordPress.com - Themes - P2-breathe in Icelandic
-# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+# Translation of WordPress.com - Themes - P2020 in Icelandic
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2017-04-21 22:59:27+0000\n"
@@ -9,12 +9,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n % 100 != 1 && n % 100 != 21 && n % 100 != 31 && n % 100 != 41 && n % 100 != 51 && n % 100 != 61 && n % 100 != 71 && n % 100 != 81 && n % 100 != 91);\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: is\n"
-"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
 
 #. Description of the plugin/theme
 #: wp-content/themes/pub/p2020/style.css
-msgid "Communication is oxygen. P2 \"Breathe\" is the first o2-enabled theme."
-msgstr "Samskipti er súrefni. P2 \"Breathe\" er fyrsta þemað með o2-stuðning."
+msgid "Communication is oxygen."
+msgstr "Samskipti er súrefni."
 
 #: searchform.php:10
 msgctxt "placeholder"

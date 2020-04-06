@@ -1,5 +1,5 @@
-# Translation of WordPress.com - Themes - P2-breathe in Portuguese (Portugal)
-# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+# Translation of WordPress.com - Themes - P2020 in Portuguese (Portugal)
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2019-02-07 11:59:41+0000\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: pt\n"
-"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
 
 #: searchform.php:11
 msgctxt "submit button"

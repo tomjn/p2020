@@ -16,16 +16,18 @@
  * @package p2020
  */
 
+namespace P2020;
+
 /**
  * Setup the WordPress core custom header feature.
  *
- * @uses breathe_header_style()
- * @uses breathe_admin_header_style()
- * @uses breathe_admin_header_image()
+ * @uses header_style()
+ * @uses admin_header_style()
+ * @uses admin_header_image()
  *
  * @package p2020
  */
-function breathe_custom_header_setup() {
+function custom_header_setup() {
 	$args = [
 		'default-image' => '',
 		'default-text-color' => '000',
@@ -33,22 +35,22 @@ function breathe_custom_header_setup() {
 		'height' => 250,
 		'flex-width' => true,
 		'flex-height' => true,
-		'wp-head-callback' => 'breathe_header_style',
-		'admin-head-callback' => 'breathe_admin_header_style',
-		'admin-preview-callback' => 'breathe_admin_header_image',
+		'wp-head-callback' => 'P2020\header_style',
+		'admin-head-callback' => 'P2020\admin_header_style',
+		'admin-preview-callback' => 'P2020\admin_header_image',
 	];
 
-	add_theme_support( 'custom-header', apply_filters( 'breathe_custom_header_args', $args ) );
+	add_theme_support( 'custom-header', apply_filters( 'p2020_custom_header_args', $args ) );
 }
-add_action( 'after_setup_theme', 'breathe_custom_header_setup' );
+add_action( 'after_setup_theme', 'P2020\custom_header_setup' );
 
-if ( ! function_exists( 'breathe_header_style' ) ) :
+if ( ! function_exists( __NAMESPACE__ . '\header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog
  *
- * @see breathe_custom_header_setup().
+ * @see custom_header_setup().
  */
-function breathe_header_style() {
+function header_style() {
 
 	// If no custom options for text are set, let's bail
 	// get_header_textcolor() options: HEADER_TEXTCOLOR is default, hide text (returns 'blank') or any hex value
@@ -80,15 +82,15 @@ function breathe_header_style() {
 	</style>
 	<?php
 }
-endif; // breathe_header_style
+endif; // header_style
 
-if ( ! function_exists( 'breathe_admin_header_style' ) ) :
+if ( ! function_exists( __NAMESPACE__ . '\admin_header_style' ) ) :
 /**
  * Styles the header image displayed on the Appearance > Header admin panel.
  *
- * @see breathe_custom_header_setup().
+ * @see custom_header_setup().
  */
-function breathe_admin_header_style() {
+function admin_header_style() {
 ?>
 	<style type="text/css">
 	.appearance_page_custom-header #headimg {
@@ -108,15 +110,15 @@ function breathe_admin_header_style() {
 	</style>
 <?php
 }
-endif; // breathe_admin_header_style
+endif; // admin_header_style
 
-if ( ! function_exists( 'breathe_admin_header_image' ) ) :
+if ( ! function_exists( __NAMESPACE__ . '\admin_header_image' ) ) :
 /**
  * Custom header image markup displayed on the Appearance > Header admin panel.
  *
- * @see breathe_custom_header_setup().
+ * @see custom_header_setup().
  */
-function breathe_admin_header_image() { ?>
+function admin_header_image() { ?>
 	<div id="headimg">
 		<?php
 		if ( 'blank' == get_header_textcolor() || '' == get_header_textcolor() )
@@ -132,4 +134,4 @@ function breathe_admin_header_image() { ?>
 		<?php endif; ?>
 	</div>
 <?php }
-endif; // breathe_admin_header_image
+endif; // admin_header_image

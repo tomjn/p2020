@@ -7,19 +7,20 @@
  * @package p2020
  */
 
+namespace P2020;
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
  */
-function breathe_page_menu_args( $args ) {
+function page_menu_args( $args ) {
 	$args['show_home'] = true;
 	return $args;
 }
-add_filter( 'wp_page_menu_args', 'breathe_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'P2020\page_menu_args' );
 
 /**
  * Adds custom classes to the array of body classes.
  */
-function breathe_body_classes( $classes ) {
+function body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
@@ -31,12 +32,12 @@ function breathe_body_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'breathe_body_classes' );
+add_filter( 'body_class', 'P2020\body_classes' );
 
 /**
  * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
  */
-function breathe_enhanced_image_navigation( $url, $id ) {
+function enhanced_image_navigation( $url, $id ) {
 	if ( ! is_attachment() && ! wp_attachment_is_image( $id ) )
 		return $url;
 
@@ -46,12 +47,12 @@ function breathe_enhanced_image_navigation( $url, $id ) {
 
 	return $url;
 }
-add_filter( 'attachment_link', 'breathe_enhanced_image_navigation', 10, 2 );
+add_filter( 'attachment_link', 'P2020\enhanced_image_navigation', 10, 2 );
 
 /**
  * Filters wp_title to print a neat <title> tag based on what is being viewed.
  */
-function breathe_wp_title( $title, $sep ) {
+function wp_title( $title, $sep ) {
 	global $page, $paged;
 
 	if ( is_feed() )
@@ -71,4 +72,4 @@ function breathe_wp_title( $title, $sep ) {
 
 	return $title;
 }
-add_filter( 'wp_title', 'breathe_wp_title', 10, 2 );
+add_filter( 'wp_title', 'P2020\wp_title', 10, 2 );

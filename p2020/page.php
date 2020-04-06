@@ -10,6 +10,8 @@
  * @package p2020
  */
 
+use function P2020\content_nav;
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
@@ -20,15 +22,15 @@ get_header(); ?>
 				<?php the_title(); ?>
 
 				<span class="controls">
-					<?php do_action( 'breathe_view_controls' ); ?>
+					<?php do_action( 'p2020_view_controls' ); ?>
 				</span>
 			</h1>
 
 			<span class="entry-actions">
-				<?php do_action( 'breathe_post_actions' ); ?>
+				<?php do_action( 'p2020_post_actions' ); ?>
 			</span>
 
-			<?php do_action( 'breathe_header_entry_meta' ); ?>
+			<?php do_action( 'p2020_header_entry_meta' ); ?>
 		</header><!-- .page-header -->
 
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -43,7 +45,7 @@ get_header(); ?>
 				?>
 			</aside>
 
-			<?php breathe_content_nav( 'nav-below' ); ?>
+			<?php content_nav( 'nav-below' ); ?>
 
 		<?php endwhile; // end of the loop. ?>
 

@@ -23,7 +23,7 @@
 		} );
 	} );
 	// Alternate color.
-	wp.customize( 'breathe_theme_options[alternate_color]', function( value ) {
+	wp.customize( 'p2020_theme_options[alternate_color]', function( value ) {
 		value.bind( function( to ) {
 			$(
 				'.o2 .o2-app-page-title, .o2 .o2-app-new-post h2, #o2-expand-editor'
@@ -31,7 +31,7 @@
 		} );
 	} );
 	// Link color.
-	wp.customize( 'breathe_theme_options[link_color]', function( value ) {
+	wp.customize( 'p2020_theme_options[link_color]', function( value ) {
 		value.bind( function( to ) {
 			$( 'a, a:hover, a:visited' ).css( 'color', to );
 		} );

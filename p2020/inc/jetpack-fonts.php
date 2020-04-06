@@ -16,7 +16,7 @@ add_filter( 'typekit_add_font_category_rules', function( $category_rules ) {
 				[ 'property' => 'font-family', 'value' => '"Noto Serif", serif' ],
 			]
 	);
-
+	
 	TypekitTheme::add_font_category_rule( $category_rules, 'headings',
 		'h1',
 			[
@@ -24,7 +24,7 @@ add_filter( 'typekit_add_font_category_rules', function( $category_rules ) {
 				[ 'property' => 'font-weight', 'value' => '400' ],
 			]
 	);
-
+		
 	TypekitTheme::add_font_category_rule( $category_rules, 'headings',
 		'h2',
 			[
@@ -32,7 +32,7 @@ add_filter( 'typekit_add_font_category_rules', function( $category_rules ) {
 				[ 'property' => 'font-weight', 'value' => '400' ],
 			]
 	);
-
+	
 	TypekitTheme::add_font_category_rule( $category_rules, 'headings',
 		'h3',
 			[
@@ -40,7 +40,7 @@ add_filter( 'typekit_add_font_category_rules', function( $category_rules ) {
 				[ 'property' => 'font-weight', 'value' => '400' ],
 			]
 	);
-
+	
 	TypekitTheme::add_font_category_rule( $category_rules, 'headings',
 		'h4',
 			[
