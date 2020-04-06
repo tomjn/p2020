@@ -1,5 +1,5 @@
-# Translation of WordPress.com - Themes - P2-breathe in Romanian
-# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+# Translation of WordPress.com - Themes - P2020 in Romanian
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2017-06-03 06:27:10+0000\n"
@@ -9,12 +9,12 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: ro\n"
-"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
 
 #. Description of the plugin/theme
 #: wp-content/themes/pub/p2020/style.css
-msgid "Communication is oxygen. P2 \"Breathe\" is the first o2-enabled theme."
-msgstr "Comunicarea este oxigen. P2 \"Breathe\" este prima temă activată de o2."
+msgid "Communication is oxygen."
+msgstr "Comunicarea este oxigen."
 
 #: searchform.php:10
 msgctxt "placeholder"

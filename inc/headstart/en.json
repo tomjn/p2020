@@ -3,7 +3,8 @@
 		"options": {
 			"show_on_front": "posts",
 			"blogdescription": "Welcome to your WordPress for Teams site!",
-			"stylesheet": "pub\/p2020"
+			"stylesheet": "pub\/p2020",
+			"blog_public": -1
 		},
 		"theme_mods": {},
 		"headstart": {

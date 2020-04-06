@@ -5,53 +5,55 @@
  * @package p2020
  */
 
+namespace P2020;
+
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function breathe_customize_register( $wp_customize ) {
+function customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
-	$wp_customize->add_setting( 'breathe_theme_options[alternate_color]', [
+	$wp_customize->add_setting( 'p2020_theme_options[alternate_color]', [
 		'default' => '#3498db',
 		'sanitize_callback' => 'sanitize_hex_color',
 		'transport' => 'postMessage',
 	] );
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'alternate_color', [
+	$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'alternate_color', [
     	'label' => __( 'Alternate Color', 'p2020' ),
 		'section' => 'colors',
-		'settings' => 'breathe_theme_options[alternate_color]',
+		'settings' => 'p2020_theme_options[alternate_color]',
 	] ) );
 
-	$wp_customize->add_setting( 'breathe_theme_options[link_color]', [
+	$wp_customize->add_setting( 'p2020_theme_options[link_color]', [
 		'default' => '#3498db',
 		'sanitize_callback' => 'sanitize_hex_color',
 		'transport' => 'postMessage',
 	] );
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', [
+	$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'link_color', [
     	'label' => __( 'Link Color', 'p2020' ),
 		'section' => 'colors',
-		'settings' => 'breathe_theme_options[link_color]',
+		'settings' => 'p2020_theme_options[link_color]',
 	] ) );
 }
-add_action( 'customize_register', 'breathe_customize_register' );
+add_action( 'customize_register', 'P2020\customize_register' );
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function breathe_customize_preview_js() {
-	wp_enqueue_script( 'breathe_customizer', get_template_directory_uri() . '/js/customizer.js', [ 'customize-preview' ], '20130304', true );
+function customize_preview_js() {
+	wp_enqueue_script( 'p2020_customizer', get_template_directory_uri() . '/js/customizer.js', [ 'customize-preview' ], '20130304', true );
 }
-add_action( 'customize_preview_init', 'breathe_customize_preview_js' );
+add_action( 'customize_preview_init', 'P2020\customize_preview_js' );
 
 /**
  * Add styles for color options
  */
-function breathe_color_styles() {
-	$options = get_theme_mod( 'breathe_theme_options' );
+function color_styles() {
+	$options = get_theme_mod( 'p2020_theme_options' );
 
 	if ( ! isset( $options ) )
 		return;
@@ -68,4 +70,4 @@ function breathe_color_styles() {
 
 	echo $style;
 }
-add_filter( 'wp_head', 'breathe_color_styles' );
+add_filter( 'wp_head', 'P2020\color_styles' );

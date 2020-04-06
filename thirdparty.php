@@ -1,9 +1,11 @@
 <?php
 /**
- * P2 functions for third-party plugins
+ * Functions for third-party plugins
  *
- * @package happy-p2
+ * @package p2020
  */
+
+namespace P2020;
 
 /**
  * Check if p2tenberg is enabled by the user.
@@ -86,32 +88,45 @@ function set_homepage_display() {
 	}
 }
 
-function enable_o2_widgets() {
+function enable_default_widgets() {
 	$sidebars = get_option( 'sidebars_widgets' );
 
 	if ( empty( $sidebars['sidebar-1'] ) ) {
 		$widget_no = 2;
-		$live_comments_widget_settings = [
-			$widget_no => [
-				'title' => __( 'Live Updates', 'p2020' ),
-				'kind' => 'both',
-				'number' => 10,
-			]
-		];
-		update_option( 'widget_o2-live-comments-widget', $live_comments_widget_settings );
 
+		// O2 Filter widget
 		$filter_widget_settings = [
 			$widget_no => [
 				'title' => __( 'Links', 'p2020' ),
 			]
 		];
 		update_option( 'widget_o2-filter-widget', $filter_widget_settings );
+		
+		// O2 Live Posts and Comments widget
+		$live_comments_widget_settings = [
+			$widget_no => [
+				'title' => __( 'Recent Activity', 'p2020' ),
+				'kind' => 'both',
+				'number' => 10,
+			]
+		];
+		update_option( 'widget_o2-live-comments-widget', $live_comments_widget_settings );
+
+		// My Team widget
+		$team_widget_settings = [
+			$widget_no => [
+				'title' => __( 'My Team', 'p2020' ),
+			]
+		];
+		update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
 
 		// Add widgets to sidebar
 		$sidebars['sidebar-1'] = [
-			'o2-live-comments-widget-' . $widget_no,
 			'o2-filter-widget-' . $widget_no,
+			'o2-live-comments-widget-' . $widget_no,
+			'p2020-my-team-widget-' . $widget_no,
 		];
+
 		$sidebars['wp_inactive_widgets'] = [];
 		$sidebars['array_version'] = 3;
 
@@ -119,9 +134,9 @@ function enable_o2_widgets() {
 	}
 }
 
-add_action( 'after_setup_theme', 'enable_inline_terms', 100 );
-add_action( 'after_setup_theme', 'enable_notifications', 100 );
-add_action( 'after_setup_theme', 'enable_o2', 101 );
-add_action( 'after_setup_theme', 'set_homepage_display', 102 );
-add_action( 'after_setup_theme', 'enable_o2_widgets', 102 );
-add_action( 'after_setup_theme', 'enable_p2tenberg', 103 );
+add_action( 'after_setup_theme', 'P2020\enable_inline_terms', 100 );
+add_action( 'after_setup_theme', 'P2020\enable_notifications', 100 );
+add_action( 'after_setup_theme', 'P2020\enable_o2', 101 );
+add_action( 'after_setup_theme', 'P2020\set_homepage_display', 102 );
+add_action( 'after_setup_theme', 'P2020\enable_default_widgets', 102 );
+add_action( 'after_setup_theme', 'P2020\enable_p2tenberg', 103 );

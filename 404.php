@@ -5,6 +5,8 @@
  * @package p2020
  */
 
+use function P2020\categorized_blog;
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
@@ -22,7 +24,7 @@ get_header(); ?>
 
 					<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
 
-					<?php if ( breathe_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
+					<?php if ( categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
 					<div class="widget widget_categories">
 						<h2 class="widgettitle"><?php _e( 'Most Used Categories', 'p2020' ); ?></h2>
 						<ul>

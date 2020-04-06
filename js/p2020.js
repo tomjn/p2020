@@ -1,14 +1,22 @@
 ( function( $ ) {
 	$( document ).ready( function() {
 		// Only do this once
-		if ( $( 'body' ).hasClass( 'breathe-js-loaded' ) ) {
+		if ( $( 'body' ).hasClass( 'p2020-js-loaded' ) ) {
 			return;
 		}
-		$( 'body' ).addClass( 'breathe-js-loaded' );
+		$( 'body' ).addClass( 'p2020-js-loaded' );
 
 		$( '#secondary-toggle, #primary-modal' ).click( function() {
 			$( 'body' ).toggleClass( 'responsive-show' );
 		} );
+
+		// Is home page and not displaying O2 filtered content
+		if (
+			window.location.pathname === '/' &&
+			window.location.search === ''
+		) {
+			$( '.o2-app-page-title' ).addClass( 'is-unfiltered-home' );
+		}
 
 		function moveNavIntoSidebar() {
 			const $menu = $( 'nav#site-navigation' );

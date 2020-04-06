@@ -1,5 +1,5 @@
-# Translation of WordPress.com - Themes - P2-breathe in Serbian
-# This file is distributed under the same license as the WordPress.com - Themes - P2-breathe package.
+# Translation of WordPress.com - Themes - P2020 in Serbian
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2017-12-14 17:15:44+0000\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: sr_RS\n"
-"Project-Id-Version: WordPress.com - Themes - P2-breathe\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
 
 #: searchform.php:10
 msgctxt "placeholder"

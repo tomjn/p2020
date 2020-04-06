@@ -11,12 +11,17 @@
  * @package p2020
  */
 
+use function P2020\{
+	get_page_number,
+	content_nav
+};
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<div class="site-content">
 
-		<?php do_action( 'breathe_post_editor' ); ?>
+		<?php do_action( 'p2020_post_editor' ); ?>
 
 		<div id="content" role="main">
 
@@ -24,7 +29,7 @@ get_header(); ?>
 			<h1 class="page-title">
 			<?php if ( is_home() or is_front_page() ) : ?>
 
-				<?php _e( 'Recent Updates', 'p2020' ); ?> <?php if ( breathe_get_page_number() > 1 ) printf( __( 'Page %s', 'p2020' ), breathe_get_page_number() ); ?>
+				<?php _e( 'Recent Updates', 'p2020' ); ?> <?php if ( get_page_number() > 1 ) printf( __( 'Page %s', 'p2020' ), get_page_number() ); ?>
 
 			<?php else : ?>
 
@@ -33,7 +38,7 @@ get_header(); ?>
 			<?php endif; ?>
 
 			<span class="controls">
-				<?php do_action( 'breathe_view_controls' ); ?>
+				<?php do_action( 'p2020_view_controls' ); ?>
 			</span>
 			</h1>
 		</header><!-- .page-header -->
@@ -53,7 +58,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php breathe_content_nav( 'nav-below' ); ?>
+			<?php content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>
 

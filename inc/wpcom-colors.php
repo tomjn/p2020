@@ -1,6 +1,8 @@
 <?php
 
-$options = get_theme_mod( 'breathe_theme_options' );
+namespace P2020;
+
+$options = get_theme_mod( 'p2020_theme_options' );
 $alternate_color = ( !empty( $options['alternate_color'] ) && '#3498db' != $options['alternate_color'] ? $options['alternate_color'] : '#3498db' );
 $link_color = ( !empty( $options['link_color'] ) && '#3498db' != $options['link_color'] ? $options['link_color'] : '#3498db' );
 
@@ -78,8 +80,8 @@ add_color_rule( 'extra', '#555555', [
 	[ '.site-footer, .o2-app-new-post .comment-subscription-form', 'color', 'bg' ]
 ] );
 
-add_theme_support( 'custom_colors_extra_css', 'breathe_extra_css' );
-function breathe_extra_css() { ?>
+add_theme_support( 'custom_colors_extra_css', 'P2020\extra_css' );
+function extra_css() { ?>
 .custom-background.o2 .tag-p2-xpost {
 	background-color: rgba(255,255,255,0.9) !important;
 }

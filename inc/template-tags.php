@@ -7,11 +7,13 @@
  * @package p2020
  */
 
-if ( ! function_exists( 'breathe_content_nav' ) ) :
+namespace P2020;
+
+if ( ! function_exists( __NAMESPACE__ . '\content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable
  */
-function breathe_content_nav( $nav_id ) {
+function content_nav( $nav_id ) {
 	global $wp_query, $post;
 
 	// Don't print empty markup on single pages if there's nowhere to navigate.
@@ -53,15 +55,15 @@ function breathe_content_nav( $nav_id ) {
 	</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
 	<?php
 }
-endif; // breathe_content_nav
+endif; // content_nav
 
-if ( ! function_exists( 'breathe_comment' ) ) :
+if ( ! function_exists( __NAMESPACE__ . '\comment' ) ) :
 /**
  * Template for comments and pingbacks.
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  */
-function breathe_comment( $comment, $args, $depth ) {
+function comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) :
 		case 'pingback' :
@@ -82,10 +84,10 @@ function breathe_comment( $comment, $args, $depth ) {
 				<?php echo get_comment_author_link(); ?>
 
 				<span class="comment-date">
-					<?php breathe_date_time_with_microformat( 'comment' ); ?>
+					<?php date_time_with_microformat( 'comment' ); ?>
 				</span>
 				<span class="comment-actions">
-					<?php do_action( 'breathe_comment_actions', $args, $depth ); ?>
+					<?php do_action( 'p2020_comment_actions', $args, $depth ); ?>
 				</span>
 				</div><!-- .comment-meta .commentmetadata -->
 			</footer>
@@ -97,12 +99,12 @@ function breathe_comment( $comment, $args, $depth ) {
 			break;
 	endswitch;
 }
-endif; // ends check for breathe_comment()
+endif; // ends check for comment()
 
 /**
  * Returns true if a blog has more than 1 category
  */
-function breathe_categorized_blog() {
+function categorized_blog() {
 	if ( false === ( $all_the_cool_cats = get_transient( 'all_the_cool_cats' ) ) ) {
 		// Create an array of all the categories that are attached to posts
 		$all_the_cool_cats = get_categories( [
@@ -116,36 +118,36 @@ function breathe_categorized_blog() {
 	}
 
 	if ( '1' != $all_the_cool_cats ) {
-		// This blog has more than 1 category so breathe_categorized_blog should return true
+		// This blog has more than 1 category so categorized_blog should return true
 		return true;
 	} else {
-		// This blog has only 1 category so breathe_categorized_blog should return false
+		// This blog has only 1 category so categorized_blog should return false
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in breathe_categorized_blog
+ * Flush out the transients used in categorized_blog
  */
-function breathe_category_transient_flusher() {
+function category_transient_flusher() {
 	// Like, beat it. Dig?
 	delete_transient( 'all_the_cool_cats' );
 }
-add_action( 'edit_category', 'breathe_category_transient_flusher' );
-add_action( 'save_post', 'breathe_category_transient_flusher' );
+add_action( 'edit_category', 'P2020\category_transient_flusher' );
+add_action( 'save_post', 'P2020\category_transient_flusher' );
 
 /**
  *
  */
-function breathe_tags_with_count( $format = 'list', $before = '', $sep = '', $after = '' ) {
+function tags_with_count( $format = 'list', $before = '', $sep = '', $after = '' ) {
 	global $post;
-	echo breathe_get_tags_with_count( $post, $format, $before, $sep, $after );
+	echo get_tags_with_count( $post, $format, $before, $sep, $after );
 }
 
 	/**
 	 * Get tags with count
 	 */
-	function breathe_get_tags_with_count( $post, $format = 'list', $before = '', $sep = '', $after = '' ) {
+	function get_tags_with_count( $post, $format = 'list', $before = '', $sep = '', $after = '' ) {
 		$posttags = get_the_tags( $post->ID, 'post_tag' );
 
 		if ( !$posttags )
@@ -164,23 +166,23 @@ function breathe_tags_with_count( $format = 'list', $before = '', $sep = '', $af
 			$tag_links[] = $tag_link;
 		}
 
-		return apply_filters( 'breathe_tags_with_count', $before . join( $sep, $tag_links ) . $after, $post );
+		return apply_filters( 'tags_with_count', $before . join( $sep, $tag_links ) . $after, $post );
 	}
 
-function breathe_date_time_with_microformat( $type = 'post' ) {
-	echo breathe_get_date_time_with_microformat( $type );
+function date_time_with_microformat( $type = 'post' ) {
+	echo get_date_time_with_microformat( $type );
 }
 
-	function breathe_get_date_time_with_microformat( $type = 'post' ) {
+	function get_date_time_with_microformat( $type = 'post' ) {
 		$d = 'comment' == $type ? 'get_comment_time' : 'get_post_time';
 		return '<abbr title="' . $d( 'Y-m-d\TH:i:s\Z', true ) . '">' . sprintf( __( '%1$s <em>on</em> %2$s', 'p2020' ),  $d( get_option( 'time_format' ) ), $d( get_option( 'date_format' ) ) ) . '</abbr>';
 	}
 
-function breathe_page_number() {
-	echo breathe_get_page_number();
+function page_number() {
+	echo get_page_number();
 }
 
-	function breathe_get_page_number() {
+	function get_page_number() {
 		global $paged;
-		return apply_filters( 'breathe_get_page_number', $paged );
+		return apply_filters( 'p2020_get_page_number', $paged );
 	}

@@ -77,7 +77,7 @@ get_header();
 							?>
 
 							<a href="<?php echo esc_url( $next_attachment_url ); ?>" title="<?php the_title_attribute(); ?>" rel="attachment"><?php
-								$attachment_size = apply_filters( 'breathe_attachment_size', [ 1200, 1200 ] ); // Filterable image size.
+								$attachment_size = apply_filters( 'p2020_attachment_size', [ 1200, 1200 ] ); // Filterable image size.
 								echo wp_get_attachment_image( $post->ID, $attachment_size );
 							?></a>
 						</div><!-- .attachment -->
