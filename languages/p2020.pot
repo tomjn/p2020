@@ -1,270 +1,317 @@
-# Copyright (C) 2020 p2020
-# This file is distributed under the same license as the p2020 package.
+# Copyright (C) 2020 Automattic
+# This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: p2020\n"
+"Project-Id-Version: P2020 1.0-wpcom\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/p2020\n"
+"POT-Creation-Date: 2020-04-07 02:06:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: src/404.php:17
+#: 404.php:17
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: src/404.php:21
-msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+#: 404.php:21
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
 msgstr ""
 
-#: src/404.php:29
+#: 404.php:29
 msgid "Most Used Categories"
 msgstr ""
 
 #. translators: %1$s: smiley
-#: src/404.php:38
+#: 404.php:38
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: src/archive.php:25
+#: archive.php:25
 msgid "Category Archives: %s"
 msgstr ""
 
-#: src/archive.php:28
+#: archive.php:28
 msgid "Tag Archives: %s"
 msgstr ""
 
-#: src/archive.php:35
+#: archive.php:35
 msgid "Author Archives: %s"
 msgstr ""
 
-#: src/archive.php:43
+#: archive.php:43
 msgid "Daily Archives: %s"
 msgstr ""
 
-#: src/archive.php:46
+#: archive.php:46
 msgid "Monthly Archives: %s"
 msgstr ""
 
-#: src/archive.php:49
+#: archive.php:49
 msgid "Yearly Archives: %s"
 msgstr ""
 
-#: src/archive.php:52
+#: archive.php:52
 msgid "Asides"
 msgstr ""
 
-#: src/archive.php:55
+#: archive.php:55
 msgid "Images"
 msgstr ""
 
-#: src/archive.php:58
+#: archive.php:58
 msgid "Videos"
 msgstr ""
 
-#: src/archive.php:61
+#: archive.php:61
 msgid "Quotes"
 msgstr ""
 
-#: src/archive.php:64, src/thirdparty.php:100
+#: archive.php:64 thirdparty.php:100
 msgid "Links"
 msgstr ""
 
-#: src/archive.php:67
+#: archive.php:67
 msgid "Archives"
 msgstr ""
 
-#: src/comments.php:30, src/comments.php:50
+#: comments.php:30 comments.php:50
 msgid "Comment navigation"
 msgstr ""
 
-#: src/comments.php:31, src/comments.php:51
+#: comments.php:31 comments.php:51
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: src/comments.php:32, src/comments.php:52
+#: comments.php:32 comments.php:52
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: src/comments.php:62
+#: comments.php:62
 msgid "Comments are closed."
 msgstr ""
 
-#: src/content-page.php:12, src/content-single.php:50, src/content.php:55, src/image.php:93
+#: content-page.php:12 content-single.php:50 content.php:55 image.php:93
 msgid "Pages:"
 msgstr ""
 
-#: src/content-single.php:18, src/content.php:18
+#: content-single.php:18 content.php:18
 msgid "Posts by %1$s ( @%2$s )"
 msgstr ""
 
-#: src/content-single.php:38, src/content.php:38
+#: content-single.php:38 content.php:38
 msgid "<br />Tags:"
 msgstr ""
 
-#: src/content.php:54
+#: content.php:54
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: src/footer.php:16
+#: footer.php:16
 msgid "Proudly powered by %s"
 msgstr ""
 
-#: src/footer.php:18
+#: footer.php:18
 msgid "Theme: %1$s by %2$s."
 msgstr ""
 
-#: src/functions.php:85
+#: functions.php:85
 msgid "Primary Menu"
 msgstr ""
 
-#: src/functions.php:116
+#: functions.php:116
 msgid "Sidebar"
 msgstr ""
 
-#: src/functions.php:134
+#: functions.php:134
 msgctxt "Sans: on or off"
 msgid "on"
 msgstr ""
 
-#: src/header.php:46, src/header.php:46
+#: header.php:32
+msgid "Menu"
+msgstr ""
+
+#: header.php:46
 msgid "Skip to content"
 msgstr ""
 
-#: src/image.php:23
-msgid "Published <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+#: image.php:23
+msgid ""
+"Published <span class=\"entry-date\"><time class=\"entry-date\" datetime="
+"\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size "
+"image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" "
+"rel=\"gallery\">%8$s</a>"
 msgstr ""
 
-#: src/image.php:34, src/image.php:107, src/inc/template-tags.php:73
+#: image.php:34 image.php:107 inc/template-tags.php:73
 msgid "Edit"
 msgstr ""
 
-#: src/image.php:38
+#: image.php:38
 msgid "<span class=\"meta-nav\">&larr;</span> Previous"
 msgstr ""
 
-#: src/image.php:39
+#: image.php:39
 msgid "Next <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: src/image.php:99
-msgid "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+#: image.php:99
+msgid ""
+"<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a "
+"comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" "
+"title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
 msgstr ""
 
-#: src/image.php:101
-msgid "Comments are closed, but you can leave a trackback: <a class=\"trackback-link\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+#: image.php:101
+msgid ""
+"Comments are closed, but you can leave a trackback: <a class=\"trackback-link"
+"\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback"
+"\">Trackback URL</a>."
 msgstr ""
 
-#: src/image.php:103
-msgid "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">post a comment</a>."
+#: image.php:103
+msgid ""
+"Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond"
+"\" title=\"Post a comment\">post a comment</a>."
 msgstr ""
 
-#: src/image.php:105
+#: image.php:105
 msgid "Both comments and trackbacks are currently closed."
 msgstr ""
 
-#: src/index.php:32
-msgid "Recent Updates"
-msgstr ""
-
-#: src/index.php:32, src/inc/extras.php:71
-msgid "Page %s"
-msgstr ""
-
-#: src/index.php:36
-msgctxt "Month name"
-msgid "Updates from %s"
-msgstr ""
-
-#: src/no-results.php:13
-msgid "Nothing Found"
-msgstr ""
-
-#: src/no-results.php:19
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr ""
-
-#: src/no-results.php:23
-msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
-msgstr ""
-
-#: src/no-results.php:28
-msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr ""
-
-#: src/search.php:19
-msgid "Search Results for: %s"
-msgstr ""
-
-#: src/searchform.php:9
-msgctxt "assistive text"
-msgid "Search"
-msgstr ""
-
-#: src/searchform.php:10
-msgctxt "placeholder"
-msgid "Search &hellip;"
-msgstr ""
-
-#: src/searchform.php:11
-msgctxt "submit button"
-msgid "Search"
-msgstr ""
-
-#: src/thirdparty.php:108
-msgid "Recent Activity"
-msgstr ""
-
-#: src/thirdparty.php:118, src/widgets/my-team.php:17, src/widgets/my-team.php:27
-msgid "My Team"
-msgstr ""
-
-#: src/inc/customizer.php:26
+#: inc/customizer.php:26
 msgid "Alternate Color"
 msgstr ""
 
-#: src/inc/customizer.php:37
+#: inc/customizer.php:37
 msgid "Link Color"
 msgstr ""
 
-#: src/inc/template-tags.php:36
+#: inc/extras.php:71 index.php:32
+msgid "Page %s"
+msgstr ""
+
+#: inc/template-tags.php:36
 msgid "Post navigation"
 msgstr ""
 
-#: src/inc/template-tags.php:40
+#: inc/template-tags.php:40
 msgctxt "Previous post link"
 msgid "&larr;"
 msgstr ""
 
-#: src/inc/template-tags.php:41
+#: inc/template-tags.php:41
 msgctxt "Next post link"
 msgid "&rarr;"
 msgstr ""
 
-#: src/inc/template-tags.php:46
+#: inc/template-tags.php:46
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr ""
 
-#: src/inc/template-tags.php:50
+#: inc/template-tags.php:50
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: src/inc/template-tags.php:73
+#: inc/template-tags.php:73
 msgid "Pingback:"
 msgstr ""
 
-#: src/inc/template-tags.php:178
+#: inc/template-tags.php:178
 msgid "%1$s <em>on</em> %2$s"
 msgstr ""
 
-#: src/widgets/my-team.php:19
+#: index.php:32
+msgid "Recent Updates"
+msgstr ""
+
+#: index.php:36
+msgctxt "Month name"
+msgid "Updates from %s"
+msgstr ""
+
+#: no-results.php:13
+msgid "Nothing Found"
+msgstr ""
+
+#: no-results.php:19
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: no-results.php:23
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: no-results.php:28
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: search.php:19
+msgid "Search Results for: %s"
+msgstr ""
+
+#: searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr ""
+
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#: thirdparty.php:108
+msgid "Recent Activity"
+msgstr ""
+
+#: thirdparty.php:118 widgets/my-team.php:17 widgets/my-team.php:27
+msgid "My Team"
+msgstr ""
+
+#: widgets/my-team.php:19
 msgid "A widget to showcase your team members."
 msgstr ""
 
-#: src/widgets/my-team.php:51
+#: widgets/my-team.php:51
 msgid "Title:"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "P2020"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "http://p2theme.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "WordPress for Teams."
+msgstr ""
+
+#. Author of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "Automattic"
+msgstr ""
+
+#. Author URI of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "https://wordpress.com/themes/"
 msgstr ""
