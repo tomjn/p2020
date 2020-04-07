@@ -89,9 +89,7 @@ function set_homepage_display() {
 }
 
 function enable_default_widgets() {
-	$sidebars = get_option( 'sidebars_widgets' );
-
-	if ( empty( $sidebars['sidebar-1'] ) ) {
+	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 		$widget_no = 2;
 
 		// O2 Filter widget
@@ -132,6 +130,10 @@ function enable_default_widgets() {
 
 		update_option( 'sidebars_widgets', $sidebars );
 	}
+
+	// Refresh sidebars_widgets cache
+	global $_wp_sidebars_widgets;
+	$_wp_sidebars_widgets = get_option( 'sidebars_widgets' );
 }
 
 add_action( 'after_setup_theme', 'P2020\enable_inline_terms', 100 );
