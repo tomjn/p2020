@@ -9,8 +9,9 @@ use function P2020\content_nav;
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+<?php get_sidebar(); ?>
+
+	<main id="content">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -39,8 +40,6 @@ get_header(); ?>
 
 		<?php endif; ?>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
+	</main><!-- #content -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

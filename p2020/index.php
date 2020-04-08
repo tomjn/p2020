@@ -18,12 +18,11 @@ use function P2020\{
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<div class="site-content">
+<?php get_sidebar(); ?>
+
+	<main id="content">
 
 		<?php do_action( 'p2020_post_editor' ); ?>
-
-		<div id="content" role="main">
 
 		<header class="page-header">
 			<h1 class="page-title">
@@ -66,10 +65,6 @@ get_header(); ?>
 
 		<?php endif; ?>
 
-		</div>
-		</div><!-- #content -->
+	</main><!-- #content -->
 
-	</div><!-- #primary -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

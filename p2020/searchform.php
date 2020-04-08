@@ -5,8 +5,19 @@
  * @package p2020
  */
 ?>
-	<form method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
-		<label for="s" class="screen-reader-text"><?php _ex( 'Search', 'assistive text', 'p2020' ); ?></label>
-		<input type="search" class="field" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" id="s" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'p2020' ); ?>" />
-		<input type="submit" class="submit" id="searchsubmit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'p2020' ); ?>" />
+	<form method="get" class="p2020-searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+			<div class="p2020-searchform__container">
+				<!-- To ensure the container is at least as wide as the translated placeholder text -->
+				<span class="p2020-searchform__label" aria-hidden="true">
+					<?php echo esc_attr_x( 'Search', 'placeholder', 'p2020' ); ?>
+				</span>
+				<input
+					type="search"
+					name="s"
+					class="p2020-searchform__field"
+					value="<?php echo esc_attr( get_search_query() ); ?>"
+					placeholder="<?php echo esc_attr_x( 'Search', 'placeholder', 'p2020' ); ?>"
+					aria-label="<?php echo esc_attr_x( 'Search', 'placeholder', 'p2020' ); ?>"
+				/>
+			</div>
 	</form>

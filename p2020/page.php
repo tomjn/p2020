@@ -14,8 +14,9 @@ use function P2020\content_nav;
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+<?php get_sidebar(); ?>
+
+	<main id="content">
 
 		<header class="page-header">
 			<h1 class="page-title">
@@ -49,8 +50,6 @@ get_header(); ?>
 
 		<?php endwhile; // end of the loop. ?>
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
+	</main><!-- #content -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

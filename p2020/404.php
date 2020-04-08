@@ -9,8 +9,9 @@ use function P2020\categorized_blog;
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+<?php get_sidebar(); ?>
+
+	<main id="content">
 
 			<article id="post-0" class="post error404 not-found">
 				<header class="entry-header">
@@ -44,8 +45,6 @@ get_header(); ?>
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 .post .error404 .not-found -->
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
+	</main><!-- #main -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
