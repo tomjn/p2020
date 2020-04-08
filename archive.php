@@ -11,8 +11,9 @@ use function P2020\content_nav;
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+<?php get_sidebar(); ?>
+
+	<main id="content">
 
 		<?php do_action( 'p2020_post_editor' ); ?>
 
@@ -113,8 +114,6 @@ get_header(); ?>
 
 		<?php endif; ?>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
+	</main><!-- #content -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -11,13 +11,68 @@ namespace P2020;
  * Load My Team widget
  */
 require( get_template_directory() . '/widgets/my-team.php' );
-
 add_action( 'widgets_init', __NAMESPACE__ . '\my_team_widget_init' );
 
 /**
  * Load partner plugins loader file.
  */
 require( 'thirdparty.php' );
+
+/**
+ * Set up social sharing and likes
+ */
+function social_init() {
+	//Disable social media share button
+	$sharing_services = get_option( 'sharing-services' );
+	if ( ! empty( $sharing_services['visible'] ) ) {
+		$sharing_services['visible'] = [];
+		update_option( 'sharing-services', $sharing_services );
+	}
+
+	// Disable reblog button
+	$disabled_reblogs = get_option( 'disabled_reblogs' );
+	if ( 1 !== (int)$disabled_reblogs ) {
+		update_option( 'disabled_reblogs', 1 );
+	}
+
+	// Enable like button
+	$disabled_likes = get_option( 'disabled_likes' );
+	if ( 1 === (int)$disabled_likes ) {
+		update_option( 'disabled_likes', 0 );
+	}
+
+	// Show buttons everywhere 
+	$sharing_options = get_option( 'sharing-options' );
+	$show_in_locations = [ 'index', 'post', 'page', 'attachment' ];
+	if ( ! is_array( $sharing_options['global']['show'] ) || 
+		count( array_intersect( $sharing_options['global']['show'], $show_in_locations ) ) !== count( $show_in_locations ) ) {
+		$sharing_options['global']['show'] = $show_in_locations;
+		update_option( 'sharing-options', $sharing_options );
+	}
+}
+
+add_action( 'after_setup_theme', 'P2020\social_init' );
+
+/**
+ * Disable related posts feature
+ */
+function disable_related_posts() {
+	$jetpack_relatedposts = get_option( 'jetpack_relatedposts' );
+	// We need to explicitly set it to false to avoid default behavior
+	if ( ! isset( $jetpack_relatedposts['enabled'] ) || 0 !== (int)$jetpack_relatedposts['enabled'] ) {
+		// Disable related posts
+		$jetpack_relatedposts['enabled'] = 0;
+		update_option( 'jetpack_relatedposts', $jetpack_relatedposts );
+	
+		// Remove related-posts from jetpack active modules
+		$jetpack_active_modules = get_option( 'jetpack_active_modules' );
+		if ( is_array( $jetpack_active_modules ) ) {
+			update_option( 'jetpack_active_modules', array_diff( $jetpack_active_modules, ['related-posts'] ) );
+		}
+	}
+}
+
+add_action( 'after_setup_theme', 'P2020\disable_related_posts' );
 
 /**
  * Set the content width based on the theme's design and stylesheet.

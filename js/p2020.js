@@ -6,7 +6,7 @@
 		}
 		$( 'body' ).addClass( 'p2020-js-loaded' );
 
-		$( '#secondary-toggle, #primary-modal' ).click( function() {
+		$( '#secondary-toggle' ).click( function() {
 			$( 'body' ).toggleClass( 'responsive-show' );
 		} );
 
@@ -21,7 +21,7 @@
 		function moveNavIntoSidebar() {
 			const $menu = $( 'nav#site-navigation' );
 			if ( $menu.length && $menu.parents( 'header#masthead' ).length ) {
-				$menu.prependTo( '#secondary-content' );
+				$menu.prependTo( '#sidebar' );
 				$menu.wrap(
 					'<aside class="widget" id="o2-responsive-nav"></aside>'
 				);
