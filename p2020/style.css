@@ -979,8 +979,8 @@ input[type="submit"] {
   .p2020-searchform::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-search.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-search.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-search.svg) no-repeat;
+            mask: url(img/icons/gridicons-search.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1.5em;
@@ -1268,8 +1268,8 @@ header nav.o2-dropdown-actions {
   header nav.o2-dropdown-actions .o2-comment-edit::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-pencil.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-pencil.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-pencil.svg) no-repeat;
+            mask: url(img/icons/gridicons-pencil.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1em;
@@ -1279,8 +1279,8 @@ header nav.o2-dropdown-actions {
   header nav.o2-dropdown-actions .o2-comment-short-link::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-link.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-link.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-link.svg) no-repeat;
+            mask: url(img/icons/gridicons-link.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1em;
@@ -1290,8 +1290,8 @@ header nav.o2-dropdown-actions {
   header nav.o2-dropdown-actions .o2-comment-sticky-link::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-pin.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-pin.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-pin.svg) no-repeat;
+            mask: url(img/icons/gridicons-pin.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1em;
@@ -1301,8 +1301,8 @@ header nav.o2-dropdown-actions {
   header nav.o2-dropdown-actions .o2-comment-trash::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-trash.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-trash.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-trash.svg) no-repeat;
+            mask: url(img/icons/gridicons-trash.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1em;
@@ -1458,8 +1458,8 @@ article.tag-p2-xpost .comment .avatar {
   .widget_o2-filter-widget #o2-filter-recent-updates a::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-house.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-house.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-house.svg) no-repeat;
+            mask: url(img/icons/gridicons-house.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1.25em;
@@ -1468,8 +1468,8 @@ article.tag-p2-xpost .comment .avatar {
   .widget_o2-filter-widget #o2-filter-recent-comments a::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-comment.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-comment.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-comment.svg) no-repeat;
+            mask: url(img/icons/gridicons-comment.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1.25em;
@@ -1478,8 +1478,8 @@ article.tag-p2-xpost .comment .avatar {
   .widget_o2-filter-widget #o2-filter-my-mentions a::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-mention.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-mention.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-mention.svg) no-repeat;
+            mask: url(img/icons/gridicons-mention.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1.25em;
@@ -1488,8 +1488,8 @@ article.tag-p2-xpost .comment .avatar {
   .widget_o2-filter-widget #o2-filter-no-replies a::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-not-visible.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-not-visible.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-not-visible.svg) no-repeat;
+            mask: url(img/icons/gridicons-not-visible.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1.25em;
@@ -1498,8 +1498,8 @@ article.tag-p2-xpost .comment .avatar {
   .widget_o2-filter-widget #o2-filter-unresolved-posts a::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-flag.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-flag.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-flag.svg) no-repeat;
+            mask: url(img/icons/gridicons-flag.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1.25em;
@@ -1508,8 +1508,8 @@ article.tag-p2-xpost .comment .avatar {
   .widget_o2-filter-widget #o2-filter-resolved-posts a::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-checkmark.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-checkmark.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-checkmark.svg) no-repeat;
+            mask: url(img/icons/gridicons-checkmark.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1.25em;
@@ -1518,8 +1518,8 @@ article.tag-p2-xpost .comment .avatar {
   .widget_o2-filter-widget #o2-filter-my-posts a::before {
     content: "";
     display: inline-block;
-    -webkit-mask: url(img/gridicons/gridicons-user.svg) no-repeat;
-            mask: url(img/gridicons/gridicons-user.svg) no-repeat;
+    -webkit-mask: url(img/icons/gridicons-user.svg) no-repeat;
+            mask: url(img/icons/gridicons-user.svg) no-repeat;
     -webkit-mask-size: cover;
             mask-size: cover;
     width: 1.25em;
