@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: P2020 1.0-wpcom\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/p2020\n"
-"POT-Creation-Date: 2020-04-07 02:06:57+00:00\n"
+"POT-Creation-Date: 2020-04-09 02:07:55+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,70 +12,70 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: 404.php:17
+#: 404.php:18
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: 404.php:21
+#: 404.php:22
 msgid ""
 "It looks like nothing was found at this location. Maybe try one of the links "
 "below or a search?"
 msgstr ""
 
-#: 404.php:29
+#: 404.php:30
 msgid "Most Used Categories"
 msgstr ""
 
 #. translators: %1$s: smiley
-#: 404.php:38
+#: 404.php:39
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: archive.php:25
+#: archive.php:26
 msgid "Category Archives: %s"
 msgstr ""
 
-#: archive.php:28
+#: archive.php:29
 msgid "Tag Archives: %s"
 msgstr ""
 
-#: archive.php:35
+#: archive.php:36
 msgid "Author Archives: %s"
 msgstr ""
 
-#: archive.php:43
+#: archive.php:44
 msgid "Daily Archives: %s"
 msgstr ""
 
-#: archive.php:46
+#: archive.php:47
 msgid "Monthly Archives: %s"
 msgstr ""
 
-#: archive.php:49
+#: archive.php:50
 msgid "Yearly Archives: %s"
 msgstr ""
 
-#: archive.php:52
+#: archive.php:53
 msgid "Asides"
 msgstr ""
 
-#: archive.php:55
+#: archive.php:56
 msgid "Images"
 msgstr ""
 
-#: archive.php:58
+#: archive.php:59
 msgid "Videos"
 msgstr ""
 
-#: archive.php:61
+#: archive.php:62
 msgid "Quotes"
 msgstr ""
 
-#: archive.php:64 thirdparty.php:100
+#: archive.php:65 thirdparty.php:98
 msgid "Links"
 msgstr ""
 
-#: archive.php:67
+#: archive.php:68
 msgid "Archives"
 msgstr ""
 
@@ -95,7 +95,7 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-#: content-page.php:12 content-single.php:50 content.php:55 image.php:93
+#: content-page.php:12 content-single.php:50 content.php:55 image.php:92
 msgid "Pages:"
 msgstr ""
 
@@ -111,36 +111,28 @@ msgstr ""
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: footer.php:16
-msgid "Proudly powered by %s"
-msgstr ""
-
-#: footer.php:18
-msgid "Theme: %1$s by %2$s."
-msgstr ""
-
-#: functions.php:85
+#: functions.php:140
 msgid "Primary Menu"
 msgstr ""
 
-#: functions.php:116
+#: functions.php:171
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:134
+#: functions.php:189
 msgctxt "Sans: on or off"
 msgid "on"
 msgstr ""
 
-#: header.php:32
+#: header.php:33
 msgid "Menu"
 msgstr ""
 
-#: header.php:46
+#: header.php:35
 msgid "Skip to content"
 msgstr ""
 
-#: image.php:23
+#: image.php:22
 msgid ""
 "Published <span class=\"entry-date\"><time class=\"entry-date\" datetime="
 "\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size "
@@ -148,39 +140,39 @@ msgid ""
 "rel=\"gallery\">%8$s</a>"
 msgstr ""
 
-#: image.php:34 image.php:107 inc/template-tags.php:73
+#: image.php:33 image.php:106 inc/template-tags.php:73
 msgid "Edit"
 msgstr ""
 
-#: image.php:38
+#: image.php:37
 msgid "<span class=\"meta-nav\">&larr;</span> Previous"
 msgstr ""
 
-#: image.php:39
+#: image.php:38
 msgid "Next <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: image.php:99
+#: image.php:98
 msgid ""
 "<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a "
 "comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" "
 "title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
 msgstr ""
 
-#: image.php:101
+#: image.php:100
 msgid ""
 "Comments are closed, but you can leave a trackback: <a class=\"trackback-link"
 "\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback"
 "\">Trackback URL</a>."
 msgstr ""
 
-#: image.php:103
+#: image.php:102
 msgid ""
 "Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond"
 "\" title=\"Post a comment\">post a comment</a>."
 msgstr ""
 
-#: image.php:105
+#: image.php:104
 msgid "Both comments and trackbacks are currently closed."
 msgstr ""
 
@@ -192,7 +184,7 @@ msgstr ""
 msgid "Link Color"
 msgstr ""
 
-#: inc/extras.php:71 index.php:32
+#: inc/extras.php:71 index.php:31
 msgid "Page %s"
 msgstr ""
 
@@ -226,11 +218,11 @@ msgstr ""
 msgid "%1$s <em>on</em> %2$s"
 msgstr ""
 
-#: index.php:32
+#: index.php:31
 msgid "Recent Updates"
 msgstr ""
 
-#: index.php:36
+#: index.php:35
 msgctxt "Month name"
 msgid "Updates from %s"
 msgstr ""
@@ -256,30 +248,20 @@ msgid ""
 "searching can help."
 msgstr ""
 
-#: search.php:19
+#: search.php:20
 msgid "Search Results for: %s"
 msgstr ""
 
-#: searchform.php:9
-msgctxt "assistive text"
-msgid "Search"
-msgstr ""
-
-#: searchform.php:10
+#: searchform.php:12 searchform.php:19 searchform.php:20
 msgctxt "placeholder"
-msgid "Search &hellip;"
-msgstr ""
-
-#: searchform.php:11
-msgctxt "submit button"
 msgid "Search"
 msgstr ""
 
-#: thirdparty.php:108
+#: thirdparty.php:106
 msgid "Recent Activity"
 msgstr ""
 
-#: thirdparty.php:118 widgets/my-team.php:17 widgets/my-team.php:27
+#: thirdparty.php:116 widgets/my-team.php:17 widgets/my-team.php:27
 msgid "My Team"
 msgstr ""
 
