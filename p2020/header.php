@@ -30,11 +30,17 @@
 
 	<?php do_action( 'before' ); ?>
 	<header id="masthead" role="banner">
-		<a href="#" id="secondary-toggle" onclick="return false;"><strong><?php _e( 'Menu' ); ?></strong></a>
 
 		<div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'p2020' ); ?>"><?php _e( 'Skip to content', 'p2020' ); ?></a></div>
 
 		<div class="p2020-site-header">
+
+			<button
+				class="p2020-mobile-menu-toggle"
+				aria-label="<?php esc_attr_e( 'Menu', 'p2020' ); ?>"
+				data-mobile-menu-toggle
+			></button>
+
 			<div class="p2020-site-header__main">
 				<h1 class="p2020-site-title">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
@@ -50,7 +56,8 @@
 			</div>
 
 			<?php get_search_form(); ?>
-		</div>
+
+		</div><!-- .p2020-site-header -->
 
 	</header><!-- #masthead -->
 

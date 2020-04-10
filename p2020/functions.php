@@ -170,10 +170,10 @@ function widgets_init() {
 	register_sidebar( [
 		'name' => __( 'Sidebar', 'p2020' ),
 		'id' => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget widget-myteam %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<div class="widget-title">',
-		'after_title' => '</div>',
+		'before_title' => '<h2 class="widget-title">',
+		'after_title' => '</h2>',
 	] );
 }
 add_action( 'widgets_init', 'P2020\widgets_init' );

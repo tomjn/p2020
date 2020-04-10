@@ -6,8 +6,8 @@
 		}
 		$( 'body' ).addClass( 'p2020-js-loaded' );
 
-		$( '#secondary-toggle' ).click( function() {
-			$( 'body' ).toggleClass( 'responsive-show' );
+		$( '[data-mobile-menu-toggle]' ).click( function() {
+			$( 'body' ).toggleClass( 'mobile-menu-is-visible' );
 		} );
 
 		// Is home page and not displaying O2 filtered content
