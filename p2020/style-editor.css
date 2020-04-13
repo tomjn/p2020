@@ -1,0 +1,322 @@
+@charset "UTF-8";
+/**
+ * Styles for block editor (Gutenberg) content
+ * https://developer.wordpress.org/block-editor/developers/themes/theme-support/#editor-styles
+ *
+ * Note: This stylesheet is consumed by the normal block editor (wp-admin/calypso),
+ * but does not affect the block editor in p2tenberg.
+ */
+/**
+ * Variables & Utilities
+ */
+/**
+ * Colors
+ */
+/**
+ * Typography
+ */
+/**
+ * Drop shadows
+ */
+/**
+ * Breakpoints
+ */
+/**
+ * Spacing
+ */
+:root {
+  /* COLORS */
+  --color-text: #2c3338;
+  --color-text-light: #858d9a;
+  --color-link: #0267ff;
+  --color-link-dark: #004cbf;
+  --color-border: #dbdde1;
+  --color-border-dark: #50575e;
+  --color-background-very-light: #f7f8fa;
+  --color-background-dark: #2c3338;
+  --color-mentions: #b35eb1;
+  --color-mentions-highlight: rgba(179, 94, 177, 0.1);
+  --color-white: #fff;
+  --color-black: #000;
+  /* TYPOGRAPHY */
+  --font-default: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+  --font-body: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+  --font-mono: monaco, consolas, Andale Mono, DejaVu Sans Mono, Courier New, monospace; }
+
+/**
+ * Base styles
+ */
+/* HEADINGS 1-6 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-default);
+  line-height: 1.1; }
+
+h1 {
+  font-size: 2.2em;
+  font-weight: 700; }
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600; }
+
+h2 {
+  font-size: 1.8em; }
+
+h3 {
+  font-size: 1.4em; }
+
+h4 {
+  font-size: 1.2em; }
+
+h5 {
+  font-size: 1.1em; }
+
+h6 {
+  font-size: 1em; }
+
+/**
+ * Core
+ */
+.more-link {
+  display: block;
+  padding: 0.5em;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.875rem; }
+
+.wp-caption {
+  max-width: 100%; }
+  .wp-caption img {
+    display: block; }
+
+.wp-block-code {
+  padding: 2em;
+  border: 0;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  line-height: 1.4;
+  color: var(--color-text); }
+  .wp-block-code code {
+    padding: 0;
+    font-size: inherit; }
+  .wp-block-code .block-editor-plain-text {
+    border: 0;
+    background: transparent;
+    font-family: var(--font-mono); }
+
+.wp-block-image img {
+  display: block; }
+
+.wp-block-pullquote {
+  border: 0;
+  color: inherit; }
+  .wp-block-pullquote:not(.is-style-solid-color) blockquote {
+    margin-bottom: 0;
+    background: transparent; }
+
+.wp-block-quote {
+  border: 0; }
+
+.wp-block-verse {
+  padding: 2em; }
+
+/**
+ * UI
+ */
+/**
+ * Styles for block editor (Gutenberg) content
+ *
+ * P2tenberg currently does not support the standard way of applying theme styles
+ * to the block editor using add_editor_style(). This Sass placeholder class is
+ * used to share content styles across the normal block editor (wp-admin/calypso)
+ * and the p2tenberg editor.
+ */
+body .block-editor-default-block-appender .block-editor-default-block-appender__content {
+  color: var(--color-text-light);
+  font-family: var(--font-default); }
+
+body .editor-post-title__input {
+  font-family: var(--font-default);
+  font-weight: 700; }
+
+.wp-caption .wp-caption-text, .wp-block-image figcaption {
+  width: 100%;
+  margin-top: 0.75em;
+  color: var(--color-text-light);
+  text-align: center;
+  font-size: 0.9em;
+  line-height: 1.5; }
+
+/**
+ * Body content styles for post/pages and comments
+ */
+/**
+ * Styles for a blockquote
+ */
+body blockquote {
+  background: var(--color-background-very-light);
+  font-style: italic;
+  margin: 0 0 1.2em;
+  padding: 2em;
+  overflow: auto; }
+  body blockquote code {
+    border: 1px solid var(--color-border);
+    background: var(--color-white); }
+  body blockquote em {
+    font-style: normal; }
+  body blockquote.wp-embedded-content {
+    padding: 1.2em; }
+
+.wp-block-pullquote__citation, .wp-block-quote__citation, body blockquote cite {
+  display: block;
+  margin-top: 1em;
+  text-align: right; }
+  .wp-block-pullquote__citation::before, .wp-block-quote__citation::before, body blockquote cite::before {
+    content: "—\0000a0"; }
+
+/**
+ * Styles for <code>, <kbd>
+ */
+body code,
+body kbd {
+  border-radius: 3px;
+  background: var(--color-background-very-light);
+  padding: 0.3em 0.55em;
+  font-family: var(--font-mono);
+  font-size: 0.8em; }
+
+/**
+ * Styles for a preformatted block
+ */
+.wp-block-code, body pre {
+  background: var(--color-background-very-light);
+  margin-bottom: 1.2em;
+  padding: 2em;
+  overflow: auto;
+  max-width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.8em; }
+
+body table {
+  border-top: 1px solid var(--color-border-dark);
+  line-height: 1.4;
+  text-align: left; }
+  body table thead,
+  body table tfoot {
+    border: 0;
+    font-weight: 600; }
+  body table td,
+  body table th {
+    padding: 0.75em 1em;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+    border-left: 0; }
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.7;
+  /**
+	 * Images
+	 */ }
+  body p a,
+  body li a {
+    color: var(--color-link);
+    text-decoration: underline; }
+    body p a:hover,
+    body li a:hover {
+      color: var(--color-link-dark); }
+  body p {
+    margin: 0 0 1.7em; }
+    body p:empty {
+      margin-bottom: 0; }
+  body h1,
+  body h2,
+  body h3,
+  body h4,
+  body h5,
+  body h6 {
+    margin: 1.875rem 0 0.9375rem; }
+  body table {
+    margin-bottom: 1.7em; }
+  body blockquote,
+  body pre {
+    margin-bottom: 1.7em; }
+    body blockquote > :last-child,
+    body pre > :last-child {
+      margin-bottom: 0; }
+  body li {
+    margin-bottom: 0.5em; }
+    body li > ul,
+    body li > ol {
+      margin-top: 0.5em; }
+  body figure,
+  body .wp-caption,
+  body .alignleft,
+  body .alignright,
+  body .aligncenter,
+  body .alignwide,
+  body .alignfull {
+    margin-bottom: 1.7em; }
+  
+  body .alignleft {
+    display: inline;
+    float: left;
+    margin-right: 1.7em; }
+  
+  body .alignright {
+    display: inline;
+    float: right;
+    margin-left: 1.7em; }
+  
+  body .aligncenter {
+    clear: both;
+    margin-left: auto;
+    margin-right: auto; }
+
+body table {
+  border-top: 1px solid var(--color-border-dark);
+  line-height: 1.4;
+  text-align: left; }
+  body table thead,
+  body table tfoot {
+    border: 0;
+    font-weight: 600; }
+  body table td,
+  body table th {
+    padding: 0.75em 1em;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+    border-left: 0; }
+
+/**
+ * https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/inline-terms/
+ */
+body .mention,
+body .tag,
+body .po-xpost {
+  text-decoration: none;
+  font-weight: 500; }
+  body .mention:hover,
+  body .tag:hover,
+  body .po-xpost:hover {
+    text-decoration: underline; }
+
+body .mention {
+  color: var(--color-mentions); }
+  body .mention.mention-highlight, body .mention.mention-current-user {
+    padding: 2px 4px;
+    border-radius: 3px;
+    background: var(--color-mentions-highlight); }
+
+/*# sourceMappingURL=style-editor.css.map */
