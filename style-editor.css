@@ -44,55 +44,8 @@
   --font-mono: monaco, consolas, Andale Mono, DejaVu Sans Mono, Courier New, monospace; }
 
 /**
- * Base styles
- */
-/* HEADINGS 1-6 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-default);
-  line-height: 1.1; }
-
-h1 {
-  font-size: 2.2em;
-  font-weight: 700; }
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600; }
-
-h2 {
-  font-size: 1.8em; }
-
-h3 {
-  font-size: 1.4em; }
-
-h4 {
-  font-size: 1.2em; }
-
-h5 {
-  font-size: 1.1em; }
-
-h6 {
-  font-size: 1em; }
-
-/**
  * Core
  */
-.more-link {
-  display: block;
-  padding: 0.5em;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  text-align: center;
-  font-size: 0.875rem; }
-
 .wp-caption {
   max-width: 100%; }
   .wp-caption img {
@@ -144,10 +97,6 @@ body .block-editor-default-block-appender .block-editor-default-block-appender__
   color: var(--color-text-light);
   font-family: var(--font-default); }
 
-body .editor-post-title__input {
-  font-family: var(--font-default);
-  font-weight: 700; }
-
 .wp-caption .wp-caption-text, .wp-block-image figcaption {
   width: 100%;
   margin-top: 0.75em;
@@ -194,6 +143,53 @@ body kbd {
   font-family: var(--font-mono);
   font-size: 0.8em; }
 
+body .editor-post-title__input, body h1 {
+  font-family: var(--font-default);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.1; }
+  @media (max-width: 876px) {
+    body .editor-post-title__input, body h1 {
+      font-size: 1.625rem; } }
+
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  font-family: var(--font-default);
+  line-height: 1.1;
+  font-weight: 700; }
+
+body h2 {
+  font-size: 1.5rem; }
+
+
+body h3 {
+  font-size: 1.25rem; }
+
+
+body h4 {
+  font-size: 1rem;
+  text-transform: uppercase; }
+
+
+body h5 {
+  font-size: 0.8125rem;
+  text-transform: uppercase; }
+
+
+body h6 {
+  font-size: 0.6875rem;
+  text-transform: uppercase; }
+
+@media (max-width: 876px) {
+  body h2 {
+    font-size: 1.3125rem; }
+  
+  body h3 {
+    font-size: 1.125rem; } }
+
 /**
  * Styles for a preformatted block
  */
@@ -224,7 +220,11 @@ body table {
 
 body {
   font-family: var(--font-body);
+  font-size: 1rem;
   line-height: 1.7;
+  /**
+	 * Headings
+	 */
   /**
 	 * Images
 	 */ }
@@ -245,7 +245,7 @@ body {
   body h4,
   body h5,
   body h6 {
-    margin: 1.875rem 0 0.9375rem; }
+    margin: 2rem 0 1rem; }
   body table {
     margin-bottom: 1.7em; }
   body blockquote,

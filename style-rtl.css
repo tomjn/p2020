@@ -376,42 +376,6 @@ input[type="search"] {
   .mobile-menu-is-visible #o2-expand-editor {
     display: none; } }
 
-/* HEADINGS 1-6 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-default);
-  line-height: 1.1; }
-
-h1 {
-  font-size: 2.2em;
-  font-weight: 700; }
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600; }
-
-h2 {
-  font-size: 1.8em; }
-
-h3 {
-  font-size: 1.4em; }
-
-h4 {
-  font-size: 1.2em; }
-
-h5 {
-  font-size: 1.1em; }
-
-h6 {
-  font-size: 1em; }
-
 @media (max-width: 876px) {
   input[type="checkbox"] {
     font-size: 2em; } }
@@ -696,7 +660,7 @@ h6 {
   border-radius: 4px;
   background: var(--color-white) !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   /**
 	 * Images
 	 */ }
@@ -736,36 +700,32 @@ h6 {
  * used to share content styles across the normal block editor (wp-admin/calypso)
  * and the p2tenberg editor.
  */
-.p2tenberg-editor .block-editor-writing-flow .block-editor-default-block-appender .block-editor-default-block-appender__content {
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow .block-editor-default-block-appender .block-editor-default-block-appender__content {
   color: var(--color-text-light);
   font-family: var(--font-default); }
-
-.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input {
-  font-family: var(--font-default);
-  font-weight: 700; }
 
 /**
  * Styles for a blockquote
  */
-.p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote {
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote {
   background: var(--color-background-very-light);
   font-style: italic;
   margin: 0 0 1.2em;
   padding: 2em;
   overflow: auto; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content blockquote code {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content blockquote code {
     border: 1px solid var(--color-border);
     background: var(--color-white); }
-  .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content blockquote em {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content blockquote em {
     font-style: normal; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content blockquote.wp-embedded-content {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content blockquote.wp-embedded-content {
     padding: 1.2em; }
 
 .p2tenberg-editor .wp-block-pullquote__citation,
 .entry-content .wp-block-pullquote__citation,
 .comment-content .wp-block-pullquote__citation, .p2tenberg-editor .wp-block-quote__citation,
 .entry-content .wp-block-quote__citation,
-.comment-content .wp-block-quote__citation, .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content blockquote cite {
+.comment-content .wp-block-quote__citation, body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content blockquote cite {
   display: block;
   margin-top: 1em;
   text-align: left; }
@@ -773,7 +733,7 @@ h6 {
   .entry-content .wp-block-pullquote__citation::before,
   .comment-content .wp-block-pullquote__citation::before, .p2tenberg-editor .wp-block-quote__citation::before,
   .entry-content .wp-block-quote__citation::before,
-  .comment-content .wp-block-quote__citation::before, .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content blockquote cite::before {
+  .comment-content .wp-block-quote__citation::before, body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content blockquote cite::before {
     content: "—\0000a0"; }
 
 .o2-editor-footer a.o2-save, .o2-editor-footer a.o2-comment-save, .o2-editor-footer a.o2-cancel,
@@ -825,8 +785,8 @@ h6 {
 /**
  * Styles for <code>, <kbd>
  */
-.p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content code,
-.p2tenberg-editor .block-editor-writing-flow kbd,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content code,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow kbd,
 .comment-content kbd,
 .entry-content kbd {
   border-radius: 3px;
@@ -841,25 +801,25 @@ h6 {
 /**
  * Styles for a blockquote
  */
-.p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote {
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote {
   background: var(--color-background-very-light);
   font-style: italic;
   margin: 0 0 1.2em;
   padding: 2em;
   overflow: auto; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content blockquote code {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content blockquote code {
     border: 1px solid var(--color-border);
     background: var(--color-white); }
-  .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content blockquote em {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content blockquote em {
     font-style: normal; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content blockquote.wp-embedded-content {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content blockquote.wp-embedded-content {
     padding: 1.2em; }
 
 .p2tenberg-editor .wp-block-pullquote__citation,
 .entry-content .wp-block-pullquote__citation,
 .comment-content .wp-block-pullquote__citation, .p2tenberg-editor .wp-block-quote__citation,
 .entry-content .wp-block-quote__citation,
-.comment-content .wp-block-quote__citation, .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content blockquote cite {
+.comment-content .wp-block-quote__citation, body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content blockquote cite {
   display: block;
   margin-top: 1em;
   text-align: left; }
@@ -867,14 +827,14 @@ h6 {
   .entry-content .wp-block-pullquote__citation::before,
   .comment-content .wp-block-pullquote__citation::before, .p2tenberg-editor .wp-block-quote__citation::before,
   .entry-content .wp-block-quote__citation::before,
-  .comment-content .wp-block-quote__citation::before, .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content blockquote cite::before {
+  .comment-content .wp-block-quote__citation::before, body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content blockquote cite::before {
     content: "—\0000a0"; }
 
 /**
  * Styles for <code>, <kbd>
  */
-.p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content code,
-.p2tenberg-editor .block-editor-writing-flow kbd,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content code,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow kbd,
 .comment-content kbd,
 .entry-content kbd {
   border-radius: 3px;
@@ -883,12 +843,77 @@ h6 {
   font-family: var(--font-mono);
   font-size: 0.8em; }
 
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title {
+  font-family: var(--font-default);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.1; }
+  @media (max-width: 876px) {
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title {
+      font-size: 1.625rem; } }
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
+.comment-content h3,
+.entry-content h3,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4,
+.comment-content h4,
+.entry-content h4,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5,
+.comment-content h5,
+.entry-content h5,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6,
+.comment-content h6,
+.entry-content h6 {
+  font-family: var(--font-default);
+  line-height: 1.1;
+  font-weight: 700; }
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2 {
+  font-size: 1.5rem; }
+
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
+.comment-content h3,
+.entry-content h3 {
+  font-size: 1.25rem; }
+
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4,
+.comment-content h4,
+.entry-content h4 {
+  font-size: 1rem;
+  text-transform: uppercase; }
+
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5,
+.comment-content h5,
+.entry-content h5 {
+  font-size: 0.8125rem;
+  text-transform: uppercase; }
+
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6,
+.comment-content h6,
+.entry-content h6 {
+  font-size: 0.6875rem;
+  text-transform: uppercase; }
+
+@media (max-width: 876px) {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2 {
+    font-size: 1.3125rem; }
+  
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
+  .comment-content h3,
+  .entry-content h3 {
+    font-size: 1.125rem; } }
+
 /**
  * Styles for a preformatted block
  */
 .p2tenberg-editor .wp-block-code,
 .entry-content .wp-block-code,
-.comment-content .wp-block-code, .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content pre {
+.comment-content .wp-block-code, body.gutenberg .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content pre {
   background: var(--color-background-very-light);
   margin-bottom: 1.2em;
   padding: 2em;
@@ -897,18 +922,18 @@ h6 {
   font-family: var(--font-mono);
   font-size: 0.8em; }
 
-.p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
   border-top: 1px solid var(--color-border-dark);
   line-height: 1.4;
   text-align: right; }
-  .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content table thead,
-  .p2tenberg-editor .block-editor-writing-flow table tfoot,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content table thead,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table tfoot,
   .comment-content table tfoot,
   .entry-content table tfoot {
     border: 0;
     font-weight: 600; }
-  .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content table td,
-  .p2tenberg-editor .block-editor-writing-flow table th,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content table td,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table th,
   .comment-content table th,
   .entry-content table th {
     padding: 0.75em 1em;
@@ -917,104 +942,173 @@ h6 {
     border-bottom: 1px solid var(--color-border);
     border-right: 0; }
 
-.p2tenberg-editor .block-editor-writing-flow, .comment-content, .entry-content {
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow, .comment-content, .entry-content {
   font-family: var(--font-body);
+  font-size: 1rem;
   line-height: 1.7;
+  /**
+	 * Headings
+	 */
   /**
 	 * Images
 	 */ }
-  .p2tenberg-editor .block-editor-writing-flow p a, .comment-content p a, .entry-content p a,
-  .p2tenberg-editor .block-editor-writing-flow li a,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow p a, .comment-content p a, .entry-content p a,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow li a,
   .comment-content li a,
   .entry-content li a {
     color: var(--color-link);
     text-decoration: underline; }
-    .p2tenberg-editor .block-editor-writing-flow p a:hover, .comment-content p a:hover, .entry-content p a:hover,
-    .p2tenberg-editor .block-editor-writing-flow li a:hover,
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow p a:hover, .comment-content p a:hover, .entry-content p a:hover,
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow li a:hover,
     .comment-content li a:hover,
     .entry-content li a:hover {
       color: var(--color-link-dark); }
-  .p2tenberg-editor .block-editor-writing-flow p, .comment-content p, .entry-content p {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow p, .comment-content p, .entry-content p {
     margin: 0 0 1.7em; }
-    .p2tenberg-editor .block-editor-writing-flow p:empty, .comment-content p:empty, .entry-content p:empty {
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow p:empty, .comment-content p:empty, .entry-content p:empty {
       margin-bottom: 0; }
-  .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1,
-  .p2tenberg-editor .block-editor-writing-flow h2,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2,
   .comment-content h2,
   .entry-content h2,
-  .p2tenberg-editor .block-editor-writing-flow h3,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
   .comment-content h3,
   .entry-content h3,
-  .p2tenberg-editor .block-editor-writing-flow h4,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4,
   .comment-content h4,
   .entry-content h4,
-  .p2tenberg-editor .block-editor-writing-flow h5,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5,
   .comment-content h5,
   .entry-content h5,
-  .p2tenberg-editor .block-editor-writing-flow h6,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6,
   .comment-content h6,
   .entry-content h6 {
-    margin: 1.875rem 0 0.9375rem; }
-  .p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
+    margin: 2rem 0 1rem; }
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
     margin-bottom: 1.7em; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote,
-  .p2tenberg-editor .block-editor-writing-flow pre,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow pre,
   .comment-content pre,
   .entry-content pre {
     margin-bottom: 1.7em; }
-    .p2tenberg-editor .block-editor-writing-flow blockquote > :last-child, .comment-content blockquote > :last-child, .entry-content blockquote > :last-child,
-    .p2tenberg-editor .block-editor-writing-flow pre > :last-child,
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow blockquote > :last-child, .comment-content blockquote > :last-child, .entry-content blockquote > :last-child,
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow pre > :last-child,
     .comment-content pre > :last-child,
     .entry-content pre > :last-child {
       margin-bottom: 0; }
-  .p2tenberg-editor .block-editor-writing-flow li, .comment-content li, .entry-content li {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow li, .comment-content li, .entry-content li {
     margin-bottom: 0.5em; }
-    .p2tenberg-editor .block-editor-writing-flow li > ul, .comment-content li > ul, .entry-content li > ul,
-    .p2tenberg-editor .block-editor-writing-flow li > ol,
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow li > ul, .comment-content li > ul, .entry-content li > ul,
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow li > ol,
     .comment-content li > ol,
     .entry-content li > ol {
       margin-top: 0.5em; }
-  .p2tenberg-editor .block-editor-writing-flow figure, .comment-content figure, .entry-content figure,
-  .p2tenberg-editor .block-editor-writing-flow .wp-caption,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow figure, .comment-content figure, .entry-content figure,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .wp-caption,
   .comment-content .wp-caption,
   .entry-content .wp-caption,
-  .p2tenberg-editor .block-editor-writing-flow .alignleft,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .alignleft,
   .comment-content .alignleft,
   .entry-content .alignleft,
-  .p2tenberg-editor .block-editor-writing-flow .alignright,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .alignright,
   .comment-content .alignright,
   .entry-content .alignright,
-  .p2tenberg-editor .block-editor-writing-flow .aligncenter,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .aligncenter,
   .comment-content .aligncenter,
   .entry-content .aligncenter,
-  .p2tenberg-editor .block-editor-writing-flow .alignwide,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .alignwide,
   .comment-content .alignwide,
   .entry-content .alignwide,
-  .p2tenberg-editor .block-editor-writing-flow .alignfull,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .alignfull,
   .comment-content .alignfull,
   .entry-content .alignfull {
     margin-bottom: 1.7em; }
   
-  .p2tenberg-editor .block-editor-writing-flow .alignleft,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .alignleft,
   .comment-content .alignleft,
   .entry-content .alignleft {
     display: inline;
     float: right;
     margin-left: 1.7em; }
   
-  .p2tenberg-editor .block-editor-writing-flow .alignright,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .alignright,
   .comment-content .alignright,
   .entry-content .alignright {
     display: inline;
     float: left;
     margin-right: 1.7em; }
   
-  .p2tenberg-editor .block-editor-writing-flow .aligncenter,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .aligncenter,
   .comment-content .aligncenter,
   .entry-content .aligncenter {
     clear: both;
     margin-right: auto;
     margin-left: auto; }
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title {
+  font-family: var(--font-default);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.1; }
+  @media (max-width: 876px) {
+    body.gutenberg .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title {
+      font-size: 1.625rem; } }
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
+.comment-content h3,
+.entry-content h3,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4,
+.comment-content h4,
+.entry-content h4,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5,
+.comment-content h5,
+.entry-content h5,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6,
+.comment-content h6,
+.entry-content h6 {
+  font-family: var(--font-default);
+  line-height: 1.1;
+  font-weight: 700; }
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2 {
+  font-size: 1.5rem; }
+
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
+.comment-content h3,
+.entry-content h3 {
+  font-size: 1.25rem; }
+
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4,
+.comment-content h4,
+.entry-content h4 {
+  font-size: 1rem;
+  text-transform: uppercase; }
+
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5,
+.comment-content h5,
+.entry-content h5 {
+  font-size: 0.8125rem;
+  text-transform: uppercase; }
+
+
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6,
+.comment-content h6,
+.entry-content h6 {
+  font-size: 0.6875rem;
+  text-transform: uppercase; }
+
+@media (max-width: 876px) {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2 {
+    font-size: 1.3125rem; }
+  
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
+  .comment-content h3,
+  .entry-content h3 {
+    font-size: 1.125rem; } }
 
 .p2020-menu-primary {
   font-size: 0.875rem; }
@@ -1114,7 +1208,7 @@ h6 {
  */
 .p2tenberg-editor .wp-block-code,
 .entry-content .wp-block-code,
-.comment-content .wp-block-code, .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content pre {
+.comment-content .wp-block-code, body.gutenberg .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content pre {
   background: var(--color-background-very-light);
   margin-bottom: 1.2em;
   padding: 2em;
@@ -1265,18 +1359,18 @@ h6 {
     .p2020-site-title a:hover {
       color: var(--color-link); }
 
-.p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
   border-top: 1px solid var(--color-border-dark);
   line-height: 1.4;
   text-align: right; }
-  .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content table thead,
-  .p2tenberg-editor .block-editor-writing-flow table tfoot,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content table thead,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table tfoot,
   .comment-content table tfoot,
   .entry-content table tfoot {
     border: 0;
     font-weight: 600; }
-  .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content table td,
-  .p2tenberg-editor .block-editor-writing-flow table th,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content table td,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow table th,
   .comment-content table th,
   .entry-content table th {
     padding: 0.75em 1em;
@@ -1314,27 +1408,27 @@ h6 {
 /**
  * https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/inline-terms/
  */
-.p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention,
-.p2tenberg-editor .block-editor-writing-flow .tag,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow .tag,
 .comment-content .tag,
 .entry-content .tag,
-.p2tenberg-editor .block-editor-writing-flow .po-xpost,
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow .po-xpost,
 .comment-content .po-xpost,
 .entry-content .po-xpost {
   text-decoration: none;
   font-weight: 500; }
-  .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content .mention:hover,
-  .p2tenberg-editor .block-editor-writing-flow .tag:hover,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content .mention:hover,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .tag:hover,
   .comment-content .tag:hover,
   .entry-content .tag:hover,
-  .p2tenberg-editor .block-editor-writing-flow .po-xpost:hover,
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .po-xpost:hover,
   .comment-content .po-xpost:hover,
   .entry-content .po-xpost:hover {
     text-decoration: underline; }
 
-.p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention {
+body.gutenberg .p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention {
   color: var(--color-mentions); }
-  .p2tenberg-editor .block-editor-writing-flow .mention.mention-highlight, .comment-content .mention.mention-highlight, .entry-content .mention.mention-highlight, .p2tenberg-editor .block-editor-writing-flow .mention.mention-current-user, .comment-content .mention.mention-current-user, .entry-content .mention.mention-current-user {
+  body.gutenberg .p2tenberg-editor .block-editor-writing-flow .mention.mention-highlight, .comment-content .mention.mention-highlight, .entry-content .mention.mention-highlight, body.gutenberg .p2tenberg-editor .block-editor-writing-flow .mention.mention-current-user, .comment-content .mention.mention-current-user, .entry-content .mention.mention-current-user {
     padding: 2px 4px;
     border-radius: 3px;
     background: var(--color-mentions-highlight); }
@@ -1353,7 +1447,7 @@ h6 {
       color: var(--color-link); }
 
 .entry-header {
-  margin-bottom: 32px; }
+  margin-bottom: 24px; }
 
 .entry-header .entry-meta {
   position: relative;
@@ -1362,7 +1456,7 @@ h6 {
   justify-items: start;
   align-items: start;
   margin-bottom: 32px;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   line-height: 1.3; }
   .entry-header .entry-meta .author-avatar {
     grid-row: span 2;
@@ -1382,10 +1476,6 @@ h6 {
 
 .entry-title a:hover {
   color: var(--color-link); }
-
-@media (max-width: 550px) {
-  .entry-title {
-    font-size: 1.5em; } }
 
 .o2-app-controls {
   visibility: hidden;
