@@ -10,8 +10,7 @@ namespace P2020;
 /**
  * Load My Team widget
  */
-require( get_template_directory() . '/widgets/my-team.php' );
-add_action( 'widgets_init', __NAMESPACE__ . '\my_team_widget_init' );
+require( get_template_directory() . '/widgets/my-team/my-team.php' );
 
 /**
  * Load partner plugins loader file.
