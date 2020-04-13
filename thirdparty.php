@@ -89,7 +89,7 @@ function set_homepage_display() {
 }
 
 function enable_default_widgets() {
-	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+	if ( ! is_customize_preview() && ! is_active_sidebar( 'sidebar-1' ) ) {
 		$widget_no = 2;
 
 		// O2 Filter widget
@@ -114,6 +114,7 @@ function enable_default_widgets() {
 		$team_widget_settings = [
 			$widget_no => [
 				'title' => __( 'My Team', 'p2020' ),
+				'limit' => 14,
 			]
 		];
 		update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
@@ -129,13 +130,24 @@ function enable_default_widgets() {
 		$sidebars['array_version'] = 3;
 
 		update_option( 'sidebars_widgets', $sidebars );
+	
+		// Refresh sidebars_widgets cache
+		global $_wp_sidebars_widgets;
+		$_wp_sidebars_widgets = get_option( 'sidebars_widgets' );
 	}
-
-	// Refresh sidebars_widgets cache
-	global $_wp_sidebars_widgets;
-	$_wp_sidebars_widgets = get_option( 'sidebars_widgets' );
 }
 
+/**
+ * Enables x-posting for a8c p2 sites
+ */
+function enable_xposts() {
+	require_once( 'a8c-xpost.php' );
+	new A8c_XPost();
+}
+
+if ( is_a8c_p2() ) {
+	add_action( 'after_setup_theme', 'P2020\enable_xposts' );
+}
 add_action( 'after_setup_theme', 'P2020\enable_inline_terms', 100 );
 add_action( 'after_setup_theme', 'P2020\enable_notifications', 100 );
 add_action( 'after_setup_theme', 'P2020\enable_o2', 101 );
