@@ -23,7 +23,7 @@ and Blueprint http://www.blueprintcss.org/
 */
 /**
  * GLOBAL PARTIALS
- * Global partials provide base HTML styling as well as variables and mixins to be used in the UI partials
+ * Provides base styles as well as variables and mixins to be used elsewhere
 */
 /**
  * Colors
@@ -274,44 +274,6 @@ tt,
 var {
   font-family: var(--font-mono); }
 
-code,
-kbd {
-  border-radius: 3px;
-  background: var(--color-background-very-light);
-  padding: 0.3em 0.55em;
-  font-size: 0.8em; }
-
-pre {
-  background: var(--color-background-very-light);
-  margin-bottom: 1.2em;
-  padding: 1.2em;
-  overflow: auto;
-  max-width: 100%;
-  font-size: 0.8em; }
-
-/**
- * Quotes
- */
-blockquote {
-  background: var(--color-background-very-light);
-  font-style: italic;
-  margin: 0 0 1.2em;
-  padding: 1.2em 1.2em 0 1.2em;
-  overflow: auto; }
-  blockquote code {
-    border: 1px solid var(--color-border);
-    background: var(--color-white); }
-  blockquote em {
-    font-style: normal; }
-  blockquote cite {
-    display: block;
-    margin-top: 1em;
-    text-align: right; }
-    blockquote cite::before {
-      content: "—\0000a0"; }
-  blockquote.wp-embedded-content {
-    padding: 1.2em; }
-
 /**
  * Tables
  */
@@ -336,6 +298,17 @@ textarea {
   vertical-align: baseline;
   /* Improves appearance and consistency in all browsers */ }
 
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer; }
+  button:focus-visible,
+  input[type="button"]:focus-visible,
+  input[type="reset"]:focus-visible,
+  input[type="submit"]:focus-visible {
+    outline: thin dotted; }
+
 textarea {
   overflow: auto;
   /* Removes default vertical scrollbar in IE6/7/8/9 */
@@ -354,6 +327,65 @@ input[type="search"] {
   input[type="search"]::-webkit-search-decoration {
     /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
     -webkit-appearance: none; }
+
+html {
+  overflow: hidden;
+  height: 100%; }
+
+body {
+  height: 100%; }
+
+#page {
+  position: relative; }
+
+#masthead {
+  position: relative;
+  z-index: 1; }
+
+#main-wrapper {
+  position: fixed;
+  overflow: scroll;
+  display: flex;
+  width: 100%;
+  height: 100%; }
+
+#content {
+  position: relative;
+  z-index: 0;
+  margin: 0 auto;
+  width: 75%;
+  max-width: 940px;
+  padding: 50px; }
+  @media (max-width: 876px) {
+    #content {
+      width: 100%;
+      padding: 16px; } }
+
+#sidebar {
+  width: 25%;
+  max-width: 360px;
+  min-width: 280px;
+  border-right: 1px solid var(--color-border); }
+  @media (max-width: 876px) {
+    #sidebar {
+      position: absolute;
+      top: 0;
+      left: -200%;
+      right: 0;
+      z-index: 1;
+      transition: left 0.25s ease-in-out;
+      width: 100%;
+      margin: 12px auto;
+      border: 0;
+      border-radius: 4px;
+      background: var(--color-white);
+      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07); }
+      .mobile-menu-is-visible #sidebar {
+        left: 0; } }
+
+@media (max-width: 876px) {
+  .mobile-menu-is-visible #o2-expand-editor {
+    display: none; } }
 
 /* HEADINGS 1-6 */
 h1,
@@ -390,33 +422,6 @@ h5 {
 
 h6 {
   font-size: 1em; }
-
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  border: 1px solid var(--color-border);
-  border-radius: 2px;
-  background: var(--color-background-very-light);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
-  color: var(--color-text);
-  cursor: pointer;
-  /* Improves usability and consistency of cursor style between image-type 'input' and others */
-  -webkit-appearance: button;
-  /* Corrects inability to style clickable 'input' types in iOS */
-  line-height: 1;
-  padding: 0.6em 1em;
-  font-family: var(--font-default); }
-  button:hover,
-  input[type="button"]:hover,
-  input[type="reset"]:hover,
-  input[type="submit"]:hover {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02); }
-  button:focus-visible,
-  input[type="button"]:focus-visible,
-  input[type="reset"]:focus-visible,
-  input[type="submit"]:focus-visible {
-    outline: thin dotted; }
 
 @media (max-width: 876px) {
   input[type="checkbox"] {
@@ -585,83 +590,57 @@ input[type="submit"] {
   .wp-caption img {
     display: block; }
 
-#content .wp-block-code {
+.p2tenberg-editor .wp-block-code,
+.entry-content .wp-block-code,
+.comment-content .wp-block-code {
+  padding: 2em;
   border: 0;
   border-radius: 0;
   font-family: var(--font-mono);
-  font-size: inherit;
   line-height: 1.4;
   color: var(--color-text); }
-  #content .wp-block-code code {
-    padding: 0; }
+  .p2tenberg-editor .wp-block-code code,
+  .entry-content .wp-block-code code,
+  .comment-content .wp-block-code code {
+    padding: 0;
+    font-size: inherit; }
+  .p2tenberg-editor .wp-block-code .block-editor-plain-text,
+  .entry-content .wp-block-code .block-editor-plain-text,
+  .comment-content .wp-block-code .block-editor-plain-text {
+    border: 0;
+    background: transparent;
+    font-family: var(--font-mono); }
 
-#content .wp-block-image img {
+.p2tenberg-editor .wp-block-image img,
+.entry-content .wp-block-image img,
+.comment-content .wp-block-image img {
   display: block; }
 
-#content .wp-block-pullquote {
+.p2tenberg-editor .wp-block-pullquote,
+.entry-content .wp-block-pullquote,
+.comment-content .wp-block-pullquote {
   border: 0;
   color: inherit; }
-  #content .wp-block-pullquote:not(.is-style-solid-color) blockquote {
+  .p2tenberg-editor .wp-block-pullquote:not(.is-style-solid-color) blockquote,
+  .entry-content .wp-block-pullquote:not(.is-style-solid-color) blockquote,
+  .comment-content .wp-block-pullquote:not(.is-style-solid-color) blockquote {
     margin-bottom: 0;
     background: transparent; }
 
-#content .wp-block-verse {
+.p2tenberg-editor .wp-block-quote,
+.entry-content .wp-block-quote,
+.comment-content .wp-block-quote {
+  border: 0; }
+
+.p2tenberg-editor .wp-block-verse,
+.entry-content .wp-block-verse,
+.comment-content .wp-block-verse {
   padding: 2em; }
 
 /**
  * UI PARTIALS
-*/
-#wpstats {
-  visibility: hidden; }
-
-#page {
-  position: relative; }
-
-#masthead {
-  position: relative;
-  z-index: 1; }
-
-#main-wrapper {
-  display: flex; }
-
-#content {
-  position: relative;
-  z-index: 0;
-  margin: 0 auto;
-  width: 75%;
-  max-width: 940px;
-  padding: 50px; }
-  @media (max-width: 876px) {
-    #content {
-      width: 100%;
-      padding: 16px; } }
-
-#sidebar {
-  width: 25%;
-  max-width: 360px;
-  min-width: 280px;
-  border-right: 1px solid var(--color-border); }
-  @media (max-width: 876px) {
-    #sidebar {
-      position: absolute;
-      top: 0;
-      left: -200%;
-      right: 0;
-      z-index: 1;
-      transition: left 0.25s ease-in-out;
-      width: 100%;
-      margin: 12px auto;
-      border: 0;
-      border-radius: 4px;
-      background: var(--color-white);
-      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07); }
-      .mobile-menu-is-visible #sidebar {
-        left: 0; } }
-
-@media (max-width: 876px) {
-  .mobile-menu-is-visible #o2-expand-editor {
-    display: none; } }
-
+ * First-party classes and Sass placeholders that we have control over
+ */
 .navigation {
   margin: 0 0 2em;
   padding: 0;
@@ -723,7 +702,8 @@ input[type="submit"] {
   overflow-wrap: break-word;
   margin: 0 0 30px;
   border-radius: 4px;
-  background: var(--color-white);
+  background: var(--color-white) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
   font-size: 0.9375rem;
   /**
 	 * Images
@@ -755,6 +735,54 @@ input[type="submit"] {
         margin-left: -2em;
         margin-right: -2em;
         width: calc(100% + 4em); } }
+
+/**
+ * Styles for block editor (Gutenberg) content
+ *
+ * P2tenberg currently does not support the standard way of applying theme styles
+ * to the block editor using add_editor_style(). This Sass placeholder class is
+ * used to share content styles across the normal block editor (wp-admin/calypso)
+ * and the p2tenberg editor.
+ */
+.p2tenberg-editor .block-editor-writing-flow .block-editor-default-block-appender .block-editor-default-block-appender__content {
+  color: var(--color-text-light);
+  font-family: var(--font-default); }
+
+.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input {
+  font-family: var(--font-default);
+  font-weight: 700; }
+
+/**
+ * Styles for a blockquote
+ */
+.p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote {
+  background: var(--color-background-very-light);
+  font-style: italic;
+  margin: 0 0 1.2em;
+  padding: 2em;
+  overflow: auto; }
+  .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content blockquote code {
+    border: 1px solid var(--color-border);
+    background: var(--color-white); }
+  .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content blockquote em {
+    font-style: normal; }
+  .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content blockquote.wp-embedded-content {
+    padding: 1.2em; }
+
+.p2tenberg-editor .wp-block-pullquote__citation,
+.entry-content .wp-block-pullquote__citation,
+.comment-content .wp-block-pullquote__citation, .p2tenberg-editor .wp-block-quote__citation,
+.entry-content .wp-block-quote__citation,
+.comment-content .wp-block-quote__citation, .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content blockquote cite {
+  display: block;
+  margin-top: 1em;
+  text-align: right; }
+  .p2tenberg-editor .wp-block-pullquote__citation::before,
+  .entry-content .wp-block-pullquote__citation::before,
+  .comment-content .wp-block-pullquote__citation::before, .p2tenberg-editor .wp-block-quote__citation::before,
+  .entry-content .wp-block-quote__citation::before,
+  .comment-content .wp-block-quote__citation::before, .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content blockquote cite::before {
+    content: "—\0000a0"; }
 
 .o2-editor-footer a.o2-save, .o2-editor-footer a.o2-comment-save, .o2-editor-footer a.o2-cancel,
 .o2-editor-footer a.o2-new-comment-cancel {
@@ -792,7 +820,9 @@ input[type="submit"] {
     background: transparent;
     color: var(--color-link-dark); }
 
-.wp-caption .wp-caption-text, #content .wp-block-image figcaption {
+.wp-caption .wp-caption-text, .p2tenberg-editor .wp-block-image figcaption,
+.entry-content .wp-block-image figcaption,
+.comment-content .wp-block-image figcaption {
   width: 100%;
   margin-top: 0.75em;
   color: var(--color-text-light);
@@ -801,78 +831,193 @@ input[type="submit"] {
   line-height: 1.5; }
 
 /**
+ * Styles for <code>, <kbd>
+ */
+.p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content code,
+.p2tenberg-editor .block-editor-writing-flow kbd,
+.comment-content kbd,
+.entry-content kbd {
+  border-radius: 3px;
+  background: var(--color-background-very-light);
+  padding: 0.3em 0.55em;
+  font-family: var(--font-mono);
+  font-size: 0.8em; }
+
+/**
  * Body content styles for post/pages and comments
  */
-.comment-content, .entry-content {
+/**
+ * Styles for a blockquote
+ */
+.p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote {
+  background: var(--color-background-very-light);
+  font-style: italic;
+  margin: 0 0 1.2em;
+  padding: 2em;
+  overflow: auto; }
+  .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content blockquote code {
+    border: 1px solid var(--color-border);
+    background: var(--color-white); }
+  .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content blockquote em {
+    font-style: normal; }
+  .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content blockquote.wp-embedded-content {
+    padding: 1.2em; }
+
+.p2tenberg-editor .wp-block-pullquote__citation,
+.entry-content .wp-block-pullquote__citation,
+.comment-content .wp-block-pullquote__citation, .p2tenberg-editor .wp-block-quote__citation,
+.entry-content .wp-block-quote__citation,
+.comment-content .wp-block-quote__citation, .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content blockquote cite {
+  display: block;
+  margin-top: 1em;
+  text-align: right; }
+  .p2tenberg-editor .wp-block-pullquote__citation::before,
+  .entry-content .wp-block-pullquote__citation::before,
+  .comment-content .wp-block-pullquote__citation::before, .p2tenberg-editor .wp-block-quote__citation::before,
+  .entry-content .wp-block-quote__citation::before,
+  .comment-content .wp-block-quote__citation::before, .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content blockquote cite::before {
+    content: "—\0000a0"; }
+
+/**
+ * Styles for <code>, <kbd>
+ */
+.p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content code,
+.p2tenberg-editor .block-editor-writing-flow kbd,
+.comment-content kbd,
+.entry-content kbd {
+  border-radius: 3px;
+  background: var(--color-background-very-light);
+  padding: 0.3em 0.55em;
+  font-family: var(--font-mono);
+  font-size: 0.8em; }
+
+/**
+ * Styles for a preformatted block
+ */
+.p2tenberg-editor .wp-block-code,
+.entry-content .wp-block-code,
+.comment-content .wp-block-code, .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content pre {
+  background: var(--color-background-very-light);
+  margin-bottom: 1.2em;
+  padding: 2em;
+  overflow: auto;
+  max-width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.8em; }
+
+.p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
+  border-top: 1px solid var(--color-border-dark);
+  line-height: 1.4;
+  text-align: left; }
+  .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content table thead,
+  .p2tenberg-editor .block-editor-writing-flow table tfoot,
+  .comment-content table tfoot,
+  .entry-content table tfoot {
+    border: 0;
+    font-weight: 600; }
+  .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content table td,
+  .p2tenberg-editor .block-editor-writing-flow table th,
+  .comment-content table th,
+  .entry-content table th {
+    padding: 0.75em 1em;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+    border-left: 0; }
+
+.p2tenberg-editor .block-editor-writing-flow, .comment-content, .entry-content {
   font-family: var(--font-body);
   line-height: 1.7;
   /**
 	 * Images
 	 */ }
-  .comment-content p a, .entry-content p a,
+  .p2tenberg-editor .block-editor-writing-flow p a, .comment-content p a, .entry-content p a,
+  .p2tenberg-editor .block-editor-writing-flow li a,
   .comment-content li a,
   .entry-content li a {
+    color: var(--color-link);
     text-decoration: underline; }
-  .comment-content p, .entry-content p {
+    .p2tenberg-editor .block-editor-writing-flow p a:hover, .comment-content p a:hover, .entry-content p a:hover,
+    .p2tenberg-editor .block-editor-writing-flow li a:hover,
+    .comment-content li a:hover,
+    .entry-content li a:hover {
+      color: var(--color-link-dark); }
+  .p2tenberg-editor .block-editor-writing-flow p, .comment-content p, .entry-content p {
     margin: 0 0 1.7em; }
-    .comment-content p:empty, .entry-content p:empty {
+    .p2tenberg-editor .block-editor-writing-flow p:empty, .comment-content p:empty, .entry-content p:empty {
       margin-bottom: 0; }
-  .comment-content h1, .entry-content h1,
+  .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1,
+  .p2tenberg-editor .block-editor-writing-flow h2,
   .comment-content h2,
   .entry-content h2,
+  .p2tenberg-editor .block-editor-writing-flow h3,
   .comment-content h3,
   .entry-content h3,
+  .p2tenberg-editor .block-editor-writing-flow h4,
   .comment-content h4,
   .entry-content h4,
+  .p2tenberg-editor .block-editor-writing-flow h5,
   .comment-content h5,
   .entry-content h5,
+  .p2tenberg-editor .block-editor-writing-flow h6,
   .comment-content h6,
   .entry-content h6 {
     margin: 1.875rem 0 0.9375rem; }
-  .comment-content table, .entry-content table {
+  .p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
     margin-bottom: 1.7em; }
-  .comment-content blockquote, .entry-content blockquote,
+  .p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote,
+  .p2tenberg-editor .block-editor-writing-flow pre,
   .comment-content pre,
   .entry-content pre {
-    margin-bottom: 1.7em;
-    padding: 2em; }
-    .comment-content blockquote > :last-child, .entry-content blockquote > :last-child,
+    margin-bottom: 1.7em; }
+    .p2tenberg-editor .block-editor-writing-flow blockquote > :last-child, .comment-content blockquote > :last-child, .entry-content blockquote > :last-child,
+    .p2tenberg-editor .block-editor-writing-flow pre > :last-child,
     .comment-content pre > :last-child,
     .entry-content pre > :last-child {
       margin-bottom: 0; }
-  .comment-content li, .entry-content li {
+  .p2tenberg-editor .block-editor-writing-flow li, .comment-content li, .entry-content li {
     margin-bottom: 0.5em; }
-    .comment-content li > ul, .entry-content li > ul,
+    .p2tenberg-editor .block-editor-writing-flow li > ul, .comment-content li > ul, .entry-content li > ul,
+    .p2tenberg-editor .block-editor-writing-flow li > ol,
     .comment-content li > ol,
     .entry-content li > ol {
       margin-top: 0.5em; }
-  .comment-content figure, .entry-content figure,
+  .p2tenberg-editor .block-editor-writing-flow figure, .comment-content figure, .entry-content figure,
+  .p2tenberg-editor .block-editor-writing-flow .wp-caption,
   .comment-content .wp-caption,
   .entry-content .wp-caption,
+  .p2tenberg-editor .block-editor-writing-flow .alignleft,
   .comment-content .alignleft,
   .entry-content .alignleft,
+  .p2tenberg-editor .block-editor-writing-flow .alignright,
   .comment-content .alignright,
   .entry-content .alignright,
+  .p2tenberg-editor .block-editor-writing-flow .aligncenter,
   .comment-content .aligncenter,
   .entry-content .aligncenter,
+  .p2tenberg-editor .block-editor-writing-flow .alignwide,
   .comment-content .alignwide,
   .entry-content .alignwide,
+  .p2tenberg-editor .block-editor-writing-flow .alignfull,
   .comment-content .alignfull,
   .entry-content .alignfull {
     margin-bottom: 1.7em; }
   
+  .p2tenberg-editor .block-editor-writing-flow .alignleft,
   .comment-content .alignleft,
   .entry-content .alignleft {
     display: inline;
     float: left;
     margin-right: 1.7em; }
   
+  .p2tenberg-editor .block-editor-writing-flow .alignright,
   .comment-content .alignright,
   .entry-content .alignright {
     display: inline;
     float: right;
     margin-left: 1.7em; }
   
+  .p2tenberg-editor .block-editor-writing-flow .aligncenter,
   .comment-content .aligncenter,
   .entry-content .aligncenter {
     clear: both;
@@ -972,6 +1117,20 @@ input[type="submit"] {
     .p2020-mobile-menu-toggle {
       display: block; } }
 
+/**
+ * Styles for a preformatted block
+ */
+.p2tenberg-editor .wp-block-code,
+.entry-content .wp-block-code,
+.comment-content .wp-block-code, .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content pre {
+  background: var(--color-background-very-light);
+  margin-bottom: 1.2em;
+  padding: 2em;
+  overflow: auto;
+  max-width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.8em; }
+
 .p2020-searchform {
   overflow: hidden;
   display: flex;
@@ -1056,12 +1215,12 @@ input[type="submit"] {
 
 .p2020-sidebar__footer {
   margin-top: 4em;
-  color: var(--color-text-medium);
+  color: var(--color-text-light);
   font-size: 0.8125rem; }
   .p2020-sidebar__footer::before {
     content: "";
     display: block;
-    border-top: 1px solid var(--color-border-dark);
+    border-top: 1px solid var(--color-border);
     width: 32px;
     margin-bottom: 1.25em; }
   .p2020-sidebar__footer button {
@@ -1114,15 +1273,18 @@ input[type="submit"] {
     .p2020-site-title a:hover {
       color: var(--color-link); }
 
-.comment-content table, .entry-content table {
+.p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
   border-top: 1px solid var(--color-border-dark);
-  line-height: 1.4; }
-  .comment-content table thead, .entry-content table thead,
+  line-height: 1.4;
+  text-align: left; }
+  .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content table thead,
+  .p2tenberg-editor .block-editor-writing-flow table tfoot,
   .comment-content table tfoot,
   .entry-content table tfoot {
     border: 0;
     font-weight: 600; }
-  .comment-content table td, .entry-content table td,
+  .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content table td,
+  .p2tenberg-editor .block-editor-writing-flow table th,
   .comment-content table th,
   .entry-content table th {
     padding: 0.75em 1em;
@@ -1135,29 +1297,52 @@ input[type="submit"] {
  * DEPENDENCY PARTIALS
  * Styles for CSS classes generated by third-party plugins and widgets
  */
+/**
+ * https://opengrok.a8c.com/source/xref/trunk/wp-content/a8c-plugins/oblique-strategies/
+ */
+.oblique-strategy {
+  display: none; }
+
+#superadminbar {
+  top: 90px;
+  right: 28px; }
+
+#wpadminbar #wp-admin-bar-ab-new-post {
+  display: none; }
+
+#wpadminbar #wp-admin-bar-menu-toggle {
+  pointer-events: none; }
+
+#wpstats {
+  visibility: hidden; }
+
 #infinite-footer {
   display: none; }
 
 /**
  * https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/inline-terms/
  */
-.comment-content .mention, .entry-content .mention,
+.p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention,
+.p2tenberg-editor .block-editor-writing-flow .tag,
 .comment-content .tag,
 .entry-content .tag,
+.p2tenberg-editor .block-editor-writing-flow .po-xpost,
 .comment-content .po-xpost,
 .entry-content .po-xpost {
   text-decoration: none;
   font-weight: 500; }
-  .comment-content .mention:hover, .entry-content .mention:hover,
+  .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content .mention:hover,
+  .p2tenberg-editor .block-editor-writing-flow .tag:hover,
   .comment-content .tag:hover,
   .entry-content .tag:hover,
+  .p2tenberg-editor .block-editor-writing-flow .po-xpost:hover,
   .comment-content .po-xpost:hover,
   .entry-content .po-xpost:hover {
     text-decoration: underline; }
 
-.comment-content .mention, .entry-content .mention {
+.p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention {
   color: var(--color-mentions); }
-  .comment-content .mention.mention-highlight, .entry-content .mention.mention-highlight, .comment-content .mention.mention-current-user, .entry-content .mention.mention-current-user {
+  .p2tenberg-editor .block-editor-writing-flow .mention.mention-highlight, .comment-content .mention.mention-highlight, .entry-content .mention.mention-highlight, .p2tenberg-editor .block-editor-writing-flow .mention.mention-current-user, .comment-content .mention.mention-current-user, .entry-content .mention.mention-current-user {
     padding: 2px 4px;
     border-radius: 3px;
     background: var(--color-mentions-highlight); }
@@ -1215,6 +1400,7 @@ input[type="submit"] {
   float: none;
   display: flex;
   justify-content: flex-end;
+  margin-top: 24px;
   font-weight: 500;
   font-size: 0.75rem; }
   .o2-app-controls .o2-toggle-comments {
@@ -1407,8 +1593,13 @@ header nav.o2-dropdown-actions {
 .o2-editor {
   border-radius: 4px;
   background: var(--color-white); }
+  .o2-app-new-post .o2-editor {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07); }
   .o2-editor .p2tenberg-editor {
     margin: 0; }
+
+.o2-post-footer-actions {
+  margin-top: 32px; }
 
 .o2-post {
   padding: 4em 6em; }
@@ -1596,8 +1787,9 @@ article.tag-p2-xpost .comment .avatar {
     color: var(--color-text-light);
     font-size: inherit; }
 
-.p2tenberg-editor {
-  font-family: var(--font-default); }
+.p2tenberg-editor .block-editor-inserter__toggle.is-primary {
+  background: transparent;
+  color: inherit; }
 
 .p2tenberg-editor__newpost {
   border: 0;
