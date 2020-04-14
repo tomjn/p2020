@@ -1237,7 +1237,10 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   .p2020-menu-primary a {
     display: block;
     padding: 8px 18px;
-    color: var(--color-text); }
+    color: var(--color-text);
+    text-overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden; }
   .p2020-menu-primary ul {
     list-style: none;
     margin: 0;
@@ -1259,15 +1262,23 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
       background: currentColor;
       margin-left: 2px; }
   .p2020-menu-primary > .menu > .menu-item > a {
-    padding: 12px; }
+    padding: 15px 12px; }
   .p2020-menu-primary .menu {
     display: flex; }
     @media (max-width: 876px) {
       .p2020-menu-primary .menu {
         flex-direction: column; } }
-    .p2020-menu-primary .menu > .current-menu-item,
-    .p2020-menu-primary .menu > .current-menu-parent {
-      box-shadow: inset 0 -2px 0 0 var(--color-link); }
+    .p2020-menu-primary .menu > .current-menu-item::after,
+    .p2020-menu-primary .menu > .current-menu-parent::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -1px;
+      left: 12px;
+      right: 12px;
+      height: 2px;
+      background: var(--color-link);
+      z-index: 0; }
   .p2020-menu-primary .sub-menu {
     position: absolute;
     top: calc(100% - 5px);
@@ -1276,7 +1287,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     padding: 8px 0;
     border-radius: 4px;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07);
-    background: var(--color-white); }
+    background: var(--color-white);
+    z-index: 1; }
     .p2020-menu-primary .sub-menu .sub-menu {
       top: -2px;
       left: calc(100% - 4px); }
@@ -1287,16 +1299,17 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
             top: 0;
             left: 0; } }
     .p2020-menu-primary .sub-menu .menu-item-has-children > a::after {
-      transform: rotate(-90deg); }
+      transform: rotate(-90deg);
+      margin-left: 16px; }
   .p2020-menu-primary .menu-item {
     position: relative;
     margin: 0;
     padding: 0;
-    white-space: nowrap;
-    background: var(--color-white); }
+    white-space: nowrap; }
     .p2020-menu-primary .menu-item .menu-item {
       white-space: normal;
-      width: 14em; }
+      min-width: 14em;
+      max-width: 20em; }
     .p2020-menu-primary .menu-item:hover, .p2020-menu-primary .menu-item:focus-within {
       background: var(--color-background-very-light); }
       .p2020-menu-primary .menu-item:hover > .sub-menu, .p2020-menu-primary .menu-item:focus-within > .sub-menu {
@@ -1343,8 +1356,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   overflow: hidden;
   display: flex;
   align-items: center;
-  transition: flex-grow 0.4s ease-in-out;
-  font-size: 0.8125rem;
+  transition: flex-grow 0.6s ease-in-out;
+  font-size: 0.875rem;
   max-width: 20em; }
   .p2020-searchform::before {
     content: "";
@@ -1375,7 +1388,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   bottom: 0;
   left: 0;
   margin: auto;
-  border: 0; }
+  border: 0;
+  font-family: var(--font-default); }
   .p2020-searchform__field::-webkit-input-placeholder {
     color: var(--color-text);
     opacity: 1; }
@@ -1460,7 +1474,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   align-items: center;
   padding: 0 16px;
   border-bottom: 1px solid var(--color-border);
-  background: var(--color-white); }
+  background: var(--color-white);
+  min-height: 50px; }
   @media (max-width: 876px) {
     .p2020-site-header {
       padding: 12px; } }
@@ -1471,15 +1486,17 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   align-items: center; }
 
 .p2020-site-title {
-  margin-right: 16px;
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--color-text);
-  line-height: 1.4; }
+  line-height: 1.4;
+  margin-right: 16px; }
   .p2020-site-title a {
-    color: var(--color-text); }
-    .p2020-site-title a:hover {
-      color: var(--color-link); }
+    color: var(--color-text);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
 .p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
   border-top: 1px solid var(--color-border-dark);
