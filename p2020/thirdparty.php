@@ -92,17 +92,21 @@ function set_homepage_display() {
  * Add recommended widgets to sidebar
  */
 function enable_default_widgets() {
-	if ( ! is_customize_preview() && ! is_active_sidebar( 'sidebar-1' ) ) {
+	if ( ! is_a8c_p2() &&
+			! is_customize_preview() &&
+			! is_admin() &&
+			! is_active_sidebar( 'sidebar-1' ) ) {
+
 		$widget_no = 2;
 
-		// O2 Filter widget
+		// P2020 Filter widget
 		$filter_widget_settings = [
 			$widget_no => [
 				'title' => __( '', 'p2020' ),
 			]
 		];
 		update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
-		
+
 		// My Team widget
 		$team_widget_settings = [
 			$widget_no => [
@@ -122,7 +126,7 @@ function enable_default_widgets() {
 		$sidebars['array_version'] = 3;
 
 		update_option( 'sidebars_widgets', $sidebars );
-	
+
 		// Refresh sidebars_widgets cache
 		global $_wp_sidebars_widgets;
 		$_wp_sidebars_widgets = get_option( 'sidebars_widgets' );

@@ -47,6 +47,10 @@ class My_Team_Widget extends \WP_Widget {
 		}
 
 		$limit = (int)$instance['limit'];
+
+		global $wp_roles;
+		$all_roles = array_keys( $wp_roles->roles );
+		$selected_roles = $instance['roles'] ?? $all_roles;
 		?>
 
 		<p>
@@ -59,6 +63,22 @@ class My_Team_Widget extends \WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text" value="<?php echo $limit; ?>" />
 		</p>
 
+		<p>
+			<label><?php esc_html_e( 'Display team members with the ff. roles:', 'p2020' ); ?></label>
+			<ul>
+			<?php foreach ( $all_roles as $role ) { ?>
+				<li>
+					<label for="<?php echo $this->get_field_id( 'role_' . $role ); ?>">
+					<input type="checkbox" class="checkbox"
+						id="<?php echo $this->get_field_id( 'role_'.$role ); ?>"
+						name="<?php echo $this->get_field_name( 'roles[]' ); ?>"
+						value="<?php echo $role ?>" <?php echo in_array( $role, $selected_roles ) ? 'checked' : '' ?> />
+					<?php _e( ucfirst( $role ), 'p2020' ); ?>
+				</label>
+				</li>
+			<?php } ?>
+			</ul>
+		</p>
 		<?php
 	}
 
@@ -80,6 +100,11 @@ class My_Team_Widget extends \WP_Widget {
 		if ( $instance['limit'] < 1 ) {
 			$instance['limit'] = 14;
 		}
+
+		global $wp_roles;
+		$all_roles = array_keys( $wp_roles->roles );
+		// Make sure submitted roles are valid
+		$instance['roles'] = array_intersect( $all_roles, $new_instance['roles'] );
 
 		// delete_transient( $this->id . '-myteam-widget-data' );
 
@@ -105,13 +130,15 @@ class My_Team_Widget extends \WP_Widget {
 
 		$limit = (int)$instance['limit'];
 
+		$roles = $instance['roles'];
+
 		echo $theme_settings['before_widget'];
 
 		// TODO Do we want caching
 		// $my_team = get_transient( $this->id . '-myteam-widget-data' );
 
 		if ( empty( $my_team ) ) {
-			$my_team = $this->get_team_info( $limit );
+			$my_team = $this->get_team_info( $limit, $roles );
 			// 	set_transient( $this->id . '-myteam-widget-data', $my_team, self::$expiration );
 		}
 
@@ -149,8 +176,8 @@ class My_Team_Widget extends \WP_Widget {
 				$manage_team_link = 'https://wordpress.com/people/team/' . \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() ); ?>
 				<li id="widget-myteam-manage-icon" class="<?php echo ( $hidden_count ? 'has-more' : '' ) ?>" >
 					<a href="<?php esc_url( $manage_team_link ) ?>">
-							+<?php echo ( $hidden_count ?: '' ) ?>	
-					</a> 
+							+<?php echo ( $hidden_count ?: '' ) ?>
+					</a>
 				</li>
 			<?php } ?>
 
@@ -161,16 +188,14 @@ class My_Team_Widget extends \WP_Widget {
 		stats_extra( 'widget_view', 'p2020-my-team-widget' );
 	}
 
-	function get_team_info( $limit = null ) {
+	function get_team_info( $limit = null, $roles = null ) {
 		global $blog_id;
 		$team_info = [];
 		$team_members = [];
 
-		$user_query_param = [ 'blog_id' => $blog_id ];
-
-		if ( is_a8c_p2() ) {
-			 $user_query_param[ 'role' ] = 'administrator';
-		} 
+		if ( ! empty( $roles ) ) {
+			$user_query_param = [ 'blog_id' => $blog_id, 'role__in' => $roles ];
+		}
 
 		$blog_users = get_users( $user_query_param );
 
@@ -194,9 +219,13 @@ class My_Team_Widget extends \WP_Widget {
 	}
 
 	function extend_default_options( $options = [] ) {
+		global $wp_roles;
+		$all_roles = array_keys( $wp_roles->roles );
+
 		$defaults = [
 			'title' => $this->default_title,
 			'limit' => 14,
+			'roles' => $all_roles,
 		];
 
 		$merged = array_merge( $defaults, $options );
