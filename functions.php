@@ -10,12 +10,19 @@ namespace P2020;
 /**
  * Load My Team widget
  */
-require( get_template_directory() . '/widgets/my-team/my-team.php' );
+require_once( get_template_directory() . '/widgets/my-team/my-team.php' );
+
+/**
+ * Load Filter widget
+ */
+if ( is_user_logged_in() ) {
+	require_once( get_template_directory() . '/widgets/filter/load.php' );
+}
 
 /**
  * Load partner plugins loader file.
  */
-require( 'thirdparty.php' );
+require_once( 'thirdparty.php' );
 
 /**
  * Set up social sharing and likes
@@ -40,10 +47,10 @@ function social_init() {
 		update_option( 'disabled_likes', 0 );
 	}
 
-	// Show buttons everywhere 
+	// Show buttons everywhere
 	$sharing_options = get_option( 'sharing-options' );
 	$show_in_locations = [ 'index', 'post', 'page', 'attachment' ];
-	if ( ! is_array( $sharing_options['global']['show'] ) || 
+	if ( ! is_array( $sharing_options['global']['show'] ) ||
 		count( array_intersect( $sharing_options['global']['show'], $show_in_locations ) ) !== count( $show_in_locations ) ) {
 		$sharing_options['global']['show'] = $show_in_locations;
 		update_option( 'sharing-options', $sharing_options );
@@ -62,7 +69,7 @@ function disable_related_posts() {
 		// Disable related posts
 		$jetpack_relatedposts['enabled'] = 0;
 		update_option( 'jetpack_relatedposts', $jetpack_relatedposts );
-	
+
 		// Remove related-posts from jetpack active modules
 		$jetpack_active_modules = get_option( 'jetpack_active_modules' );
 		if ( is_array( $jetpack_active_modules ) ) {

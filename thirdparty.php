@@ -88,6 +88,9 @@ function set_homepage_display() {
 	}
 }
 
+/**
+ * Add recommended widgets to sidebar
+ */
 function enable_default_widgets() {
 	if ( ! is_customize_preview() && ! is_active_sidebar( 'sidebar-1' ) ) {
 		$widget_no = 2;
@@ -95,21 +98,11 @@ function enable_default_widgets() {
 		// O2 Filter widget
 		$filter_widget_settings = [
 			$widget_no => [
-				'title' => __( 'Links', 'p2020' ),
+				'title' => __( '', 'p2020' ),
 			]
 		];
-		update_option( 'widget_o2-filter-widget', $filter_widget_settings );
+		update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
 		
-		// O2 Live Posts and Comments widget
-		$live_comments_widget_settings = [
-			$widget_no => [
-				'title' => __( 'Recent Activity', 'p2020' ),
-				'kind' => 'both',
-				'number' => 10,
-			]
-		];
-		update_option( 'widget_o2-live-comments-widget', $live_comments_widget_settings );
-
 		// My Team widget
 		$team_widget_settings = [
 			$widget_no => [
@@ -121,9 +114,8 @@ function enable_default_widgets() {
 
 		// Add widgets to sidebar
 		$sidebars['sidebar-1'] = [
-			'o2-filter-widget-' . $widget_no,
-			'o2-live-comments-widget-' . $widget_no,
 			'p2020-my-team-widget-' . $widget_no,
+			'p2020-filter-widget-' . $widget_no,
 		];
 
 		$sidebars['wp_inactive_widgets'] = [];
