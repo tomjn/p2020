@@ -33,7 +33,9 @@
   --color-border: #dbdde1;
   --color-border-dark: #50575e;
   --color-background-very-light: #f7f8fa;
+  --color-background-light: #E8E9ED;
   --color-background-dark: #2c3338;
+  --color-background-link: #DFEAFB;
   --color-mentions: #b35eb1;
   --color-mentions-highlight: rgba(179, 94, 177, 0.1);
   --color-white: #fff;
@@ -78,6 +80,8 @@
 
 .wp-block-quote {
   border: 0; }
+  .wp-block-quote p:last-of-type {
+    margin-bottom: 0; }
 
 .wp-block-verse {
   padding: 2em; }

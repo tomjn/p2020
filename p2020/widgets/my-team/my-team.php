@@ -212,5 +212,4 @@ class My_Team_Widget extends \WP_Widget {
 function my_team_widget_init() {
 	register_widget( __NAMESPACE__ . '\My_Team_Widget' );
 }
-
 add_action( 'widgets_init', __NAMESPACE__ . '\my_team_widget_init' );
