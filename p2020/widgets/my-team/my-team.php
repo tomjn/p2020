@@ -14,7 +14,7 @@ class My_Team_Widget extends \WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'p2020-my-team-widget', // Base ID
-			__( 'My Team', 'p2020' ), // Name
+			__( 'Team', 'p2020' ), // Name
 			[
 				'description' => __( 'A widget to showcase your team members.', 'p2020' ),
 			]
@@ -24,7 +24,7 @@ class My_Team_Widget extends \WP_Widget {
 			add_action( 'wp_print_styles', [ $this, 'enqueue_style' ] );
 		}
 
-		$this->default_title = __( 'My Team', 'p2020' );
+		$this->default_title = __( 'Team', 'p2020' );
 	}
 
 	function enqueue_style() {
@@ -98,7 +98,7 @@ class My_Team_Widget extends \WP_Widget {
 
 		$instance['limit'] = (int) $new_instance['limit'];
 		if ( $instance['limit'] < 1 ) {
-			$instance['limit'] = 14;
+			$instance['limit'] = 17;
 		}
 
 		global $wp_roles;
@@ -142,16 +142,13 @@ class My_Team_Widget extends \WP_Widget {
 			// 	set_transient( $this->id . '-myteam-widget-data', $my_team, self::$expiration );
 		}
 
-		$count = $my_team['size'];
 		if ( ! empty( $title ) ) {
-			$widget_title = $theme_settings['before_title'] . $title . '<div class="widget-myteam-team-count"> (' . $count . ')</div>';
+			$widget_title = $theme_settings['before_title'] . $title;
 
 			if ( current_user_can( 'administrator' ) ) {
 				$manage_team_link = 'https://wordpress.com/people/team/' .
 					\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
-				$widget_title .= '<div id="widget-myteam-manage-link">' .
-					'<a href="' . esc_url( $manage_team_link ) . '">Manage</a>' .
-					'</div>';
+				$widget_title .= '<a href="' . esc_url( $manage_team_link ) . '" class="widget-title-secondary-action">' . __( 'Manage', 'p2020' ) . '</a>';
 			}
 
 			$widget_title .=  $theme_settings['after_title'];
@@ -164,21 +161,44 @@ class My_Team_Widget extends \WP_Widget {
 			<div class='widgets-multi-column-grid'><ul>
 
 			<?php foreach ( $my_team_members as $member ) { ?>
+				<?php
+					$avatar_link_text = sprintf(
+						__( 'Posts by %1$s ( @%2$s )', 'p2020' ),
+						$member->data->display_name,
+						$member->data->user_nicename
+					);
+				?>
 				<li>
-					<a href="<?php esc_url( $member->data->member_url ) ?>">
-						<?php echo get_avatar( $member->ID, 48, '', '', [ 'force_display' => true ] ) ?>
+					<a
+						href="<?php echo esc_url( home_url( '/author/' . $member->data->user_login ) ) ?>"
+						class="widget-myteam-item"
+					>
+						<?php echo get_avatar( $member->ID, 35, '', '', [ 'force_display' => true ] ) ?>
+						<span class="screen-reader-text">
+							<?php echo esc_attr( $avatar_link_text ) ?>
+						</span>
 					</a>
 				</li>
 			<?php }
 
+			$hidden_count = $my_team['size'] - count( $my_team_members );
 			if ( current_user_can( 'administrator' ) ) {
-				$hidden_count = $my_team['size'] - count( $my_team_members );
-				$manage_team_link = 'https://wordpress.com/people/team/' . \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() ); ?>
-				<li id="widget-myteam-manage-icon" class="<?php echo ( $hidden_count ? 'has-more' : '' ) ?>" >
-					<a href="<?php esc_url( $manage_team_link ) ?>">
-							+<?php echo ( $hidden_count ?: '' ) ?>
+				$manage_team_link = 'https://wordpress.com/people/new/' . \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() ); ?>
+				<li class="widget-myteam-manage-icon">
+					<a href="<?php echo esc_url( $manage_team_link ) ?>" class="widget-myteam-item">
+						<?php if ( $hidden_count > 0 ): ?>
+							+<?php echo $hidden_count ?>
+						<?php else: ?>
+							<span class="widget-myteam-manage-icon-plus"></span>
+						<?php endif; ?>
 					</a>
 				</li>
+			<?php } else { 
+				if ( $hidden_count > 0 ): ?>
+					<li class="widget-myteam-manage-icon">
+						<span class="widget-myteam-item">+<?php echo $hidden_count ?></span>
+					</li>
+				<?php endif; ?>
 			<?php } ?>
 
 			</ul></div>
@@ -203,17 +223,22 @@ class My_Team_Widget extends \WP_Widget {
 
 		// Make 'me' first to be displayed
 		$me_idx = array_search( get_current_user_id(), array_column( $blog_users, 'ID' ) );
-		$me = $blog_users[ $me_idx ];
-		unset( $blog_users[ $me_idx ] );
-
-		// If beyond display limit, randomly select which members to return
-		if ( isset( $limit ) && count( $blog_users ) > $limit - 1 ) { // Less 'me'
-			shuffle( $blog_users );
-			$blog_users = array_slice( $blog_users, 0, $limit - 1 );
+		if ( $me_idx !== false ) {
+			$me = $blog_users[ $me_idx ];
+			unset( $blog_users[ $me_idx ] );
+			$limit--;
 		}
 
-		$team_members = array_merge( [ $me ], $blog_users );
-		$team_info['members'] = $team_members;
+		// If beyond display limit, randomly select which members to return
+		if ( isset( $limit ) && count( $blog_users ) > $limit ) {
+			shuffle( $blog_users );
+			$blog_users = array_slice( $blog_users, 0, $limit );
+		}
+
+		if ( ! empty( $me ) ) {
+			$blog_users = array_merge( [ $me ], $blog_users );
+		}
+		$team_info['members'] = $blog_users;
 
 		return $team_info;
 	}
@@ -224,7 +249,7 @@ class My_Team_Widget extends \WP_Widget {
 
 		$defaults = [
 			'title' => $this->default_title,
-			'limit' => 14,
+			'limit' => 17,
 			'roles' => $all_roles,
 		];
 

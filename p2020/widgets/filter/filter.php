@@ -97,7 +97,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 				echo '<div id="widget-filter-me">';
 				echo '<div class="widget-filter-me-title">';
 				echo '<h2 class="widget-filter-me-label">Me</h2>';
-				echo '<a href="" id="widget-filter-me-settings">My settings</a>';
+				echo '<a href="" class="widget-title-secondary-action">My settings</a>';
 				echo '</div>';
 
 				echo '<ul class="widget-filter-list">';

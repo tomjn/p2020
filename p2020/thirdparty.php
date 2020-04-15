@@ -78,75 +78,7 @@ function enable_notifications() {
 	}, -1 );
 }
 
-/**
- * Set Homepage display to latest posts.
- */
-function set_homepage_display() {
-	$display = get_option( 'show_on_front' );
-	if ( $display !== 'posts' ) {
-		update_option( 'show_on_front', 'posts' );
-	}
-}
-
-/**
- * Add recommended widgets to sidebar
- */
-function enable_default_widgets() {
-	if ( ! is_a8c_p2() &&
-			! is_customize_preview() &&
-			! is_admin() &&
-			! is_active_sidebar( 'sidebar-1' ) ) {
-
-		$widget_no = 2;
-
-		// P2020 Filter widget
-		$filter_widget_settings = [
-			$widget_no => [
-				'title' => __( '', 'p2020' ),
-			]
-		];
-		update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
-
-		// My Team widget
-		$team_widget_settings = [
-			$widget_no => [
-				'title' => __( 'My Team', 'p2020' ),
-				'limit' => 14,
-			]
-		];
-		update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
-
-		// Add widgets to sidebar
-		$sidebars['sidebar-1'] = [
-			'p2020-my-team-widget-' . $widget_no,
-			'p2020-filter-widget-' . $widget_no,
-		];
-
-		$sidebars['wp_inactive_widgets'] = [];
-		$sidebars['array_version'] = 3;
-
-		update_option( 'sidebars_widgets', $sidebars );
-
-		// Refresh sidebars_widgets cache
-		global $_wp_sidebars_widgets;
-		$_wp_sidebars_widgets = get_option( 'sidebars_widgets' );
-	}
-}
-
-/**
- * Enables x-posting for a8c p2 sites
- */
-function enable_xposts() {
-	require_once( 'a8c-xpost.php' );
-	new A8c_XPost();
-}
-
-if ( is_a8c_p2() ) {
-	add_action( 'after_setup_theme', 'P2020\enable_xposts' );
-}
-add_action( 'after_setup_theme', 'P2020\enable_inline_terms', 100 );
-add_action( 'after_setup_theme', 'P2020\enable_notifications', 100 );
-add_action( 'after_setup_theme', 'P2020\enable_o2', 101 );
-add_action( 'after_setup_theme', 'P2020\set_homepage_display', 102 );
-add_action( 'after_setup_theme', 'P2020\enable_default_widgets', 102 );
-add_action( 'after_setup_theme', 'P2020\enable_p2tenberg', 103 );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_inline_terms', 100 );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_notifications', 100 );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_o2', 101 );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_p2tenberg', 102 );
