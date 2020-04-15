@@ -31,11 +31,12 @@
   --color-link: #0267ff;
   --color-link-dark: #004cbf;
   --color-border: #dbdde1;
+  --color-border-light: #e9eaed;
   --color-border-dark: #50575e;
   --color-background-very-light: #f7f8fa;
-  --color-background-light: #E8E9ED;
+  --color-background-light: #e8e9ed;
   --color-background-dark: #2c3338;
-  --color-background-link: #DFEAFB;
+  --color-background-link: #dfeafb;
   --color-mentions: #b35eb1;
   --color-mentions-highlight: rgba(179, 94, 177, 0.1);
   --color-white: #fff;
@@ -151,7 +152,8 @@ body .editor-post-title__input, body h1 {
   font-family: var(--font-default);
   font-weight: 800;
   font-size: 2rem;
-  line-height: 1.1; }
+  line-height: 1.2;
+  letter-spacing: -0.01em; }
   @media (max-width: 876px) {
     body .editor-post-title__input, body h1 {
       font-size: 1.625rem; } }
@@ -318,6 +320,8 @@ body .po-xpost {
 
 body .mention {
   color: var(--color-mentions); }
+  body .mention:hover {
+    color: var(--color-mentions); }
   body .mention.mention-highlight, body .mention.mention-current-user {
     padding: 2px 4px;
     border-radius: 3px;

@@ -57,7 +57,7 @@ function social_init() {
 	}
 }
 
-add_action( 'after_setup_theme', 'P2020\social_init' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\social_init' );
 
 /**
  * Disable related posts feature
@@ -78,7 +78,7 @@ function disable_related_posts() {
 	}
 }
 
-add_action( 'after_setup_theme', 'P2020\disable_related_posts' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\disable_related_posts' );
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -158,7 +158,7 @@ function setup() {
 	add_theme_support( 'post-formats', [ 'aside', 'image', 'video', 'quote', 'link' ] );
 }
 endif; // setup
-add_action( 'after_setup_theme', 'P2020\setup' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
 
 /**
  * Setup the WordPress core custom background feature.
@@ -173,7 +173,7 @@ function register_custom_background() {
 
 	add_theme_support( 'custom-background', apply_filters( 'p2020_custom_background_args', $args ) );
 }
-add_action( 'after_setup_theme', 'P2020\register_custom_background' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\register_custom_background' );
 
 /**
  * Register widgetized area and update sidebar with default widgets
@@ -188,7 +188,7 @@ function widgets_init() {
 		'after_title' => '</h2>',
 	] );
 }
-add_action( 'widgets_init', 'P2020\widgets_init' );
+add_action( 'widgets_init', __NAMESPACE__ . '\widgets_init' );
 
 /**
  * Enqueue Google Fonts
@@ -202,7 +202,7 @@ function fonts() {
 		wp_register_style( 'p2020-sans', "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" );
 	}
 }
-add_action( 'init', 'P2020\fonts' );
+add_action( 'init', __NAMESPACE__ . '\fonts' );
 
 /**
  * Enqueue font styles in custom header admin
@@ -213,7 +213,7 @@ function admin_fonts( $hook_suffix ) {
 
 	wp_enqueue_style( 'p2020-sans' );
 }
-add_action( 'admin_enqueue_scripts', 'P2020\admin_fonts' );
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\admin_fonts' );
 
 /**
  * Enqueue scripts and styles
@@ -238,7 +238,7 @@ function scripts() {
 }
 
 // Our stylesheets need to be loaded after the O2 stylesheets to take priority
-add_action( 'wp_enqueue_scripts', 'P2020\scripts', 11 );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts', 11 );
 
 /**
  * Add a no-sidebar body class, if there are no widgets in the sidebar.
@@ -249,9 +249,79 @@ function check_no_sidebar( $body_classes ) {
 
 	return $body_classes;
 }
-add_filter( 'body_class', 'P2020\check_no_sidebar' );
+add_filter( 'body_class', __NAMESPACE__ . '\check_no_sidebar' );
 
 /**
  * Implement the Custom Header feature
  */
 require( get_template_directory() . '/inc/custom-header.php' );
+
+/**
+ * Set Homepage display to latest posts.
+ */
+function set_homepage_display() {
+	$show_on_front = get_option( 'show_on_front' );
+	if ( $show_on_front !== 'posts' ) {
+		update_option( 'show_on_front', 'posts' );
+	}
+}
+add_action( 'after_setup_theme', __NAMESPACE__ . '\set_homepage_display', 102 );
+
+/**
+ * Add recommended widgets to sidebar
+ */
+function enable_default_widgets() {
+	$should_run = get_option( 'p2020_reset_sidebar' );
+	if ( $should_run ) {
+
+		$widget_no = 2;
+
+		// P2020 Filter widget (widgets/filter)
+		$filter_widget_settings = [
+			$widget_no => [
+				'title' => __( '', 'p2020' ),
+			]
+		];
+		update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
+
+		// My Team widget (widgets/myteam)
+		$team_widget_settings = [
+			$widget_no => [
+				'title' => __( 'Team', 'p2020' ),
+				'limit' => 17,
+			]
+		];
+		update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
+
+		// Add widgets to sidebar
+		$sidebars['sidebar-1'] = [
+			'p2020-my-team-widget-' . $widget_no,
+			'p2020-filter-widget-' . $widget_no,
+		];
+
+		$sidebars['wp_inactive_widgets'] = [];
+		$sidebars['array_version'] = 3;
+
+		update_option( 'sidebars_widgets', $sidebars );
+
+		// Set to false afterwards
+		update_option( 'p2020_reset_sidebar', false );
+
+		// Refresh sidebars_widgets cache
+		global $_wp_sidebars_widgets;
+		$_wp_sidebars_widgets = get_option( 'sidebars_widgets' );
+	}
+}
+add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_default_widgets' );
+
+/**
+ * Enables x-posting for a8c p2 sites
+ */
+function enable_xposts() {
+	require_once( 'a8c-xpost.php' );
+	new A8c_XPost();
+}
+
+if ( is_a8c_p2() ) {
+	add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_xposts' );
+}
