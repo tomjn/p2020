@@ -59,12 +59,12 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			$this->filters['me'] = [
 				'mentions' => [
 					'label' => __( 'Mentions', 'p2020' ),
-					'url' => esc_url( add_query_arg( 'mentions', $user->user_login, home_url() ) ),
+					'url' => esc_url( add_query_arg( 'mentions', $user->user_nicename, home_url() ) ),
 					'css_id' => 'widget-filter-my-mentions'
 				],
 				'myposts' => [
 					'label' => __( 'My posts', 'p2020' ),
-					'url' => esc_url( home_url( '/author/' . $user->user_login ) ),
+					'url' => esc_url( home_url( '/author/' . $user->user_nicename ) ),
 					'css_id' => 'widget-filter-my-posts'
 				]
 			];
@@ -72,11 +72,24 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 		// For changing the page title, to indicate active filter
 		add_filter( 'o2_page_title', [ $this, 'page_title' ] );
+
+		// Hide editor for filter views
+		add_filter( 'o2_options', [ $this, 'hide_editor_for_filter_views' ] );
+	}
+
+	function hide_editor_for_filter_views( $o2_options ) {
+		if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
+			$o2_options['options']['showFrontSidePostBox'] = false;
+		}
+
+		return $o2_options;
 	}
 
 	function widget( $args, $instance ) {
 		$title = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
 		$title = apply_filters( 'widget_title', $title );
+
+		$profile_url = 'https://wordpress.com/me';
 
 		$this->unread_count = get_unread_count();
 
@@ -97,7 +110,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 				echo '<div id="widget-filter-me">';
 				echo '<div class="widget-filter-me-title">';
 				echo '<h2 class="widget-filter-me-label">Me</h2>';
-				echo '<a href="" class="widget-title-secondary-action">My settings</a>';
+				echo '<a href="' . esc_url( $profile_url ) . '" class="widget-title-secondary-action">My profile</a>';
 				echo '</div>';
 
 				echo '<ul class="widget-filter-list">';

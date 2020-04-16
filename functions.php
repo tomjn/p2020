@@ -325,3 +325,17 @@ function enable_xposts() {
 if ( is_a8c_p2() ) {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_xposts' );
 }
+
+/**
+ * Hide editor for search results page
+ */
+function hide_editor_for_search( $o2_options ) {
+	if ( is_search() ) {
+		$o2_options['options']['showFrontSidePostBox'] = false;
+	}
+
+	return $o2_options;
+}
+
+// Hide editor for filter views
+add_filter( 'o2_options', __NAMESPACE__ . '\hide_editor_for_search' );
