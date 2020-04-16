@@ -148,7 +148,7 @@ class My_Team_Widget extends \WP_Widget {
 			if ( current_user_can( 'administrator' ) ) {
 				$manage_team_link = 'https://wordpress.com/people/team/' .
 					\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
-				$widget_title .= '<a href="' . esc_url( $manage_team_link ) . '" class="widget-title-secondary-action">' . __( 'Manage', 'p2020' ) . '</a>';
+				$widget_title .= '<a href="' . esc_url( $manage_team_link ) . '" class="widget-title-secondary-action">' . esc_html__( 'Manage', 'p2020' ) . '</a>';
 			}
 
 			$widget_title .=  $theme_settings['after_title'];
@@ -170,12 +170,12 @@ class My_Team_Widget extends \WP_Widget {
 				?>
 				<li>
 					<a
-						href="<?php echo esc_url( home_url( '/author/' . $member->data->user_login ) ) ?>"
+						href="<?php echo esc_url( home_url( '/author/' . $member->data->user_nicename ) ) ?>"
 						class="widget-myteam-item"
 					>
 						<?php echo get_avatar( $member->ID, 35, '', '', [ 'force_display' => true ] ) ?>
 						<span class="screen-reader-text">
-							<?php echo esc_attr( $avatar_link_text ) ?>
+							<?php echo esc_html( $avatar_link_text ) ?>
 						</span>
 					</a>
 				</li>
@@ -193,7 +193,7 @@ class My_Team_Widget extends \WP_Widget {
 						<?php endif; ?>
 					</a>
 				</li>
-			<?php } else { 
+			<?php } else {
 				if ( $hidden_count > 0 ): ?>
 					<li class="widget-myteam-manage-icon">
 						<span class="widget-myteam-item">+<?php echo $hidden_count ?></span>

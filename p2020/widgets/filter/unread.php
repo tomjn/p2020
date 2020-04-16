@@ -179,13 +179,13 @@ function get_unread_count() {
 	$unread_posts = get_unread_posts( $last_active['mentions'] );
 	foreach ( $unread_posts as $post ) {
 		$mentions = \Jetpack_Mentions::get_post_mentions( $post->ID );
-		$unread_count['mentions'] += count( array_keys( $mentions, $user->user_login ) );
+		$unread_count['mentions'] += count( array_keys( $mentions, $user->user_nicename ) );
 	}
 
 	$unread_comments = get_unread_comments( $last_active['mentions'] );
 	foreach ( $unread_comments as $comment ) {
 		$mentions = \Jetpack_Mentions::get_comment_mentions( $comment->comment_ID );
-		$unread_count['mentions'] += count( array_keys( $mentions, $user->user_login ) );
+		$unread_count['mentions'] += count( array_keys( $mentions, $user->user_nicename ) );
 	}
 
 	return $unread_count;

@@ -13,6 +13,10 @@
 <meta name="HandheldFriendly" content="True">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="cleartype" content="on">
+
+<?php // Will be overwritten with git commit hash on `gulp build` (see gulpfile) ?>
+<meta name="p2020-build" revision="c3bf3a0">
+
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
