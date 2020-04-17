@@ -1,3 +1,5 @@
+// This hasn't been tested with P2020 yet.
+
 /**
  * Theme Customizer enhancements for a better user experience.
  *

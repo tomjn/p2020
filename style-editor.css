@@ -16,7 +16,7 @@
  * Typography
  */
 /**
- * Drop shadows
+ * Shadows
  */
 /**
  * Breakpoints
@@ -32,7 +32,7 @@
   --color-link-dark: #004cbf;
   --color-border: #dbdde1;
   --color-border-light: #e9eaed;
-  --color-border-dark: #50575e;
+  --color-border-dark: #75808a;
   --color-background-very-light: #f7f8fa;
   --color-background-light: #e8e9ed;
   --color-background-dark: #2c3338;
