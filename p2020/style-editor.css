@@ -312,21 +312,29 @@ body table {
  */
 body .mention,
 body .tag,
-body .po-xpost {
+body .p2-xpost {
   text-decoration: none;
-  font-weight: 500; }
+  font-weight: 500;
+  padding: 2px 4px;
+  border-radius: 3px; }
   body .mention:hover,
   body .tag:hover,
-  body .po-xpost:hover {
+  body .p2-xpost:hover {
     text-decoration: underline; }
 
 body .mention {
-  color: var(--color-mentions); }
+  color: var(--color-mentions);
+  background: var(--color-mentions-highlight); }
   body .mention:hover {
     color: var(--color-mentions); }
   body .mention.mention-highlight, body .mention.mention-current-user {
-    padding: 2px 4px;
-    border-radius: 3px;
-    background: var(--color-mentions-highlight); }
+    background: var(--color-mentions);
+    color: var(--color-white); }
+
+
+body .tag,
+body .p2-xpost {
+  color: var(--color-link);
+  background: var(--color-background-very-light); }
 
 /*# sourceMappingURL=style-editor.css.map */

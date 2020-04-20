@@ -629,7 +629,7 @@ input[type="search"] {
     border-radius: 100px;
     font-size: 0.6875rem;
     font-weight: 500;
-    padding: 0.2em 0.8em; }
+    padding: 0.1875rem 0.5rem; }
 
 .widget_p2020-filter-widget #widget-filter-recent-updates .widget-filter-item-link-icon::before {
   content: "";
@@ -1526,28 +1526,40 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
 .p2tenberg-editor .block-editor-writing-flow .tag,
 .comment-content .tag,
 .entry-content .tag,
-.p2tenberg-editor .block-editor-writing-flow .po-xpost,
-.comment-content .po-xpost,
-.entry-content .po-xpost {
+.p2tenberg-editor .block-editor-writing-flow .p2-xpost,
+.comment-content .p2-xpost,
+.entry-content .p2-xpost {
   text-decoration: none;
-  font-weight: 500; }
+  font-weight: 500;
+  padding: 2px 4px;
+  border-radius: 3px; }
   .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content .mention:hover,
   .p2tenberg-editor .block-editor-writing-flow .tag:hover,
   .comment-content .tag:hover,
   .entry-content .tag:hover,
-  .p2tenberg-editor .block-editor-writing-flow .po-xpost:hover,
-  .comment-content .po-xpost:hover,
-  .entry-content .po-xpost:hover {
+  .p2tenberg-editor .block-editor-writing-flow .p2-xpost:hover,
+  .comment-content .p2-xpost:hover,
+  .entry-content .p2-xpost:hover {
     text-decoration: underline; }
 
 .p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention {
-  color: var(--color-mentions); }
+  color: var(--color-mentions);
+  background: var(--color-mentions-highlight); }
   .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content .mention:hover {
     color: var(--color-mentions); }
   .p2tenberg-editor .block-editor-writing-flow .mention.mention-highlight, .comment-content .mention.mention-highlight, .entry-content .mention.mention-highlight, .p2tenberg-editor .block-editor-writing-flow .mention.mention-current-user, .comment-content .mention.mention-current-user, .entry-content .mention.mention-current-user {
-    padding: 2px 4px;
-    border-radius: 3px;
-    background: var(--color-mentions-highlight); }
+    background: var(--color-mentions);
+    color: var(--color-white); }
+
+
+.p2tenberg-editor .block-editor-writing-flow .tag,
+.comment-content .tag,
+.entry-content .tag,
+.p2tenberg-editor .block-editor-writing-flow .p2-xpost,
+.comment-content .p2-xpost,
+.entry-content .p2-xpost {
+  color: var(--color-link);
+  background: var(--color-background-very-light); }
 
 .comment-meta {
   grid-column: 2;
@@ -1730,7 +1742,10 @@ footer.entry-meta {
   margin-right: 1px; }
   .o2-display-comments-toggle a {
     display: inline-flex;
-    align-items: center; }
+    align-items: center;
+    text-transform: lowercase; }
+    .o2-display-comments-toggle a .disclosure-text::first-letter {
+      text-transform: uppercase; }
     .o2-display-comments-toggle a:not(:hover) {
       color: var(--color-text); }
   .o2-display-comments-toggle .disclosure-text {

@@ -126,8 +126,14 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 	}
 
 	function page_title( $title ) {
-		if ( is_filter_active( 'posts' ) && is_home() ) {
+		if ( is_filter_active( 'posts' ) ) {
 			return 'Recent updates';
+		} elseif ( is_filter_active( 'comments' ) ) {
+			return 'Recent comments';
+		} elseif ( is_filter_active( 'mentions' ) ) {
+			return 'Mentions';
+		} elseif ( is_filter_active( 'myposts' ) ) {
+			return 'My posts';
 		}
 
 		return $title;
