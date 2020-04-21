@@ -73,6 +73,7 @@ function color_styles() {
 
 	$style .= '</style>';
 
+	//phpcs:ignore WordPress.Security.EscapeOutput
 	echo $style;
 }
 

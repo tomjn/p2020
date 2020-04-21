@@ -23,9 +23,11 @@ get_header(); ?>
 				<h1 class="page-title">
 					<?php
 						if ( is_category() ) :
+							// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 							printf( __( 'Category Archives: %s', 'p2020' ), '<span>' . single_cat_title( '', false ) . '</span>' );
 
 						elseif ( is_tag() ) :
+							// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 							printf( __( 'Tag Archives: %s', 'p2020' ), '<span>' . single_tag_title( '', false ) . '</span>' );
 
 						elseif ( is_author() ) :
@@ -33,6 +35,7 @@ get_header(); ?>
 							 * what author we're dealing with (if that is the case).
 							*/
 							the_post();
+							// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 							printf( __( 'Author Archives: %s', 'p2020' ), '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( "ID" ) ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' );
 							/* Since we called the_post() above, we need to
 							 * rewind the loop back to the beginning that way
@@ -41,31 +44,34 @@ get_header(); ?>
 							rewind_posts();
 
 						elseif ( is_day() ) :
+							// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 							printf( __( 'Daily Archives: %s', 'p2020' ), '<span>' . get_the_date() . '</span>' );
 
 						elseif ( is_month() ) :
+							// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 							printf( __( 'Monthly Archives: %s', 'p2020' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
 
 						elseif ( is_year() ) :
+							// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 							printf( __( 'Yearly Archives: %s', 'p2020' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
 
 						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'p2020' );
+							esc_html_e( 'Asides', 'p2020' );
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'p2020' );
+							esc_html_e( 'Images', 'p2020' );
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'p2020' );
+							esc_html_e( 'Videos', 'p2020' );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'p2020' );
+							esc_html_e( 'Quotes', 'p2020' );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'p2020' );
+							esc_html_e( 'Links', 'p2020' );
 
 						else :
-							_e( 'Archives', 'p2020' );
+							esc_html_e( 'Archives', 'p2020' );
 
 						endif;
 					?>
@@ -79,6 +85,7 @@ get_header(); ?>
 						// show an optional category description
 						$category_description = category_description();
 						if ( ! empty( $category_description ) ) :
+							// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 							echo apply_filters( 'category_archive_meta', '<div class="taxonomy-description">' . $category_description . '</div>' );
 						endif;
 
@@ -86,6 +93,7 @@ get_header(); ?>
 						// show an optional tag description
 						$tag_description = tag_description();
 						if ( ! empty( $tag_description ) ) :
+							// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 							echo apply_filters( 'tag_archive_meta', '<div class="taxonomy-description">' . $tag_description . '</div>' );
 						endif;
 

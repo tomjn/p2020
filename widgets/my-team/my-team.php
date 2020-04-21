@@ -54,13 +54,13 @@ class My_Team_Widget extends \WP_Widget {
 		?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'p2020' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'p2020' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
 			<label><?php esc_html_e( 'Limit no. of team members displayed to:', 'p2020' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text" value="<?php echo $limit; ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'limit' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'limit' ) ); ?>" type="text" value="<?php echo esc_attr( $limit ); ?>" />
 		</p>
 
 		<p>
@@ -68,12 +68,12 @@ class My_Team_Widget extends \WP_Widget {
 			<ul>
 			<?php foreach ( $all_roles as $role ) { ?>
 				<li>
-					<label for="<?php echo $this->get_field_id( 'role_' . $role ); ?>">
+					<label for="<?php echo esc_attr( $this->get_field_id( 'role_' . $role ) ); ?>">
 					<input type="checkbox" class="checkbox"
-						id="<?php echo $this->get_field_id( 'role_'.$role ); ?>"
-						name="<?php echo $this->get_field_name( 'roles[]' ); ?>"
-						value="<?php echo $role ?>" <?php echo in_array( $role, $selected_roles ) ? 'checked' : '' ?> />
-					<?php _e( ucfirst( $role ), 'p2020' ); ?>
+						id="<?php echo esc_attr( $this->get_field_id( 'role_'.$role ) ); ?>"
+						name="<?php echo esc_attr( $this->get_field_name( 'roles[]' ) ); ?>"
+						value="<?php echo esc_attr( $role ) ?>" <?php echo in_array( $role, $selected_roles ) ? 'checked' : '' ?> />
+					<?php esc_html( ucfirst( $role ), 'p2020' ); ?>
 				</label>
 				</li>
 			<?php } ?>
@@ -121,7 +121,7 @@ class My_Team_Widget extends \WP_Widget {
 	 *
 	 * @return void
 	 */
-	function widget( $theme_settings, $instance ) {
+	function widget( $args, $instance ) {
 		$instance = $this->extend_default_options( $instance );
 
 		$title = $instance['title'];
@@ -132,7 +132,8 @@ class My_Team_Widget extends \WP_Widget {
 
 		$roles = $instance['roles'];
 
-		echo $theme_settings['before_widget'];
+		// phpcs:ignore WordPress.Security.EscapeOutput -- HTML from theme
+		echo $args['before_widget'];
 
 		// TODO Do we want caching
 		// $my_team = get_transient( $this->id . '-myteam-widget-data' );
@@ -143,7 +144,7 @@ class My_Team_Widget extends \WP_Widget {
 		}
 
 		if ( ! empty( $title ) ) {
-			$widget_title = $theme_settings['before_title'] . $title;
+			$widget_title = $args['before_title'] . $title;
 
 			if ( current_user_can( 'administrator' ) ) {
 				$manage_team_link = 'https://wordpress.com/people/team/' .
@@ -151,8 +152,9 @@ class My_Team_Widget extends \WP_Widget {
 				$widget_title .= '<a href="' . esc_url( $manage_team_link ) . '" class="widget-title-secondary-action">' . esc_html__( 'Manage', 'p2020' ) . '</a>';
 			}
 
-			$widget_title .=  $theme_settings['after_title'];
+			$widget_title .=  $args['after_title'];
 
+			// phpcs:ignore WordPress.Security.EscapeOutput -- HTML from theme
 			echo $widget_title;
 		}
 
@@ -187,7 +189,7 @@ class My_Team_Widget extends \WP_Widget {
 				<li class="widget-myteam-manage-icon">
 					<a href="<?php echo esc_url( $manage_team_link ) ?>" class="widget-myteam-item">
 						<?php if ( $hidden_count > 0 ): ?>
-							+<?php echo $hidden_count ?>
+							+<?php echo esc_html( $hidden_count ) ?>
 						<?php else: ?>
 							<span class="widget-myteam-manage-icon-plus"></span>
 						<?php endif; ?>
@@ -196,7 +198,7 @@ class My_Team_Widget extends \WP_Widget {
 			<?php } else {
 				if ( $hidden_count > 0 ): ?>
 					<li class="widget-myteam-manage-icon">
-						<span class="widget-myteam-item">+<?php echo $hidden_count ?></span>
+						<span class="widget-myteam-item">+<?php echo esc_html( $hidden_count ) ?></span>
 					</li>
 				<?php endif; ?>
 			<?php } ?>
@@ -204,11 +206,12 @@ class My_Team_Widget extends \WP_Widget {
 			</ul></div>
 		<?php }
 
-		echo $theme_settings['after_widget'];
+		// phpcs:ignore WordPress.Security.EscapeOutput -- HTML from theme
+		echo $args['after_widget'];
 		stats_extra( 'widget_view', 'p2020-my-team-widget' );
 	}
 
-	function get_team_info( $limit = null, $roles = null ) {
+	function get_team_info( ?int $limit = null, ?array $roles = null ): array {
 		global $blog_id;
 		$team_info = [];
 		$team_members = [];
@@ -243,7 +246,7 @@ class My_Team_Widget extends \WP_Widget {
 		return $team_info;
 	}
 
-	function extend_default_options( $options = [] ) {
+	function extend_default_options( array $options = [] ): array {
 		global $wp_roles;
 		$all_roles = array_keys( $wp_roles->roles );
 

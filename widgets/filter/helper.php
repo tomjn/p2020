@@ -9,7 +9,7 @@ namespace P2020;
  *
  * @return boolean
  */
-function is_filter_active( $type ) {
+function is_filter_active( string $type ): bool {
 	global $wp;
 	$user = wp_get_current_user();
 

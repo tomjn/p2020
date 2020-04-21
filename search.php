@@ -17,6 +17,7 @@ get_header(); ?>
 
 			<header class="page-header">
 				<h1 class="page-title">
+					<?php // phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected ?>
 					<?php printf( __( 'Search Results for: %s', 'p2020' ), '<span>' . get_search_query() . '</span>' ); ?>
 
 					<span class="controls">

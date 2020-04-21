@@ -94,9 +94,11 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		$this->unread_count = get_unread_count();
 
 		if ( 0 < count( $this->filters ) ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput -- HTML from theme
 			echo $args['before_widget'];
 
 			if ( ! empty( $title ) ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput -- HTML from theme
 				echo $args['before_title'] . $title . $args['after_title'];
 			}
 
@@ -121,6 +123,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 				echo '</div>';
 			}
 
+			// phpcs:ignore WordPress.Security.EscapeOutput -- HTML from theme
 			echo $args['after_widget'];
 		}
 	}
@@ -141,7 +144,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 	private function render_filter_item( $key, $item ) {
 		$li_class = is_filter_active( $key ) ? "widget-filter-item is-active" : "widget-filter-item";
-		echo '<li id="' . esc_attr( $item['css_id'] ) . '" class="' . $li_class . '" >';
+		echo '<li id="' . esc_attr( $item['css_id'] ) . '" class="' . esc_attr( $li_class ) . '" >';
 			echo '<a href="' . esc_url( $item['url'] ) . '" class="widget-filter-item-link" >';
 				echo '<span class="widget-filter-item-link-icon"></span>';
 				echo '<span class="widget-filter-item-link-label">' . esc_html( $item['label'] ) . '</span>';

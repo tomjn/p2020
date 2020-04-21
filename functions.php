@@ -279,9 +279,7 @@ function enable_default_widgets() {
 
 		// P2020 Filter widget (widgets/filter)
 		$filter_widget_settings = [
-			$widget_no => [
-				'title' => __( '', 'p2020' ),
-			]
+			$widget_no => []
 		];
 		update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
 

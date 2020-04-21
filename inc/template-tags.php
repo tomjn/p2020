@@ -32,8 +32,8 @@ function content_nav( $nav_id ) {
 	$nav_class = ( is_single() ) ? 'navigation-post' : 'navigation-paging';
 
 	?>
-	<nav role="navigation" id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'p2020' ); ?></h1>
+	<nav role="navigation" id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo esc_attr( $nav_class ); ?>">
+		<h1 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'p2020' ); ?></h1>
 
 	<?php if ( is_single() ) : // navigation links for single posts ?>
 
@@ -70,7 +70,7 @@ function comment( $comment, $args, $depth ) {
 		case 'trackback' :
 	?>
 	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'p2020' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'p2020' ), '<span class="edit-link">', '<span>' ); ?></p>
+		<p><?php esc_html_e( 'Pingback:', 'p2020' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'p2020' ), '<span class="edit-link">', '<span>' ); ?></p>
 	<?php
 			break;
 		default :
@@ -141,6 +141,7 @@ add_action( 'save_post', 'P2020\category_transient_flusher' );
  */
 function tags_with_count( $format = 'list', $before = '', $sep = '', $after = '' ) {
 	global $post;
+	// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 	echo get_tags_with_count( $post, $format, $before, $sep, $after );
 }
 
@@ -170,6 +171,7 @@ function tags_with_count( $format = 'list', $before = '', $sep = '', $after = ''
 	}
 
 function date_time_with_microformat( $type = 'post' ) {
+	// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 	echo get_date_time_with_microformat( $type );
 }
 
@@ -179,6 +181,7 @@ function date_time_with_microformat( $type = 'post' ) {
 	}
 
 function page_number() {
+	// phpcs:ignore WordPress.Security.EscapeOutput -- HTML expected
 	echo get_page_number();
 }
 
