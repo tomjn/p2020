@@ -28,11 +28,11 @@ get_header(); ?>
 			<h1 class="page-title">
 			<?php if ( is_home() or is_front_page() ) : ?>
 
-				<?php _e( 'Recent Updates', 'p2020' ); ?> <?php if ( get_page_number() > 1 ) printf( __( 'Page %s', 'p2020' ), get_page_number() ); ?>
+				<?php esc_html_e( 'Recent Updates', 'p2020' ); ?> <?php if ( get_page_number() > 1 ) printf( esc_html__( 'Page %s', 'p2020' ), esc_html( get_page_number() ) ); ?>
 
 			<?php else : ?>
 
-				<?php printf( _x( 'Updates from %s', 'Month name', 'p2020' ), get_the_time( 'F, Y' ) ); ?>
+				<?php printf( esc_html_x( 'Updates from %s', 'Month name', 'p2020' ), esc_html( get_the_time( 'F, Y' ) ) ); ?>
 
 			<?php endif; ?>
 

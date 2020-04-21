@@ -7,7 +7,7 @@
 
 get_header();
 ?>
-
+	<?php // phpcs:ignoreFile -- HTML output strings by design ?>
 	<main id="content" class="image-attachment">
 
 		<?php while ( have_posts() ) : the_post(); ?>

@@ -15,13 +15,13 @@
 <meta http-equiv="cleartype" content="on">
 
 <?php // Will be overwritten with git commit hash on `gulp build` (see gulpfile) ?>
-<meta name="p2020-build" revision="a5cfe12">
+<meta name="p2020-build" revision="87d0459">
 
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <!--[if lt IE 9]>
-<script src="<?php echo get_template_directory_uri(); ?>/js/vendor/html5.js" type="text/javascript"></script>
+<script src="<?php echo esc_attr( get_template_directory_uri() ); ?>/js/vendor/html5.js" type="text/javascript"></script>
 <![endif]-->
 
 <?php
@@ -35,7 +35,7 @@
 	<?php do_action( 'before' ); ?>
 	<header id="masthead" role="banner">
 
-		<div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'p2020' ); ?>"><?php _e( 'Skip to content', 'p2020' ); ?></a></div>
+		<div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'p2020' ); ?>"><?php esc_html_e( 'Skip to content', 'p2020' ); ?></a></div>
 
 		<div class="p2020-site-header">
 

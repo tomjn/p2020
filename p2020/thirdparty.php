@@ -12,7 +12,7 @@ namespace P2020;
  *
  * @return bool
  */
-function is_p2tenberg_user_enabled() {
+function is_p2tenberg_user_enabled(): bool {
 	$user = wp_get_current_user();
 	$current_blog_id = get_current_blog_id();
 	$use_block_editor = get_user_attribute( $user->data->ID, 'o2_use_p2tenberg_' . $current_blog_id );
