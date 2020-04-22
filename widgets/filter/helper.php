@@ -26,3 +26,19 @@ function is_filter_active( string $type ): bool {
 
 	return false;
 }
+
+/**
+ * Returns the currently active filter, if any.
+ *
+ * @return string
+ */
+function get_active_filter(): string {
+	$types = [ 'posts', 'comments', 'mentions', 'myposts' ];
+	foreach ( $types as $type ) {
+		if ( is_filter_active( $type ) ) {
+			return $type;
+		}
+	}
+
+	return '';
+}

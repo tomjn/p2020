@@ -53,8 +53,63 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   });
 })(jQuery);
+/**
+ * Only show the editor footer when the editor is active or has content.
+ */
+
 
 (function ($) {
+  $(document).ready(function () {
+    /**
+     * Selectors
+     */
+    var editor = document.querySelector('.o2-app-new-post');
+
+    if (editor === null) {
+      return;
+    }
+
+    var $editorFooter = $('.o2-app-new-post .o2-editor-footer');
+    /**
+     * Local Storage Keys
+     */
+
+    var newPostContentKey = "".concat(window._currentSiteId, "-new");
+    /**
+     * Functions
+     */
+
+    var isEditorEmpty = function isEditorEmpty() {
+      var editorContent = window.localStorage.getItem(newPostContentKey);
+      return editorContent === '';
+    };
+
+    var shouldShowEditorFooter = function shouldShowEditorFooter() {
+      return editor.contains(document.activeElement) || !isEditorEmpty();
+    };
+
+    var handleFocusChange = function handleFocusChange() {
+      if (shouldShowEditorFooter()) {
+        $editorFooter.show();
+      } else {
+        $editorFooter.hide();
+      }
+    };
+    /**
+     * Main
+     */
+
+
+    if (isEditorEmpty()) {
+      $editorFooter.hide();
+    }
+
+    editor.addEventListener('focus', handleFocusChange, true);
+    editor.addEventListener('blur', handleFocusChange, true);
+  });
+})(jQuery);
+
+(function () {
   // Enable the fixed toolbar feature if not explicitly disabled
   function enableFixedToolbarByDefault() {
     var rawSettings = window.localStorage.getItem('p2tenberg_features');
@@ -65,16 +120,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         fixedToolbar: true
       })));
     }
-  } // Enable "Notify me of new comments via email" on new posts by default and hide the form
-
-
-  function subscribeToCommentsOnNewPostsByDefault() {
-    $('input[type="checkbox"]#post_subscribe').prop('checked', true);
-    $('.o2-post-form-options').hide();
   } // No need to wait for document ready
 
 
   enableFixedToolbarByDefault();
+})();
+
+(function ($) {
+  // Enable "Notify me of new comments via email" on new posts by default and hide the form
+  function subscribeToCommentsOnNewPostsByDefault() {
+    $('input[type="checkbox"]#post_subscribe').prop('checked', true);
+    $('.o2-post-form-options').hide();
+  }
+
   $(document).ready(function () {
     subscribeToCommentsOnNewPostsByDefault();
   });

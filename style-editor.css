@@ -19,6 +19,9 @@
  * Shadows
  */
 /**
+ * WP Admin Bar
+ */
+/**
  * Breakpoints
  */
 /**
@@ -41,6 +44,8 @@
   --color-mentions-highlight: rgba(179, 94, 177, 0.1);
   --color-white: #fff;
   --color-black: #000;
+  --color-green: #178f17;
+  --color-green-light: #d4f8d4;
   /* TYPOGRAPHY */
   --font-default: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
   --font-body: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
