@@ -89,6 +89,7 @@ function log_user_visit() {
 	}
 }
 if ( is_user_logged_in() ) {
+	// TODO Maybe hook this to a custom action with a more obvious timing?
 	add_action( 'wp', __NAMESPACE__ . '\log_user_visit' );
 }
 
@@ -96,23 +97,26 @@ if ( is_user_logged_in() ) {
  * Retrieve posts created after given timestamp, inclusive.
  *     Own posts not included. If $ts is empty, return all posts.
  *
- * @param $ts The cutoff timestamp.
+ * @param $ts Optional timestamp.
  *
- * @return array Posts created after $ts.
+ * @return array Posts (IDs only).
  */
-function get_unread_posts( $ts = null ) {
+function get_posts_after_ts( $ts = null ) {
 	$args = [
 		'post_type' => 'post',
 		'posts_per_page' => -1,
 		'author' => -1 * get_current_user_id(),
+		'fields' => 'ids',
 	];
 
+	// If $ts is set, we filter on that
 	if ( ! empty( $ts ) ) {
 		$ts_condition = [
 			'after' => date( 'Y-m-d H:i:s e', $ts ),
 			'inclusive' => true,
 		];
 	}
+
 	if ( isset( $ts_condition ) ) {
 		$args['date_query'] = [ $ts_condition ];
 	}
@@ -126,25 +130,26 @@ function get_unread_posts( $ts = null ) {
  * Retrieve comments created after given timestamp, inclusive.
  *     Own comments not included. If $ts is empty, return all comments.
  *
- * @param $ts The cutoff timestamp.
+ * @param $ts Optional timestamp.
  *
- * @return array Comments created after $ts.
+ * @return array Comments (IDs only).
  */
-function get_unread_comments( $ts = null ) {
-	$last_active = get_last_active();
-
+function get_comments_after_ts( $ts = null ) {
 	$args = [
 		'post_type' => 'post',
 		'type' => 'comment',
-		'author' => -1 * get_current_user_id(),
+		'author__not_in' => [ get_current_user_id() ],
+		'fields' => 'ids',
 	];
 
+	// If $ts is set, we filter on that
 	if ( ! empty( $ts ) ) {
 		$ts_condition = [
 			'after' => date( 'Y-m-d H:i:s e', $ts ),
 			'inclusive' => true,
 		];
 	}
+
 	if ( isset( $ts_condition ) ) {
 		$args['date_query'] = [ $ts_condition ];
 	}
@@ -152,6 +157,38 @@ function get_unread_comments( $ts = null ) {
 	$query = new \WP_Comment_Query( $args );
 
 	return $query->get_comments();
+}
+
+/**
+ * Retrieve posts and comments with mentions of current user,
+ *     submitted after given timestamp, inclusive.
+ *     Own posts and comments not included. If $ts is empty, return all content.
+ *
+ * @param $ts Optional timestamp.
+ *
+ * @return array Posts and comments (IDs only).
+ */
+
+function get_mentions_after_ts( $ts = null ) {
+	$mentions = [];
+	$user = wp_get_current_user();
+	$unread_posts = get_posts_after_ts( $ts );
+	foreach ( $unread_posts as $post_id ) {
+		$post_mentions = \Jetpack_Mentions::get_post_mentions( $post_id );
+		if ( in_array( $user->user_nicename, $post_mentions ) ) {
+			$mentions['posts'][] = $post_id;
+		}
+	}
+
+	$unread_comments = get_comments_after_ts( $ts );
+	foreach ( $unread_comments as $comment_id ) {
+		$comment_mentions = \Jetpack_Mentions::get_comment_mentions( $comment_id );
+		if ( in_array( $user->user_nicename, $comment_mentions ) ) {
+			$mentions['comments'][] = $comment_id;
+		}
+	}
+
+	return $mentions;
 }
 
 /**
@@ -164,30 +201,43 @@ function get_unread_count() {
 		return null;
 	}
 
-	$user = wp_get_current_user();
-
 	$last_active = get_last_active();
 
 	$unread_count = [];
-
-	$unread_count['posts'] = count( get_unread_posts( $last_active['posts'] ?? null ) );
-
-	$unread_count['comments'] = count( get_unread_comments( $last_active['comments'] ?? null ) );
-
-	$unread_count['mentions'] = 0;
-
-	$unread_posts = get_unread_posts( $last_active['mentions'] );
-	foreach ( $unread_posts as $post ) {
-		$mentions = \Jetpack_Mentions::get_post_mentions( $post->ID );
-		$unread_count['mentions'] += count( array_keys( $mentions, $user->user_nicename ) );
-	}
-
-	$unread_comments = get_unread_comments( $last_active['mentions'] );
-	foreach ( $unread_comments as $comment ) {
-		$mentions = \Jetpack_Mentions::get_comment_mentions( $comment->comment_ID );
-		$unread_count['mentions'] += count( array_keys( $mentions, $user->user_nicename ) );
-	}
+	$unread_count['posts'] = count( get_posts_after_ts( $last_active['posts'] ?? null ) );
+	$unread_count['comments'] = count( get_comments_after_ts( $last_active['comments'] ?? null ) );
+	$unread_count['mentions'] = count( get_mentions_after_ts( $last_active['mentions'] ?? null ) );
 
 	return $unread_count;
 }
-add_action( 'wp', __NAMESPACE__ . '\get_unread_count' );
+
+/**
+ * Get unread posts, based on $p2020_last_active activity tracker.
+ *
+ * @return array|null Posts (IDs only).
+ */
+function get_unread_posts() {
+	$last_active = get_last_active();
+	return get_posts_after_ts( $last_active['posts'] ?? null );
+}
+
+/**
+ * Get unread comments, based on $p2020_last_active activity tracker.
+ *
+ * @return array|null Comments (IDs only).
+ */
+function get_unread_comments() {
+	$last_active = get_last_active();
+	return get_comments_after_ts( $last_active['comments'] ?? null );
+}
+
+/**
+ * Get unread posts and comments with user mentions, based on
+ *     $p2020_last_active activity tracker.
+ *
+ * @return array Posts and comments (IDs only).
+ */
+function get_unread_mentions() {
+	$last_active = get_last_active();
+	return get_mentions_after_ts( $last_active['mentions'] ?? null );
+}
