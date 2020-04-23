@@ -104,8 +104,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $editorFooter.hide();
     }
 
-    editor.addEventListener('focus', handleFocusChange, true);
-    editor.addEventListener('blur', handleFocusChange, true);
+    if (editor) {
+      editor.addEventListener('focus', handleFocusChange, true);
+      editor.addEventListener('blur', handleFocusChange, true);
+    }
   });
 })(jQuery);
 
@@ -125,6 +127,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   enableFixedToolbarByDefault();
 })();
+
+(function ($) {
+  $(document).ready(function () {
+    var $editor = $('.o2-app-new-post');
+    var $controls = $('[data-p2020-mobile-new-post-controls]');
+    var btnNew = $controls.find('button')[0];
+    var btnCancel = $controls.find('button')[1]; // When user is not logged in
+
+    if ($editor.length === 0) {
+      $controls.hide();
+      return;
+    }
+
+    $editor.before($controls);
+    $controls.css('visibility', 'visible'); // prevents FOUC before the DOM manipulation
+
+    btnNew.addEventListener('click', function () {
+      $editor.slideDown('fast');
+      $(btnNew).hide();
+      $(btnCancel).show();
+    });
+    btnCancel.addEventListener('click', function () {
+      $editor.slideUp('fast');
+      $(btnCancel).hide();
+      $(btnNew).show();
+    });
+  });
+})(jQuery);
 
 (function ($) {
   // Enable "Notify me of new comments via email" on new posts by default and hide the form

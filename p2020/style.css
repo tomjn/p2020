@@ -8,7 +8,7 @@ Description: WordPress for Teams.
 Version: 1.0-wpcom
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: blue, classic-menu, clean, collaboration, custom-background, custom-header, custom-menu, featured-images, front-page-post-form, infinite-scroll, lifestream, light, post-formats, responsive-layout, right-sidebar, rtl-language-support, sticky-post, theme-options, translation-ready, two-columns, white
+Tags: blue, classic-menu, clean, collaboration, custom-background, custom-header, custom-menu, featured-images, front-page-post-form, infinite-scroll, lifestream, light, responsive-layout, right-sidebar, rtl-language-support, sticky-post, theme-options, translation-ready, two-columns, white
 Text Domain: p2020
 
 P2020 WordPress Theme, Copyright Automattic, Inc.
@@ -404,10 +404,6 @@ body {
       box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07); }
       .mobile-menu-is-visible #sidebar {
         left: 0; } }
-
-@media (max-width: 876px) {
-  .mobile-menu-is-visible #o2-expand-editor {
-    display: none; } }
 
 @media (max-width: 876px) {
   input[type="checkbox"] {
@@ -851,6 +847,7 @@ body {
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.2;
+  text-align: center;
   transition: background-color var(--transition-quick) ease-in-out; }
   .o2-editor-footer a.o2-save:hover, .o2-editor-footer a.o2-comment-save:hover, .o2-editor-footer a.o2-cancel:hover,
   .o2-editor-footer a.o2-new-comment-cancel:hover {
@@ -1339,6 +1336,45 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     .p2020-mobile-menu-toggle {
       display: block; } }
 
+.p2020-mobile-new-post {
+  display: none;
+  min-height: 32px;
+  margin-bottom: 1rem; }
+  @media (max-width: 640px) {
+    .p2020-mobile-new-post {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      visibility: hidden; } }
+
+.p2020-mobile-new-post__new {
+  padding: 0;
+  border: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  line-height: 1; }
+  .p2020-mobile-new-post__new::before {
+    content: "";
+    display: inline-block;
+    -webkit-mask: url(img/icons/custom-add.svg) no-repeat;
+            mask: url(img/icons/custom-add.svg) no-repeat;
+    -webkit-mask-size: cover;
+            mask-size: cover;
+    width: 24px;
+    height: 24px;
+    background: var(--color-text); }
+
+.p2020-mobile-new-post__cancel {
+  display: none;
+  padding: 0;
+  border: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-size: 0.875rem;
+  font-weight: 500; }
+
 /**
  * Responsive padding for posts and p2tenberg editor
  */
@@ -1717,6 +1753,9 @@ footer.entry-meta {
 
 .o2-app-new-post {
   margin-bottom: 24px; }
+  @media (max-width: 640px) {
+    .o2-app-new-post .o2-save {
+      width: 100%; } }
 
 .o2-app-page-title {
   font-size: 1.625rem;
@@ -1978,6 +2017,9 @@ header nav.o2-dropdown-actions {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
   .o2-editor .p2tenberg-editor {
     margin: 0; }
+
+#o2-expand-editor {
+  display: none; }
 
 #help {
   padding: 0;
@@ -2268,7 +2310,5 @@ article.tag-p2-xpost .comment .avatar {
 /**
  * POST TYPE PARTIALS
  */
-.format-quote blockquote p {
-  font-size: 1.2em; }
 
 /*# sourceMappingURL=style.css.map */
