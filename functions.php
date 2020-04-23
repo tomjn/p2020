@@ -25,6 +25,13 @@ if ( is_user_logged_in() ) {
 require_once( 'thirdparty.php' );
 
 /**
+ * Global variable for WP core and various plugins to size embeds/images appropriately.
+ * https://codex.wordpress.org/Content_Width
+ */
+if ( ! isset( $content_width ) )
+	$content_width = 940; /* pixels */
+
+/**
  * Set up social sharing and likes
  */
 function social_init() {
@@ -80,18 +87,11 @@ function disable_related_posts() {
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\disable_related_posts' );
 
-/**
- * Set the content width based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) )
-	$content_width = 776; /* pixels */
-
 /*
  * Load Jetpack compatibility file.
  */
 require( get_template_directory() . '/inc/jetpack.php' );
 
-if ( ! function_exists( __NAMESPACE__ . '\setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -151,29 +151,8 @@ function setup() {
 	register_nav_menus( [
 		'primary' => __( 'Primary Menu', 'p2020' ),
 	] );
-
-	/**
-	 * Enable support for Post Formats
-	 */
-	add_theme_support( 'post-formats', [ 'aside', 'image', 'video', 'quote', 'link' ] );
 }
-endif; // setup
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
-
-/**
- * Setup the WordPress core custom background feature.
- *
- * Hooks into the after_setup_theme action.
- */
-function register_custom_background() {
-	$args = [
-		'default-color' => 'f1f1f1',
-		'default-image' => '',
-	];
-
-	add_theme_support( 'custom-background', apply_filters( 'p2020_custom_background_args', $args ) );
-}
-add_action( 'after_setup_theme', __NAMESPACE__ . '\register_custom_background' );
 
 /**
  * Register widgetized area and update sidebar with default widgets

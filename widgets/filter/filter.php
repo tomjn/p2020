@@ -15,6 +15,8 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 	var $unread_comments;
 	var $unread_mentions;
 
+	const UNREAD_COUNT_DISPLAY_LIMIT = 99; // displays "99+" if unread is > 99
+
 	function __construct() {
 
 		\WP_Widget::__construct(
@@ -199,7 +201,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			}
 
 			// Get unread count at widget render time (page render time)
-			$unread_count = get_unread_count();
+			$unread_count = get_unread_count( self::UNREAD_COUNT_DISPLAY_LIMIT + 1 );
 
 			echo '<ul class="widget-filter-list">';
 			foreach ( (array) $this->filters as $key => $item ) {
@@ -253,8 +255,15 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 	private function maybe_render_unread_count( $unread_count, $key ) {
 		if ( ! empty( $key ) && ! empty( $unread_count[ $key ] ) ) {
-			echo '<span class="widget-filter-item-link-unread">' . esc_html( $unread_count[ $key ] ) . '</span>';
-		}
+			$unread_count_display =
+				( $unread_count[ $key ] > self::UNREAD_COUNT_DISPLAY_LIMIT ) ?
+				self::UNREAD_COUNT_DISPLAY_LIMIT . '+' :
+				$unread_count[ $key ];
+		?>
+			<span class="widget-filter-item-link-unread">
+				<?php echo esc_html( $unread_count_display ); ?>
+			</span>
+		<?php }
 	}
 }
 

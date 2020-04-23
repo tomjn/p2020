@@ -20,6 +20,29 @@ get_header(); ?>
 
 <?php get_sidebar(); ?>
 
+	<?php
+		/**
+		 * Show/hide toggle for the new post editor in mobile.
+		 *
+		 * This div will be moved by JS to be right before the editor.
+		 * We can't actually put the HTML there because everything inside main#content
+		 * will be overwritten by O2.
+		 */
+	?>
+	<div class="p2020-mobile-new-post" data-p2020-mobile-new-post-controls>
+		<button
+			class="p2020-mobile-new-post__new"
+			title="<?php esc_attr_e( 'New post', 'p2020' ) ?>"
+		>
+		</button>
+		<button
+			class="p2020-mobile-new-post__cancel"
+		>
+			<?php esc_html_e( 'Cancel', 'p2020' ) ?>
+		</button>
+	</div>
+
+
 	<main id="content">
 
 		<?php do_action( 'p2020_post_editor' ); ?>

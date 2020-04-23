@@ -83,14 +83,22 @@ function disable_nonrelevant_sections( $wp_customize ) {
 	// Remove "Homepage Settings".
 	$wp_customize->remove_section( 'static_front_page' );
 
-	// Remove "Additional CSS".
+	// Remove "Additional CSS" (WP Core).
 	$wp_customize->remove_section( 'custom_css' );
+
+	// Remove "Additional CSS" upgrade nudge when on Free plan (Jetpack_Custom_CSS_Customizer).
+	// https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/custom-css-in-customizer.php#285
+	$wp_customize->remove_section( 'css_nudge' );
 }
 
 // Keep the priority high enough so our callback is ran after everything else.
 add_action( 'customize_register', 'P2020\disable_nonrelevant_sections', 1000 );
 
-// Additional CSS is disabled for WP for Teams sites.
+/**
+ * Disable "Additional CSS" added in Jetpack_Custom_CSS_Customizer.
+ *
+ * https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/custom-css-in-customizer.php#15
+ */
 function enable_custom_customizer() {
 	return false;
 }
