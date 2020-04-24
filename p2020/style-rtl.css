@@ -60,7 +60,7 @@ and Blueprint http://www.blueprintcss.org/
   --color-mentions-highlight: rgba(179, 94, 177, 0.1);
   --color-white: #fff;
   --color-black: #000;
-  --color-green: #178f17;
+  --color-green: #1CCA7B;
   --color-green-light: #d4f8d4;
   /* TYPOGRAPHY */
   --font-default: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
@@ -2062,6 +2062,35 @@ header nav.o2-dropdown-actions {
     border-radius: 3px;
     padding: 0 8px;
     text-align: center; }
+
+.o2-no-posts-post {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .o2-no-posts-post .o2-post {
+    padding: 0; }
+  .o2-no-posts-post p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0; }
+    .o2-no-posts-post p:before {
+      content: "";
+      margin-bottom: 16px;
+      content: "";
+      display: inline-block;
+      -webkit-mask: url(img/icons/big-checkmark.svg) no-repeat;
+              mask: url(img/icons/big-checkmark.svg) no-repeat;
+      -webkit-mask-size: cover;
+              mask-size: cover;
+      width: 4rem;
+      height: 4rem;
+      background: var(--color-green); }
 
 .o2-post-footer-actions {
   margin-top: 32px; }
