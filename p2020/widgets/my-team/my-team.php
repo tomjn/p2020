@@ -64,7 +64,7 @@ class My_Team_Widget extends \WP_Widget {
 		</p>
 
 		<p>
-			<label><?php esc_html_e( 'Display team members with the ff. roles:', 'p2020' ); ?></label>
+			<label><?php esc_html_e( 'Display team members with role:', 'p2020' ); ?></label>
 			<ul>
 			<?php foreach ( $all_roles as $role ) { ?>
 				<li>
@@ -73,7 +73,7 @@ class My_Team_Widget extends \WP_Widget {
 						id="<?php echo esc_attr( $this->get_field_id( 'role_'.$role ) ); ?>"
 						name="<?php echo esc_attr( $this->get_field_name( 'roles[]' ) ); ?>"
 						value="<?php echo esc_attr( $role ) ?>" <?php echo in_array( $role, $selected_roles ) ? 'checked' : '' ?> />
-					<?php esc_html( ucfirst( $role ), 'p2020' ); ?>
+					<?php echo esc_html( translate_user_role( ucfirst( $role ), 'p2020' ) ); ?>
 				</label>
 				</li>
 			<?php } ?>
