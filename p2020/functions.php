@@ -151,6 +151,28 @@ function setup() {
 	register_nav_menus( [
 		'primary' => __( 'Primary Menu', 'p2020' ),
 	] );
+
+	/**
+	 * Add a menu with Home item, if location is empty.
+	 */
+	$locations = get_theme_mod( 'nav_menu_locations' );
+	if ( empty( $locations['primary'] ) ) {
+		// Check if menu object already exists
+		$menu = wp_get_nav_menu_object( 'primary' );
+		if ( ! $menu ) {
+			$menu_id = wp_create_nav_menu( 'primary' );
+			wp_update_nav_menu_item( $menu_id, 0, [
+				'menu-item-title' => __( 'Home', 'p2020' ),
+				'menu-item-url' => home_url( '/' ),
+				'menu-item-status' => 'publish'
+			] );
+		} else {
+			$menu_id = $menu->term_id;
+		}
+
+		$locations['primary'] = $menu_id;
+		set_theme_mod( 'nav_menu_locations', $locations );
+	}
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
 
@@ -305,15 +327,15 @@ if ( is_a8c_p2() ) {
 }
 
 /**
- * Hide editor for search results page
+ * Hide editor for certain views:
+ *     - search results page
+ *     - tag archives
  */
-function hide_editor_for_search( $o2_options ) {
-	if ( is_search() ) {
+function hide_o2_editor( $o2_options ) {
+	if ( is_search() || is_tag() ) {
 		$o2_options['options']['showFrontSidePostBox'] = false;
 	}
 
 	return $o2_options;
 }
-
-// Hide editor for filter views
-add_filter( 'o2_options', __NAMESPACE__ . '\hide_editor_for_search' );
+add_filter( 'o2_options', __NAMESPACE__ . '\hide_o2_editor' );
