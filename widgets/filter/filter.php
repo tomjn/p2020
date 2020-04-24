@@ -143,7 +143,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 	function no_posts_message( $o2_options ) {
 		if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
-			$o2_options['strings']['noPosts'] = __( "You're all caught up!", 'p2020' );
+			$o2_options['strings']['noPosts'] = __( "You’re all caught up!", 'p2020' );
 		}
 
 		return $o2_options;
