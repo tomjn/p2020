@@ -70,6 +70,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     var $editorFooter = $('.o2-app-new-post .o2-editor-footer');
+    var blockListLayoutSelector = '.block-editor-block-list__layout';
+    var editorExpandedModifier = 'is-expanded';
     /**
      * Local Storage Keys
      */
@@ -84,15 +86,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return editorContent === '';
     };
 
-    var shouldShowEditorFooter = function shouldShowEditorFooter() {
+    var shouldExpandEditor = function shouldExpandEditor() {
       return editor.contains(document.activeElement) || !isEditorEmpty();
     };
 
     var handleFocusChange = function handleFocusChange() {
-      if (shouldShowEditorFooter()) {
+      if (shouldExpandEditor()) {
         $editorFooter.show();
+        $(blockListLayoutSelector).addClass(editorExpandedModifier);
       } else {
         $editorFooter.hide();
+        $(blockListLayoutSelector).removeClass(editorExpandedModifier);
       }
     };
     /**
@@ -181,9 +185,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 })(jQuery);
 
 (function ($) {
+  function isInCustomizer() {
+    return !!wp.customize;
+  }
+
   $(document).ready(function () {
     // Is home page and not displaying O2 filtered content
-    if (window.location.pathname === '/' && window.location.search === '') {
+    if (isInCustomizer() || window.location.pathname === '/' && window.location.search === '') {
       $('.o2-app-page-title').addClass('is-unfiltered-home');
     }
   });
