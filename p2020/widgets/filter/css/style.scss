@@ -1,0 +1,83 @@
+@mixin widget-p2020-filter-gridicon($id-slug, $icon-name) {
+	#widget-filter-#{$id-slug} .widget-filter-item-link-icon::before {
+		@include icon("custom-#{$icon-name}", pxrem(24), currentColor);
+	}
+}
+
+.widget_p2020-filter-widget {
+	#widget-filter-me {
+		margin-top: pxrem(40);
+	}
+
+	.widget-filter-me-title {
+		margin-bottom: pxrem(12);
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+
+	.widget-filter-me-label {
+		display: inline-block;
+		font-size: pxrem(18);
+		font-weight: 500;
+	}
+
+	.widget-filter-item {
+		color: var(--color-text);
+		line-height: 1.3;
+		margin: 0 pxrem(-10);
+		padding: pxrem(1) 0;
+
+		.widget-filter-item-link {
+			color: inherit;
+			display: flex;
+			align-items: center;
+			padding: pxrem(6) pxrem(10);
+			border-radius: 4px;
+			transition: var(--transition-quick);
+
+			&:hover,
+			&:focus {
+				background: var(--color-background-light);
+				outline: 0;
+			}
+		}
+
+		&.is-active {
+			.widget-filter-item-link {
+				color: var(--color-link);
+				background: var(--color-background-link);
+			}
+
+		}
+
+		.widget-filter-item-link-icon {
+			margin-right: 0.5em;
+			display: flex;
+		}
+
+		.widget-filter-item-link-label {
+			flex: 2;
+			vertical-align: top;
+			font-size: pxrem(13);
+			font-weight: 500;
+		}
+
+		.widget-filter-item-link-unread {
+			justify-self: flex-end;
+			background: var(--color-link);
+			color: var(--color-white);
+			border-radius: 100px;
+			font-size: pxrem(11);
+			font-weight: 500;
+			padding: pxrem(3) pxrem(8);
+		}
+	}
+
+	// Icons
+	@include widget-p2020-filter-gridicon("recent-updates", "posts");
+	@include widget-p2020-filter-gridicon("recent-comments", "comment");
+	@include widget-p2020-filter-gridicon("my-mentions", "mention");
+	@include widget-p2020-filter-gridicon("my-posts", "user");
+}

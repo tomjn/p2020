@@ -28,6 +28,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		if ( is_active_widget( false, false, 'p2020-filter-widget', true ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_scripts' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_styles' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'p2020_scripts' ] );
 		}
 
 		if ( ! is_user_logged_in() ) {
@@ -86,6 +87,17 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		add_action( 'pre_get_posts', [ $this, 'alter_query_for_filter_views' ] );
 		add_filter( 'posts_clauses', [ $this, 'alter_query_for_comment_view' ], 10, 2 );
 		add_filter( 'o2_options', [ $this, 'no_posts_message' ] );
+	}
+
+	function p2020_scripts() {
+		if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
+			wp_enqueue_script( 'p2020-filter-no-posts', get_template_directory_uri() . '/widgets/filter/js/no-posts.js', [ 'jquery' ], false, true );
+			$data = [
+				'homeUrl' => home_url(),
+				'homeMessage' => __( 'Return to home', 'p2020' ),
+			];
+			wp_localize_script( 'p2020-filter-no-posts', 'p2020FilterNoPosts', $data );
+		}
 	}
 
 	function alter_query_for_filter_views( $query ) {
@@ -235,7 +247,20 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 	function page_title( $title ) {
 		$type = get_active_filter();
-		if ( ! empty( $type ) ) {
+
+		if ( empty( $type ) ) {
+			return $title;
+		}
+
+		if ( $type === 'posts' && empty ( $this->unread_posts ) ) {
+			return '';
+		}
+
+		if ( $type === 'comments' && empty ( $this->unread_comments ) ) {
+			return '';
+		}
+
+		if ( ! empty( $this->filters[ $type ]['label'] ) ) {
 			return $this->filters[ $type ]['label'];
 		}
 

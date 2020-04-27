@@ -1,0 +1,59 @@
+.widget_p2020-my-team-widget {
+	.widgets-multi-column-grid ul {
+		display: flex;
+		flex-wrap: wrap;
+		margin: -8px;
+
+		li {
+			margin: 7px 7px;
+			padding: 0;
+			float: none;
+			flex-shrink: 0;
+		}
+
+		.widget-myteam-item {
+			display: flex;
+			border-radius: 35px;
+			width: 35px;
+			height: 35px;
+			padding: 0;
+			align-items: center;
+			justify-content: center;
+			color: var(--color-text);
+			font-size: pxrem(12);
+			font-weight: 500;
+			transition: var(--transition-quick);
+		}
+
+		a.widget-myteam-item {
+			&:hover,
+			&:focus {
+				outline: 0;
+				box-shadow: 0 0 0 2px var(--color-link);
+			}
+		}
+
+		.widget-myteam-manage-icon {
+			.widget-myteam-item {
+				border: 1px solid var(--color-border);
+			}
+
+			a.widget-myteam-item {
+				&:hover,
+				&:focus {
+					border-color: transparent;
+					color: var(--color-link);
+				}
+			}
+
+			span.widget-myteam-item {
+				cursor: default;
+			}
+
+			.widget-myteam-manage-icon-plus {
+				@include icon("custom-add", pxrem(24), currentColor);
+			}
+		}
+	}
+
+}

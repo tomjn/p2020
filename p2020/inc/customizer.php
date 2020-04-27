@@ -41,6 +41,15 @@ function disable_nonrelevant_sections( $wp_customize ) {
 	// Remove O2 Theme Options: Enable front-end editing
 	// https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/theme-plugins.php#233
 	$wp_customize->remove_control( 'o2_options[o2_enabled]' );
+
+	// Remove O2 Theme Options: Enable "To Do" Module, Mark New Posts "To Do"
+	// https://opengrok.a8c.com/source/xref/trunk/wp-content/plugins/o2/o2.php#689
+	$wp_customize->remove_control( 'o2_options[enable_resolved_posts]' );
+	$wp_customize->remove_control( 'o2_options[mark_posts_unresolved]' );
+
+	// Remove Footer Credit option
+	// https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/footer-credit/customizer.php#80
+	$wp_customize->remove_control( 'footercredit' );
 }
 
 // Keep the priority high enough so our callback is ran after everything else.
