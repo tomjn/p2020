@@ -64,6 +64,10 @@ $help_url = 'https://wordpress.com/help';
 						</a>
 					</li>
 				</ul>
+
+				<p class="p2020-sidebar__footer-credit">
+					<?php esc_html_e( 'Powered by WordPress.com', 'p2020' ); ?>
+				</p>
 			</footer>
 
 		</div><!-- .p2020-sidebar__inner-main -->
