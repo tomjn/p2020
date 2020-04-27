@@ -12,7 +12,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return;
   }
 
-  $('body').addClass('p2020-js-loaded');
+  $('body').addClass('p2020-js-loaded'); // Initialize tippy.js tooltips
+
+  window.tippy('[data-tippy-content]');
 })(jQuery); // TODO: Test and clean up for P2020
 
 

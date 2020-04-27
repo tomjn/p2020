@@ -187,7 +187,12 @@ class My_Team_Widget extends \WP_Widget {
 			if ( current_user_can( 'administrator' ) ) {
 				$manage_team_link = 'https://wordpress.com/people/new/' . \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() ); ?>
 				<li class="widget-myteam-manage-icon">
-					<a href="<?php echo esc_url( $manage_team_link ) ?>" class="widget-myteam-item">
+					<a
+						href="<?php echo esc_url( $manage_team_link ) ?>"
+						class="widget-myteam-item"
+						aria-label="<?php esc_attr_e( 'Invite people', 'p2020' ) ?>"
+						data-tippy-content="<?php esc_attr_e( 'Invite people', 'p2020' ) ?>"
+					>
 						<?php if ( $hidden_count > 0 ): ?>
 							+<?php echo esc_html( $hidden_count ) ?>
 						<?php else: ?>
