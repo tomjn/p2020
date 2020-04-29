@@ -81,3 +81,28 @@
 	@include widget-p2020-filter-gridicon("my-mentions", "mention");
 	@include widget-p2020-filter-gridicon("my-posts", "user");
 }
+
+.p2020-filter-read-more-post .o2-post {
+	max-height: 20em;
+	overflow: hidden;
+	position: relative;
+
+	.p2020-filter-read-more-mask {
+		background-image: linear-gradient(to bottom, transparent, var(--color-white));
+		bottom: 0;
+		left: 0;
+		margin: 0;
+		padding: 40px 0;
+		position: absolute;
+		text-align: center;
+		width: 100%;
+
+		button {
+			background: var(--color-link);
+			border: none;
+			border-radius: 4px;
+			color: var(--color-white);
+			line-height: 1.8;
+		}
+	}
+}

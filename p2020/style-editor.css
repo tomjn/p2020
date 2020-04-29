@@ -44,7 +44,7 @@
   --color-mentions-highlight: rgba(179, 94, 177, 0.1);
   --color-white: #fff;
   --color-black: #000;
-  --color-green: #178f17;
+  --color-green: #1CCA7B;
   --color-green-light: #d4f8d4;
   /* TYPOGRAPHY */
   --font-default: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
@@ -240,6 +240,9 @@ body {
 	 */
   /**
 	 * Images
+	 */
+  /**
+	 * Block margins
 	 */ }
   body p a,
   body li a {
@@ -295,6 +298,8 @@ body {
     clear: both;
     margin-left: auto;
     margin-right: auto; }
+  body .wp-block-file {
+    margin-bottom: 1.7em; }
 
 body table {
   border-top: 1px solid var(--color-border-dark);
