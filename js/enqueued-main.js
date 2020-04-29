@@ -187,6 +187,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 })(jQuery);
 
 (function ($) {
+  function isSinglePage() {
+    return $('body').hasClass('page');
+  }
+
+  $(document).ready(function () {
+    if (isSinglePage()) {
+      var title = $('.o2-app-page-title').text();
+      $('.entry-header .entry-meta').prepend($('<h1 />', {
+        class: 'entry-title',
+        text: title
+      }));
+    }
+  });
+})(jQuery);
+
+(function ($) {
   function isInCustomizer() {
     return !!wp.customize;
   }

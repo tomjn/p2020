@@ -757,6 +757,72 @@ body {
   font-family: var(--font-mono);
   font-size: 0.8em; }
 
+.entry-content .p2020-contributors {
+  margin: 4em 0 3em; }
+
+.entry-content .p2020-contributors__heading {
+  position: relative;
+  margin-bottom: 2.5em;
+  font-size: 0.8125rem; }
+  .entry-content .p2020-contributors__heading::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -5%;
+    bottom: 0;
+    display: block;
+    width: 110%;
+    height: 1px;
+    margin: auto 0;
+    background: var(--color-border-light); }
+    @media (max-width: 640px) {
+      .entry-content .p2020-contributors__heading::before {
+        right: 0;
+        width: 100%; } }
+
+.entry-content .p2020-contributors__heading-text {
+  position: relative;
+  right: -8px;
+  z-index: 1;
+  padding: 0 8px;
+  background: var(--color-white);
+  font-weight: 600;
+  color: var(--color-text-light);
+  text-transform: uppercase; }
+
+.entry-content .p2020-contributors__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.3; }
+  @media (max-width: 640px) {
+    .entry-content .p2020-contributors__list {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 550px) {
+    .entry-content .p2020-contributors__list {
+      grid-template-columns: 1fr; } }
+
+.entry-content .p2020-contributors__item {
+  display: flex;
+  align-items: flex-start; }
+
+.entry-content .p2020-contributors__item-avatar {
+  flex: 0 0 auto;
+  margin-left: 10px; }
+
+.entry-content .p2020-contributors__item-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  word-break: break-all; }
+
+.entry-content .p2020-contributors__item-revisions {
+  font-size: 0.75rem;
+  color: var(--color-text-light); }
+
 /**
  * Body content styles for post/pages and comments
  */
@@ -805,14 +871,14 @@ body {
   font-family: var(--font-mono);
   font-size: 0.8em; }
 
-.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title {
+.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
   font-family: var(--font-default);
   font-weight: 900;
   font-size: 2rem;
   line-height: 1.35;
   letter-spacing: -0.02em; }
   @media (max-width: 876px) {
-    .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title {
+    .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
       font-size: 1.625rem; } }
 
 .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2,
@@ -923,6 +989,9 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
 	 */
   /**
 	 * Images
+	 */
+  /**
+	 * Block margins
 	 */ }
   .p2tenberg-editor .block-editor-writing-flow p a, .comment-content p a, .entry-content p a,
   .p2tenberg-editor .block-editor-writing-flow li a,
@@ -1016,15 +1085,17 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     clear: both;
     margin-right: auto;
     margin-left: auto; }
+  .p2tenberg-editor .block-editor-writing-flow .wp-block-file, .comment-content .wp-block-file, .entry-content .wp-block-file {
+    margin-bottom: 1.7em; }
 
-.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title {
+.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
   font-family: var(--font-default);
   font-weight: 900;
   font-size: 2rem;
   line-height: 1.35;
   letter-spacing: -0.02em; }
   @media (max-width: 876px) {
-    .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title {
+    .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
       font-size: 1.625rem; } }
 
 .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2,
@@ -1539,6 +1610,9 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     .entry-header .entry-meta .entry-date:hover {
       color: var(--color-link); }
 
+body.page .entry-header .entry-meta {
+  grid-template-columns: [title] auto [gutter] 16px [actions] 32px; }
+
 footer.entry-meta {
   margin-right: 0;
   padding-top: 0; }
@@ -1628,6 +1702,8 @@ footer.entry-meta {
   font-weight: 400;
   letter-spacing: -0.02em; }
   .o2-app-page-title.is-unfiltered-home {
+    display: none; }
+  body.page .o2-app-page-title {
     display: none; }
 
 .o2-comment-header {
@@ -2190,6 +2266,8 @@ article.tag-p2-xpost .comment .avatar {
 	 * in the core block editor, but needs some hacks here to work around the
 	 * hacks in p2tenberg itself. Can be removed when the upstream hacks are gone.
 	 */ }
+  .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
+    margin-bottom: 24px; }
   .p2tenberg-editor .block-editor-inserter__toggle.is-primary {
     background: transparent;
     color: inherit; }
@@ -2306,6 +2384,26 @@ article.tag-p2-xpost .comment .avatar {
   width: 1.5rem;
   height: 1.5rem;
   background: currentColor; }
+
+.p2020-filter-read-more-post .o2-post {
+  max-height: 20em;
+  overflow: hidden;
+  position: relative; }
+  .p2020-filter-read-more-post .o2-post .p2020-filter-read-more-mask {
+    background-image: linear-gradient(to bottom, transparent, var(--color-white));
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 40px 0;
+    position: absolute;
+    text-align: center;
+    width: 100%; }
+    .p2020-filter-read-more-post .o2-post .p2020-filter-read-more-mask button {
+      background: var(--color-link);
+      border: none;
+      border-radius: 4px;
+      color: var(--color-white);
+      line-height: 1.8; }
 
 .widget_p2020-my-team-widget .widgets-multi-column-grid ul {
   display: flex;

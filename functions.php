@@ -343,3 +343,16 @@ function hide_o2_editor( $o2_options ) {
 	return $o2_options;
 }
 add_filter( 'o2_options', __NAMESPACE__ . '\hide_o2_editor' );
+
+/**
+ * Append Contributor block to content on single pages
+ */
+function append_contributors_block( $content ) {
+	if ( !is_page() || !in_the_loop() || !is_main_query() ) {
+		return $content;
+	}
+
+	require_once( get_template_directory() . '/inc/contributors.php' );
+	return $content . get_contributors_block();
+}
+add_filter( 'the_content', __NAMESPACE__ . '\append_contributors_block' );

@@ -67,8 +67,9 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		// For changing the page title, to indicate active filter
 		add_filter( 'o2_page_title', [ $this, 'page_title' ] );
 
-		// Hide editor for filter views
+		// Modify o2 options for filter views
 		add_filter( 'o2_options', [ $this, 'hide_editor_for_filter_views' ] );
+		add_filter( 'o2_options', [ $this, 'hide_app_controls_for_comment_view' ] );
 
 		// Retrieve activity and unread content during 'widgets_init'
 		//     ie. before visit timestamps are updated
@@ -87,6 +88,10 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		add_action( 'pre_get_posts', [ $this, 'alter_query_for_filter_views' ] );
 		add_filter( 'posts_clauses', [ $this, 'alter_query_for_comment_view' ], 10, 2 );
 		add_filter( 'o2_options', [ $this, 'no_posts_message' ] );
+
+		// For 'Read More' functionality for posts inside Recent Comments
+		add_filter( 'post_class', [ $this, 'add_class_for_read_more' ], 10, 3 );
+
 	}
 
 	function p2020_scripts() {
@@ -97,6 +102,14 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 				'homeMessage' => __( 'Return to home', 'p2020' ),
 			];
 			wp_localize_script( 'p2020-filter-no-posts', 'p2020FilterNoPosts', $data );
+		}
+
+		if ( is_filter_active( 'comments' ) ) {
+			wp_enqueue_script( 'p2020-filter-read-more', get_template_directory_uri() . '/widgets/filter/js/read-more.js', [ 'jquery' ], false, true );
+			$data = [
+				'readMoreMessage' => __( 'Read full post', 'p2020' ),
+			];
+			wp_localize_script( 'p2020-filter-read-more', 'p2020FilterReadMore', $data );
 		}
 	}
 
@@ -161,6 +174,15 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		return $o2_options;
 	}
 
+	function add_class_for_read_more( $classes, $class, $post_id ) {
+		// Add 'read-more' class to all posts if inside 'Recent comments'
+		if ( is_filter_active( 'comments' ) ) {
+			$classes[] = 'p2020-filter-read-more-post';
+		}
+
+		return $classes;
+	}
+
 	function add_class_for_unread_posts( $classes, $class, $post_id ) {
 		if ( is_filter_active( 'posts' ) &&
 			is_array( $this->unread_posts ) && in_array( $post_id, $this->unread_posts ) ) {
@@ -192,6 +214,14 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 	function hide_editor_for_filter_views( $o2_options ) {
 		if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
 			$o2_options['options']['showFrontSidePostBox'] = false;
+		}
+
+		return $o2_options;
+	}
+
+	function hide_app_controls_for_comment_view( $o2_options ) {
+		if ( is_filter_active( 'comments' ) ) {
+			$o2_options['appControls'] = [];
 		}
 
 		return $o2_options;
