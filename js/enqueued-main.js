@@ -134,7 +134,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var settings = rawSettings ? JSON.parse(rawSettings) : {};
 
     if (settings.fixedToolbar === undefined) {
-      window.localStorage.setItem('p2tenberg_features', JSON.stringify(_objectSpread({}, settings, {
+      window.localStorage.setItem('p2tenberg_features', JSON.stringify(_objectSpread(_objectSpread({}, settings), {}, {
         fixedToolbar: true
       })));
     }

@@ -620,12 +620,12 @@ body {
  * UI PARTIALS
  * First-party classes and Sass placeholders that we have control over
  */
-.type-page .alignfull, .type-post .alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .alignfull {
+.type-page .alignfull, .type-post .alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .alignfull, .p2tenberg-editor__post .block-editor-block-list__layout:first-child .alignfull, .p2tenberg-editor__page .block-editor-block-list__layout:first-child .alignfull {
   margin-left: -12.5%;
   margin-right: -12.5%;
   width: 125%; }
   @media (max-width: 550px) {
-    .type-page .alignfull, .type-post .alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .alignfull {
+    .type-page .alignfull, .type-post .alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .alignfull, .p2tenberg-editor__post .block-editor-block-list__layout:first-child .alignfull, .p2tenberg-editor__page .block-editor-block-list__layout:first-child .alignfull {
       margin-left: -2em;
       margin-right: -2em;
       width: calc(100% + 4em); } }
@@ -1315,10 +1315,14 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
 /**
  * Responsive padding for posts and p2tenberg editor
  */
-.o2-post, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child {
+.o2-post, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child,
+.p2tenberg-editor__post .block-editor-block-list__layout:first-child,
+.p2tenberg-editor__page .block-editor-block-list__layout:first-child {
   padding: 4em 10%; }
   @media (max-width: 550px) {
-    .o2-post, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child {
+    .o2-post, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child,
+    .p2tenberg-editor__post .block-editor-block-list__layout:first-child,
+    .p2tenberg-editor__page .block-editor-block-list__layout:first-child {
       padding: 2em; } }
 
 /**
@@ -1757,6 +1761,8 @@ footer.entry-meta {
   padding: 2em 10%;
   border-top: 1px solid var(--color-border);
   position: relative; }
+  .o2-comment .p2tenberg-editor {
+    margin: 0; }
   .o2-comment .o2-comment-footer-actions {
     padding-bottom: 0; }
     .o2-comment .o2-comment-footer-actions li,
@@ -1988,8 +1994,6 @@ header nav.o2-dropdown-actions {
   background: var(--color-white); }
   .o2-app-new-post .o2-editor {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
-  .o2-editor .p2tenberg-editor {
-    margin: 0; }
 
 #o2-expand-editor {
   display: none; }
@@ -2290,6 +2294,7 @@ article.tag-p2-xpost .comment .avatar {
     font-size: inherit; }
 
 .p2tenberg-editor {
+  font-size: inherit;
   /**
 	 * Temporary, p2tenberg-specific "hacks"
 	 *
@@ -2303,18 +2308,38 @@ article.tag-p2-xpost .comment .avatar {
     background: transparent;
     color: inherit; }
 
+.p2tenberg-editor__newpost .block-editor-block-list__layout:first-child,
+.p2tenberg-editor__post .block-editor-block-list__layout:first-child,
+.p2tenberg-editor__page .block-editor-block-list__layout:first-child {
+  padding-top: 2.5em; }
+  .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child > p:first-child,
+  .p2tenberg-editor__post .block-editor-block-list__layout:first-child > p:first-child,
+  .p2tenberg-editor__page .block-editor-block-list__layout:first-child > p:first-child {
+    margin-top: 1.7em; }
+
 .p2tenberg-editor__newpost {
   border: 0;
   background: transparent; }
   .p2tenberg-editor__newpost .edit-post-header {
     border-radius: 4px 4px 0 0; }
-  .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child {
-    padding-top: 2.5em; }
-    .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child:not(.is-expanded) {
-      padding-top: 0;
-      padding-bottom: 0; }
-    .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child p:first-child {
-      margin-top: 1.7em; }
+  .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child:not(.is-expanded) {
+    padding-top: 0;
+    padding-bottom: 0; }
+
+.p2tenberg-editor__post,
+.p2tenberg-editor__page {
+  margin-left: -12.5%;
+  margin-right: -12.5%;
+  width: 125%;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0; }
+  @media (max-width: 550px) {
+    .p2tenberg-editor__post,
+    .p2tenberg-editor__page {
+      margin-left: -2em;
+      margin-right: -2em;
+      width: calc(100% + 4em); } }
 
 /**
  * POST TYPE PARTIALS
