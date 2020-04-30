@@ -29,6 +29,10 @@ $help_url = 'https://wordpress.com/help';
 
 		<div class="p2020-sidebar__inner-main">
 
+			<div class="p2020-sidebar__search">
+				<?php get_search_form(); /* for mobile */ ?>
+			</div>
+
 			<?php do_action( 'before_sidebar' ); ?>
 			<?php dynamic_sidebar( 'sidebar-1' ); ?>
 

@@ -44,7 +44,8 @@
   --color-mentions-highlight: rgba(179, 94, 177, 0.1);
   --color-white: #fff;
   --color-black: #000;
-  --color-green: #1CCA7B;
+  --color-green: #1cca7b;
+  --color-green-dark: rgb(18, 160, 96);
   --color-green-light: #d4f8d4;
   /* TYPOGRAPHY */
   --font-default: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;

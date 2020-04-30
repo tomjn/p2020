@@ -78,9 +78,10 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		$this->unread_comments = get_unread_comments();
 		$this->unread_mentions = get_unread_mentions();
 
-		// Add CSS class for unread posts
+		// Add CSS class for unread content
 		// We do the is_filter_active() check inside the function, because our custom param
 		//    isn't registered until then!
+		add_filter( 'post_class', [ $this, 'add_class_for_filter_posts' ], 10, 3 );
 		add_filter( 'post_class', [ $this, 'add_class_for_unread_posts' ], 10, 3 );
 		add_filter( 'comment_class', [ $this, 'add_class_for_unread_comments' ], 10, 3 );
 
@@ -88,10 +89,6 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		add_action( 'pre_get_posts', [ $this, 'alter_query_for_filter_views' ] );
 		add_filter( 'posts_clauses', [ $this, 'alter_query_for_comment_view' ], 10, 2 );
 		add_filter( 'o2_options', [ $this, 'no_posts_message' ] );
-
-		// For 'Read More' functionality for posts inside Recent Comments
-		add_filter( 'post_class', [ $this, 'add_class_for_read_more' ], 10, 3 );
-
 	}
 
 	function p2020_scripts() {
@@ -107,7 +104,9 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		if ( is_filter_active( 'comments' ) ) {
 			wp_enqueue_script( 'p2020-filter-read-more', get_template_directory_uri() . '/widgets/filter/js/read-more.js', [ 'jquery' ], false, true );
 			$data = [
-				'readMoreMessage' => __( 'Read full post', 'p2020' ),
+				'readPost' => __( 'Read full post', 'p2020' ),
+				'readComment' => __( 'Read more', 'p2020' ),
+				'moreComments' => __( ' more comment(s)', 'p2020' ),
 			];
 			wp_localize_script( 'p2020-filter-read-more', 'p2020FilterReadMore', $data );
 		}
@@ -174,10 +173,9 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		return $o2_options;
 	}
 
-	function add_class_for_read_more( $classes, $class, $post_id ) {
-		// Add 'read-more' class to all posts if inside 'Recent comments'
+	function add_class_for_filter_posts( $classes, $class, $post_id ) {
 		if ( is_filter_active( 'comments' ) ) {
-			$classes[] = 'p2020-filter-read-more-post';
+			$classes[] = 'p2020-post-read-more';
 		}
 
 		return $classes;
@@ -198,9 +196,12 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 	}
 
 	function add_class_for_unread_comments( $classes, $class, $comment_id ) {
-		if ( is_filter_active( 'comments' ) &&
-				is_array( $this->unread_comments ) && in_array( $comment_id, $this->unread_comments ) ) {
-			$classes[] = 'p2020-unread-comment';
+		if ( is_filter_active( 'comments' ) ) {
+			if ( is_array( $this->unread_comments ) && in_array( $comment_id, $this->unread_comments ) ) {
+				$classes[] = 'p2020-unread-comment';
+			} else {
+				$classes[] = 'p2020-comment-read-more';
+			}
 		}
 
 		if ( is_filter_active( 'mentions' ) &&
