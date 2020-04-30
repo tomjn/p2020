@@ -15,7 +15,7 @@
 <meta http-equiv="cleartype" content="on">
 
 <?php // Will be overwritten with git commit hash on `gulp build` (see gulpfile) ?>
-<meta name="p2020-build" revision="4d37abf">
+<meta name="p2020-build" revision="8ef05df">
 
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -39,12 +39,6 @@
 
 		<div class="p2020-site-header">
 
-			<button
-				class="p2020-mobile-menu-toggle"
-				aria-label="<?php esc_attr_e( 'Menu', 'p2020' ); ?>"
-				data-mobile-menu-toggle
-			></button>
-
 			<div class="p2020-site-header__main">
 				<h1 class="p2020-site-title" data-customizer-blogname>
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
@@ -59,7 +53,15 @@
 				] ); ?>
 			</div>
 
-			<?php get_search_form(); ?>
+			<div class="p2020-site-header__search">
+				<?php get_search_form(); ?>
+			</div>
+
+			<button
+				class="p2020-mobile-menu-toggle"
+				aria-label="<?php esc_attr_e( 'Menu', 'p2020' ); ?>"
+				data-mobile-menu-toggle
+			></button>
 
 		</div><!-- .p2020-site-header -->
 

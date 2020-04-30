@@ -12,9 +12,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return;
   }
 
-  $('body').addClass('p2020-js-loaded'); // Initialize tippy.js tooltips
+  $('body').addClass('p2020-js-loaded');
+})(jQuery);
 
-  window.tippy('[data-tippy-content]');
+(function ($) {
+  $(document).ready(function () {
+    // Initialize tippy.js tooltips
+    window.tippy('[data-tippy-content]', {
+      theme: 'p2020',
+      duration: 100
+      /* duration for transition animation */
+
+    });
+  });
 })(jQuery); // TODO: Test and clean up for P2020
 
 
