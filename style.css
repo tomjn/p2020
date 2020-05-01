@@ -702,6 +702,7 @@ body {
     content: "—\0000a0"; }
 
 .o2-editor-footer a.o2-save, .o2-editor-footer a.o2-comment-save, .o2-editor-footer a.o2-cancel,
+.o2-editor-footer a.o2-comment-cancel,
 .o2-editor-footer a.o2-new-comment-cancel {
   margin: 0;
   padding: 10px 20px;
@@ -716,11 +717,13 @@ body {
   text-align: center;
   transition: background-color var(--transition-quick) ease-in-out; }
   .o2-editor-footer a.o2-save:hover, .o2-editor-footer a.o2-comment-save:hover, .o2-editor-footer a.o2-cancel:hover,
+  .o2-editor-footer a.o2-comment-cancel:hover,
   .o2-editor-footer a.o2-new-comment-cancel:hover {
     background: var(--color-link);
     border-color: var(--color-link);
     color: var(--color-white); }
   .o2-editor-footer a.o2-save:focus, .o2-editor-footer a.o2-comment-save:focus, .o2-editor-footer a.o2-cancel:focus,
+  .o2-editor-footer a.o2-comment-cancel:focus,
   .o2-editor-footer a.o2-new-comment-cancel:focus {
     outline: var(--color-text) thin dotted; }
 
@@ -731,9 +734,11 @@ body {
     background: var(--color-link-dark); }
 
 .o2-editor-footer a.o2-cancel,
+.o2-editor-footer a.o2-comment-cancel,
 .o2-editor-footer a.o2-new-comment-cancel {
   border: 0; }
   .o2-editor-footer a.o2-cancel:hover,
+  .o2-editor-footer a.o2-comment-cancel:hover,
   .o2-editor-footer a.o2-new-comment-cancel:hover {
     background: transparent;
     color: var(--color-link-dark); }
@@ -2488,18 +2493,26 @@ article.tag-p2-xpost .comment .avatar {
       color: var(--color-link-dark); }
 
 .p2020-comments-summary {
+  border: inherit;
   border-top: 1px solid var(--color-border);
   color: var(--color-text-light);
+  line-height: inherit;
   padding: 1em 10%;
   position: relative;
+  text-align: left;
   width: 100%; }
+  .p2020-comments-summary .p2020-comments-summary-count {
+    vertical-align: middle; }
   .p2020-comments-summary .p2020-comments-summary-avatars {
     margin-left: 1em; }
     .p2020-comments-summary .p2020-comments-summary-avatars img {
       border: 2px solid var(--color-white);
-      margin-left: -0.3em;
+      margin-left: -0.4em;
       vertical-align: bottom;
-      width: 1.4em; }
+      width: 1.8em; }
+
+.p2020-inactive-thread {
+  display: none; }
 
 .widget_p2020-my-team-widget .widgets-multi-column-grid ul {
   display: flex;
