@@ -144,20 +144,31 @@
 }
 
 .p2020-comments-summary {
+	border: inherit;
 	border-top: 1px solid var(--color-border);
 	color: var(--color-text-light);
+	line-height: inherit;
 	padding: 1em 10%;
 	position: relative;
+	text-align: left;
 	width: 100%;
+
+	.p2020-comments-summary-count {
+		vertical-align: middle;
+	}
 
 	.p2020-comments-summary-avatars {
 		margin-left: 1em;
 
 		img {
 			border: 2px solid var(--color-white);
-			margin-left: -0.3em;
+			margin-left: -0.4em;
 			vertical-align: bottom;
-			width: 1.4em;
+			width: 1.8em;
 		}
 	}
+}
+
+.p2020-inactive-thread {
+	display: none;
 }
