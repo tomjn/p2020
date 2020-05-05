@@ -2335,7 +2335,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var settings = rawSettings ? JSON.parse(rawSettings) : {};
 
     if (settings.fixedToolbar === undefined) {
-      window.localStorage.setItem('p2tenberg_features', JSON.stringify(_objectSpread(_objectSpread({}, settings), {}, {
+      window.localStorage.setItem('p2tenberg_features', JSON.stringify(_objectSpread({}, settings, {
         fixedToolbar: true
       })));
     }

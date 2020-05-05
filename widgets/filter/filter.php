@@ -25,12 +25,6 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			[ 'description' => __( 'An extension of the o2 filter widget, with unread counts.', 'p2020' ) ]
 		);
 
-		if ( is_active_widget( false, false, 'p2020-filter-widget', true ) ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_scripts' ] );
-			add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_styles' ] );
-			add_action( 'wp_enqueue_scripts', [ $this, 'p2020_scripts' ] );
-		}
-
 		if ( ! is_user_logged_in() ) {
 			return;
 		}
@@ -64,31 +58,37 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			],
 		];
 
-		// For changing the page title, to indicate active filter
-		add_filter( 'o2_page_title', [ $this, 'page_title' ] );
+		if ( is_active_widget( false, false, 'p2020-filter-widget', true ) ) {
+			add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_scripts' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_styles' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'p2020_scripts' ] );
 
-		// Modify o2 options for filter views
-		add_filter( 'o2_options', [ $this, 'hide_editor_for_filter_views' ] );
-		add_filter( 'o2_options', [ $this, 'hide_app_controls_for_comment_view' ] );
+			// For changing the page title, to indicate active filter
+			add_filter( 'o2_page_title', [ $this, 'page_title' ] );
 
-		// Retrieve activity and unread content during 'widgets_init'
-		//     ie. before visit timestamps are updated
-		$this->last_active = get_last_active();
-		$this->unread_posts = get_unread_posts();
-		$this->unread_comments = get_unread_comments();
-		$this->unread_mentions = get_unread_mentions();
+			// Modify o2 options for filter views
+			add_filter( 'o2_options', [ $this, 'hide_editor_for_filter_views' ] );
+			add_filter( 'o2_options', [ $this, 'hide_app_controls_for_comment_view' ] );
 
-		// Add CSS class for unread content
-		// We do the is_filter_active() check inside the function, because our custom param
-		//    isn't registered until then!
-		add_filter( 'post_class', [ $this, 'add_class_for_filter_posts' ], 10, 3 );
-		add_filter( 'post_class', [ $this, 'add_class_for_unread_posts' ], 10, 3 );
-		add_filter( 'comment_class', [ $this, 'add_class_for_unread_comments' ], 10, 3 );
+			// Retrieve activity and unread content during 'widgets_init'
+			//     ie. before visit timestamps are updated
+			$this->last_active = get_last_active();
+			$this->unread_posts = isset( $this->last_active['posts'] ) ? get_unread_posts( self::UNREAD_COUNT_DISPLAY_LIMIT ) : [];
+			$this->unread_comments = isset( $this->last_active['comments'] ) ? get_unread_comments( self::UNREAD_COUNT_DISPLAY_LIMIT ) : [];
+			$this->unread_mentions = isset( $this->last_active['mentions'] ) ? get_unread_mentions( self::UNREAD_COUNT_DISPLAY_LIMIT ) : [];
 
-		// Modify the posts query depending on which filter is active
-		add_action( 'pre_get_posts', [ $this, 'alter_query_for_filter_views' ] );
-		add_filter( 'posts_clauses', [ $this, 'alter_query_for_comment_view' ], 10, 2 );
-		add_filter( 'o2_options', [ $this, 'no_posts_message' ] );
+			// Add CSS class for unread content
+			// We do the is_filter_active() check inside the function, because our custom param
+			//    isn't registered until then!
+			add_filter( 'post_class', [ $this, 'add_class_for_filter_posts' ], 10, 3 );
+			add_filter( 'post_class', [ $this, 'add_class_for_unread_posts' ], 10, 3 );
+			add_filter( 'comment_class', [ $this, 'add_class_for_unread_comments' ], 10, 3 );
+
+			// Modify the posts query depending on which filter is active
+			add_action( 'pre_get_posts', [ $this, 'alter_query_for_filter_views' ] );
+			add_filter( 'posts_clauses', [ $this, 'alter_query_for_comment_view' ], 10, 2 );
+			add_filter( 'o2_options', [ $this, 'no_posts_message' ] );
+		}
 	}
 
 	function p2020_scripts() {
