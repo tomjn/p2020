@@ -231,7 +231,7 @@ function get_unread_count( $limit = null ) {
  *
  * @return array|null Posts (IDs only).
  */
-function get_unread_posts() {
+function get_unread_posts( $limit ) {
 	$last_active = get_last_active();
 	return get_posts_after_ts( $last_active['posts'] ?? null, $limit );
 }
@@ -241,7 +241,7 @@ function get_unread_posts() {
  *
  * @return array|null Comments (IDs only).
  */
-function get_unread_comments() {
+function get_unread_comments( $limit ) {
 	$last_active = get_last_active();
 	return get_comments_after_ts( $last_active['comments'] ?? null, $limit );
 }
