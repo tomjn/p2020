@@ -102,11 +102,6 @@ require( get_template_directory() . '/inc/jetpack.php' );
 function setup() {
 
 	/**
-	 * Custom template tags for this theme.
-	 */
-	require( get_template_directory() . '/inc/template-tags.php' );
-
-	/**
 	 * Custom functions that act independently of the theme templates
 	 */
 	require( get_template_directory() . '/inc/extras.php' );
@@ -225,14 +220,11 @@ function scripts() {
 	wp_enqueue_style( 'p2020-sans' );
 
 	// Vendor
-	wp_enqueue_script( 'p2020-skip-link-focus-fix', get_template_directory_uri() . '/js/vendor/skip-link-focus-fix.js', [], '20130115', true );
-	wp_enqueue_script( 'p2020-mobile-helper', get_template_directory_uri() . '/js/vendor/mobile-helper.js', [], '20130513', true );
 	wp_enqueue_script( 'p2020-modernizr', get_template_directory_uri() . '/js/vendor/modernizr-custom.js', [], '20200416', true );
-	wp_enqueue_script( 'p2020-popper', get_template_directory_uri() . '/js/vendor/popper.min.js', [], '20200427', true );
-	wp_enqueue_script( 'p2020-tippy.js', get_template_directory_uri() . '/js/vendor/tippy-bundle.umd.min.js', [], '20200427', true );
+	wp_enqueue_script( 'p2020-debounce', get_template_directory_uri() . '/js/vendor/jquery.ba-throttle-debounce.min.js', [], '20200416', true );
 
 	// Main enqueued file
-	wp_enqueue_script( 'p2020-js', get_template_directory_uri() . '/js/enqueued-main.js', [ 'p2020-mobile-helper', 'o2-enquire', 'p2020-modernizr' ], '20200416', true );
+	wp_enqueue_script( 'p2020-js', get_template_directory_uri() . '/js/enqueued-main.js', [ 'o2-enquire', 'p2020-modernizr' ], '20200416', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -245,6 +237,16 @@ function scripts() {
 
 // Our stylesheets need to be loaded after the O2 stylesheets to take priority
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts', 11 );
+
+/**
+ * Enqueue editor scripts and styles
+ */
+function editor_assets() {
+	// Main editor enqueued file
+	wp_enqueue_script( 'p2020-editor-js', get_template_directory_uri() . '/js/enqueued-editor-main.js', [  ], '20200430', true );
+}
+
+add_action( 'enqueue_block_editor_assets',  __NAMESPACE__ . '\editor_assets', 11 );
 
 /**
  * Add a no-sidebar body class, if there are no widgets in the sidebar.

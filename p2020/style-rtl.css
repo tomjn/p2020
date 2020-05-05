@@ -2309,6 +2309,11 @@ article.tag-p2-xpost .comment .avatar {
 	 */ }
   .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
     margin-bottom: 24px; }
+  .p2tenberg-editor .edit-post-editor-regions__header {
+    top: var(--editor-header-offset) !important; }
+    @media (max-width: 480px) {
+      .p2tenberg-editor .edit-post-editor-regions__header {
+        top: 0 !important; } }
   .p2tenberg-editor .block-editor-inserter__toggle.is-primary {
     background: transparent;
     color: inherit; }
