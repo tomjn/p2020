@@ -1567,6 +1567,115 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   position: absolute;
   visibility: hidden; }
 
+/***************************************************************************************************
+ * Master Threads as Sticky
+ */
+.blog .post.sticky.tag-master-thread {
+  position: relative;
+  margin-bottom: 2px;
+  transition: all 200ms ease-in;
+  border: none; }
+
+.blog .post.sticky.tag-master-thread + .post:not(.tag-master-thread) {
+  margin-top: 40px; }
+
+.blog .post.sticky.tag-master-thread:after {
+  content: '\f507';
+  -webkit-font-smoothing: antialiased;
+  font: normal 32px/1 Genericons;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 28px;
+  padding: 3px;
+  border-radius: 4px; }
+
+.blog .post.sticky.tag-master-thread:before {
+  /* This is to not use the P2 "Status" styling which is meaningless in this context */
+  display: none; }
+
+.blog .post.sticky.tag-master-thread h1:before {
+  content: "Master Thread";
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  color: var(--color-text-light);
+  transition: var(--transition-quick);
+  letter-spacing: 0.01em;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 2px; }
+
+.blog .post.sticky.tag-master-thread:hover h1:before {
+  color: var(--color-text); }
+
+.blog .post.sticky.tag-master-thread .o2-post .entry-header {
+  margin: 0; }
+
+.blog .post.sticky.tag-master-thread .o2-post {
+  border: 0;
+  padding: 20px 0 16px; }
+
+.blog .post.sticky.tag-master-thread h1 {
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-left: 10% !important;
+  font-size: 1.375rem; }
+
+.blog .post.sticky.tag-master-thread .entry-content,
+.blog .post.sticky.tag-master-thread .entry-meta,
+.blog .post.sticky.tag-master-thread .author-avatar {
+  display: none; }
+
+/***************************************************************************************************
+ * Master Threads Shortcode
+ */
+.shortcode-master-thread {
+  display: block;
+  position: relative;
+  background: #f3f6f8;
+  border: 1px solid #d8e2e9;
+  border-radius: 2px;
+  box-shadow: inset 45px 0px 0px 0px #ffffff, inset 46px 0px 0px 0px #d8e2e9;
+  padding: 8px 8px 8px 56px;
+  margin: 4px 0;
+  line-height: 1.2;
+  transition: all 200ms ease-in-out; }
+
+.shortcode-master-thread:hover {
+  border-color: #668eaa;
+  box-shadow: inset 45px 0px 0px 0px #ffffff, inset 46px 0px 0px 0px #d8e2e9, 0px 2px 2px 0 #d8e2e9; }
+
+.o2-posts a.shortcode-master-thread,
+.o2-posts a.shortcode-master-thread:hover {
+  /* These unfortunately needed higher specificity */
+  text-decoration: none;
+  color: #2e4453; }
+
+.shortcode-master-thread:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: calc(50% - 12px);
+  left: 11px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTYgMTYiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cGF0aCBkPSJNMTQsMTEuM1YxMGMwLTEuNy0xLjMtMy0zLTNIOVY0LjdjMC42LTAuMywxLTEsMS0xLjdjMC0xLjEtMC45LTItMi0yUzYsMS45LDYsM2MwLDAuNywwLjQsMS40LDEsMS43VjdINWMtMS43LDAtMywxLjMtMywzCgl2MS4zYy0wLjYsMC4zLTEsMS0xLDEuN2MwLDEuMSwwLjksMiwyLDJzMi0wLjksMi0yYzAtMC43LTAuNC0xLjQtMS0xLjdWMTBjMC0wLjYsMC40LTEsMS0xaDJ2Mi4zYy0wLjYsMC4zLTEsMS0xLDEuNwoJYzAsMS4xLDAuOSwyLDIsMnMyLTAuOSwyLTJjMC0wLjctMC40LTEuNC0xLTEuN1Y5aDJjMC42LDAsMSwwLjQsMSwxdjEuM2MtMC42LDAuMy0xLDEtMSwxLjdjMCwxLjEsMC45LDIsMiwyczItMC45LDItMgoJQzE1LDEyLjMsMTQuNiwxMS42LDE0LDExLjN6IE04LDIuMmMwLjQsMCwwLjgsMC4zLDAuOCwwLjhTOC40LDMuOCw4LDMuOEM3LjYsMy44LDcuMiwzLjQsNy4yLDNTNy42LDIuMiw4LDIuMnogTTMsMTMuOAoJYy0wLjQsMC0wLjgtMC4zLTAuOC0wLjhzMC4zLTAuOCwwLjgtMC44czAuOCwwLjMsMC44LDAuOFMzLjQsMTMuOCwzLDEzLjh6IE04LDEzLjhjLTAuNCwwLTAuOC0wLjMtMC44LTAuOHMwLjMtMC44LDAuOC0wLjgKCWMwLjQsMCwwLjgsMC4zLDAuOCwwLjhTOC40LDEzLjgsOCwxMy44eiBNMTMsMTMuOGMtMC40LDAtMC44LTAuMy0wLjgtMC44czAuMy0wLjgsMC44LTAuOHMwLjgsMC4zLDAuOCwwLjhTMTMuNCwxMy44LDEzLDEzLjh6Ii8+Cjwvc3ZnPgo=);
+  width: 24px;
+  height: 24px; }
+
+.shortcode-master-thread__subhead {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #87a6bc; }
+
+.shortcode-master-thread__title {
+  display: block;
+  font-weight: 600; }
+
+.shortcode-master-thread__meta {
+  font-size: 0.9em;
+  color: #4f748e; }
+
 #infinite-footer {
   display: none; }
 
