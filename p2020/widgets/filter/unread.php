@@ -208,25 +208,20 @@ function get_unread_count( $limit = null ) {
 
 	$unread_count = [];
 
-	$unread_count['posts'] = count(
-		get_posts_after_ts(
-			$last_active['posts'] ?? null,
-			$limit
-		)
-	);
+	$unread_count['posts'] = ( ! empty( $last_active['posts'] ) ) ?
+		count( get_posts_after_ts( $last_active['posts'], $limit ) ) :
+		0;
 
-	$unread_count['comments'] = count(
-		get_comments_after_ts(
-			$last_active['comments'] ?? null,
-			$limit
-		)
-	);
+	$unread_count['comments'] = ( ! empty( $last_active['comments'] ) ) ?
+		count(	get_comments_after_ts( $last_active['comments'], $limit ) ) :
+		0;
 
-	$unread_mentions = get_mentions_after_ts(
-		$last_active['mentions'] ?? null,
-		$limit
-	);
-	$unread_count['mentions'] =  count( $unread_mentions['posts'] ) + count( $unread_mentions['comments'] );
+	if ( ! empty( $last_active['mentions'] ) ) {
+		$unread_mentions = get_mentions_after_ts( $last_active['mentions'] ?? null, $limit );
+		$unread_count['mentions'] =  count( $unread_mentions['posts'] ) + count( $unread_mentions['comments'] );
+	} else {
+		$unread_count['mentions'] = 0;
+	}
 
 	return $unread_count;
 }
@@ -238,7 +233,7 @@ function get_unread_count( $limit = null ) {
  */
 function get_unread_posts() {
 	$last_active = get_last_active();
-	return get_posts_after_ts( $last_active['posts'] ?? null );
+	return get_posts_after_ts( $last_active['posts'] ?? null, $limit );
 }
 
 /**
@@ -248,7 +243,7 @@ function get_unread_posts() {
  */
 function get_unread_comments() {
 	$last_active = get_last_active();
-	return get_comments_after_ts( $last_active['comments'] ?? null );
+	return get_comments_after_ts( $last_active['comments'] ?? null, $limit );
 }
 
 /**
@@ -257,7 +252,7 @@ function get_unread_comments() {
  *
  * @return array Posts and comments (IDs only).
  */
-function get_unread_mentions() {
+function get_unread_mentions( $limit ) {
 	$last_active = get_last_active();
-	return get_mentions_after_ts( $last_active['mentions'] ?? null );
+	return get_mentions_after_ts( $last_active['mentions'] ?? null, $limit );
 }
