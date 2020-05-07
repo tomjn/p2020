@@ -1,0 +1,161 @@
+# Translation of WordPress.com - Themes - P2020 in Swedish
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-05-06 13:05:28+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: sv_SE\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
+
+#: widgets/my-team/my-team.php:193 widgets/my-team/my-team.php:194
+msgid "Invite people"
+msgstr "Bjud in personer"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "WordPress for Teams."
+msgstr "WordPress för team."
+
+#: widgets/my-team/my-team.php:57
+msgid "Title:"
+msgstr "Rubrik:"
+
+#: widgets/my-team/my-team.php:152
+msgid "Manage"
+msgstr "Hantera"
+
+#: widgets/my-team/my-team.php:67
+msgid "Display team members with role:"
+msgstr "Visa teammedlemmar med roll:"
+
+#: widgets/filter/filter.php:109
+msgid " more comment(s)"
+msgstr "fler kommentarer"
+
+#: widgets/my-team/my-team.php:62
+msgid "Limit no. of team members displayed to:"
+msgstr "Begränsningsantal av teammedlemmar visad till:"
+
+#: widgets/my-team/my-team.php:19
+msgid "A widget to showcase your team members."
+msgstr "En widget för att presentera dina teammedlemmar."
+
+#: sidebar.php:73
+msgid "Powered by WordPress.com"
+msgstr "Drivs med WordPress.com"
+
+#: widgets/filter/filter.php:42
+msgid "Recent comments"
+msgstr "Senaste kommentarer"
+
+#: widgets/filter/filter.php:108
+msgid "Read more"
+msgstr "Läs mer"
+
+#: widgets/filter/filter.php:54
+msgid "My posts"
+msgstr "Mina inlägg"
+
+#: widgets/filter/filter.php:99
+msgid "Return to home"
+msgstr "Tillbaka till hem"
+
+#: widgets/filter/filter.php:107
+msgid "Read full post"
+msgstr "Läs hela inlägget"
+
+#: widgets/filter/filter.php:48
+msgid "Mentions"
+msgstr "Omnämnanden"
+
+#: widgets/filter/filter.php:36
+msgid "Recent updates"
+msgstr "Senaste uppdateringar"
+
+#: searchform.php:14 searchform.php:15
+msgctxt "placeholder"
+msgid "Search"
+msgstr "Sök"
+
+#: sidebar.php:51
+msgid "Customize your site"
+msgstr "Anpassa din webbplats"
+
+#: sidebar.php:62
+msgid "Keyboard shortcuts"
+msgstr "Tangentbordsgenvägar"
+
+#: sidebar.php:67
+msgid "Help"
+msgstr "Hjälp"
+
+#: sidebar.php:44
+msgid "Invite people to your team"
+msgstr "Bjud in personer till ditt team"
+
+#: index.php:30
+msgid "New post"
+msgstr "Nytt inlägg"
+
+#: index.php:36
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: inc/contributors.php:77
+msgid "Contributors"
+msgstr "Bidragslämnare"
+
+#: inc/custom-header.php:43
+msgid "Default Header Image"
+msgstr "Standardrubrikbild"
+
+#: inc/extras.php:71
+msgid "Page %s"
+msgstr "Sida %s"
+
+#. translators: %s is replaced with the number of revisions
+#: inc/contributors.php:51
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] "%s version"
+msgstr[1] "%s versioner"
+
+#. translators: %1$s is replaced with the user's display name; %2$s is the
+#. user's nicename
+#: inc/contributors.php:42 widgets/my-team/my-team.php:168
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "Inlägg av %1$s ( @%2$s )"
+
+#: header.php:62
+msgid "Menu"
+msgstr "Meny"
+
+#: functions.php:296 widgets/my-team/my-team.php:17
+#: widgets/my-team/my-team.php:27
+msgid "Team"
+msgstr "Team"
+
+#: header.php:38
+msgid "Skip to content"
+msgstr "Hoppa till innehåll"
+
+#: functions.php:197
+msgctxt "Sans: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:179
+msgid "Sidebar"
+msgstr "Sidopanel"
+
+#: functions.php:160
+msgid "Home"
+msgstr "Hem"
+
+#: functions.php:147
+msgid "Primary Menu"
+msgstr "Primär meny"
