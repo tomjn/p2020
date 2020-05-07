@@ -102,6 +102,10 @@ if ( is_user_logged_in() ) {
  * @return array Posts (IDs only).
  */
 function get_posts_after_ts( $ts = null, $limit = null ) {
+	if ( empty( $ts ) ) {
+		return [];
+	}
+
 	$args = [
 		'post_type' => 'post',
 		'posts_per_page' => $limit ?? -1,
@@ -110,14 +114,11 @@ function get_posts_after_ts( $ts = null, $limit = null ) {
 	];
 
 	// If $ts is set, we filter on that
-	if ( ! empty( $ts ) ) {
-		$ts_condition = [
-			'after' => date( 'Y-m-d H:i:s e', $ts ),
-			'inclusive' => true,
-		];
-
-		$args['date_query'] = [ $ts_condition ];
-	}
+	$ts_condition = [
+		'after' => date( 'Y-m-d H:i:s e', $ts ),
+		'inclusive' => true,
+	];
+	$args['date_query'] = [ $ts_condition ];
 
 	$query = new \WP_Query( $args );
 
@@ -133,6 +134,10 @@ function get_posts_after_ts( $ts = null, $limit = null ) {
  * @return array Comments (IDs only).
  */
 function get_comments_after_ts( $ts = null, $limit = null ) {
+	if ( empty( $ts ) ) {
+		return [];
+	}
+
 	$args = [
 		'post_type' => 'post',
 		'type' => 'comment',
@@ -140,15 +145,12 @@ function get_comments_after_ts( $ts = null, $limit = null ) {
 		'fields' => 'ids',
 	];
 
-	// If $ts is set, we filter on that
-	if ( ! empty( $ts ) ) {
-		$ts_condition = [
-			'after' => date( 'Y-m-d H:i:s e', $ts ),
-			'inclusive' => true,
-		];
+	$ts_condition = [
+		'after' => date( 'Y-m-d H:i:s e', $ts ),
+		'inclusive' => true,
+	];
 
-		$args['date_query'] = [ $ts_condition ];
-	}
+	$args['date_query'] = [ $ts_condition ];
 
 	if ( isset( $limit ) ) {
 		$args['number'] = $limit;
@@ -174,6 +176,11 @@ function get_mentions_after_ts( $ts = null, $limit = null ) {
 		'posts' => [],
 		'comments' => [],
 	];
+
+	if ( empty( $ts ) ) {
+		return $mentions;
+	}
+
 	$user = wp_get_current_user();
 	$unread_posts = get_posts_after_ts( $ts, $limit );
 	foreach ( $unread_posts as $post_id ) {
@@ -183,7 +190,7 @@ function get_mentions_after_ts( $ts = null, $limit = null ) {
 		}
 	}
 
-	$unread_comments = get_comments_after_ts( $ts );
+	$unread_comments = get_comments_after_ts( $ts, $limit );
 	foreach ( $unread_comments as $comment_id ) {
 		$comment_mentions = \Jetpack_Mentions::get_comment_mentions( $comment_id );
 		if ( in_array( $user->user_nicename, $comment_mentions ) ) {
@@ -217,7 +224,7 @@ function get_unread_count( $limit = null ) {
 		0;
 
 	if ( ! empty( $last_active['mentions'] ) ) {
-		$unread_mentions = get_mentions_after_ts( $last_active['mentions'] ?? null, $limit );
+		$unread_mentions = get_mentions_after_ts( $last_active['mentions'], $limit );
 		$unread_count['mentions'] =  count( $unread_mentions['posts'] ) + count( $unread_mentions['comments'] );
 	} else {
 		$unread_count['mentions'] = 0;

@@ -1,0 +1,80 @@
+.widget_p2020-pages-widget {
+	.widget-title {
+		align-items: flex-end;
+		display: flex;
+		margin-bottom: 1.25rem;
+		justify-content: space-between;
+		width: 100%;
+	}
+
+	/* We want the hover background to cover the entire line,
+		hence, we remove nested ul margins and hardcode
+		left paddings based on nesting level */
+	ul ul {
+		margin: 0;
+	}
+
+	ul ul .widget-p2020-pages-label {
+		padding-left: 1em;
+	}
+
+	ul ul ul .widget-p2020-pages-label {
+		padding-left: 2em;
+	}
+
+	ul.subtree-collapsed {
+		display: none;
+	}
+
+	li.page_item {
+		a {
+			color: var(--color-text);
+		}
+
+		.widget-p2020-pages-label {
+			display: flex;
+			line-height: pxrem(34);
+
+			&:hover {
+				background-color: var(--color-background-light);
+
+				> .widget-p2020-pages-add a::before {
+					@include icon("custom-add", pxrem(22), currentColor);
+					vertical-align: middle;
+				}
+
+				> .widget-p2020-pages-link a {
+					color: var(--color-link);
+				}
+			}
+
+			.widget-p2020-pages-link {
+				flex: 2;
+			}
+
+			.widget-p2020-pages-add {
+				justify-self: flex-end;
+			}
+
+			.widget-p2020-pages-expand {
+				margin-right: 0.5em;
+				min-width: 1.8em;
+				outline: none;
+
+				button {
+					border: none;
+
+					&.btn-expanded {
+						@include icon("custom-chevron-down", pxrem(22), currentColor);
+						vertical-align: middle;
+					}
+
+					&.btn-collapsed {
+						@include icon("custom-chevron-right", pxrem(22), currentColor);
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+	}
+}

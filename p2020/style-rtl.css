@@ -415,45 +415,13 @@ body {
     font-size: 2em; } }
 
 @media print {
-  * {
-    color: #000 !important;
-    background-color: #fff !important;
-    box-shadow: none; }
-  body {
-    background-color: #fff !important; }
-  /* Disable reason: Selector `.widget_office-hours-widget` is not ours */
-  /* stylelint-disable selector-class-pattern */
-  #secondary,
-  .o2-app-new-post,
-  .author-avatar,
-  .entry-actions,
-  .sharedaddy,
-  .o2-post-comments-collapsed,
-  .comment-likes,
-  .o2-app-page-title,
-  #wpstats,
-  #wpeditor-container,
-  .widget.widget_office-hours-widget,
-  #respond,
-  footer,
-  #static-footer,
-  .navigation,
-  .o2-comment-actions,
-  .o2-dropdown-actions,
-  .o2-dropdown-actions-disclosure.genericon.genericon-ellipsis,
-  #superadminbar {
-    display: none !important; }
-  /* stylelint-enable selector-class-pattern */
-  #masthead {
+  html {
+    margin-top: 0 !important; }
+  #wpadminbar,
+  .o2-editor {
     display: none; }
-  #primary {
-    width: 100%; }
-  .entry-content,
-  .entry-header,
-  .entry-meta,
-  .entry-title {
-    margin-right: 0 !important;
-    padding-right: 0 !important; } }
+  #masthead {
+    position: static; } }
 
 /**
  * CORE PARTIALS
@@ -1779,7 +1747,6 @@ footer.entry-meta {
   border-right: 2px solid #ff9912; }
 
 .navigation {
-  margin: 0 0 2em;
   padding: 0;
   overflow: hidden;
   border-top: 1px solid var(--color-border);
@@ -2669,3 +2636,74 @@ article.tag-p2-xpost .comment .avatar {
     width: 1.5rem;
     height: 1.5rem;
     background: currentColor; }
+
+.widget_p2020-pages-widget {
+  /* We want the hover background to cover the entire line,
+		hence, we remove nested ul margins and hardcode
+		left paddings based on nesting level */ }
+  .widget_p2020-pages-widget .widget-title {
+    align-items: flex-end;
+    display: flex;
+    margin-bottom: 1.25rem;
+    justify-content: space-between;
+    width: 100%; }
+  .widget_p2020-pages-widget ul ul {
+    margin: 0; }
+  .widget_p2020-pages-widget ul ul .widget-p2020-pages-label {
+    padding-right: 1em; }
+  .widget_p2020-pages-widget ul ul ul .widget-p2020-pages-label {
+    padding-right: 2em; }
+  .widget_p2020-pages-widget ul.subtree-collapsed {
+    display: none; }
+  .widget_p2020-pages-widget li.page_item a {
+    color: var(--color-text); }
+  .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label {
+    display: flex;
+    line-height: 2.125rem; }
+    .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label:hover {
+      background-color: var(--color-background-light); }
+      .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label:hover > .widget-p2020-pages-add a::before {
+        content: "";
+        display: inline-block;
+        -webkit-mask: url(img/icons/custom-add.svg) no-repeat;
+                mask: url(img/icons/custom-add.svg) no-repeat;
+        -webkit-mask-size: cover;
+                mask-size: cover;
+        width: 1.375rem;
+        height: 1.375rem;
+        background: currentColor;
+        vertical-align: middle; }
+      .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label:hover > .widget-p2020-pages-link a {
+        color: var(--color-link); }
+    .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label .widget-p2020-pages-link {
+      flex: 2; }
+    .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label .widget-p2020-pages-add {
+      justify-self: flex-end; }
+    .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label .widget-p2020-pages-expand {
+      margin-left: 0.5em;
+      min-width: 1.8em;
+      outline: none; }
+      .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label .widget-p2020-pages-expand button {
+        border: none; }
+        .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label .widget-p2020-pages-expand button.btn-expanded {
+          content: "";
+          display: inline-block;
+          -webkit-mask: url(img/icons/custom-chevron-down.svg) no-repeat;
+                  mask: url(img/icons/custom-chevron-down.svg) no-repeat;
+          -webkit-mask-size: cover;
+                  mask-size: cover;
+          width: 1.375rem;
+          height: 1.375rem;
+          background: currentColor;
+          vertical-align: middle; }
+        .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label .widget-p2020-pages-expand button.btn-collapsed {
+          content: "";
+          display: inline-block;
+          -webkit-mask: url(img/icons/custom-chevron-right.svg) no-repeat;
+                  mask: url(img/icons/custom-chevron-right.svg) no-repeat;
+          -webkit-mask-size: cover;
+                  mask-size: cover;
+          width: 1.375rem;
+          height: 1.375rem;
+          background: currentColor;
+          vertical-align: middle; }

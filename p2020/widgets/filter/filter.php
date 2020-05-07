@@ -11,17 +11,15 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 	var $filters;
 	var $last_active;
-	var $unread_posts;
-	var $unread_comments;
-	var $unread_mentions;
 
+	const QUERY_ROWS_LIMIT = 100;
 	const UNREAD_COUNT_DISPLAY_LIMIT = 99; // displays "99+" if unread is > 99
 
 	function __construct() {
 
 		\WP_Widget::__construct(
 			'p2020-filter-widget', // Base ID
-			'P2020 Filter Widget', // Name
+			'P2020 Filter', // Name
 			[ 'description' => __( 'An extension of the o2 filter widget, with unread counts.', 'p2020' ) ]
 		);
 
@@ -73,16 +71,12 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			// Retrieve activity and unread content during 'widgets_init'
 			//     ie. before visit timestamps are updated
 			$this->last_active = get_last_active();
-			$this->unread_posts = isset( $this->last_active['posts'] ) ? get_unread_posts( self::UNREAD_COUNT_DISPLAY_LIMIT ) : [];
-			$this->unread_comments = isset( $this->last_active['comments'] ) ? get_unread_comments( self::UNREAD_COUNT_DISPLAY_LIMIT ) : [];
-			$this->unread_mentions = isset( $this->last_active['mentions'] ) ? get_unread_mentions( self::UNREAD_COUNT_DISPLAY_LIMIT ) : [];
 
 			// Add CSS class for unread content
 			// We do the is_filter_active() check inside the function, because our custom param
 			//    isn't registered until then!
-			add_filter( 'post_class', [ $this, 'add_class_for_filter_posts' ], 10, 3 );
-			add_filter( 'post_class', [ $this, 'add_class_for_unread_posts' ], 10, 3 );
-			add_filter( 'comment_class', [ $this, 'add_class_for_unread_comments' ], 10, 3 );
+			add_filter( 'post_class', [ $this, 'custom_classes_for_posts' ], 10, 3 );
+			add_filter( 'comment_class', [ $this, 'custom_classes_for_comments' ], 10, 3 );
 
 			// Modify the posts query depending on which filter is active
 			add_action( 'pre_get_posts', [ $this, 'alter_query_for_filter_views' ] );
@@ -173,40 +167,43 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		return $o2_options;
 	}
 
-	function add_class_for_filter_posts( $classes, $class, $post_id ) {
+	function custom_classes_for_posts( $classes, $class, $post_id ) {
+		if ( is_filter_active( 'posts' ) ) {
+			$classes[] = 'p2020-unread-post';
+		}
+
 		if ( is_filter_active( 'comments' ) ) {
 			$classes[] = 'p2020-post-read-more';
 		}
 
-		return $classes;
-	}
-
-	function add_class_for_unread_posts( $classes, $class, $post_id ) {
-		if ( is_filter_active( 'posts' ) &&
-			is_array( $this->unread_posts ) && in_array( $post_id, $this->unread_posts ) ) {
-			$classes[] = 'p2020-unread-post';
-		}
-
-		if ( is_filter_active( 'mentions' ) &&
-				is_array( $this->unread_mentions['posts'] ) && in_array( $post_id, $this->unread_mentions['posts'] ) ) {
-			$classes[] = 'p2020-unread-mention';
+		if ( is_filter_active( 'mentions' ) ) {
+			$ts = $this->last_active['mentions'] ?? null;
+			$unread_mentions = get_mentions_after_ts( $ts, self::QUERY_ROWS_LIMIT );
+			if ( is_array( $unread_mentions['posts'] ) && in_array( $post_id, $unread_mentions['posts'] ) ) {
+				$classes[] = 'p2020-unread-mention';
+			}
 		}
 
 		return $classes;
 	}
 
-	function add_class_for_unread_comments( $classes, $class, $comment_id ) {
+	function custom_classes_for_comments( $classes, $class, $comment_id ) {
 		if ( is_filter_active( 'comments' ) ) {
-			if ( is_array( $this->unread_comments ) && in_array( $comment_id, $this->unread_comments ) ) {
+			$ts = $this->last_active['comments'] ?? null;
+			$unread_comments = get_comments_after_ts( $ts, self::QUERY_ROWS_LIMIT );
+			if ( is_array( $unread_comments ) && in_array( $comment_id, $unread_comments ) ) {
 				$classes[] = 'p2020-unread-comment';
 			} else {
 				$classes[] = 'p2020-comment-read-more';
 			}
 		}
 
-		if ( is_filter_active( 'mentions' ) &&
-				is_array( $this->unread_mentions['comments'] ) && in_array( $comment_id, $this->unread_mentions['comments'] ) ) {
-			$classes[] = 'p2020-unread-mention';
+		if ( is_filter_active( 'mentions' ) ) {
+			$ts = $this->last_active['mentions'] ?? null;
+			$unread_mentions = get_mentions_after_ts( $ts, self::QUERY_ROWS_LIMIT );
+			if ( is_array( $unread_mentions['comments'] ) && in_array( $post_id, $unread_mentions['comments'] ) ) {
+				$classes[] = 'p2020-unread-mention';
+			}
 		}
 
 		return $classes;
@@ -283,11 +280,13 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			return $title;
 		}
 
-		if ( $type === 'posts' && empty ( $this->unread_posts ) ) {
+		global $wp_query;
+
+		if ( $type === 'posts' &&  $wp_query->found_posts === 0 ) {
 			return '';
 		}
 
-		if ( $type === 'comments' && empty ( $this->unread_comments ) ) {
+		if ( $type === 'comments' && $wp_query->found_posts === 0 ) {
 			return '';
 		}
 

@@ -20,6 +20,11 @@ if ( is_user_logged_in() ) {
 }
 
 /**
+ * Load Pages widget
+ */
+require_once( get_template_directory() . '/widgets/pages/pages.php' );
+
+/**
  * Load partner plugins loader file.
  */
 require_once( 'thirdparty.php' );
@@ -282,11 +287,31 @@ function enable_default_widgets() {
 	$should_run = get_option( 'p2020_reset_sidebar' );
 	if ( $should_run ) {
 
-		$widget_no = 2;
+		$widget_no = 3;
+
+		$show_for_posts = [
+			'action' => 'show',
+			'match_all' => 0,
+			'rules' => [
+				[ 'major' => 'page', 'minor' => 'front' ],
+				[ 'major' => 'page', 'minor' => 'archive' ],
+				[ 'major' => 'page', 'minor' => 'post_type-post' ],
+			],
+		];
+
+		$show_for_pages = [
+			'action' => 'show',
+			'match_all' => 0,
+			'rules' => [
+				[ 'major' => 'page', 'minor' => 'post_type-page' ],
+			],
+		];
 
 		// P2020 Filter widget (widgets/filter)
 		$filter_widget_settings = [
-			$widget_no => []
+			$widget_no => [
+				'conditions' => $show_for_posts,
+			]
 		];
 		update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
 
@@ -295,14 +320,26 @@ function enable_default_widgets() {
 			$widget_no => [
 				'title' => __( 'Team', 'p2020' ),
 				'limit' => 17,
+				'conditions' => $show_for_posts,
 			]
 		];
 		update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
+
+		// Pages widget
+		$pages_widget_settings = [
+			$widget_no => [
+				'title' => __( 'Pages', 'p2020' ),
+				'sortby' => 'post_title',
+				'conditions' => $show_for_pages,
+			],
+		];
+		update_option( 'widget_p2020-pages-widget', $pages_widget_settings );
 
 		// Add widgets to sidebar
 		$sidebars['sidebar-1'] = [
 			'p2020-my-team-widget-' . $widget_no,
 			'p2020-filter-widget-' . $widget_no,
+			'p2020-pages-widget-' . $widget_no,
 		];
 
 		$sidebars['wp_inactive_widgets'] = [];
