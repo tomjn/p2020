@@ -65,11 +65,6 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 	}
 
 	private function enhance_page_items( $pages_html ) {
-		// Add subtree-collapsed to level 3 onwards
-		$level3plus_pattern = '/<ul class=["\']children[\'"]([\S\s]+?)<ul class=[\'"]children[\'"]/i';
-		$subtree_collapse = '<ul class="children"$1<ul class="children subtree-collapsed"';
-		$pages_html = preg_replace( $level3plus_pattern, $subtree_collapse, $pages_html );
-
 		// Add expand/collapse icons, 'add page' link icon
 		$page_item_pattern = '/(<li .* page-item-([0-9]+).*>)(<a .*>.*<\/a>)/i';
 		$enhanced_page_item = '$1
