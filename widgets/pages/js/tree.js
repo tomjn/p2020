@@ -1,4 +1,10 @@
 ( function( $ ) {
+	const collapseLowerLevels = () => {
+		$( '.widget_p2020-pages-widget ' )
+			.find( 'ul.children > li.page_item_has_children > ul.children' )
+			.addClass( 'subtree-collapsed' );
+	};
+
 	const showSubtree = ( $element ) => {
 		$element
 			.closest( '.page_item' )
@@ -22,6 +28,8 @@
 	};
 
 	$( function() {
+		collapseLowerLevels();
+
 		$( document.body ).on( 'click', '.btn-collapsed', function() {
 			showSubtree( $( this ) );
 			toggleClass( $( this ) );
