@@ -73,3 +73,16 @@ function wp_title( $title, $sep ) {
 	return $title;
 }
 add_filter( 'wp_title', 'P2020\wp_title', 10, 2 );
+
+/**
+ * Function for wrapping output that have HTML and should not be escaped, for purposes
+ * of whitelisting. As suggested in
+ * https://github.com/WordPress/WordPress-Coding-Standards/wiki/Whitelisting-code-which-flags-errors#when-to-use
+ *
+ * @param $str The string
+ *
+ * @return string
+ */
+function html_output( $str ) {
+	return $str;
+}
