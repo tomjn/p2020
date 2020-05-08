@@ -5,7 +5,7 @@
  * @package p2020
  */
 
-if( ! is_active_sidebar( 'sidebar-1' ) )
+if( ! is_active_sidebar( 'sidebar-1' ) && ! ( is_page() && is_active_sidebar( 'sidebar-pages' ) ) )
 	return;
 
 $site_slug = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
@@ -34,7 +34,13 @@ $help_url = 'https://wordpress.com/help';
 			</div>
 
 			<?php do_action( 'before_sidebar' ); ?>
-			<?php dynamic_sidebar( 'sidebar-1' ); ?>
+			<?php
+				if ( is_page() && is_active_sidebar( 'sidebar-pages' ) ) {
+					dynamic_sidebar( 'sidebar-pages' );
+				} else {
+					dynamic_sidebar( 'sidebar-1' );
+				}
+			?>
 
 			<footer class="p2020-sidebar__footer">
 				<ul class="p2020-sidebar__footer-links">

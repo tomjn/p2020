@@ -83,19 +83,6 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 		$enhanced_page_item .= '</div>';
 		$pages_html = preg_replace( $page_item_pattern, $enhanced_page_item, $pages_html );
 
-		// Display an expand/collapse button if has children, default btn-expanded
-		$pages_html = preg_replace(
-			'/<li class="(.*)page_item_has_children([\S\s]+?)widget-p2020-pages-expand([\S\s]+?)button/i',
-			'<li class="$1page_item_has_children$2widget-p2020-pages-expand$3button class="btn-expanded"',
-			$pages_html
-		);
-		// Add 'btn-collapsed' class if not root and has children
-		$pages_html = preg_replace(
-			'/<ul class=["\']children["\']>(\s*)<li class="(.*)page_item_has_children([\S\s]+?)widget-p2020-pages-expand([\S\s]+?)button class="btn-expanded"/i',
-			'<ul class="children">$1<li class="$2page_item_has_children$3widget-p2020-pages-expand$4button class="btn-collapsed"',
-			$pages_html
-		);
-
 		return $pages_html;
 	}
 

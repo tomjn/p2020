@@ -1,5 +1,19 @@
 ( function( $ ) {
 	const collapseLowerLevels = () => {
+		$(
+			'ul:not(.children)' +
+				' > li.page_item_has_children' +
+				' > .widget-p2020-pages-label' +
+				' > .widget-p2020-pages-expand > button'
+		).addClass( 'btn-expanded' );
+
+		$(
+			'ul.children' +
+				' > li.page_item_has_children' +
+				' > .widget-p2020-pages-label' +
+				' > .widget-p2020-pages-expand > button'
+		).addClass( 'btn-collapsed' );
+
 		$( '.widget_p2020-pages-widget ' )
 			.find( 'ul.children > li.page_item_has_children > ul.children' )
 			.addClass( 'subtree-collapsed' );

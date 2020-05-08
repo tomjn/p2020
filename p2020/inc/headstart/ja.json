@@ -5,7 +5,7 @@
 			"blogdescription": "Welcome to your WordPress for Teams site!",
 			"stylesheet": "pub\/p2020",
 			"blog_public": -1,
-			"p2020_reset_sidebar": true
+			"p2020_sidebar_setup": "reset"
 		},
 		"theme_mods": {},
 		"headstart": {
