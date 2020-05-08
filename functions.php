@@ -181,8 +181,17 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
  */
 function widgets_init() {
 	register_sidebar( [
-		'name' => __( 'Sidebar', 'p2020' ),
+		'name' => __( 'Sidebar for Posts', 'p2020' ),
 		'id' => 'sidebar-1',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h2 class="widget-title">',
+		'after_title' => '</h2>',
+	] );
+
+	register_sidebar( [
+		'name' => __( 'Sidebar for Pages', 'p2020' ),
+		'id' => 'sidebar-pages',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h2 class="widget-title">',
@@ -257,7 +266,7 @@ add_action( 'enqueue_block_editor_assets',  __NAMESPACE__ . '\editor_assets', 11
  * Add a no-sidebar body class, if there are no widgets in the sidebar.
  */
 function check_no_sidebar( $body_classes ) {
-	if( ! is_active_sidebar( 'sidebar-1' ) )
+	if( ! is_active_sidebar( 'sidebar-1' ) && ! ( is_page() && is_active_sidebar( 'sidebar-pages' ) ) )
 		$body_classes[] = 'no-sidebar';
 
 	return $body_classes;
@@ -284,75 +293,65 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\set_homepage_display', 102 );
  * Add recommended widgets to sidebar
  */
 function enable_default_widgets() {
-	$should_run = get_option( 'p2020_reset_sidebar' );
-	if ( $should_run ) {
+	$setup_option = get_option( 'p2020_sidebar_setup' );
+	if ( $setup_option === 'reset' ) {
+		$sidebars_widgets[ 'sidebar-1' ] = [];
+		$sidebars_widgets[ 'sidebar-pages' ] = [];
+	} else {
+		$sidebars_widgets = get_option( 'sidebars_widgets' );
+	}
 
+	if ( $setup_option === 'reset' || $setup_option === 'add' ) {
 		$widget_no = 3;
 
-		$show_for_posts = [
-			'action' => 'show',
-			'match_all' => 0,
-			'rules' => [
-				[ 'major' => 'page', 'minor' => 'front' ],
-				[ 'major' => 'page', 'minor' => 'archive' ],
-				[ 'major' => 'page', 'minor' => 'post_type-post' ],
-			],
-		];
-
-		$show_for_pages = [
-			'action' => 'show',
-			'match_all' => 0,
-			'rules' => [
-				[ 'major' => 'page', 'minor' => 'post_type-page' ],
-			],
-		];
-
 		// P2020 Filter widget (widgets/filter)
-		$filter_widget_settings = [
-			$widget_no => [
-				'conditions' => $show_for_posts,
-			]
-		];
-		update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
+		if ( empty( $sidebars_widgets['sidebar-1'] ) ||
+				! in_array( "p2020-filter-widget-{$widget_no}", $sidebars_widgets['sidebar-1'] ) ) {
+			$filter_widget_settings = [
+				$widget_no => []
+			];
+			update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
+			$sidebars_widgets['sidebar-1'][] = "p2020-filter-widget-{$widget_no}";
+		}
 
 		// My Team widget (widgets/myteam)
-		$team_widget_settings = [
-			$widget_no => [
-				'title' => __( 'Team', 'p2020' ),
-				'limit' => 17,
-				'conditions' => $show_for_posts,
-			]
-		];
-		update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
+		if ( empty( $sidebars_widgets['sidebar-1'] ) ||
+				! in_array( "p2020-my-team-widget-{$widget_no}", $sidebars_widgets['sidebar-1'] ) ) {
+			$team_widget_settings = [
+				$widget_no => [
+					'title' => __( 'Team', 'p2020' ),
+					'limit' => 17,
+				]
+			];
+			update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
+			$sidebars_widgets['sidebar-1'][] = "p2020-my-team-widget-{$widget_no}";
+		}
 
 		// Pages widget
-		$pages_widget_settings = [
-			$widget_no => [
-				'title' => __( 'Pages', 'p2020' ),
-				'sortby' => 'post_title',
-				'conditions' => $show_for_pages,
-			],
-		];
-		update_option( 'widget_p2020-pages-widget', $pages_widget_settings );
+		if ( empty( $sidebars_widgets['sidebar-pages'] ) ||
+				! in_array( "p2020-pages-widget-{$widget_no}", $sidebars_widgets['sidebar-pages'] ) ) {
 
-		// Add widgets to sidebar
-		$sidebars['sidebar-1'] = [
-			'p2020-my-team-widget-' . $widget_no,
-			'p2020-filter-widget-' . $widget_no,
-			'p2020-pages-widget-' . $widget_no,
-		];
+			$pages_widget_settings = [
+				$widget_no => [
+					'title' => __( 'Pages', 'p2020' ),
+					'sortby' => 'menu_order',
+					'conditions' => $show_for_pages,
+				],
+			];
+			update_option( 'widget_p2020-pages-widget', $pages_widget_settings );
+			$sidebars_widgets['sidebar-pages'][] = "p2020-pages-widget-{$widget_no}";
+		}
 
-		$sidebars['wp_inactive_widgets'] = [];
-		$sidebars['array_version'] = 3;
+		// Save sidebar updates
+		$sidebars_widgets['array_version'] = 3;
+		update_option( 'sidebars_widgets', $sidebars_widgets );
 
-		update_option( 'sidebars_widgets', $sidebars );
-
-		// Set to false afterwards
-		update_option( 'p2020_reset_sidebar', false );
+		// Clear setup flag afterwards
+		update_option( 'p2020_sidebar_setup', '' );
 
 		// Refresh sidebars_widgets cache
 		global $_wp_sidebars_widgets;
-		$_wp_sidebars_widgets = get_option( 'sidebars_widgets' );
+		$_wp_sidebars_widgets = $sidebars_widgets;
 	}
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_default_widgets' );
