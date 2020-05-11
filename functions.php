@@ -357,18 +357,6 @@ function enable_default_widgets() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_default_widgets' );
 
 /**
- * Enables x-posting for a8c p2 sites
- */
-function enable_xposts() {
-	require_once( 'a8c-xpost.php' );
-	new A8c_XPost();
-}
-
-if ( is_a8c_p2() ) {
-	add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_xposts' );
-}
-
-/**
  * Hide editor for certain views:
  *     - search results page
  *     - tag archives
