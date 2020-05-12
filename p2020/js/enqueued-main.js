@@ -2226,6 +2226,73 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     });
   });
+})(jQuery);
+
+(function ($) {
+  var attrHiddenItem = 'data-header-menu-hidden';
+  var attrMenuMore = 'data-header-menu-more'; // If there are menu items that overflow the available space,
+  // hide them inside the "More" menu item at the end.
+
+  function handleOverflowingMenuItems() {
+    var $hiddenMenuItems = $("[".concat(attrHiddenItem, "]"));
+    var $moreItemsNode = $("[".concat(attrMenuMore, "]"));
+
+    if ($hiddenMenuItems.length) {
+      // "Reset" items that were already hidden (For window resize events)
+      resetHiddenMenuItems($hiddenMenuItems, $moreItemsNode); // Defer until resetHiddenMenuItems() has rendered
+
+      window.setTimeout(function () {
+        return moveOverflowingItemsToMore($moreItemsNode);
+      }, 0);
+    } else {
+      moveOverflowingItemsToMore($moreItemsNode);
+    }
+  }
+
+  function getRightOffset($item) {
+    return $item.offset().left + $item.innerWidth();
+  } // Move back any hidden menu items
+
+
+  function resetHiddenMenuItems($hiddenMenuItems, $moreItemsNode) {
+    $hiddenMenuItems.each(function () {
+      $(this).removeAttr(attrHiddenItem);
+      $(this).insertBefore($moreItemsNode);
+    });
+    $moreItemsNode.attr('hidden', true);
+  }
+
+  function moveOverflowingItemsToMore($moreItemsNode) {
+    var $menu = $('[data-header-main] nav');
+    var $menuItems = $menu.find("> ul > li:not(\"[".concat(attrMenuMore, "]\")"));
+
+    var _$$offset = $('[data-header-search]').offset(),
+        searchBoxLeftOffset = _$$offset.left;
+
+    var margin = 24;
+    var threshold = searchBoxLeftOffset - margin;
+    var overflowWidth = getRightOffset($menuItems.last()) - threshold;
+    $menu.removeClass('should-delay-visibility');
+
+    if (overflowWidth <= 0) {
+      return;
+    }
+
+    overflowWidth += $moreItemsNode.innerWidth();
+    $moreItemsNode.removeAttr('hidden');
+    $menuItems.get().reverse().forEach(function (item) {
+      if (overflowWidth > 0) {
+        overflowWidth -= $(item).innerWidth();
+        $(item).attr(attrHiddenItem, true);
+        $moreItemsNode.children('.sub-menu').prepend(item);
+      }
+    });
+  }
+
+  $(document).ready(function () {
+    handleOverflowingMenuItems();
+    $(window).on('resize', $.debounce(200, handleOverflowingMenuItems));
+  });
 })(jQuery); // TODO: Test and clean up for P2020
 
 

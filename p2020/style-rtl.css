@@ -344,6 +344,7 @@ input[type="search"] {
     -webkit-appearance: none; }
 
 body {
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 32px); }
@@ -589,12 +590,12 @@ body {
  * UI PARTIALS
  * First-party classes and Sass placeholders that we have control over
  */
-.type-page .alignfull, .type-post .alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .alignfull, .p2tenberg-editor__post .block-editor-block-list__layout:first-child .alignfull, .p2tenberg-editor__page .block-editor-block-list__layout:first-child .alignfull {
+.type-page .wp-block-image.alignfull, .type-post .wp-block-image.alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .wp-block-image.alignfull, .p2tenberg-editor__post .block-editor-block-list__layout:first-child .wp-block-image.alignfull, .p2tenberg-editor__page .block-editor-block-list__layout:first-child .wp-block-image.alignfull {
   margin-right: -12.5%;
   margin-left: -12.5%;
   width: 125%; }
   @media (max-width: 550px) {
-    .type-page .alignfull, .type-post .alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .alignfull, .p2tenberg-editor__post .block-editor-block-list__layout:first-child .alignfull, .p2tenberg-editor__page .block-editor-block-list__layout:first-child .alignfull {
+    .type-page .wp-block-image.alignfull, .type-post .wp-block-image.alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .wp-block-image.alignfull, .p2tenberg-editor__post .block-editor-block-list__layout:first-child .wp-block-image.alignfull, .p2tenberg-editor__page .block-editor-block-list__layout:first-child .wp-block-image.alignfull {
       margin-right: -2em;
       margin-left: -2em;
       width: calc(100% + 4em); } }
@@ -736,6 +737,7 @@ body {
   font-size: 0.8em; }
 
 .entry-content .p2020-contributors {
+  clear: both;
   margin: 4em 0 3em; }
 
 .entry-content .p2020-contributors__heading {
@@ -1015,51 +1017,29 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     .comment-content pre > :last-child,
     .entry-content pre > :last-child {
       margin-bottom: 0; }
-  .p2tenberg-editor .block-editor-writing-flow li, .comment-content li, .entry-content li {
+  .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item), .comment-content li:not(.blocks-gallery-item), .entry-content li:not(.blocks-gallery-item) {
     margin-bottom: 0.5em; }
-    .p2tenberg-editor .block-editor-writing-flow li > ul, .comment-content li > ul, .entry-content li > ul,
-    .p2tenberg-editor .block-editor-writing-flow li > ol,
-    .comment-content li > ol,
-    .entry-content li > ol {
+    .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item) > ul, .comment-content li:not(.blocks-gallery-item) > ul, .entry-content li:not(.blocks-gallery-item) > ul,
+    .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item) > ol,
+    .comment-content li:not(.blocks-gallery-item) > ol,
+    .entry-content li:not(.blocks-gallery-item) > ol {
       margin-top: 0.5em; }
-  .p2tenberg-editor .block-editor-writing-flow figure, .comment-content figure, .entry-content figure,
+  .p2tenberg-editor .block-editor-writing-flow .wp-block-image:not(.wp-block), .comment-content .wp-block-image:not(.wp-block), .entry-content .wp-block-image:not(.wp-block),
   .p2tenberg-editor .block-editor-writing-flow .wp-caption,
   .comment-content .wp-caption,
-  .entry-content .wp-caption,
-  .p2tenberg-editor .block-editor-writing-flow .alignleft,
-  .comment-content .alignleft,
-  .entry-content .alignleft,
-  .p2tenberg-editor .block-editor-writing-flow .alignright,
-  .comment-content .alignright,
-  .entry-content .alignright,
-  .p2tenberg-editor .block-editor-writing-flow .aligncenter,
-  .comment-content .aligncenter,
-  .entry-content .aligncenter,
-  .p2tenberg-editor .block-editor-writing-flow .alignwide,
-  .comment-content .alignwide,
-  .entry-content .alignwide,
-  .p2tenberg-editor .block-editor-writing-flow .alignfull,
-  .comment-content .alignfull,
-  .entry-content .alignfull {
+  .entry-content .wp-caption {
     margin-bottom: 1.7em; }
-  
-  .p2tenberg-editor .block-editor-writing-flow .alignleft,
-  .comment-content .alignleft,
-  .entry-content .alignleft {
+  .p2tenberg-editor .block-editor-writing-flow .alignleft, .comment-content .alignleft, .entry-content .alignleft {
     display: inline;
     float: right;
-    margin-left: 1.7em; }
-  
-  .p2tenberg-editor .block-editor-writing-flow .alignright,
-  .comment-content .alignright,
-  .entry-content .alignright {
+    margin-left: 1.7em;
+    margin-bottom: 1.7em; }
+  .p2tenberg-editor .block-editor-writing-flow .alignright, .comment-content .alignright, .entry-content .alignright {
     display: inline;
     float: left;
-    margin-right: 1.7em; }
-  
-  .p2tenberg-editor .block-editor-writing-flow .aligncenter,
-  .comment-content .aligncenter,
-  .entry-content .aligncenter {
+    margin-right: 1.7em;
+    margin-bottom: 1.7em; }
+  .p2tenberg-editor .block-editor-writing-flow .aligncenter, .comment-content .aligncenter, .entry-content .aligncenter {
     clear: both;
     margin-right: auto;
     margin-left: auto; }
@@ -1155,6 +1135,9 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     margin: 0;
     padding: 0;
     line-height: 1.4; }
+  .p2020-menu-primary.should-delay-visibility {
+    visibility: hidden;
+    animation: 0.1s linear 5s forwards fade-in-visibility; }
   .p2020-menu-primary .menu-item-has-children > a {
     display: flex;
     justify-content: space-between;
@@ -1226,6 +1209,12 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   @media (max-width: 876px) {
     .p2020-menu-primary {
       display: none; } }
+
+@keyframes fade-in-visibility {
+  from {
+    visibility: hidden; }
+  to {
+    visibility: visible; } }
 
 .p2020-mobile-menu-toggle {
   display: none;
@@ -1433,11 +1422,24 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
 .p2020-site-header__main {
   display: flex;
   align-items: center;
+  min-width: 0;
   margin-left: 28px; }
 
-@media (max-width: 876px) {
-  .p2020-site-header__search {
-    display: none; } }
+.p2020-site-header__search {
+  position: relative;
+  z-index: 1;
+  background: var(--color-white); }
+  .p2020-site-header__search::before {
+    content: "";
+    position: absolute;
+    right: -28px;
+    display: block;
+    width: 28px;
+    height: 100%;
+    background: linear-gradient(-90deg, rgba(255, 255, 255, 0.5) 0%, white 100%); }
+  @media (max-width: 876px) {
+    .p2020-site-header__search {
+      display: none; } }
 
 .p2020-site-title {
   font-size: 1.25rem;
@@ -1846,6 +1848,7 @@ footer.entry-meta {
   .o2-comment .p2tenberg-editor {
     margin: 0; }
   .o2-comment .o2-comment-footer-actions {
+    clear: both;
     padding-bottom: 0; }
     .o2-comment .o2-comment-footer-actions li,
     .o2-comment .o2-comment-footer-actions p {

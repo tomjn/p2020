@@ -15,7 +15,7 @@
 <meta http-equiv="cleartype" content="on">
 
 <?php // Will be overwritten with git commit hash on `gulp build` (see gulpfile) ?>
-<meta name="p2020-build" revision="95a00d7">
+<meta name="p2020-build" revision="a4fb7e6">
 
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -39,21 +39,21 @@
 
 		<div class="p2020-site-header">
 
-			<div class="p2020-site-header__main">
+			<div class="p2020-site-header__main" data-header-main>
 				<h1 class="p2020-site-title" data-customizer-blogname>
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 						<?php bloginfo( 'name' ); ?>
 					</a>
 				</h1>
 				<?php wp_nav_menu( [
-					'theme_location' => 'primary',
+					'theme_location' => 'primary', /* keep in sync with append_more_container() in functions.php */
 					'container' => 'nav',
-					'container_class' => 'p2020-menu-primary',
+					'container_class' => 'p2020-menu-primary should-delay-visibility',
 					'fallback_cb' => false
 				] ); ?>
 			</div>
 
-			<div class="p2020-site-header__search">
+			<div class="p2020-site-header__search" data-header-search>
 				<?php get_search_form(); ?>
 			</div>
 

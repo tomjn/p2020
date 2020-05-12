@@ -295,24 +295,14 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\set_homepage_display', 102 );
 function enable_default_widgets() {
 	$setup_option = get_option( 'p2020_sidebar_setup' );
 	if ( $setup_option === 'reset' ) {
-		$sidebars_widgets[ 'sidebar-1' ] = [];
-		$sidebars_widgets[ 'sidebar-pages' ] = [];
+		$sidebars_widgets['sidebar-1'] = [];
+		$sidebars_widgets['sidebar-pages'] = [];
 	} else {
 		$sidebars_widgets = get_option( 'sidebars_widgets' );
 	}
 
 	if ( $setup_option === 'reset' || $setup_option === 'add' ) {
 		$widget_no = 3;
-
-		// P2020 Filter widget (widgets/filter)
-		if ( empty( $sidebars_widgets['sidebar-1'] ) ||
-				! in_array( "p2020-filter-widget-{$widget_no}", $sidebars_widgets['sidebar-1'] ) ) {
-			$filter_widget_settings = [
-				$widget_no => []
-			];
-			update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
-			$sidebars_widgets['sidebar-1'][] = "p2020-filter-widget-{$widget_no}";
-		}
 
 		// My Team widget (widgets/myteam)
 		if ( empty( $sidebars_widgets['sidebar-1'] ) ||
@@ -325,6 +315,16 @@ function enable_default_widgets() {
 			];
 			update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
 			$sidebars_widgets['sidebar-1'][] = "p2020-my-team-widget-{$widget_no}";
+		}
+
+		// P2020 Filter widget (widgets/filter)
+		if ( empty( $sidebars_widgets['sidebar-1'] ) ||
+				! in_array( "p2020-filter-widget-{$widget_no}", $sidebars_widgets['sidebar-1'] ) ) {
+			$filter_widget_settings = [
+				$widget_no => []
+			];
+			update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
+			$sidebars_widgets['sidebar-1'][] = "p2020-filter-widget-{$widget_no}";
 		}
 
 		// Pages widget
@@ -382,3 +382,22 @@ function append_contributors_block( $content ) {
 	return $content . get_contributors_block();
 }
 add_filter( 'the_content', __NAMESPACE__ . '\append_contributors_block' );
+
+/**
+ * Add a "More" container for overflowed menu items
+ */
+function append_more_container( string $items, object $args ): string {
+	$more_container = '<li class="menu-item menu-item-has-children" hidden data-header-menu-more>'
+					. '<a href="#">'
+					. esc_html( 'More', 'p2020' )
+					. '</a>'
+					. '<ul class="sub-menu" />'
+					. '</li>';
+
+	if ( $args->theme_location === 'primary' ) {
+		$items .= $more_container;
+	}
+
+	return $items;
+}
+add_filter( 'wp_nav_menu_items', __NAMESPACE__ . '\append_more_container', 10, 2 );

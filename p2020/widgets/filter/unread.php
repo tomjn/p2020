@@ -73,6 +73,19 @@ function update_last_active( $type ) {
 }
 
 /**
+ * For kickstarting user visit history.
+ */
+function initialize_visit_history() {
+	if ( ! is_user_logged_in() ) {
+		return;
+	}
+
+	update_last_active( 'posts' );
+	update_last_active( 'comments' );
+	update_last_active( 'mentions' );
+}
+
+/**
 * Callback function for logging user visits to pages of interest.
 */
 function log_user_visit() {
