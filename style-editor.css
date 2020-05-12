@@ -271,30 +271,24 @@ body {
     body blockquote > :last-child,
     body pre > :last-child {
       margin-bottom: 0; }
-  body li {
+  body li:not(.blocks-gallery-item) {
     margin-bottom: 0.5em; }
-    body li > ul,
-    body li > ol {
+    body li:not(.blocks-gallery-item) > ul,
+    body li:not(.blocks-gallery-item) > ol {
       margin-top: 0.5em; }
-  body figure,
-  body .wp-caption,
-  body .alignleft,
-  body .alignright,
-  body .aligncenter,
-  body .alignwide,
-  body .alignfull {
+  body .wp-block-image:not(.wp-block),
+  body .wp-caption {
     margin-bottom: 1.7em; }
-  
   body .alignleft {
     display: inline;
     float: left;
-    margin-right: 1.7em; }
-  
+    margin-right: 1.7em;
+    margin-bottom: 1.7em; }
   body .alignright {
     display: inline;
     float: right;
-    margin-left: 1.7em; }
-  
+    margin-left: 1.7em;
+    margin-bottom: 1.7em; }
   body .aligncenter {
     clear: both;
     margin-left: auto;

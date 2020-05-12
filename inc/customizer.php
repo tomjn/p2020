@@ -19,6 +19,12 @@ function get_default_color( string $key ): string {
 	return $default_colors[$key];
 }
 
+// Whether a color option is set and is a non-default value
+function isCustomColor( array $options, string $key ): bool {
+	$color = $options[$key];
+	return isset( $color ) && ( $color !== get_default_color( $key ) );
+}
+
 function color_hex_to_rgba( string $hex, float $alpha ): string {
 	$rgb = sscanf( $hex, '#%02x%02x%02x' );
 	$rgb[] = $alpha;
@@ -64,23 +70,20 @@ add_action( 'customize_register', 'P2020\customize_register' );
 function color_styles() {
 	$options = get_theme_mod( 'p2020_theme_options' );
 
-	if ( ! isset( $options ) ) {
+	if ( ! $options ) {
 		return;
 	}
-	if ( ! isset( $options['color_link'] ) ) {
-	    return;
-    }
 ?>
 	<style type="text/css">
 		:root {
-			<? if ( $options['color_link'] !== get_default_color( 'color_link' ) ): ?>
+			<? if ( isCustomColor( $options, 'color_link' ) ): ?>
 				<?php $color_link = new Color( $options['color_link'] ); ?>
 				<?php $color_link_background = color_hex_to_rgba( $options['color_link'], 0.1 ); ?>
 				--color-link: <?php echo esc_html( $options['color_link'] ) ?>;
 				--color-link-dark: <?php echo sprintf( '#%s;', esc_html( $color_link->darken( 13 ) ) ); ?>;
 				--color-link-background: <?php echo esc_html( $color_link_background ); ?>;
 			<? endif; ?>
-			<? if ( $options['color_mentions'] !== get_default_color( 'color_mentions' ) ): ?>
+			<? if ( isCustomColor( $options, 'color_mentions' ) ): ?>
 				<?php $color_mentions_highlight = color_hex_to_rgba( $options['color_mentions'], 0.1 ); ?>
 				--color-mentions: <?php echo esc_html( $options['color_mentions'] ) ?>;
 				--color-mentions-highlight: <?php echo esc_html( $color_mentions_highlight ); ?>;

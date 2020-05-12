@@ -71,6 +71,9 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			// Retrieve activity and unread content during 'widgets_init'
 			//     ie. before visit timestamps are updated
 			$this->last_active = get_last_active();
+			if ( empty( $this->last_active ) ) {
+				initialize_visit_history();
+			}
 
 			// Add CSS class for unread content
 			// We do the is_filter_active() check inside the function, because our custom param
@@ -161,7 +164,9 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 	function no_posts_message( $o2_options ) {
 		if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
-			$o2_options['strings']['noPosts'] = __( "You’re all caught up!", 'p2020' );
+			$noPostsMessage = __( "You’re all caught up!", 'p2020' );
+			$o2_options['strings']['noPosts'] = $noPostsMessage;
+			$o2_options['strings']['noPostsMobile'] = $noPostsMessage;
 		}
 
 		return $o2_options;

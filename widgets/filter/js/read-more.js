@@ -59,17 +59,8 @@
 	};
 
 	const summarizeCommentThread = ( $commentThread, $summary ) => {
-		const commentsCount = 1 + $commentThread.find( '.o2-comment' ).length;
-		const avatarsHtml = $( '<div/>' )
-			.append(
-				$commentThread
-					.find( '.avatar' )
-					.clone()
-					.removeClass( 'grav-hijack' )
-			)
-			.html();
-
 		// Update count
+		const commentsCount = 1 + $commentThread.find( '.o2-comment' ).length;
 		const currentCount =
 			parseInt(
 				$summary.find( '.p2020-comments-summary-count > .count' ).html()
@@ -82,10 +73,38 @@
 				}`
 			);
 
-		// Update avatars
-		$summary
-			.find( '.p2020-comments-summary-avatars' )
-			.append( avatarsHtml );
+		const $avatars = $commentThread.find( '.avatar' );
+		$avatars.each( function() {
+			const $avatar = $( this )
+				.clone()
+				.removeClass( 'grav-hijack' );
+
+			let gravatarHash = '';
+			const match = $avatar
+				.attr( 'src' )
+				.match( /.*avatar\/([a-zA-Z0-9]{8})/ ) || [ null, null ];
+			if ( match[ 0 ] && match[ 1 ] ) {
+				gravatarHash = match[ 1 ];
+				$avatar.addClass( `gravatar-${ gravatarHash }` );
+			}
+
+			const avatarHtml = $( '<div/>' )
+				.append( $avatar )
+				.html();
+
+			// Update avatars
+			const $commentSummaryAvatars = $summary.find(
+				'.p2020-comments-summary-avatars'
+			);
+
+			if (
+				gravatarHash === '' ||
+				$commentSummaryAvatars.find( `img.gravatar-${ gravatarHash }` )
+					.length < 1
+			) {
+				$commentSummaryAvatars.append( avatarHtml );
+			}
+		} );
 	};
 
 	const insertSummaryContainer = ( insertBeforeElement ) => {
