@@ -22,58 +22,95 @@
 		padding-left: 2em;
 	}
 
+	ul ul ul ul .widget-p2020-pages-label {
+		padding-left: 3em;
+	}
+
 	ul.subtree-collapsed {
 		display: none;
 	}
 
 	li.page_item {
 		a {
-			color: var(--color-text);
+			color: inherit;
 		}
 
 		.widget-p2020-pages-label {
 			display: flex;
-			line-height: pxrem(34);
+			align-items: center;
+			border-radius: 4px;
+			position: relative;
+			margin: pxrem(1) 0;
+			transition: var(--transition-quick);
+
+			.widget-p2020-pages-link { 
+				display: flex;
+				width: 100%;
+
+				a {
+					display: flex;
+					font-size: pxrem(13);
+					font-weight: 500;
+					padding: pxrem(7) pxrem(24);
+					width: 100%;
+					line-height: 1.6;
+				}
+			}
+
+			.widget-p2020-pages-add {
+				position: absolute;
+				right: 8px;
+				transition: var(--transition-quick);
+				a {
+					display: flex;
+					opacity: 0.6;
+
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+
+			.widget-p2020-pages-expand {
+				position: absolute;
+				margin-left: 4px;
+				display: flex;
+
+				button {
+					border: none;
+					color: inherit;
+					transition: transform var(--transition-quick);
+
+					@include icon("custom-chevron-down", pxrem(18), currentColor);
+
+					&.btn-collapsed {
+						transform: rotate(-90deg);
+					}
+
+					&:not(.btn-collapsed):not(.btn-expanded) {
+						display: none;
+					}
+				}
+			}
 
 			&:hover {
 				background-color: var(--color-background-light);
 
 				> .widget-p2020-pages-add a::before {
-					@include icon("custom-add", pxrem(22), currentColor);
+					@include icon("custom-add", pxrem(18), currentColor);
 					vertical-align: middle;
 				}
 
 				> .widget-p2020-pages-link a {
-					color: var(--color-link);
+					color: inherit;
 				}
 			}
+		}
 
-			.widget-p2020-pages-link {
-				flex: 2;
-			}
-
-			.widget-p2020-pages-add {
-				justify-self: flex-end;
-			}
-
-			.widget-p2020-pages-expand {
-				margin-right: 0.5em;
-				min-width: 1.8em;
-				outline: none;
-
-				button {
-					border: none;
-
-					&.btn-expanded {
-						@include icon("custom-chevron-down", pxrem(22), currentColor);
-						vertical-align: middle;
-					}
-
-					&.btn-collapsed {
-						@include icon("custom-chevron-right", pxrem(22), currentColor);
-						vertical-align: middle;
-					}
-				}
+		&.current_page_item {
+			> .widget-p2020-pages-label {
+				color: var(--color-link);
+				background: var(--color-link-background);
 			}
 		}
 	}

@@ -15,9 +15,9 @@ function is_filter_active( string $type ): bool {
 
 	switch ( $type ) {
 		case 'posts':
-			return is_home() && (bool)get_query_var( 'p2020_recent_posts' );
+			return (bool)get_query_var( 'p2020_recent_posts' );
 		case 'comments':
-			return is_home() && (bool)get_query_var( 'p2020_recent_comments' );
+			return (bool)get_query_var( 'p2020_recent_comments' );
 		case 'mentions':
 			return ( strpos( $wp->request, 'mentions/' . $user->user_nicename ) === 0 );
 		case 'myposts':

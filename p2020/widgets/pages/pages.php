@@ -77,7 +77,7 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 					<a href="' . add_query_arg(
 						[ 'p2020_pages_parent' => '$2', 'nonce' => $nonce ],
 						admin_url( 'post-new.php?post_type=page' ) ).
-						'" aria-label="Add child page" data-tippy-content="Add child page"></a>
+						'" aria-label="Add page inside" data-tippy-content="Add page inside"></a>
 				</span>';
 		}
 		$enhanced_page_item .= '</div>';

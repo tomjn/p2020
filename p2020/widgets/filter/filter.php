@@ -85,6 +85,11 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			add_action( 'pre_get_posts', [ $this, 'alter_query_for_filter_views' ] );
 			add_filter( 'posts_clauses', [ $this, 'alter_query_for_comment_view' ], 10, 2 );
 			add_filter( 'o2_options', [ $this, 'no_posts_message' ] );
+
+			// Infinite Scroll
+			add_filter( 'o2_sanitized_query_vars',  [ $this, 'o2_sanitized_query_vars' ] );
+			add_filter( 'infinite_scroll_ajax_url', [ $this, 'infinite_scroll_ajax_url' ] );
+			add_filter( 'infinite_scroll_query_args', [ $this, 'infinite_scroll_query_args' ] );
 		}
 	}
 
@@ -135,10 +140,6 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		global $wpdb;
 
 		if ( ! is_user_logged_in() ) {
-			return $clauses;
-		}
-
-		if ( ! $wp_query->is_main_query() ) {
 			return $clauses;
 		}
 
@@ -194,7 +195,12 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 	function custom_classes_for_comments( $classes, $class, $comment_id ) {
 		if ( is_filter_active( 'comments' ) ) {
-			$ts = $this->last_active['comments'] ?? null;
+			$ts = $this->last_active['comments'];
+			if ( empty( $ts ) ) {
+				$classes[] = 'p2020-unread-comment';
+				return $classes;
+			}
+
 			$unread_comments = get_comments_after_ts( $ts, self::QUERY_ROWS_LIMIT );
 			if ( is_array( $unread_comments ) && in_array( $comment_id, $unread_comments ) ) {
 				$classes[] = 'p2020-unread-comment';
@@ -204,7 +210,12 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		}
 
 		if ( is_filter_active( 'mentions' ) ) {
-			$ts = $this->last_active['mentions'] ?? null;
+			$ts = $this->last_active['mentions'];
+			if ( empty( $ts ) ) {
+				$classes[] = 'p2020-unread-mention';
+				return $classes;
+			}
+
 			$unread_mentions = get_mentions_after_ts( $ts, self::QUERY_ROWS_LIMIT );
 			if ( is_array( $unread_mentions['comments'] ) && in_array( $post_id, $unread_mentions['comments'] ) ) {
 				$classes[] = 'p2020-unread-mention';
@@ -300,6 +311,37 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		}
 
 		return $title;
+	}
+
+	public function infinite_scroll_ajax_url( $ajax_url ) {
+		if ( is_filter_active( 'posts' ) ) {
+			$ajax_url = add_query_arg( [ 'p2020_recent_posts' => true ], $ajax_url );
+		} elseif ( is_filter_active( 'comments' ) ) {
+			$ajax_url = add_query_arg( [ 'p2020_recent_comments' => true ], $ajax_url );
+		}
+		return $ajax_url;
+	}
+
+	public function infinite_scroll_query_args( $query_args ) {
+		if ( ! is_array( $query_args ) ) {
+			return $query_args;
+		}
+
+		if ( is_filter_active( 'posts' ) ) {
+			$query_args['p2020_recent_posts'] = true;
+		} elseif ( is_filter_active( 'comments' ) ) {
+			$query_args['p2020_recent_comments'] = true;
+		}
+		return $query_args;
+	}
+
+	public function o2_sanitized_query_vars( $vars ) {
+		if ( is_filter_active( 'posts' ) ) {
+			$vars['p2020_recent_posts'] = true;
+		} elseif ( is_filter_active( 'comments' ) ) {
+			$vars['p2020_recent_comments'] = true;
+		}
+		return $vars;
 	}
 
 	private function render_filter_item( $unread_count, $key, $item ) {
