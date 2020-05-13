@@ -258,6 +258,23 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts', 11 );
 function editor_assets() {
 	// Main editor enqueued file
 	wp_enqueue_script( 'p2020-editor-js', get_template_directory_uri() . '/js/enqueued-editor-main.js', [  ], '20200430', true );
+
+	$blocksBlacklist = [
+		'jetpack/calendly',
+		'jetpack/opentable',
+		'jetpack/recurring-payments',
+		'jetpack/simple-payments',
+		'premium-content/container',
+		'premium-content/logged-out-view',
+		'premium-content/subscriber-view',
+	];
+	if ( ! is_a8c_p2() ) {
+		$blocksBlacklist[] = 'core/video';
+	}
+	$data = [
+		'blocksBlacklist' => $blocksBlacklist,
+	];
+	wp_localize_script( 'p2020-editor-js', 'p2020Editor', $data );
 }
 
 add_action( 'enqueue_block_editor_assets',  __NAMESPACE__ . '\editor_assets', 11 );

@@ -24,14 +24,25 @@
 		return trueHeight > trimmedHeight;
 	};
 
+	const addReadMoreToPost = ( $post ) => {
+		if (
+			$post.find( '.p2020-post-read-more-mask' ).length < 1 &&
+			! $post.closest( 'article' ).hasClass( 'tag-p2-xpost' )
+		) {
+			$post.append(
+				'<div class="p2020-post-read-more-mask">' +
+					'<button class="p2020-post-read-more-trigger">' +
+					window.p2020FilterReadMore.readPost +
+					'</button>' +
+					'</div>'
+			);
+		}
+	};
+
 	const addReadMoreToPosts = () => {
-		$( '.p2020-post-read-more .o2-post' ).append(
-			'<div class="p2020-post-read-more-mask">' +
-				'<button class="p2020-post-read-more-trigger">' +
-				window.p2020FilterReadMore.readPost +
-				'</button>' +
-				'</div>'
-		);
+		$( '.p2020-post-read-more .o2-post' ).each( function() {
+			addReadMoreToPost( $( this ) );
+		} );
 	};
 
 	const forceDisplayComments = () => {
@@ -49,8 +60,10 @@
 		);
 	};
 
-	const trimSeenComments = () => {
-		$( '.p2020-comment-read-more > .comment-content' ).each( function() {
+	const trimSeenComments = ( articleId = '' ) => {
+		let selector = '.p2020-comment-read-more > .comment-content';
+		if ( articleId !== '' ) selector = '#' + articleId + ' ' + selector;
+		$( selector ).each( function() {
 			if ( shouldTrimComment( $( this ) ) ) {
 				trimComment( $( this ) );
 				addReadMoreToComment( $( this ) );
@@ -131,8 +144,10 @@
 		return $summary;
 	};
 
-	const collapseCommentThreads = () => {
-		$( '.o2-post-comments > .o2-comment' ).each( function() {
+	const collapseCommentThreads = ( articleId = '' ) => {
+		let selector = '.o2-post-comments > .o2-comment';
+		if ( articleId !== '' ) selector = '#' + articleId + ' ' + selector;
+		$( selector ).each( function() {
 			const hasUnreadComment =
 				$( this ).hasClass( 'p2020-unread-comment' ) ||
 				$( this ).find( '.p2020-unread-comment' ).length > 0;
@@ -146,11 +161,35 @@
 		} );
 	};
 
-	$( document ).ready( function() {
+	const processNewPosts = () => {
+		const targetNode = document.querySelector( '#content' );
+		const config = { childList: true, subtree: true };
+		const callback = function( mutationsList ) {
+			for ( const mutation of mutationsList ) {
+				if (
+					mutation.addedNodes.length > 0 &&
+					mutation.target.className === 'o2-posts'
+				) {
+					const articleId = mutation.addedNodes[ 0 ].id;
+					addReadMoreToPost(
+						$( '#' + articleId ).find( '.o2-post' )
+					);
+					trimSeenComments( articleId );
+					collapseCommentThreads( articleId );
+				}
+			}
+		};
+		const observer = new MutationObserver( callback );
+		observer.observe( targetNode, config );
+	};
+
+	$( function() {
 		addReadMoreToPosts();
 		forceDisplayComments();
 		trimSeenComments();
 		collapseCommentThreads();
+
+		processNewPosts();
 	} );
 
 	$( document.body ).on(

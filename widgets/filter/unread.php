@@ -40,7 +40,7 @@ function get_last_active( $all_sites = false ) {
 	$blog_id = get_current_blog_id();
 
 	$last_active = get_user_meta( $user_id, 'p2020_last_active', true ); // empty string if var not found
-	$last_active = $last_active ? unserialize( $last_active ) : [];
+	$last_active = $last_active && is_string( $last_active ) ? unserialize( $last_active ) : [];
 
 	if ( $all_sites ) {
 		return $last_active;
