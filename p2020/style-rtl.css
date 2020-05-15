@@ -1537,6 +1537,47 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   position: absolute;
   visibility: hidden; }
 
+.intralinks {
+  width: 100%;
+  margin-top: 1.5em !important;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-text-light); }
+  .intralinks .intralinks-count {
+    margin-bottom: 1.5em !important;
+    color: var(--color-text); }
+  .intralinks .intralink-content-preview {
+    position: absolute;
+    top: 0;
+    right: 128px;
+    font-size: 0.6875rem;
+    line-height: 2;
+    text-indent: -800%; }
+    .intralinks .intralink-content-preview:hover {
+      color: var(--color-link); }
+    .intralinks .intralink-content-preview:focus {
+      outline: 0; }
+  .intralinks a[href^="http"] {
+    color: var(--color-text);
+    text-decoration: none; }
+    .intralinks a[href^="http"]:hover {
+      color: var(--color-link); }
+
+.intralink-to-thread {
+  position: relative;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis; }
+
+.intralink-date {
+  width: 10em; }
+
+.intralink-content {
+  margin-top: 8px !important;
+  margin-bottom: 4px !important;
+  white-space: normal; }
+
 /***************************************************************************************************
  * Master Threads as Sticky
  */
@@ -1749,37 +1790,37 @@ footer.entry-meta {
   border-right: 2px solid #ff9912; }
 
 .navigation {
-  padding: 0;
   overflow: hidden;
-  border-top: 1px solid var(--color-border);
-  display: flex; }
-  .navigation p {
-    width: 50%; }
-    .navigation p.nav-newer {
-      float: left;
-      text-align: left; }
+  display: grid;
+  grid-template-columns: [older] 50% [newer] 50%;
+  border-top: 1px solid var(--color-border); }
+  .navigation .nav-older,
+  .navigation .nav-newer {
+    margin: 0; }
+  .navigation .nav-older {
+    grid-column-start: older; }
+    .navigation .nav-older:first-child {
+      border-left: 1px solid var(--color-border); }
+  .navigation .nav-newer {
+    grid-column-start: newer;
+    text-align: left; }
+    .navigation .nav-newer:first-child {
+      border-right: 1px solid var(--color-border); }
   .navigation a {
-    display: flex;
+    display: block;
     height: 100%;
     padding: 1.2em;
     color: var(--color-text-light); }
-  .navigation .previous,
-  .navigation .nav-older {
-    margin: 0;
-    padding: 0;
-    width: 50%; }
-  .navigation .next,
-  .navigation .nav-newer {
-    margin: 0;
-    padding: 0;
-    width: 50%; }
-    .navigation .next a,
-    .navigation .nav-newer a {
-      justify-content: flex-end; }
-  .navigation .nav-older a {
-    border-left: 1px solid var(--color-border); }
-  .navigation a:hover {
-    color: var(--color-link); }
+    .navigation a:hover {
+      color: var(--color-link); }
+  @media (max-width: 640px) {
+    .navigation {
+      display: block; }
+      .navigation .nav-older:first-child,
+      .navigation .nav-newer:first-child {
+        border: 0; }
+      .navigation .nav-newer:not(:first-child) {
+        border-top: 1px solid var(--color-border); } }
 
 .o2-app-controls {
   visibility: hidden;
@@ -2164,6 +2205,12 @@ header nav.o2-dropdown-actions {
 .sticky .o2-post {
   border: 0;
   background: transparent; }
+
+.widget.o2-extend-resolved-posts-unresolved-posts-widget li {
+  padding: 0.5em 0; }
+
+.widget.o2-extend-resolved-posts-unresolved-posts-widget .showing {
+  font-size: 0.9em; }
 
 .tag-p2-xpost {
   background: transparent !important;

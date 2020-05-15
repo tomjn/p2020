@@ -221,32 +221,40 @@ class My_Team_Widget extends \WP_Widget {
 		$team_info = [];
 		$team_members = [];
 
-		if ( ! empty( $roles ) ) {
-			$user_query_param = [ 'blog_id' => $blog_id, 'role__in' => $roles ];
+		if ( empty( $roles ) ) {
+			return [
+				members => [],
+				size => 0,
+			];
 		}
 
-		$blog_users = get_users( $user_query_param );
+		$user_query_param = [
+			'blog_id' => $blog_id,
+			'role__in' => $roles,
+			'exclude' => [ get_current_user_id() ],
+		];
 
-		$team_info['size'] = count( $blog_users );
-
-		// Make 'me' first to be displayed
-		$me_idx = array_search( get_current_user_id(), array_column( $blog_users, 'ID' ) );
-		if ( $me_idx !== false ) {
-			$me = $blog_users[ $me_idx ];
-			unset( $blog_users[ $me_idx ] );
-			$limit--;
+		if ( ! empty( $limit ) ) {
+			$user_query_param['number'] = $limit;
 		}
 
-		// If beyond display limit, randomly select which members to return
-		if ( isset( $limit ) && count( $blog_users ) > $limit ) {
-			shuffle( $blog_users );
-			$blog_users = array_slice( $blog_users, 0, $limit );
-		}
+		$users_data = $this->get_users_data( $user_query_param );
+		$team_info['size'] = $users_data['total'];
+		$users = $users_data['users'];
 
+		// Check if current user is part of team
+		// If yes, place in front
+		$me = get_users( [
+			'blog_id' => $blog_id,
+			'role__in' => $roles,
+			'include' => [ get_current_user_id() ],
+		] );
 		if ( ! empty( $me ) ) {
-			$blog_users = array_merge( [ $me ], $blog_users );
+			$users = array_merge( $me, array_slice( $users, 0, $limit - 1 ) );
+			$team_info['size'] += 1;
 		}
-		$team_info['members'] = $blog_users;
+
+		$team_info['members'] = $users;
 
 		return $team_info;
 	}
@@ -268,6 +276,17 @@ class My_Team_Widget extends \WP_Widget {
 		}
 
 		return $merged;
+	}
+
+	private function get_users_data( $args = [] ) {
+		$args = wp_parse_args( $args );
+		$args['count_total'] = true;
+
+		$user_search = new \WP_User_Query( $args );
+		return [
+			'total' => $user_search->get_total(),
+			'users' => $user_search->get_results(),
+		];
 	}
 }
 

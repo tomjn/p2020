@@ -18,13 +18,15 @@ $help_url = 'https://wordpress.com/help';
 	<aside id="sidebar" class="p2020-sidebar">
 
 		<?php if ( has_header_image() ) : ?>
-			<img
-				src="<?php header_image(); ?>"
-				alt=""
-				class="p2020-sidebar__header-image"
-				width="<?php echo esc_attr( get_custom_header()->width ); ?>"
-				height="<?php echo esc_attr( get_custom_header()->height ); ?>"
-			>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+				<img
+					src="<?php header_image(); ?>"
+					alt=""
+					class="p2020-sidebar__header-image"
+					width="<?php echo esc_attr( get_custom_header()->width ); ?>"
+					height="<?php echo esc_attr( get_custom_header()->height ); ?>"
+				>
+			</a>
 		<?php endif; ?>
 
 		<div class="p2020-sidebar__inner-main">
