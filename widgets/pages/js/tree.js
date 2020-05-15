@@ -1,22 +1,22 @@
 ( function( $ ) {
-	const collapseLowerLevels = () => {
+	const addToggleSubtreeIcons = () => {
+		const toggleBtn =
+			'.widget-p2020-pages-label > .widget-p2020-pages-expand > button';
+
 		$(
-			'ul:not(.children)' +
-				' > li.page_item_has_children' +
-				' > .widget-p2020-pages-label' +
-				' > .widget-p2020-pages-expand > button'
+			`li.page_item_has_children.current_page_ancestor > ${ toggleBtn },
+			li.page_item_has_children.current_page_item > ${ toggleBtn }`
 		).addClass( 'btn-expanded' );
 
 		$(
-			'ul.children' +
-				' > li.page_item_has_children' +
-				' > .widget-p2020-pages-label' +
-				' > .widget-p2020-pages-expand > button'
+			`li.page_item_has_children:not(.current_page_ancestor, .current_page_item) > ${ toggleBtn }`
 		).addClass( 'btn-collapsed' );
+	};
 
-		$( '.widget_p2020-pages-widget ' )
-			.find( 'ul.children > li.page_item_has_children > ul.children' )
-			.addClass( 'subtree-collapsed' );
+	const collapseNoncurrentSubtree = () => {
+		$(
+			'li.page_item:not(.current_page_ancestor, .current_page_item) > ul'
+		).addClass( 'subtree-collapsed' );
 	};
 
 	const showSubtree = ( $element ) => {
@@ -42,7 +42,8 @@
 	};
 
 	$( function() {
-		collapseLowerLevels();
+		addToggleSubtreeIcons();
+		collapseNoncurrentSubtree();
 
 		$( document.body ).on( 'click', '.btn-collapsed', function() {
 			showSubtree( $( this ) );
