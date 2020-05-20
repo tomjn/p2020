@@ -140,6 +140,11 @@ function setup() {
 	add_theme_support( 'align-wide' );
 
 	/**
+ 	 * Enable support for Responsive Embeds
+ 	 */
+	add_theme_support( 'responsive-embeds' );
+
+	/**
 	 * Enable support for themed block editor styles
 	 */
 	add_theme_support( 'editor-styles' );
@@ -224,6 +229,16 @@ function admin_fonts( $hook_suffix ) {
 	wp_enqueue_style( 'p2020-sans' );
 }
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\admin_fonts' );
+
+/**
+ * Hide menu pages from wp-admin
+ */
+function hide_pages_from_admin_menu(){
+	remove_menu_page( 'paid-upgrades.php' ); // Plans
+	remove_menu_page( 'calypso-plugins' ); // Plugins
+	remove_submenu_page( 'themes.php', 'themes.php' ); // Appearance -> Themes
+}
+add_action( 'admin_menu', __NAMESPACE__ . '\hide_pages_from_admin_menu', 40 );
 
 /**
  * Enqueue scripts and styles

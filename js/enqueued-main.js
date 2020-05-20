@@ -2479,6 +2479,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   });
 })(jQuery);
+/**
+ * For handling Remembered Posts widget (a8c-only).
+ *
+ */
+
+
+(function ($) {
+  $('#remembered-posts').insertBefore('#sidebar .p2020-sidebar__footer');
+})(jQuery);
 
 (function ($) {
   function isSinglePage() {
