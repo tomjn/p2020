@@ -111,7 +111,6 @@ body .block-editor-default-block-appender .block-editor-default-block-appender__
   font-family: var(--font-default); }
 
 .wp-caption .wp-caption-text, .wp-block-image figcaption {
-  width: 100%;
   margin-top: 0.75em;
   color: var(--color-text-light);
   text-align: center;
@@ -277,22 +276,17 @@ body {
     body li:not(.blocks-gallery-item) > ol {
       margin-top: 0.5em; }
   body .wp-block-image:not(.wp-block),
+  body .wp-block-cover-image,
   body .wp-caption {
     margin-bottom: 1.7em; }
   body .alignleft {
-    display: inline;
     float: left;
     margin-right: 1.7em;
     margin-bottom: 1.7em; }
   body .alignright {
-    display: inline;
     float: right;
     margin-left: 1.7em;
     margin-bottom: 1.7em; }
-  body .aligncenter {
-    clear: both;
-    margin-left: auto;
-    margin-right: auto; }
   body .wp-block-file {
     margin-bottom: 1.7em; }
 

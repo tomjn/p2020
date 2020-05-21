@@ -16,6 +16,8 @@ function is_filter_active( string $type ): bool {
 	switch ( $type ) {
 		case 'posts':
 			return (bool)get_query_var( 'p2020_recent_posts' );
+		case 'unresolved':
+			return isset( $_GET['resolved'] );
 		case 'comments':
 			return (bool)get_query_var( 'p2020_recent_comments' );
 		case 'mentions':

@@ -77,6 +77,7 @@
 
 	// Icons
 	@include widget-p2020-filter-gridicon("recent-updates", "posts");
+	@include widget-p2020-filter-gridicon("unresolved-posts", "tack");
 	@include widget-p2020-filter-gridicon("recent-comments", "comment");
 	@include widget-p2020-filter-gridicon("my-mentions", "mention");
 	@include widget-p2020-filter-gridicon("my-posts", "user");

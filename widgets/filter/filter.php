@@ -56,6 +56,17 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			],
 		];
 
+		$o2_options = get_option( 'o2_options' );
+		$is_resolved_posts_active = ! empty ( $o2_options['enable_resolved_posts'] );
+		if ( is_automattic() && $is_resolved_posts_active ) {
+			$this->filters['unresolved'] = [
+				'label' => __( 'Unresolved Posts', 'p2020' ),
+				'url' => esc_url( add_query_arg( 'resolved', 'unresolved', home_url() ) ),
+				'css_id' => 'widget-filter-unresolved-posts',
+				'section' => 'team',
+			];
+		}
+
 		if ( is_active_widget( false, false, 'p2020-filter-widget', true ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_scripts' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_styles' ] );
