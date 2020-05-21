@@ -590,12 +590,22 @@ body {
  * UI PARTIALS
  * First-party classes and Sass placeholders that we have control over
  */
-.type-page .wp-block-image.alignfull, .type-post .wp-block-image.alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .wp-block-image.alignfull, .p2tenberg-editor__post .block-editor-block-list__layout:first-child .wp-block-image.alignfull, .p2tenberg-editor__page .block-editor-block-list__layout:first-child .wp-block-image.alignfull {
+.type-page .wp-block[data-align="full"], .type-post .wp-block[data-align="full"], .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .wp-block[data-align="full"], .p2tenberg-editor__post .block-editor-block-list__layout:first-child .wp-block[data-align="full"], .p2tenberg-editor__page .block-editor-block-list__layout:first-child .wp-block[data-align="full"],
+.type-page .wp-block-image.alignfull,
+.type-post .wp-block-image.alignfull,
+.p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .wp-block-image.alignfull,
+.p2tenberg-editor__post .block-editor-block-list__layout:first-child .wp-block-image.alignfull,
+.p2tenberg-editor__page .block-editor-block-list__layout:first-child .wp-block-image.alignfull {
   margin-left: -12.5%;
   margin-right: -12.5%;
   width: 125%; }
   @media (max-width: 550px) {
-    .type-page .wp-block-image.alignfull, .type-post .wp-block-image.alignfull, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .wp-block-image.alignfull, .p2tenberg-editor__post .block-editor-block-list__layout:first-child .wp-block-image.alignfull, .p2tenberg-editor__page .block-editor-block-list__layout:first-child .wp-block-image.alignfull {
+    .type-page .wp-block[data-align="full"], .type-post .wp-block[data-align="full"], .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .wp-block[data-align="full"], .p2tenberg-editor__post .block-editor-block-list__layout:first-child .wp-block[data-align="full"], .p2tenberg-editor__page .block-editor-block-list__layout:first-child .wp-block[data-align="full"],
+    .type-page .wp-block-image.alignfull,
+    .type-post .wp-block-image.alignfull,
+    .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child .wp-block-image.alignfull,
+    .p2tenberg-editor__post .block-editor-block-list__layout:first-child .wp-block-image.alignfull,
+    .p2tenberg-editor__page .block-editor-block-list__layout:first-child .wp-block-image.alignfull {
       margin-left: -2em;
       margin-right: -2em;
       width: calc(100% + 4em); } }
@@ -716,7 +726,6 @@ body {
 .wp-caption .wp-caption-text, .p2tenberg-editor .wp-block-image figcaption,
 .entry-content .wp-block-image figcaption,
 .comment-content .wp-block-image figcaption {
-  width: 100%;
   margin-top: 0.75em;
   color: var(--color-text-light);
   text-align: center;
@@ -1025,24 +1034,21 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     .entry-content li:not(.blocks-gallery-item) > ol {
       margin-top: 0.5em; }
   .p2tenberg-editor .block-editor-writing-flow .wp-block-image:not(.wp-block), .comment-content .wp-block-image:not(.wp-block), .entry-content .wp-block-image:not(.wp-block),
+  .p2tenberg-editor .block-editor-writing-flow .wp-block-cover-image,
+  .comment-content .wp-block-cover-image,
+  .entry-content .wp-block-cover-image,
   .p2tenberg-editor .block-editor-writing-flow .wp-caption,
   .comment-content .wp-caption,
   .entry-content .wp-caption {
     margin-bottom: 1.7em; }
   .p2tenberg-editor .block-editor-writing-flow .alignleft, .comment-content .alignleft, .entry-content .alignleft {
-    display: inline;
     float: left;
     margin-right: 1.7em;
     margin-bottom: 1.7em; }
   .p2tenberg-editor .block-editor-writing-flow .alignright, .comment-content .alignright, .entry-content .alignright {
-    display: inline;
     float: right;
     margin-left: 1.7em;
     margin-bottom: 1.7em; }
-  .p2tenberg-editor .block-editor-writing-flow .aligncenter, .comment-content .aligncenter, .entry-content .aligncenter {
-    clear: both;
-    margin-left: auto;
-    margin-right: auto; }
   .p2tenberg-editor .block-editor-writing-flow .wp-block-file, .comment-content .wp-block-file, .entry-content .wp-block-file {
     margin-bottom: 1.7em; }
 
@@ -1580,6 +1586,46 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   margin-top: 8px !important;
   margin-bottom: 4px !important;
   white-space: normal; }
+
+.widget_office-hours-widget .timezone-group ul {
+  margin-left: 0; }
+
+.widget_office-hours-widget .timezone-group li {
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+  padding: 10px 0 10px 50px; }
+
+.widget_office-hours-widget .avatar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto; }
+
+.widget_office-hours-widget .widget_officehours_meta {
+  margin-right: 57px;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--color-text-light); }
+
+.widget_office-hours-widget .widget_officehours_badge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 4.1em;
+  padding: 32px 4px 10px;
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--color-text-light);
+  border-radius: 6px; }
+  .widget_office-hours-widget .widget_officehours_badge.day {
+    background: var(--color-white) url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDx0aXRsZT5pY29uLWFjdGl2ZTwvdGl0bGU+CiAgICA8ZGVzY3JpcHRpb24+Q3JlYXRlZCB3aXRoIFNrZXRjaCAoaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoKTwvZGVzY3JpcHRpb24+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iaTQiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJpY29uLWFjdGl2ZSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgZmlsbD0iIzMyMzIzMiI+CiAgICAgICAgICAgIDxnIGlkPSI6LWljb24tYWN0aXZlIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik05LjgzMzMzMzMzLDkuMDQzMjY5MjMgQzExLjIzMzIzNTcsOS4wNDMyNjkyMyAxMi4zNzUsNy44NjgzODk0MiAxMi4zNzUsNi40Mjc4ODQ2MiBDMTIuMzc1LDQuOTg3Mzc5ODEgMTEuMjMzMjM1NywzLjgxMjUgOS44MzMzMzMzMywzLjgxMjUgQzguNDMzNDMwOTksMy44MTI1IDcuMjkxNjY2NjcsNC45ODczNzk4MSA3LjI5MTY2NjY3LDYuNDI3ODg0NjIgQzcuMjkxNjY2NjcsNy44NjgzODk0MiA4LjQzMzQzMDk5LDkuMDQzMjY5MjMgOS44MzMzMzMzMyw5LjA0MzI2OTIzIFogTTguNTYyNSwxMC4zNTA5NjE1IEM2LjQ1NzY4MjI5LDEwLjM1MDk2MTUgNC43NSwxMi4xMDgxNzMxIDQuNzUsMTQuMjc0MDM4NSBMNC43NSwxNi44ODk0MjMxIEwxNC45MTY2NjY3LDE2Ljg4OTQyMzEgTDE0LjkxNjY2NjcsMTQuMjc0MDM4NSBDMTQuOTE2NjY2NywxMi4xMDgxNzMxIDEzLjIwODk4NDQsMTAuMzUwOTYxNSAxMS4xMDQxNjY3LDEwLjM1MDk2MTUgTDguNTYyNSwxMC4zNTA5NjE1IFoiIGlkPSLvjIQiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+) no-repeat center 12px;
+    background-size: 35%; }
+  .widget_office-hours-widget .widget_officehours_badge.night {
+    background: var(--color-background-light) url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDx0aXRsZT5pY29uLWluYWN0aXZlPC90aXRsZT4KICAgIDxkZXNjcmlwdGlvbj5DcmVhdGVkIHdpdGggU2tldGNoIChodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gpPC9kZXNjcmlwdGlvbj4KICAgIDxkZWZzPgogICAgICAgIDxwYXRoIGlkPSJwYXRoLTEiIGQ9Ik0xNyw5Ljc4NTkzODQ5IEMxNywxMy43NzAxNTQ4IDEzLjU5ODQyNiwxNyA5LjQwMjM3MTMyLDE3IEM2LjcxMzE1NzI4LDE3IDQuMzUwMjY5MzMsMTUuNjczMzY4OSAzLDEzLjY3MTc1MTcgQzMuODA2NzU0MTUsMTMuOTQ4ODIxNCA0LjY3NzAzMjY4LDE0LjA5OTg3NDggNS41ODQ0Njc0NiwxNC4wOTk4NzQ4IEM5Ljc4MDUyMjEzLDE0LjA5OTg3NDggMTMuMTgyMDk2MSwxMC44NzAwMjk2IDEzLjE4MjA5NjEsNi44ODU4MTMyNiBDMTMuMTgyMDk2MSw1LjQ1NTA0NTY2IDEyLjc0MzQzMTgsNC4xMjE1NjExOCAxMS45ODY4Mzg4LDMgQzE0LjkxMDU4MzYsNC4wMDQxMjM4NyAxNyw2LjY2MzM0NDk3IDE3LDkuNzg1OTM4NDkgWiI+PC9wYXRoPgogICAgPC9kZWZzPgogICAgPGcgaWQ9InZlcnNpb25zLWkyIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8ZyBpZD0iaWNvbi1pbmFjdGl2ZSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCI+CiAgICAgICAgICAgIDxnIGlkPSJPdmFsLTEiPgogICAgICAgICAgICAgICAgPHVzZSBmaWxsPSJub25lIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIiB4bGluazpocmVmPSIjcGF0aC0xIj48L3VzZT4KICAgICAgICAgICAgICAgIDx1c2UgZmlsbD0iI0Q4RDhEOCIgZmlsbC1ydWxlPSJldmVub2RkIiB4bGluazpocmVmPSIjcGF0aC0xIj48L3VzZT4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+) no-repeat center 12px;
+    background-size: 35%; }
 
 /***************************************************************************************************
  * Master Threads as Sticky
@@ -2543,6 +2589,17 @@ article.tag-p2-xpost .comment .avatar {
   display: inline-block;
   -webkit-mask: url(img/icons/custom-posts.svg) no-repeat;
           mask: url(img/icons/custom-posts.svg) no-repeat;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: currentColor; }
+
+.widget_p2020-filter-widget #widget-filter-unresolved-posts .widget-filter-item-link-icon::before {
+  content: "";
+  display: inline-block;
+  -webkit-mask: url(img/icons/custom-tack.svg) no-repeat;
+          mask: url(img/icons/custom-tack.svg) no-repeat;
   -webkit-mask-size: cover;
           mask-size: cover;
   width: 1.5rem;
