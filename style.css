@@ -1493,7 +1493,9 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   font-weight: 600;
   left: 24px;
   letter-spacing: 1px;
-  padding: 0.25rem 0.75rem; }
+  padding: 0.25rem 0.75rem;
+  width: auto;
+  height: auto; }
 
 .p2020-unread-comment .o2-comment-header .comment-meta::after,
 .p2020-unread-mention .o2-comment-header .comment-meta::after {
@@ -1514,6 +1516,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
  */
 #actionbar {
   display: none; }
+  .a8c-p2 #actionbar {
+    display: block; }
 
 /**
  * https://opengrok.a8c.com/source/xref/trunk/wp-content/a8c-plugins/oblique-strategies/

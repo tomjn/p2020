@@ -2499,7 +2499,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   }
 
   function insertTextAsEntryTitle(text) {
-    if ($('.entry-title').length) {
+    if ($('h1.entry-title').length) {
       return;
       /* Don't do anything if entry-title already exists */
     }
