@@ -150,6 +150,10 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 	public function alter_query_for_comment_view( $clauses, $wp_query ) {
 		global $wpdb;
 
+		if ( ! $wp_query->is_main_query() ) {
+			return $clauses;
+		}
+
 		if ( ! is_user_logged_in() ) {
 			return $clauses;
 		}

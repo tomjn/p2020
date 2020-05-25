@@ -30,6 +30,10 @@ function body_classes( $classes ) {
 		$classes[] = 'custom-menu';
 	}
 
+	if ( is_a8c_p2() ) {
+		$classes[] = 'a8c-p2';
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'P2020\body_classes' );
