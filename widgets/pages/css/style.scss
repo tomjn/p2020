@@ -43,7 +43,7 @@
 			margin: pxrem(1) 0;
 			transition: var(--transition-quick);
 
-			.widget-p2020-pages-link { 
+			.widget-p2020-pages-link {
 				display: flex;
 				width: 100%;
 
@@ -61,6 +61,7 @@
 				position: absolute;
 				right: 8px;
 				transition: var(--transition-quick);
+
 				a {
 					display: flex;
 					opacity: 0.6;

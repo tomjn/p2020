@@ -16,6 +16,14 @@ $help_url = 'https://wordpress.com/help';
 ?>
 
 	<aside id="sidebar" class="p2020-sidebar">
+		<div class="p2020-sidebar__mobile-menu-close" data-micromodal-close>
+			<button
+				aria-label="<?php esc_attr_e( 'Close', 'p2020' ); ?>"
+				class="p2020-sidebar__mobile-menu-close-button"
+				data-micromodal-close
+			>
+			</button>
+		</div>
 
 		<?php if ( has_header_image() ) : ?>
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">

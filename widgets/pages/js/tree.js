@@ -1,4 +1,4 @@
-( function( $ ) {
+( function ( $ ) {
 	const addToggleSubtreeIcons = () => {
 		const toggleBtn =
 			'.widget-p2020-pages-label > .widget-p2020-pages-expand > button';
@@ -41,16 +41,16 @@
 		}
 	};
 
-	$( function() {
+	$( function () {
 		addToggleSubtreeIcons();
 		collapseNoncurrentSubtree();
 
-		$( document.body ).on( 'click', '.btn-collapsed', function() {
+		$( document.body ).on( 'click', '.btn-collapsed', function () {
 			showSubtree( $( this ) );
 			toggleClass( $( this ) );
 		} );
 
-		$( document.body ).on( 'click', '.btn-expanded', function() {
+		$( document.body ).on( 'click', '.btn-expanded', function () {
 			hideSubtree( $( this ) );
 			toggleClass( $( this ) );
 		} );
