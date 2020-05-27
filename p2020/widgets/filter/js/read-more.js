@@ -1,4 +1,4 @@
-( function( $ ) {
+( function ( $ ) {
 	const trimComment = ( $commentContent ) => {
 		$commentContent
 			.children( ':first-child' )
@@ -40,7 +40,7 @@
 	};
 
 	const addReadMoreToPosts = () => {
-		$( '.p2020-post-read-more .o2-post' ).each( function() {
+		$( '.p2020-post-read-more .o2-post' ).each( function () {
 			addReadMoreToPost( $( this ) );
 		} );
 	};
@@ -63,7 +63,7 @@
 	const trimSeenComments = ( articleId = '' ) => {
 		let selector = '.p2020-comment-read-more > .comment-content';
 		if ( articleId !== '' ) selector = '#' + articleId + ' ' + selector;
-		$( selector ).each( function() {
+		$( selector ).each( function () {
 			if ( shouldTrimComment( $( this ) ) ) {
 				trimComment( $( this ) );
 				addReadMoreToComment( $( this ) );
@@ -87,10 +87,8 @@
 			);
 
 		const $avatars = $commentThread.find( '.avatar' );
-		$avatars.each( function() {
-			const $avatar = $( this )
-				.clone()
-				.removeClass( 'grav-hijack' );
+		$avatars.each( function () {
+			const $avatar = $( this ).clone().removeClass( 'grav-hijack' );
 
 			let gravatarHash = '';
 			const match = $avatar
@@ -101,9 +99,7 @@
 				$avatar.addClass( `gravatar-${ gravatarHash }` );
 			}
 
-			const avatarHtml = $( '<div/>' )
-				.append( $avatar )
-				.html();
+			const avatarHtml = $( '<div/>' ).append( $avatar ).html();
 
 			// Update avatars
 			const $commentSummaryAvatars = $summary.find(
@@ -147,7 +143,7 @@
 	const collapseCommentThreads = ( articleId = '' ) => {
 		let selector = '.o2-post-comments > .o2-comment';
 		if ( articleId !== '' ) selector = '#' + articleId + ' ' + selector;
-		$( selector ).each( function() {
+		$( selector ).each( function () {
 			const hasUnreadComment =
 				$( this ).hasClass( 'p2020-unread-comment' ) ||
 				$( this ).find( '.p2020-unread-comment' ).length > 0;
@@ -164,7 +160,7 @@
 	const processNewPosts = () => {
 		const targetNode = document.querySelector( '#content' );
 		const config = { childList: true, subtree: true };
-		const callback = function( mutationsList ) {
+		const callback = function ( mutationsList ) {
 			for ( const mutation of mutationsList ) {
 				if (
 					mutation.addedNodes.length > 0 &&
@@ -183,7 +179,7 @@
 		observer.observe( targetNode, config );
 	};
 
-	$( function() {
+	$( function () {
 		addReadMoreToPosts();
 		forceDisplayComments();
 		trimSeenComments();
@@ -195,31 +191,25 @@
 	$( document.body ).on(
 		'click',
 		'.p2020-post-read-more-trigger',
-		function() {
-			$( this )
-				.closest( '.post' )
-				.removeClass( 'p2020-post-read-more' );
+		function () {
+			$( this ).closest( '.post' ).removeClass( 'p2020-post-read-more' );
 
-			$( this )
-				.closest( '.p2020-post-read-more-mask' )
-				.remove();
+			$( this ).closest( '.p2020-post-read-more-mask' ).remove();
 		}
 	);
 
 	$( document.body ).on(
 		'click',
 		'.p2020-comment-read-more-trigger',
-		function() {
+		function () {
 			untrimComment( $( this ).closest( '.comment-content' ) );
-			$( this )
-				.closest( '.p2020-comment-read-more-mask' )
-				.remove();
+			$( this ).closest( '.p2020-comment-read-more-mask' ).remove();
 
 			return false;
 		}
 	);
 
-	$( document.body ).on( 'click', '.p2020-comments-summary', function() {
+	$( document.body ).on( 'click', '.p2020-comments-summary', function () {
 		$( this )
 			.nextUntil( '.p2020-active-thread' )
 			.removeClass( 'p2020-inactive-thread' );

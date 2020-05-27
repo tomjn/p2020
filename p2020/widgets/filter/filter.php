@@ -232,7 +232,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 			}
 
 			$unread_mentions = get_mentions_after_ts( $ts, self::QUERY_ROWS_LIMIT );
-			if ( is_array( $unread_mentions['comments'] ) && in_array( $post_id, $unread_mentions['comments'] ) ) {
+			if ( is_array( $unread_mentions['comments'] ) && in_array( $comment_id, $unread_mentions['comments'] ) ) {
 				$classes[] = 'p2020-unread-mention';
 			}
 		}

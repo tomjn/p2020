@@ -8,6 +8,10 @@ class My_Team_Widget extends \WP_Widget {
 
 	var $default_title;
 
+	var $exclude_users = [
+		26957695, // a8cuser
+	];
+
 	/**
 	 * Registers the widget with WordPress.
 	 */
@@ -231,7 +235,10 @@ class My_Team_Widget extends \WP_Widget {
 		$user_query_param = [
 			'blog_id' => $blog_id,
 			'role__in' => $roles,
-			'exclude' => [ get_current_user_id() ],
+			'exclude' => array_merge(
+				[ get_current_user_id() ],
+				$this->exclude_users
+			),
 		];
 
 		if ( ! empty( $limit ) ) {

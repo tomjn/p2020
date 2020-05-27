@@ -395,22 +395,15 @@ body {
   max-width: 360px;
   min-width: 280px;
   border-left: 1px solid var(--color-border); }
-  @media (max-width: 876px) {
-    #sidebar {
-      position: absolute;
-      top: 56px;
-      right: -200%;
-      left: 0;
-      z-index: 1;
-      transition: right 0.25s ease-in-out;
-      width: 100%;
-      margin: 12px auto;
-      border: 0;
-      border-radius: 4px;
-      background: var(--color-white);
-      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07); }
-      .mobile-menu-is-visible #sidebar {
-        right: 0; } }
+  #sidebar.is-mobile-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    margin: 12px auto;
+    border: 0;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07); }
 
 @media (max-width: 876px) {
   input[type="checkbox"] {
@@ -1281,6 +1274,19 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   font-size: 0.875rem;
   font-weight: 500; }
 
+.p2020-modal-wrapper {
+  position: absolute;
+  z-index: 1;
+  top: -32px;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85); }
+  .p2020-modal-wrapper[aria-hidden="true"] {
+    display: none; }
+  @media (max-width: 782px) {
+    .p2020-modal-wrapper {
+      top: -46px; } }
+
 /**
  * Responsive padding for posts and p2tenberg editor
  */
@@ -1355,11 +1361,39 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   .p2020-searchform__field:focus::placeholder {
     opacity: 0.3; }
 
+.p2020-sidebar__mobile-menu-close {
+  display: none;
+  margin-bottom: 8px; }
+  .is-mobile-menu .p2020-sidebar__mobile-menu-close {
+    display: flex;
+    justify-content: flex-end; }
+
+.p2020-sidebar__mobile-menu-close-button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 8px;
+  border: 0; }
+  .p2020-sidebar__mobile-menu-close-button::before {
+    content: "";
+    display: inline-block;
+    -webkit-mask: url(img/icons/custom-close.svg) no-repeat;
+            mask: url(img/icons/custom-close.svg) no-repeat;
+    -webkit-mask-size: cover;
+            mask-size: cover;
+    width: 20px;
+    height: 20px;
+    background: var(--color-white); }
+  .p2020-sidebar__mobile-menu-close-button:focus {
+    outline: 1px dotted var(--color-white); }
+
 .p2020-sidebar__header-image {
   display: block; }
 
 .p2020-sidebar__inner-main {
   padding: 40px; }
+  .is-mobile-menu .p2020-sidebar__inner-main {
+    background: var(--color-white); }
   .p2020-sidebar__inner-main ul {
     list-style-type: none;
     margin: 0; }
@@ -1481,7 +1515,7 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     border-right: 0; }
 
 .p2020-unread-post::before,
-.p2020-unread-mention::before {
+.post.p2020-unread-mention::before {
   content: "New";
   color: var(--color-green);
   background: var(--color-green-light);
@@ -1497,8 +1531,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   width: auto;
   height: auto; }
 
-.p2020-unread-comment .o2-comment-header .comment-meta::after,
-.p2020-unread-mention .o2-comment-header .comment-meta::after {
+.p2020-unread-comment > .o2-comment-header > .comment-meta::after,
+.comment.p2020-unread-mention > .o2-comment-header > .comment-meta::after {
   content: "New";
   color: var(--color-white);
   background: var(--color-green);
@@ -1545,6 +1579,9 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
 
 #wpadminbar #wp-admin-bar-menu-toggle {
   pointer-events: none; }
+
+#wpadminbar.is-below-modal {
+  z-index: 0 !important; }
 
 #wpstats {
   position: absolute;
@@ -1643,10 +1680,10 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
 .blog .post.sticky.tag-master-thread + .post:not(.tag-master-thread) {
   margin-top: 40px; }
 
-.blog .post.sticky.tag-master-thread:after {
-  content: '\f507';
+.blog .post.sticky.tag-master-thread::after {
+  content: "\f507";
   -webkit-font-smoothing: antialiased;
-  font: normal 32px/1 Genericons;
+  font: 400 32px/1 Genericons, sans-serif;
   display: block;
   position: absolute;
   top: 50%;
@@ -1655,11 +1692,11 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   padding: 3px;
   border-radius: 4px; }
 
-.blog .post.sticky.tag-master-thread:before {
+.blog .post.sticky.tag-master-thread::before {
   /* This is to not use the P2 "Status" styling which is meaningless in this context */
   display: none; }
 
-.blog .post.sticky.tag-master-thread h1:before {
+.blog .post.sticky.tag-master-thread h1::before {
   content: "Master Thread";
   display: block;
   text-transform: uppercase;
@@ -1671,7 +1708,7 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   line-height: 1;
   margin-bottom: 2px; }
 
-.blog .post.sticky.tag-master-thread:hover h1:before {
+.blog .post.sticky.tag-master-thread:hover h1::before {
   color: var(--color-text); }
 
 .blog .post.sticky.tag-master-thread .o2-post .entry-header {
@@ -1701,7 +1738,7 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   background: #f3f6f8;
   border: 1px solid #d8e2e9;
   border-radius: 2px;
-  box-shadow: inset -45px 0px 0px 0px #ffffff, inset -46px 0px 0px 0px #d8e2e9;
+  box-shadow: inset -45px 0 0 0 #fff, inset -46px 0 0 0 #d8e2e9;
   padding: 8px 56px 8px 8px;
   margin: 4px 0;
   line-height: 1.2;
@@ -1709,7 +1746,7 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
 
 .shortcode-master-thread:hover {
   border-color: #668eaa;
-  box-shadow: inset -45px 0px 0px 0px #ffffff, inset -46px 0px 0px 0px #d8e2e9, 0px 2px 2px 0 #d8e2e9; }
+  box-shadow: inset -45px 0 0 0 #fff, inset -46px 0 0 0 #d8e2e9, 0 2px 2px 0 #d8e2e9; }
 
 .o2-posts a.shortcode-master-thread,
 .o2-posts a.shortcode-master-thread:hover {
@@ -1717,8 +1754,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   text-decoration: none;
   color: #2e4453; }
 
-.shortcode-master-thread:before {
-  content: '';
+.shortcode-master-thread::before {
+  content: "";
   display: block;
   position: absolute;
   top: calc(50% - 12px);
@@ -2531,6 +2568,9 @@ article.tag-p2-xpost .comment .avatar {
       margin-right: -2em;
       margin-left: -2em;
       width: calc(100% + 4em); } }
+
+.syntaxhighlighter div.line {
+  line-height: 1.5 !important; }
 
 /**
  * POST TYPE PARTIALS

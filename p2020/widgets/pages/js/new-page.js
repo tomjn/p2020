@@ -1,4 +1,4 @@
-( function( $ ) {
+( function ( $ ) {
 	const selectorParentInput = '.editor-page-attributes__parent select';
 
 	const setParentPage = () => {
@@ -12,7 +12,7 @@
 	};
 
 	const openPageAttrSection = () => {
-		$( '.components-panel__body:last-child button' ).each( function() {
+		$( '.components-panel__body:last-child button' ).each( function () {
 			if (
 				! $( this )
 					.closest( '.components-panel__body' )
@@ -26,7 +26,7 @@
 	const onLoadSetParent = () => {
 		const targetNode = document.querySelector( '#editor' );
 		const config = { childList: true, subtree: true };
-		const callback = function( mutationsList, observer ) {
+		const callback = function ( mutationsList, observer ) {
 			for ( const mutation of mutationsList ) {
 				if ( mutation.addedNodes.length > 0 ) {
 					if (
@@ -51,13 +51,13 @@
 		observer.observe( targetNode, config );
 	};
 
-	$( function() {
+	$( function () {
 		onLoadSetParent();
 
 		$( document.body ).on(
 			'click',
 			'.page-template-modal__buttons button, button.page-template-modal__close-button',
-			function() {
+			function () {
 				openPageAttrSection();
 				setParentPage();
 			}
