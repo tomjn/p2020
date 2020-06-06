@@ -54,14 +54,14 @@ $help_url = 'https://wordpress.com/help';
 
 			<footer class="p2020-sidebar__footer">
 				<ul class="p2020-sidebar__footer-links">
-					<?php if ( current_user_can( 'create_users' ) ) : ?>
+					<?php if ( is_user_member_of_blog() && current_user_can( 'create_users' ) ) : ?>
 						<li>
 							<a href="<?php echo esc_url( $invite_url ) ?>">
 								<?php esc_html_e( 'Invite people to your team', 'p2020' ); ?>
 							</a>
 						</li>
 					<?php endif; ?>
-					<?php if ( current_user_can( 'customize' ) ) : ?>
+					<?php if ( is_user_member_of_blog() && current_user_can( 'customize' ) ) : ?>
 					<li>
 						<a href="<?php echo esc_url( $customizer_url ) ?>">
 							<?php esc_html_e( 'Customize your site', 'p2020' ); ?>

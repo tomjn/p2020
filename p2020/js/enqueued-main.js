@@ -2747,7 +2747,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 (function ($) {
-  $('#remembered-posts').insertBefore('#sidebar .p2020-sidebar__footer');
+  if ($('#sidebar .widget_p2020-filter-widget').length > 0) {
+    $('#remembered-posts').insertAfter('#sidebar .widget_p2020-filter-widget');
+  } else {
+    $('#remembered-posts').insertBefore('#sidebar .widget:first-of-type');
+  }
 })(jQuery);
 
 (function ($) {
