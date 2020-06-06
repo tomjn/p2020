@@ -150,7 +150,7 @@ class My_Team_Widget extends \WP_Widget {
 		if ( ! empty( $title ) ) {
 			$widget_title = $args['before_title'] . $title;
 
-			if ( current_user_can( 'administrator' ) ) {
+			if ( is_user_member_of_blog() && current_user_can( 'administrator' ) ) {
 				$manage_team_link = 'https://wordpress.com/people/team/' .
 					\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
 				$widget_title .= '<a href="' . esc_url( $manage_team_link ) . '" class="widget-title-secondary-action">' . esc_html__( 'Manage', 'p2020' ) . '</a>';
@@ -188,7 +188,7 @@ class My_Team_Widget extends \WP_Widget {
 			<?php }
 
 			$hidden_count = $my_team['size'] - count( $my_team_members );
-			if ( current_user_can( 'administrator' ) ) {
+			if ( is_user_member_of_blog() && current_user_can( 'administrator' ) ) {
 				$manage_team_link = 'https://wordpress.com/people/new/' . \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() ); ?>
 				<li class="widget-myteam-manage-icon">
 					<a

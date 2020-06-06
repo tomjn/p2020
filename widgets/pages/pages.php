@@ -46,7 +46,7 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 			echo html_output( $args['before_widget'] );
 			if ( $title ) {
 				$widget_title = $args['before_title'] . $title;
-				if ( current_user_can( 'administrator' ) ) {
+				if ( is_user_member_of_blog() && current_user_can( 'administrator' ) ) {
 					$manage_pages_link = "https://wordpress.com/pages/${site_slug}";
 					$widget_title .= '<a class="widget-title-secondary-action" href="' . $manage_pages_link . '">' . __( 'Manage', 'p2020' ) . '</a>';
 				}

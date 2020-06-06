@@ -241,6 +241,18 @@ function hide_pages_from_admin_menu(){
 add_action( 'admin_menu', __NAMESPACE__ . '\hide_pages_from_admin_menu', 40 );
 
 /**
+ * Remove the Contributor role in wp-admin (if there are no existing Contributors)
+ */
+function maybe_remove_contributor_role(){
+	$contributors = get_users( [ 'role' => 'contributor' ] );
+
+	if ( count( $contributors ) === 0 ) {
+		remove_role( 'contributor' );
+	}
+}
+add_action( 'admin_menu', __NAMESPACE__ . '\maybe_remove_contributor_role' );
+
+/**
  * Enqueue scripts and styles
  */
 function scripts() {
