@@ -26,7 +26,11 @@ $help_url = 'https://wordpress.com/help';
 		</div>
 
 		<?php if ( has_header_image() ) : ?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
+				id="p2020-custom-header-partial"
+				title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
+				rel="home"
+			>
 				<img
 					src="<?php header_image(); ?>"
 					alt=""

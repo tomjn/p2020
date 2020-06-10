@@ -21,10 +21,11 @@ class My_Team_Widget extends \WP_Widget {
 			__( 'Team', 'p2020' ), // Name
 			[
 				'description' => __( 'A widget to showcase your team members.', 'p2020' ),
+				'customize_selective_refresh' => true,
 			]
 		);
 
-		if ( is_active_widget( false, false, $this->id_base ) || is_active_widget( false, false, 'monster' ) ) {
+		if ( is_active_widget( false, false, $this->id_base ) || is_active_widget( false, false, 'monster' ) || is_customize_preview() ) {
 			add_action( 'wp_print_styles', [ $this, 'enqueue_style' ] );
 		}
 

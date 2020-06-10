@@ -20,7 +20,10 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		\WP_Widget::__construct(
 			'p2020-filter-widget', // Base ID
 			'P2020 Filter', // Name
-			[ 'description' => __( 'An extension of the o2 filter widget, with unread counts.', 'p2020' ) ]
+			[
+				'description' => __( 'An extension of the o2 filter widget, with unread counts.', 'p2020' ),
+				'customize_selective_refresh' => true,
+		 	]
 		);
 
 		if ( ! is_user_logged_in() ) {

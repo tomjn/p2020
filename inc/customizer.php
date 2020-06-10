@@ -34,9 +34,9 @@ function color_hex_to_rgba( string $hex, float $alpha ): string {
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
  *
- * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ * @param WP_Dotcom_Customize $wp_customize Theme Customizer object.
  */
-function customize_register( $wp_customize ) {
+function customize_register( \WP_Dotcom_Customize $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 
 	$wp_customize->add_setting( 'p2020_theme_options[color_link]', [
@@ -58,6 +58,10 @@ function customize_register( $wp_customize ) {
 		'section' => 'colors',
 		'settings' => 'p2020_theme_options[color_mentions]',
 	] ) );
+
+	$wp_customize->selective_refresh->add_partial( 'header_image', [
+		'selector' => '#p2020-custom-header-partial',
+	] );
 }
 
 add_action( 'customize_register', 'P2020\customize_register' );
@@ -104,7 +108,7 @@ function customize_preview_js() {
 
 add_action( 'customize_preview_init', 'P2020\customize_preview_js' );
 
-function disable_nonrelevant_sections( $wp_customize ) {
+function disable_nonrelevant_sections( \WP_Dotcom_Customize $wp_customize ) {
 	// Remove "Homepage Settings".
 	$wp_customize->remove_section( 'static_front_page' );
 
@@ -137,7 +141,7 @@ add_action( 'customize_register', 'P2020\disable_nonrelevant_sections', 1000 );
  *
  * https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/custom-css-in-customizer.php#15
  */
-function enable_custom_customizer() {
+function enable_custom_customizer(): bool {
 	return false;
 }
 

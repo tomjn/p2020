@@ -4,14 +4,19 @@ namespace P2020;
 
 class P2020_Pages_Widget extends \WP_Widget_Pages {
 
+	// Whitelisted qvar in Calypso, should we add our own?
+	// Currently, it looks safe to repurpose this qvar.
+	const PARENT_PAGE_QVAR = 'fse_parent_post';
+
 	public function __construct() {
 		\WP_Widget::__construct(
 			'p2020-pages-widget', // Base ID
 			__( 'P2020 Pages', 'p2020' ), // Name
 			[
 				'description' => __( 'An extension of the Pages widget.', 'p2020' ),
-				]
-			);
+				'customize_selective_refresh' => true,
+			]
+		);
 
 			if ( is_active_widget( false, false, 'p2020-pages-widget', true ) ) {
 				add_action( 'wp_enqueue_scripts', [ $this, 'p2020_scripts' ] );
@@ -65,6 +70,9 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 	}
 
 	private function enhance_page_items( $pages_html ) {
+		$site_slug = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+		$admin_edit_page_url = "https://wordpress.com/block-editor/page/" . $site_slug;
+
 		// Add expand/collapse icons, 'add page' link icon
 		$page_item_pattern = '/(<li .* page-item-([0-9]+).*>)(<a .*>.*<\/a>)/i';
 		$enhanced_page_item = '$1
@@ -72,11 +80,12 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 				<span class="widget-p2020-pages-expand"><button aria-label="Expand/Collapse"></button></span>
 				<span class="widget-p2020-pages-link">$3</span>';
 		if ( current_user_can( 'administrator' ) ) {
-			$nonce = wp_create_nonce( 'page-nonce' );
 			$enhanced_page_item .= '<span class="widget-p2020-pages-add">
-					<a href="' . add_query_arg(
-						[ 'p2020_pages_parent' => '$2', 'nonce' => $nonce ],
-						admin_url( 'post-new.php?post_type=page' ) ).
+					<a href="' .
+						add_query_arg(
+							[ self::PARENT_PAGE_QVAR => '$2' ],
+							$admin_edit_page_url
+						) .
 						'" aria-label="Add page inside" data-tippy-content="Add page inside"></a>
 				</span>';
 		}
@@ -87,7 +96,7 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 	}
 
 	function add_pages_query_vars( $vars ) {
-		$vars[] = 'p2020_pages_parent';
+		$vars[] = self::PARENT_PAGE_QVAR;
 
 		return $vars;
 	}
@@ -98,12 +107,7 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 			return;
 		}
 
-		$nonce = isset( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : null;
-		if ( ! wp_verify_nonce( $nonce , 'page-nonce' ) ) {
-			return;
-		}
-
-		$parent = isset( $_GET[ 'p2020_pages_parent' ] ) ? intval( sanitize_text_field( wp_unslash( $_GET[ 'p2020_pages_parent' ] ) ) ) : 0 ;
+		$parent = isset( $_GET[ self::PARENT_PAGE_QVAR ] ) ? intval( sanitize_text_field( wp_unslash( $_GET[ self::PARENT_PAGE_QVAR ] ) ) ) : 0 ;
 		if ( ! $parent ) {
 			return;
 		}
