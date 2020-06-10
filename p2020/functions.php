@@ -151,6 +151,11 @@ function setup() {
 	add_editor_style( 'style-editor.css' );
 
 	/**
+	 * Enable support for selective refresh of widgets in the Customizer
+	 */
+	add_theme_support( 'customize-selective-refresh-widgets' );
+
+	/**
 	 * This theme uses wp_nav_menu() in one location.
 	 */
 	register_nav_menus( [

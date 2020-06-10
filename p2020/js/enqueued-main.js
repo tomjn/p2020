@@ -2565,7 +2565,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   }
 
   function teardownMobileMenu($sidebar) {
-    MicroModal.close(mobileMenuId);
+    if ($("#".concat(mobileMenuId)).attr('aria-hidden') === false) {
+      MicroModal.close(mobileMenuId);
+    }
+
     $sidebar.removeClass(mobileMenuClass);
     $sidebar.removeAttr('role');
     $sidebar.removeAttr('aria-modal');

@@ -46,17 +46,17 @@ and Blueprint http://www.blueprintcss.org/
  */
 :root {
   /* COLORS (Keep in sync with inc/customizer.php) */
-  --color-text: #2c3338;
-  --color-text-light: #858d9a;
+  --color-text: #00101c;
+  --color-text-light: #6b6b6b;
   --color-link: #0267ff;
   --color-link-dark: #004cbf;
   --color-link-background: #dfeafb;
   --color-border: #dbdde1;
   --color-border-light: #e9eaed;
   --color-border-dark: #75808a;
-  --color-background-very-light: #f7f8fa;
-  --color-background-light: #e8e9ed;
-  --color-background-dark: #2c3338;
+  --color-background-very-light: #f9f9f9;
+  --color-background-light: #f3f3f3;
+  --color-background-dark: #00101c;
   --color-mentions: #b35eb1;
   --color-mentions-highlight: rgba(179, 94, 177, 0.1);
   --color-white: #fff;
@@ -389,6 +389,10 @@ body {
     #content {
       width: 100%;
       padding: 16px; } }
+  body.is-fullscreen-mode #content {
+    width: 100%;
+    max-width: unset;
+    padding: 0; }
 
 #sidebar {
   width: 25%;
@@ -404,6 +408,8 @@ body {
     margin: 12px auto;
     border: 0;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07); }
+  body.is-fullscreen-mode #sidebar {
+    display: none; }
 
 @media (max-width: 876px) {
   input[type="checkbox"] {
@@ -676,7 +682,7 @@ body {
 
 .o2-editor-footer a.o2-save, .o2-editor-footer a.o2-comment-save, .o2-editor-footer a.o2-cancel,
 .o2-editor-footer a.o2-comment-cancel,
-.o2-editor-footer a.o2-new-comment-cancel {
+.o2-editor-footer a.o2-new-comment-cancel, .p2tenberg-preview__header .components-button.is-primary {
   margin: 0;
   padding: 10px 20px;
   border: 1px solid var(--color-link);
@@ -689,15 +695,15 @@ body {
   line-height: 1.2;
   text-align: center;
   transition: background-color var(--transition-quick) ease-in-out; }
-  .o2-editor-footer a.o2-save:hover, .o2-editor-footer a.o2-comment-save:hover, .o2-editor-footer a.o2-cancel:hover,
-  .o2-editor-footer a.o2-comment-cancel:hover,
-  .o2-editor-footer a.o2-new-comment-cancel:hover {
+  .o2-editor-footer a.o2-save:hover:not(:disabled), .o2-editor-footer a.o2-comment-save:hover:not(:disabled), .o2-editor-footer a.o2-cancel:hover:not(:disabled),
+  .o2-editor-footer a.o2-comment-cancel:hover:not(:disabled),
+  .o2-editor-footer a.o2-new-comment-cancel:hover:not(:disabled), .p2tenberg-preview__header .components-button.is-primary:hover:not(:disabled) {
     background: var(--color-link);
     border-color: var(--color-link);
     color: var(--color-white); }
   .o2-editor-footer a.o2-save:focus, .o2-editor-footer a.o2-comment-save:focus, .o2-editor-footer a.o2-cancel:focus,
   .o2-editor-footer a.o2-comment-cancel:focus,
-  .o2-editor-footer a.o2-new-comment-cancel:focus {
+  .o2-editor-footer a.o2-new-comment-cancel:focus, .p2tenberg-preview__header .components-button.is-primary:focus {
     outline: var(--color-text) thin dotted; }
 
 .o2-editor-footer a.o2-save, .o2-editor-footer a.o2-comment-save {
@@ -1245,6 +1251,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
       justify-content: flex-end;
       align-items: center;
       visibility: hidden; } }
+  body.is-fullscreen-mode .p2020-mobile-new-post {
+    display: none; }
 
 .p2020-mobile-new-post__new {
   padding: 0;
@@ -1290,12 +1298,12 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
 /**
  * Responsive padding for posts and p2tenberg editor
  */
-.o2-post, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child,
+body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-post, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child,
 .p2tenberg-editor__post .block-editor-block-list__layout:first-child,
 .p2tenberg-editor__page .block-editor-block-list__layout:first-child {
   padding: 4em 10%; }
   @media (max-width: 550px) {
-    .o2-post, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child,
+    body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-post, .p2tenberg-editor__newpost .block-editor-block-list__layout:first-child,
     .p2tenberg-editor__post .block-editor-block-list__layout:first-child,
     .p2tenberg-editor__page .block-editor-block-list__layout:first-child {
       padding: 2em; } }
@@ -2187,6 +2195,8 @@ header nav.o2-dropdown-actions {
   .o2-app-new-post .o2-editor-footer {
     padding-left: 16px;
     padding-right: 16px; }
+  body.is-fullscreen-mode .o2-editor-footer {
+    top: -6px; }
   .o2-editor-footer .o2-post-form-options,
   .o2-editor-footer .o2-comment-form-options {
     order: -1;
@@ -2206,11 +2216,16 @@ header nav.o2-dropdown-actions {
     order: 3;
     margin-left: 8px; }
 
+.o2-editor .o2-editor-wrapper {
+  border: 0; }
+
 .o2-editor {
   border-radius: 4px;
   background: var(--color-white); }
   .o2-app-new-post .o2-editor {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+  body.is-fullscreen-mode .o2-editor {
+    box-shadow: none; }
 
 #o2-expand-editor {
   display: none; }
@@ -2568,6 +2583,12 @@ article.tag-p2-xpost .comment .avatar {
       margin-left: -2em;
       margin-right: -2em;
       width: calc(100% + 4em); } }
+
+.p2tenberg-preview__header {
+  padding: 1em 1em 1em 2em;
+  border-bottom: 1px solid var(--color-border); }
+  .p2tenberg-preview__header p {
+    margin: 0; }
 
 .syntaxhighlighter div.line {
   line-height: 1.5 !important; }
