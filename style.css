@@ -695,9 +695,9 @@ body {
   line-height: 1.2;
   text-align: center;
   transition: background-color var(--transition-quick) ease-in-out; }
-  .o2-editor-footer a.o2-save:hover:not(:disabled), .o2-editor-footer a.o2-comment-save:hover:not(:disabled), .o2-editor-footer a.o2-cancel:hover:not(:disabled),
-  .o2-editor-footer a.o2-comment-cancel:hover:not(:disabled),
-  .o2-editor-footer a.o2-new-comment-cancel:hover:not(:disabled), .p2tenberg-preview__header .components-button.is-primary:hover:not(:disabled) {
+  .o2-editor-footer a.o2-save:hover, .o2-editor-footer a.o2-comment-save:hover, .o2-editor-footer a.o2-cancel:hover,
+  .o2-editor-footer a.o2-comment-cancel:hover,
+  .o2-editor-footer a.o2-new-comment-cancel:hover, .p2tenberg-preview__header .components-button.is-primary:hover {
     background: var(--color-link);
     border-color: var(--color-link);
     color: var(--color-white); }
@@ -2589,6 +2589,8 @@ article.tag-p2-xpost .comment .avatar {
   border-bottom: 1px solid var(--color-border); }
   .p2tenberg-preview__header p {
     margin: 0; }
+  .p2tenberg-preview__header .components-button.is-primary:hover:not(:disabled) {
+    background: var(--color-link); }
 
 .syntaxhighlighter div.line {
   line-height: 1.5 !important; }

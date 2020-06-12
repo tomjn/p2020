@@ -19,9 +19,9 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 		\WP_Widget::__construct(
 			'p2020-filter-widget', // Base ID
-			'P2020 Filter', // Name
+			'P2 Updates', // Name
 			[
-				'description' => __( 'An extension of the o2 filter widget, with unread counts.', 'p2020' ),
+				'description' => __( 'A convenient collection of views for recent posts, comments, mentions and own content.', 'p2020' ),
 				'customize_selective_refresh' => true,
 		 	]
 		);
@@ -34,13 +34,13 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 
 		$this->filters = [
 			'posts' => [
-				'label' => __( 'Recent updates', 'p2020' ),
+				'label' => __( 'New posts', 'p2020' ),
 				'url' => esc_url( add_query_arg( 'p2020_recent_posts', 1, home_url() ) ),
 				'css_id' => 'widget-filter-recent-updates',
 				'section' => 'team',
 			],
 			'comments' => [
-				'label' => __( 'Recent comments', 'p2020' ),
+				'label' => __( 'New comments', 'p2020' ),
 				'url' => esc_url( add_query_arg( 'p2020_recent_comments', 1, home_url() ) ),
 				'css_id' => 'widget-filter-recent-comments',
 				'section' => 'team',

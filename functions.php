@@ -219,7 +219,7 @@ function fonts() {
 	 * by Inter, translate this to 'off'. Do not translate into your own language.
 	 */
 	if ( 'off' !== _x( 'on', 'Sans: on or off', 'p2020' ) ) {
-		wp_register_style( 'p2020-sans', "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" );
+		wp_register_style( 'p2020-sans', "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" );
 	}
 }
 add_action( 'init', __NAMESPACE__ . '\fonts' );
@@ -255,7 +255,7 @@ function maybe_remove_contributor_role(){
 		remove_role( 'contributor' );
 	}
 }
-add_action( 'admin_menu', __NAMESPACE__ . '\maybe_remove_contributor_role' );
+add_action( 'wp_loaded', __NAMESPACE__ . '\maybe_remove_contributor_role' );
 
 /**
  * Enqueue scripts and styles
@@ -450,3 +450,21 @@ function append_more_container( string $items, object $args ): string {
 	return $items;
 }
 add_filter( 'wp_nav_menu_items', __NAMESPACE__ . '\append_more_container', 10, 2 );
+
+/**
+ * Hide widgets with P2 replacement versions:
+ *  - o2 Filter widget
+ *  - Pages widget
+ */
+function unregister_widgets() {
+	// Pages Widget
+	if ( ! is_active_widget( false, false, 'pages' ) ) {
+		unregister_widget( 'WP_Widget_Pages' );
+	}
+
+	// o2 Filter widget
+	if ( ! is_active_widget( false, false, 'o2-filter-widget' ) ) {
+		unregister_widget( 'o2_Filter_Widget' );
+	}
+}
+add_action( 'widgets_init', __NAMESPACE__ . '\unregister_widgets' );
