@@ -18,9 +18,9 @@ class My_Team_Widget extends \WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'p2020-my-team-widget', // Base ID
-			__( 'Team', 'p2020' ), // Name
+			__( 'P2 Team', 'p2020' ), // Name
 			[
-				'description' => __( 'A widget to showcase your team members.', 'p2020' ),
+				'description' => __( 'Allows you to showcase your team members.', 'p2020' ),
 				'customize_selective_refresh' => true,
 			]
 		);

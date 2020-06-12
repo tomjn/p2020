@@ -11,9 +11,9 @@ class P2020_Pages_Widget extends \WP_Widget_Pages {
 	public function __construct() {
 		\WP_Widget::__construct(
 			'p2020-pages-widget', // Base ID
-			__( 'P2020 Pages', 'p2020' ), // Name
+			__( 'P2 Pages', 'p2020' ), // Name
 			[
-				'description' => __( 'An extension of the Pages widget.', 'p2020' ),
+				'description' => __( 'Displays a tree outline of your site\'s pages.', 'p2020' ),
 				'customize_selective_refresh' => true,
 			]
 		);
