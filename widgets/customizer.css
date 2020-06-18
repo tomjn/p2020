@@ -1,0 +1,7 @@
+#available-widgets [class*="p2020-filter"] .widget-title::before {
+	content: "\f12a"; /* dashicons-yes-alt */
+}
+
+#available-widgets [class*="p2020-my-team"] .widget-title::before {
+	content: "\f307"; /* dashicons-groups */
+}

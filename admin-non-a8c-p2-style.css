@@ -1,0 +1,28 @@
+/*
+These styles are enqueued only on admin screens only for non-a8c P2s.
+ */
+/* First, let's hide all the widgets in admin areas (Customizer and wp-admin's Widgets page) */
+#available-widgets-list .widget-tpl {
+  display: none !important; }
+
+#widget-list .widget {
+  display: none; }
+
+/* Now, let's enable the widgets we want to show */
+/*
+Note: you have to use !important as the widget elements have a `style="display: block"` which can't
+be overwritten in any other way.
+*/
+#available-widgets-list [id*="p2020-my-team"],
+#widget-list [id*="p2020-my-team"] {
+  display: block !important; }
+
+#available-widgets-list [id*="p2020-filter"],
+#widget-list [id*="p2020-filter"] {
+  display: block !important; }
+
+#available-widgets-list [id*="p2020-pages"],
+#widget-list [id*="p2020-pages"] {
+  display: block !important; }
+
+/*# sourceMappingURL=admin-non-a8c-p2-style.css.map */
