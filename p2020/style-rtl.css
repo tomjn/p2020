@@ -53,6 +53,7 @@ and Blueprint http://www.blueprintcss.org/
   --color-link-background: #dfeafb;
   --color-border: #dbdde1;
   --color-border-light: #e9eaed;
+  --color-border-medium: #c3c4c7;
   --color-border-dark: #75808a;
   --color-background-very-light: #f9f9f9;
   --color-background-light: #f3f3f3;
@@ -399,6 +400,9 @@ body {
   max-width: 360px;
   min-width: 280px;
   border-left: 1px solid var(--color-border); }
+  @media (max-width: 876px) {
+    #sidebar:not(.is-mobile-menu) {
+      display: none; } }
   #sidebar.is-mobile-menu {
     position: absolute;
     top: 0;
@@ -811,6 +815,44 @@ body {
   font-size: 0.75rem;
   color: var(--color-text-light); }
 
+.p2020-ellipsis-button {
+  padding: 3px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer; }
+  body.no-js .p2020-ellipsis-button {
+    display: none; }
+  .p2020-ellipsis-button:hover, .p2020-ellipsis-button:focus, .p2020-ellipsis-button[aria-expanded="true"] {
+    border-color: currentColor;
+    outline: 0;
+    color: var(--color-link); }
+  .p2020-ellipsis-button::before {
+    content: "";
+    display: block;
+    -webkit-mask: url(img/icons/custom-ellipsis.svg) no-repeat;
+            mask: url(img/icons/custom-ellipsis.svg) no-repeat;
+    -webkit-mask-size: cover;
+            mask-size: cover;
+    width: 24px;
+    height: 24px;
+    background: currentColor; }
+
+.p2020-ellipsis-menu {
+  min-width: 13em;
+  list-style: none;
+  font-size: 0.875rem; }
+  .p2020-ellipsis-menu a {
+    display: block;
+    padding: 8px 18px;
+    border: 1.5px solid transparent;
+    border-radius: 2px;
+    color: var(--color-text); }
+    .p2020-ellipsis-menu a:focus {
+      outline: 0; }
+    .p2020-ellipsis-menu a:hover, .p2020-ellipsis-menu a.focus-visible:focus {
+      border-color: var(--color-link); }
+
 /**
  * Body content styles for post/pages and comments
  */
@@ -1151,7 +1193,7 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     align-items: center; }
     .p2020-menu-primary .menu-item-has-children > a::after {
       content: "";
-      display: inline-block;
+      display: block;
       -webkit-mask: url(img/icons/custom-chevron.svg) no-repeat;
               mask: url(img/icons/custom-chevron.svg) no-repeat;
       -webkit-mask-size: cover;
@@ -1231,7 +1273,7 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   background: transparent; }
   .p2020-mobile-menu-toggle::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/custom-hamburger.svg) no-repeat;
             mask: url(img/icons/custom-hamburger.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -1265,7 +1307,7 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   line-height: 1; }
   .p2020-mobile-new-post__new::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/custom-add.svg) no-repeat;
             mask: url(img/icons/custom-add.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -1333,7 +1375,7 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 0 0 1px var(--color-border) inset; }
   .p2020-searchform::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/custom-search.svg) no-repeat;
             mask: url(img/icons/custom-search.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -1355,6 +1397,9 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
   background: transparent;
   padding: 9px 0;
   width: 15em; }
+  @media (max-width: 876px) {
+    .p2020-searchform__field {
+      width: 100%; } }
   .p2020-searchform__field:-ms-input-placeholder {
     color: var(--color-text-light);
     opacity: 1; }
@@ -1386,7 +1431,7 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
   border: 0; }
   .p2020-sidebar__mobile-menu-close-button::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/custom-close.svg) no-repeat;
             mask: url(img/icons/custom-close.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -1573,16 +1618,24 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
   top: 90px;
   left: 28px; }
 
-.tippy-box[data-theme~="p2020"] {
+.tippy-box[data-theme~="p2-tooltip"] {
   border-radius: 2px;
   background: var(--color-background-dark); }
-  .tippy-box[data-theme~="p2020"] .tippy-content {
+  .tippy-box[data-theme~="p2-tooltip"] .tippy-content {
     padding: 6px 8px;
     font-size: 0.75rem; }
-  .tippy-box[data-theme~="p2020"] .tippy-arrow {
+  .tippy-box[data-theme~="p2-tooltip"] .tippy-arrow {
     background: var(--color-background-dark); }
-    .tippy-box[data-theme~="p2020"] .tippy-arrow::before {
+    .tippy-box[data-theme~="p2-tooltip"] .tippy-arrow::before {
       transform: scale(0.75); }
+
+.tippy-box[data-theme~="p2-menu"] {
+  padding: 0;
+  border: 1px solid var(--color-border-medium);
+  border-radius: 2px;
+  background: var(--color-white); }
+  .tippy-box[data-theme~="p2-menu"] .tippy-content {
+    padding: 8px; }
 
 #wpadminbar #wp-admin-bar-ab-new-post {
   display: none; }
@@ -1971,6 +2024,26 @@ footer.entry-meta {
   body.page .o2-app-page-title {
     display: none; }
 
+div.o2-comment-footer-actions li {
+  line-height: 1; }
+
+div.o2-comment-footer-actions ul li > a {
+  color: var(--color-text-light);
+  font-family: var(--font-default);
+  -moz-osx-font-smoothing: auto;
+  opacity: 1; }
+  div.o2-comment-footer-actions ul li > a:hover {
+    color: var(--color-text); }
+  div.o2-comment-footer-actions ul li > a::before {
+    color: #2ea2cc;
+    opacity: 1; }
+
+div.o2-comment-footer-actions .comment-like-feedback {
+  color: var(--color-text-light);
+  opacity: 1 !important; }
+  div.o2-comment-footer-actions .comment-like-feedback:hover {
+    color: var(--color-text); }
+
 .o2-comment-header {
   display: grid;
   grid-template-columns: [avatar] 42px [main] auto [actions] 32px;
@@ -2143,7 +2216,7 @@ header nav.o2-dropdown-actions {
   header nav.o2-dropdown-actions .o2-edit::before,
   header nav.o2-dropdown-actions .o2-comment-edit::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-pencil.svg) no-repeat;
             mask: url(img/icons/gridicons-pencil.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2154,7 +2227,7 @@ header nav.o2-dropdown-actions {
   header nav.o2-dropdown-actions .o2-short-link::before,
   header nav.o2-dropdown-actions .o2-comment-short-link::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-link.svg) no-repeat;
             mask: url(img/icons/gridicons-link.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2165,7 +2238,7 @@ header nav.o2-dropdown-actions {
   header nav.o2-dropdown-actions .o2-sticky-link::before,
   header nav.o2-dropdown-actions .o2-comment-sticky-link::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-pin.svg) no-repeat;
             mask: url(img/icons/gridicons-pin.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2176,7 +2249,7 @@ header nav.o2-dropdown-actions {
   header nav.o2-dropdown-actions .o2-trash::before,
   header nav.o2-dropdown-actions .o2-comment-trash::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-trash.svg) no-repeat;
             mask: url(img/icons/gridicons-trash.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2300,7 +2373,7 @@ header nav.o2-dropdown-actions {
       content: "";
       margin-bottom: 16px;
       content: "";
-      display: inline-block;
+      display: block;
       -webkit-mask: url(img/icons/big-checkmark.svg) no-repeat;
               mask: url(img/icons/big-checkmark.svg) no-repeat;
       -webkit-mask-size: cover;
@@ -2314,6 +2387,8 @@ header nav.o2-dropdown-actions {
 
 .o2-post-footer-actions {
   margin-top: 32px; }
+  .o2-post-footer-actions div.jetpack-likes-widget-wrapper {
+    height: 29px; }
 
 nav.o2-post-footer-actions ul li > a,
 nav.o2-post-footer-actions ul li > span > a {
@@ -2326,9 +2401,6 @@ nav.o2-post-footer-actions ul li > span > a:hover {
   color: #555;
   background: #fafafa;
   border: 1px solid #999; }
-
-div.jetpack-likes-widget-wrapper {
-  height: 28px; }
 
 .sticky .o2-post {
   border: 0;
@@ -2380,7 +2452,7 @@ div.jetpack-likes-widget-wrapper {
       opacity: 0.5;
       transition: opacity 0.2s;
       content: "";
-      display: inline-block;
+      display: block;
       -webkit-mask: url(img/icons/custom-xpost.svg) no-repeat;
               mask: url(img/icons/custom-xpost.svg) no-repeat;
       -webkit-mask-size: cover;
@@ -2476,7 +2548,7 @@ article.tag-p2-xpost .comment .avatar {
     background: transparent !important; }
   .widget_o2-filter-widget #o2-filter-recent-updates a::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-house.svg) no-repeat;
             mask: url(img/icons/gridicons-house.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2486,7 +2558,7 @@ article.tag-p2-xpost .comment .avatar {
     background: currentColor; }
   .widget_o2-filter-widget #o2-filter-recent-comments a::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-comment.svg) no-repeat;
             mask: url(img/icons/gridicons-comment.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2496,7 +2568,7 @@ article.tag-p2-xpost .comment .avatar {
     background: currentColor; }
   .widget_o2-filter-widget #o2-filter-my-mentions a::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-mention.svg) no-repeat;
             mask: url(img/icons/gridicons-mention.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2506,7 +2578,7 @@ article.tag-p2-xpost .comment .avatar {
     background: currentColor; }
   .widget_o2-filter-widget #o2-filter-no-replies a::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-not-visible.svg) no-repeat;
             mask: url(img/icons/gridicons-not-visible.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2516,7 +2588,7 @@ article.tag-p2-xpost .comment .avatar {
     background: currentColor; }
   .widget_o2-filter-widget #o2-filter-unresolved-posts a::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-flag.svg) no-repeat;
             mask: url(img/icons/gridicons-flag.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2526,7 +2598,7 @@ article.tag-p2-xpost .comment .avatar {
     background: currentColor; }
   .widget_o2-filter-widget #o2-filter-resolved-posts a::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-checkmark.svg) no-repeat;
             mask: url(img/icons/gridicons-checkmark.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2536,7 +2608,7 @@ article.tag-p2-xpost .comment .avatar {
     background: currentColor; }
   .widget_o2-filter-widget #o2-filter-my-posts a::before {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/gridicons-user.svg) no-repeat;
             mask: url(img/icons/gridicons-user.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2676,7 +2748,7 @@ article.tag-p2-xpost .comment .avatar {
 
 .widget_p2020-filter-widget #widget-filter-recent-updates .widget-filter-item-link-icon::before {
   content: "";
-  display: inline-block;
+  display: block;
   -webkit-mask: url(img/icons/custom-posts.svg) no-repeat;
           mask: url(img/icons/custom-posts.svg) no-repeat;
   -webkit-mask-size: cover;
@@ -2687,7 +2759,7 @@ article.tag-p2-xpost .comment .avatar {
 
 .widget_p2020-filter-widget #widget-filter-unresolved-posts .widget-filter-item-link-icon::before {
   content: "";
-  display: inline-block;
+  display: block;
   -webkit-mask: url(img/icons/custom-tack.svg) no-repeat;
           mask: url(img/icons/custom-tack.svg) no-repeat;
   -webkit-mask-size: cover;
@@ -2698,7 +2770,7 @@ article.tag-p2-xpost .comment .avatar {
 
 .widget_p2020-filter-widget #widget-filter-recent-comments .widget-filter-item-link-icon::before {
   content: "";
-  display: inline-block;
+  display: block;
   -webkit-mask: url(img/icons/custom-comment.svg) no-repeat;
           mask: url(img/icons/custom-comment.svg) no-repeat;
   -webkit-mask-size: cover;
@@ -2709,7 +2781,7 @@ article.tag-p2-xpost .comment .avatar {
 
 .widget_p2020-filter-widget #widget-filter-my-mentions .widget-filter-item-link-icon::before {
   content: "";
-  display: inline-block;
+  display: block;
   -webkit-mask: url(img/icons/custom-mention.svg) no-repeat;
           mask: url(img/icons/custom-mention.svg) no-repeat;
   -webkit-mask-size: cover;
@@ -2720,7 +2792,7 @@ article.tag-p2-xpost .comment .avatar {
 
 .widget_p2020-filter-widget #widget-filter-my-posts .widget-filter-item-link-icon::before {
   content: "";
-  display: inline-block;
+  display: block;
   -webkit-mask: url(img/icons/custom-user.svg) no-repeat;
           mask: url(img/icons/custom-user.svg) no-repeat;
   -webkit-mask-size: cover;
@@ -2830,7 +2902,7 @@ article.tag-p2-xpost .comment .avatar {
     cursor: default; }
   .widget_p2020-my-team-widget .widgets-multi-column-grid ul .widget-myteam-manage-icon .widget-myteam-manage-icon-plus {
     content: "";
-    display: inline-block;
+    display: block;
     -webkit-mask: url(img/icons/custom-add.svg) no-repeat;
             mask: url(img/icons/custom-add.svg) no-repeat;
     -webkit-mask-size: cover;
@@ -2896,7 +2968,7 @@ article.tag-p2-xpost .comment .avatar {
         color: inherit;
         transition: transform var(--transition-quick);
         content: "";
-        display: inline-block;
+        display: block;
         -webkit-mask: url(img/icons/custom-chevron-down.svg) no-repeat;
                 mask: url(img/icons/custom-chevron-down.svg) no-repeat;
         -webkit-mask-size: cover;
@@ -2912,7 +2984,7 @@ article.tag-p2-xpost .comment .avatar {
       background-color: var(--color-background-light); }
       .widget_p2020-pages-widget li.page_item .widget-p2020-pages-label:hover > .widget-p2020-pages-add a::before {
         content: "";
-        display: inline-block;
+        display: block;
         -webkit-mask: url(img/icons/custom-add.svg) no-repeat;
                 mask: url(img/icons/custom-add.svg) no-repeat;
         -webkit-mask-size: cover;

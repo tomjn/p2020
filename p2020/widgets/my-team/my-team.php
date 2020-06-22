@@ -3,9 +3,6 @@
 namespace P2020;
 
 class My_Team_Widget extends \WP_Widget {
-	// TODO Do we want caching
-	// static $expiration = 600;
-
 	var $default_title;
 
 	var $exclude_users = [
@@ -97,6 +94,7 @@ class My_Team_Widget extends \WP_Widget {
 	 *
 	 * @return array Updated safe values to be saved.
 	 */
+	// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Function signature for WP_Widget::update()
 	function update( $new_instance, $old_instance ) {
 		$instance = [];
 		$instance['title'] = wp_kses( $new_instance['title'], [] );
@@ -110,8 +108,6 @@ class My_Team_Widget extends \WP_Widget {
 		$all_roles = array_keys( $wp_roles->roles );
 		// Make sure submitted roles are valid
 		$instance['roles'] = array_intersect( $all_roles, $new_instance['roles'] );
-
-		// delete_transient( $this->id . '-myteam-widget-data' );
 
 		return $instance;
 	}
@@ -140,13 +136,7 @@ class My_Team_Widget extends \WP_Widget {
 		// phpcs:ignore WordPress.Security.EscapeOutput -- HTML from theme
 		echo $args['before_widget'];
 
-		// TODO Do we want caching
-		// $my_team = get_transient( $this->id . '-myteam-widget-data' );
-
-		if ( empty( $my_team ) ) {
-			$my_team = $this->get_team_info( $limit, $roles );
-			// 	set_transient( $this->id . '-myteam-widget-data', $my_team, self::$expiration );
-		}
+		$my_team = $this->get_team_info( $limit, $roles );
 
 		if ( ! empty( $title ) ) {
 			$widget_title = $args['before_title'] . $title;
@@ -170,6 +160,7 @@ class My_Team_Widget extends \WP_Widget {
 			<?php foreach ( $my_team_members as $member ) { ?>
 				<?php
 					$avatar_link_text = sprintf(
+						/* translators: %1$s is replaced with the user's display name; %2$s is the user's nicename */
 						__( 'Posts by %1$s ( @%2$s )', 'p2020' ),
 						$member->data->display_name,
 						$member->data->user_nicename
@@ -224,7 +215,6 @@ class My_Team_Widget extends \WP_Widget {
 	function get_team_info( ?int $limit = null, ?array $roles = null ): array {
 		global $blog_id;
 		$team_info = [];
-		$team_members = [];
 
 		if ( empty( $roles ) ) {
 			return [
