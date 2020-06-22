@@ -2457,23 +2457,99 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 });
 
 (function ($) {
-  // Only do this once
-  if ($('body').hasClass('p2020-js-loaded')) {
-    return;
-  }
-
-  $('body').addClass('p2020-js-loaded');
+  // Used for fallback styling when JS is disabled or slow to load
+  $('body').removeClass('no-js');
 })(jQuery);
 
 (function ($) {
-  $(document).ready(function () {
-    // Initialize tippy.js tooltips
+  /**
+   * Tippy.js Plugins
+   * https://atomiks.github.io/tippyjs/v6/plugins/
+   */
+  var hideOnPopperBlur = {
+    name: 'hideOnPopperBlur',
+    defaultValue: true,
+    fn: function fn(instance) {
+      return {
+        onCreate: function onCreate() {
+          instance.popper.addEventListener('focusout', function (event) {
+            if (instance.props.hideOnPopperBlur && event.relatedTarget && !instance.popper.contains(event.relatedTarget)) {
+              instance.hide();
+            }
+          });
+        }
+      };
+    }
+  };
+  var hideOnEsc = {
+    name: 'hideOnEsc',
+    defaultValue: true,
+    fn: function fn(_ref) {
+      var hide = _ref.hide;
+
+      function onKeyDown(event) {
+        if (event.keyCode === 27) {
+          hide();
+        }
+      }
+
+      return {
+        onShow: function onShow() {
+          return document.addEventListener('keydown', onKeyDown);
+        },
+        onHide: function onHide() {
+          return document.removeEventListener('keydown', onKeyDown);
+        }
+      };
+    }
+  };
+
+  function initTooltips() {
     window.tippy('[data-tippy-content]', {
-      theme: 'p2020',
+      theme: 'p2-tooltip',
       duration: 100
       /* duration for transition animation */
 
     });
+  }
+
+  function initEllipsisMenus() {
+    var triggerSelector = '[data-tippy-menu-trigger]';
+    window.tippy(triggerSelector, {
+      allowHTML: true,
+      arrow: false,
+      content: function content(reference) {
+        return $(reference).siblings('[data-tippy-menu-content]').html();
+      },
+      duration: 50
+      /* duration for transition animation */
+      ,
+      hideOnEsc: true,
+      hideOnPopperBlur: true,
+      interactive: true,
+      // offset: [skidding, distance] (See https://popper.js.org/docs/v2/modifiers/offset/)
+      offset: [0, 6],
+      onHide: function onHide(_ref2) {
+        var reference = _ref2.reference;
+        return reference.setAttribute('aria-expanded', false);
+      },
+      onMount: function onMount(_ref3) {
+        var popper = _ref3.popper,
+            reference = _ref3.reference;
+        // Focus the first menu item
+        popper.querySelector('a, button').focus();
+        reference.setAttribute('aria-expanded', true);
+      },
+      placement: 'bottom-start',
+      plugins: [hideOnEsc, hideOnPopperBlur],
+      theme: 'p2-menu',
+      trigger: 'click'
+    });
+  }
+
+  $(document).ready(function () {
+    initTooltips();
+    initEllipsisMenus();
   });
 })(jQuery);
 
@@ -2818,4 +2894,3 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   });
 })(jQuery);
-//# sourceMappingURL=enqueued-main.js.map

@@ -2,7 +2,7 @@
 	"settings": {
 		"options": {
 			"show_on_front": "posts",
-			"blogdescription": "Welcome to your WordPress for Teams site!",
+			"blogdescription": "Welcome to P2! A place for discussion and sharing ideas.",
 			"stylesheet": "pub\/p2020",
 			"blog_public": -1,
 			"p2020_sidebar_setup": "reset"

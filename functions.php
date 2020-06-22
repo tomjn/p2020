@@ -62,7 +62,7 @@ function social_init() {
 	}
 
 	// Show buttons everywhere
-	$sharing_options   = get_option( 'sharing-options' );
+	$sharing_options = get_option( 'sharing-options' );
 	$show_in_locations = [ 'index', 'post', 'page', 'attachment' ];
 	if ( ! is_array( $sharing_options['global']['show'] ) ||
 	     count( array_intersect( $sharing_options['global']['show'], $show_in_locations ) ) !== count( $show_in_locations ) ) {
@@ -174,8 +174,8 @@ function setup() {
 		if ( ! $menu ) {
 			$menu_id = wp_create_nav_menu( 'primary' );
 			wp_update_nav_menu_item( $menu_id, 0, [
-				'menu-item-title'  => __( 'Home', 'p2020' ),
-				'menu-item-url'    => home_url( '/' ),
+				'menu-item-title' => __( 'Home', 'p2020' ),
+				'menu-item-url' => home_url( '/' ),
 				'menu-item-status' => 'publish'
 			] );
 		} else {
@@ -194,21 +194,21 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
  */
 function widget_areas_init() {
 	register_sidebar( [
-		'name'          => __( 'Sidebar for Posts', 'p2020' ),
-		'id'            => 'sidebar-1',
+		'name' => __( 'Sidebar for Posts', 'p2020' ),
+		'id' => 'sidebar-1',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'after_widget' => '</aside>',
+		'before_title' => '<h2 class="widget-title">',
+		'after_title' => '</h2>',
 	] );
 
 	register_sidebar( [
-		'name'          => __( 'Sidebar for Pages', 'p2020' ),
-		'id'            => 'sidebar-pages',
+		'name' => __( 'Sidebar for Pages', 'p2020' ),
+		'id' => 'sidebar-pages',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'after_widget' => '</aside>',
+		'before_title' => '<h2 class="widget-title">',
+		'after_title' => '</h2>',
 	] );
 }
 
@@ -333,12 +333,34 @@ function editor_assets() {
 		'premium-content/logged-out-view',
 		'premium-content/subscriber-view',
 	];
+
 	if ( ! is_a8c_p2() ) {
-		$blocksBlacklist[] = 'core/video';
+		$blocksBlacklist = array_merge( $blocksBlacklist, [
+			'core/video',
+			'jetpack/eventbrite',
+			'jetpack/map',
+			'jetpack/videopress',
+			'jetpack/timeline',
+			'jetpack/event-countdown',
+			'jetpack/layout-grid',
+			'jetpack/layout-grid-column',
+			'jetpack/mailchimp',
+			'jetpack/revue',
+			'core/video',
+			'core-embed/facebook',
+			'core-embed/imgur',
+			'core-embed/kickstarter',
+			'core-embed/hulu',
+			'core-embed/crowdsignal',
+			'core/file',
+			'a8c/posts-carousel',
+		] );
 	}
+
 	$data = [
 		'blocksBlacklist' => $blocksBlacklist,
 	];
+
 	wp_localize_script( 'p2020-editor-js', 'p2020Editor', $data );
 }
 
@@ -381,7 +403,7 @@ function enable_default_widgets() {
 	$setup_option = get_option( 'p2020_sidebar_setup' );
 	$sidebars_widgets = [];
 	if ( $setup_option === 'reset' ) {
-		$sidebars_widgets['sidebar-1']     = [];
+		$sidebars_widgets['sidebar-1'] = [];
 		$sidebars_widgets['sidebar-pages'] = [];
 	} else {
 		$sidebars_widgets = get_option( 'sidebars_widgets' );
@@ -419,9 +441,8 @@ function enable_default_widgets() {
 
 			$pages_widget_settings = [
 				$widget_no => [
-					'title'      => __( 'Pages', 'p2020' ),
-					'sortby'     => 'menu_order',
-					'conditions' => $show_for_pages,
+					'title' => __( 'Pages', 'p2020' ),
+					'sortby' => 'menu_order',
 				],
 			];
 			update_option( 'widget_p2020-pages-widget', $pages_widget_settings );

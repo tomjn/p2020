@@ -20,7 +20,10 @@ add_filter( 'wp_page_menu_args', 'P2020\page_menu_args' );
 /**
  * Adds custom classes to the array of body classes.
  */
-function body_classes( $classes ) {
+function body_classes( array $classes ): array {
+	// Used for fallback styling when JS is disabled or slow to load (Removed when JS kicks in)
+	$classes[] = 'no-js';
+
 	// Adds a class of group-blog to blogs with more than 1 published author
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
@@ -56,7 +59,7 @@ add_filter( 'attachment_link', 'P2020\enhanced_image_navigation', 10, 2 );
 /**
  * Filters wp_title to print a neat <title> tag based on what is being viewed.
  */
-function wp_title( $title, $sep ) {
+function wp_title( string $title, string $sep ): string {
 	global $page, $paged;
 
 	if ( is_feed() )
@@ -65,13 +68,9 @@ function wp_title( $title, $sep ) {
 	// Add the blog name
 	$title .= get_bloginfo( 'name' );
 
-	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title .= " $sep $site_description";
-
 	// Add a page number if necessary:
 	if ( $paged >= 2 || $page >= 2 )
+		/* translators: %s is replaced with the page number */
 		$title .= " $sep " . sprintf( __( 'Page %s', 'p2020' ), max( $paged, $page ) );
 
 	return $title;
@@ -87,6 +86,6 @@ add_filter( 'wp_title', 'P2020\wp_title', 10, 2 );
  *
  * @return string
  */
-function html_output( $str ) {
+function html_output( string $str ): string {
 	return $str;
 }
