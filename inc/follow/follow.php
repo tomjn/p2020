@@ -28,7 +28,7 @@ function render() {
 	$label = $is_following ? __( 'Following', 'p2020' ) : __( 'Follow', 'p2020' );
 	$title = $is_following ? __( 'Unfollow', 'p2020' ) : '';
 	$class = $is_following ? 'unfollow' : 'follow';
-	echo '<button class="p2020-follow ' . esc_attr( $class ) . '" title="' . esc_attr( $title ) . '" >' .
+	echo '<button class="p2020-follow ' . esc_attr( $class ) . '" title="' . esc_attr( $title ) . '" ><span>' .
 		esc_html( $label, 'p2020' ) .
-		'</button>';
+		'</span></button>';
 }

@@ -55,7 +55,7 @@
   --font-body: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
   --font-mono: monaco, consolas, Andale Mono, DejaVu Sans Mono, Courier New, monospace;
   /* ANIMATION */
-  --transition-quick: 0.1s; }
+  --transition-quick: 100ms; }
 
 /**
  * Core
@@ -160,10 +160,10 @@ body kbd {
 
 body .editor-post-title__input, body h1 {
   font-family: var(--font-default);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 2rem;
   line-height: 1.35;
-  letter-spacing: -0.02em; }
+  letter-spacing: -0.01em; }
   @media (max-width: 876px) {
     body .editor-post-title__input, body h1 {
       font-size: 1.625rem; } }

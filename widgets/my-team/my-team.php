@@ -101,7 +101,7 @@ class My_Team_Widget extends \WP_Widget {
 
 		$instance['limit'] = (int) $new_instance['limit'];
 		if ( $instance['limit'] < 1 ) {
-			$instance['limit'] = 17;
+			$instance['limit'] = 14;
 		}
 
 		global $wp_roles;
@@ -171,7 +171,7 @@ class My_Team_Widget extends \WP_Widget {
 						href="<?php echo esc_url( home_url( '/author/' . $member->data->user_nicename ) ) ?>"
 						class="widget-myteam-item"
 					>
-						<?php echo get_avatar( $member->ID, 35, '', '', [ 'force_display' => true ] ) ?>
+						<?php echo get_avatar( $member->ID, 40, '', '', [ 'force_display' => true ] ) ?>
 						<span class="screen-reader-text">
 							<?php echo esc_html( $avatar_link_text ) ?>
 						</span>
@@ -263,7 +263,7 @@ class My_Team_Widget extends \WP_Widget {
 
 		$defaults = [
 			'title' => $this->default_title,
-			'limit' => 17,
+			'limit' => 14,
 			'roles' => $all_roles,
 		];
 
