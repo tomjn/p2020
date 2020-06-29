@@ -52,7 +52,7 @@ ul.p2020-filter {
 			display: flex;
 			align-items: center;
 			border-radius: 1px;
-			transition: 100ms;
+			transition: var(--transition-quick);
 
 			&:hover,
 			&:focus {

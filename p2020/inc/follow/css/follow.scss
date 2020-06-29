@@ -5,10 +5,22 @@
 	color: var(--color-link);
 	cursor: pointer;
 	padding: 4px 0;
+	font-family: var(--font-body);
+	font-size: pxrem(14);
 
 	&.is-loading {
 		pointer-events: none;
 		opacity: 0.65;
 		filter: alpha(opacity=65);
+	}
+
+	&.unfollow:hover {
+		span {
+			display: none;
+		}
+
+		&::before {
+			content: "Unfollow";
+		}
 	}
 }
