@@ -11,4 +11,11 @@
 			$( '[data-customizer-blogname]' ).text( to );
 		} );
 	} );
+
+	// Description.
+	wp.customize( 'blogdescription', function ( value ) {
+		value.bind( function ( to ) {
+			$( '[data-customizer-blogdescription]' ).text( to );
+		} );
+	} );
 } )( jQuery );
