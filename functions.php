@@ -13,13 +13,6 @@ namespace P2020;
 require_once( get_template_directory() . '/widgets/my-team/my-team.php' );
 
 /**
- * Load Filter widget
- */
-if ( is_user_logged_in() ) {
-	require_once( get_template_directory() . '/widgets/filter/load.php' );
-}
-
-/**
  * Load Pages widget
  */
 require_once( get_template_directory() . '/widgets/pages/pages.php' );
@@ -196,8 +189,8 @@ function widget_areas_init() {
 	register_sidebar( [
 		'name' => __( 'Sidebar for Posts', 'p2020' ),
 		'id' => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s"><div class="p2020-sidebar-padded-container">',
+		'after_widget' => '</div></aside>',
 		'before_title' => '<h2 class="widget-title">',
 		'after_title' => '</h2>',
 	] );
@@ -205,8 +198,8 @@ function widget_areas_init() {
 	register_sidebar( [
 		'name' => __( 'Sidebar for Pages', 'p2020' ),
 		'id' => 'sidebar-pages',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s"><div class="p2020-sidebar-padded-container">',
+		'after_widget' => '</div></aside>',
 		'before_title' => '<h2 class="widget-title">',
 		'after_title' => '</h2>',
 	] );
@@ -545,3 +538,24 @@ function customizer_widgets_styles( $hook ) {
 }
 
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\customizer_widgets_styles' );
+
+/**
+ * Filter: enqueue scripts, hook actions and filters.
+ */
+ function p2020_filter_init() {
+	require_once( get_template_directory() . '/inc/filter/filter.php' );
+	\P2020\Filter\enqueue_scripts();
+	\P2020\Filter\add_hooks();
+ }
+
+ add_action( 'after_setup_theme', __NAMESPACE__ . '\p2020_filter_init' );
+
+/**
+ * Follow: enqueue scripts
+ */
+function p2020_follow_init() {
+	require_once( get_template_directory() . '/inc/follow/follow.php' );
+	\P2020\Follow\enqueue_scripts();
+}
+
+add_action ( 'after_setup_theme', __NAMESPACE__ . '\p2020_follow_init' );

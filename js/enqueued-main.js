@@ -2474,7 +2474,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         onCreate: function onCreate() {
           instance.popper.addEventListener('focusout', function (event) {
             if (instance.props.hideOnPopperBlur && event.relatedTarget && !instance.popper.contains(event.relatedTarget)) {
-              instance.hide();
+              // If the focusout was caused by a click on the menu trigger button,
+              // simply hiding does not work in Chrome because the click triggers
+              // an instant re-show. Adding a slight delay here ensures that the
+              // focusout hide takes precedence over the click show.
+              window.setTimeout(instance.hide, 200);
             }
           });
         }
@@ -2826,11 +2830,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 (function ($) {
-  if ($('#sidebar .widget_p2020-filter-widget').length > 0) {
-    $('#remembered-posts').insertAfter('#sidebar .widget_p2020-filter-widget');
-  } else {
-    $('#remembered-posts').insertBefore('#sidebar .widget:first-of-type');
-  }
+  $('#remembered-posts').insertBefore('#sidebar .widget:first-of-type').wrapInner('<div class="p2020-sidebar-padded-container"></div>');
 })(jQuery);
 
 (function ($) {

@@ -29,8 +29,8 @@ function custom_header_setup() {
 	$args = [
 		'default-image' => $default_image_url,
 		'default-text-color' => '000',
-		'width' => 360 * 2, /* 2x resolution */
-		'height' => 85 * 2, /* 2x resolution */
+		'width' => 304 * 2, /* 2x resolution */
+		'height' => 152 * 2, /* 2x resolution */
 		'flex-width' => true,
 		'flex-height' => true,
 		'header-text' => false,

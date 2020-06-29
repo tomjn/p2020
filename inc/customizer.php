@@ -38,6 +38,7 @@ function color_hex_to_rgba( string $hex, float $alpha ): string {
  */
 function customize_register( \WP_Dotcom_Customize $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
 	$wp_customize->add_setting( 'p2020_theme_options[color_link]', [
 		'default' => get_default_color( 'color_link' ),

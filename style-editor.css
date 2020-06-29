@@ -48,6 +48,8 @@
   --color-green: #1cca7b;
   --color-green-dark: rgb(18, 160, 96);
   --color-green-light: #d4f8d4;
+  /* CUSTOMIZABLE COLORS */
+  --color-sidebar-background: #f3f3f3;
   /* TYPOGRAPHY */
   --font-default: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
   --font-body: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
@@ -277,6 +279,8 @@ body {
     body li:not(.blocks-gallery-item) > ul,
     body li:not(.blocks-gallery-item) > ol {
       margin-top: 0.5em; }
+    body li:not(.blocks-gallery-item) ul {
+      list-style-type: circle; }
   body .wp-block-image:not(.wp-block),
   body .wp-block-cover-image,
   body .wp-caption {

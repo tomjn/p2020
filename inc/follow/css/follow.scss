@@ -1,0 +1,14 @@
+.p2020-follow {
+	display: none;
+	background: none;
+	border: none;
+	color: var(--color-link);
+	cursor: pointer;
+	padding: 4px 0;
+
+	&.is-loading {
+		pointer-events: none;
+		opacity: 0.65;
+		filter: alpha(opacity=65);
+	}
+}
