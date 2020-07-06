@@ -19,8 +19,11 @@ $site_slug = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
 
 $signup_url = 'https://wordpress.com/start/p2';
 $customizer_url = 'https://wordpress.com/customize/' . $site_slug;
+$customizer_identity_url = 'https://wordpress.com/customize/identity/' . $site_slug;
 $help_url = 'https://wordpress.com/help';
 $settings_url = 'https://wordpress.com/settings/general/' . $site_slug;
+
+$header_image_height = get_theme_support( 'custom-header', 'height' ) / 2 . 'px';
 ?>
 
 	<aside id="sidebar" class="p2020-sidebar">
@@ -35,19 +38,26 @@ $settings_url = 'https://wordpress.com/settings/general/' . $site_slug;
 
 		<div class="p2020-sidebar__info">
 			<div class="p2020-sidebar-padded-container">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
+				<a href="<?php echo esc_url( P2020\get_blog_url( '/' ) ); ?>"
 					id="p2020-custom-header-partial"
 					title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
 					rel="home"
 				>
-					<?php $header_image = has_header_image() ? get_header_image() : get_theme_support( 'custom-header', 'default-image' ); ?>
-					<img
-						src="<?php echo esc_html( $header_image ) ?>"
-						alt=""
-						class="p2020-sidebar__info-image"
-						width="<?php echo esc_attr( get_custom_header()->width ); ?>"
-						height="<?php echo esc_attr( get_custom_header()->height ); ?>"
-					>
+					<?php if ( has_header_image() ): ?>
+						<img
+							src="<?php echo esc_html( get_header_image() ) ?>"
+							alt=""
+							class="p2020-sidebar__info-image"
+							width="<?php echo esc_attr( get_custom_header()->width ); ?>"
+							height="<?php echo esc_attr( get_custom_header()->height ); ?>"
+						>
+					<?php else: ?>
+						<div
+							class="p2020-sidebar__info-image is-placeholder"
+							style="height: <?php echo esc_attr( $header_image_height ); ?>;"
+						>
+						</div>
+					<?php endif; ?>
 				</a>
 
 
@@ -62,6 +72,9 @@ $settings_url = 'https://wordpress.com/settings/general/' . $site_slug;
 						<div class="p2020-sidebar__info-title-menu">
 							<?php
 								$menu = new \P2020\EllipsisMenu();
+								if ( current_user_can( 'customize' ) && ! has_header_image() ) {
+									$menu->add_item( __( 'Upload a header image', 'p2020' ), $customizer_identity_url );
+								}
 								if ( current_user_can( 'customize' ) ) {
 									$menu->add_item( __( 'Customize', 'p2020' ), $customizer_url );
 								}

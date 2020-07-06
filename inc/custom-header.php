@@ -24,10 +24,7 @@ namespace P2020;
  * @package p2020
  */
 function custom_header_setup() {
-	$default_image_url = get_template_directory_uri() . '/img/default-header-image.png';
-
 	$args = [
-		'default-image' => $default_image_url,
 		'default-text-color' => '000',
 		'width' => 304 * 2, /* 2x resolution */
 		'height' => 152 * 2, /* 2x resolution */
@@ -35,14 +32,6 @@ function custom_header_setup() {
 		'flex-height' => true,
 		'header-text' => false,
 	];
-
-	register_default_headers( [
-		'default-image' => [
-			'url' => $default_image_url,
-			'thumbnail_url' => $default_image_url,
-			'description' => __( 'Default Header Image', 'p2020' )
-		],
-	] );
 
 	add_theme_support( 'custom-header', apply_filters( 'p2020_custom_header_args', $args ) );
 }

@@ -5,7 +5,7 @@
  * @package p2020
  */
 ?>
-	<form method="get" class="p2020-searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+	<form method="get" class="p2020-searchform" action="<?php echo esc_url( P2020\get_blog_url( '/' ) ); ?>" role="search">
 		<input
 			type="search"
 			id="s"

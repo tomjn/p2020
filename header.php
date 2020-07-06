@@ -15,7 +15,7 @@
 <meta http-equiv="cleartype" content="on">
 
 <?php // Will be overwritten with git commit hash on `gulp build` (see gulpfile) ?>
-<meta name="p2020-build" revision="d4c47cb">
+<meta name="p2020-build" revision="2388e4c">
 
 <title><?php wp_title( '–', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -41,7 +41,7 @@
 
 			<div class="p2020-site-header__main" data-header-main>
 				<h1 class="p2020-site-title" data-customizer-blogname>
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+					<a href="<?php echo esc_url( P2020\get_blog_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 						<?php bloginfo( 'name' ); ?>
 					</a>
 				</h1>

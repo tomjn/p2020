@@ -35,25 +35,25 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		$this->filters = [
 			'posts' => [
 				'label' => __( 'New posts', 'p2020' ),
-				'url' => esc_url( add_query_arg( 'p2020_recent_posts', 1, home_url() ) ),
+				'url' => esc_url( add_query_arg( 'p2020_recent_posts', 1, get_blog_url() ) ),
 				'css_id' => 'widget-filter-recent-updates',
 				'section' => 'team',
 			],
 			'comments' => [
 				'label' => __( 'New comments', 'p2020' ),
-				'url' => esc_url( add_query_arg( 'p2020_recent_comments', 1, home_url() ) ),
+				'url' => esc_url( add_query_arg( 'p2020_recent_comments', 1, get_blog_url() ) ),
 				'css_id' => 'widget-filter-recent-comments',
 				'section' => 'team',
 			],
 			'mentions' => [
 				'label' => __( 'Mentions', 'p2020' ),
-				'url' => esc_url( add_query_arg( 'mentions', $user->user_nicename, home_url() ) ),
+				'url' => esc_url( add_query_arg( 'mentions', $user->user_nicename, get_blog_url() ) ),
 				'css_id' => 'widget-filter-my-mentions',
 				'section' => 'me',
 			],
 			'myposts' => [
 				'label' => __( 'My posts', 'p2020' ),
-				'url' => esc_url( home_url( '/author/' . $user->user_nicename ) ),
+				'url' => esc_url(  get_blog_url( '/author/' . $user->user_nicename ) ),
 				'css_id' => 'widget-filter-my-posts',
 				'section' => 'me',
 			],
@@ -64,7 +64,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		if ( is_automattic() && $is_resolved_posts_active ) {
 			$this->filters['unresolved'] = [
 				'label' => __( 'Unresolved Posts', 'p2020' ),
-				'url' => esc_url( add_query_arg( 'resolved', 'unresolved', home_url() ) ),
+				'url' => esc_url( add_query_arg( 'resolved', 'unresolved', get_blog_url() ) ),
 				'css_id' => 'widget-filter-unresolved-posts',
 				'section' => 'team',
 			];
@@ -111,7 +111,7 @@ class P2020_Filter_Widget extends \o2_Filter_Widget {
 		if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
 			wp_enqueue_script( 'p2020-filter-no-posts', get_template_directory_uri() . '/widgets/filter/js/no-posts.js', [ 'jquery' ], false, true );
 			$data = [
-				'homeUrl' => home_url(),
+				'homeUrl' => get_blog_url(),
 				'homeMessage' => __( 'Return to home', 'p2020' ),
 			];
 			wp_localize_script( 'p2020-filter-no-posts', 'p2020FilterNoPosts', $data );
