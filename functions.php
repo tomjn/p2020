@@ -29,11 +29,6 @@ function get_blog_url( $path = '' ) {
 require_once( get_template_directory() . '/widgets/my-team/my-team.php' );
 
 /**
- * Load Pages widget
- */
-require_once( get_template_directory() . '/widgets/pages/pages.php' );
-
-/**
  * Load partner plugins loader file.
  */
 require_once( 'thirdparty.php' );
@@ -586,3 +581,13 @@ function p2020_follow_init() {
 }
 
 add_action ( 'after_setup_theme', __NAMESPACE__ . '\p2020_follow_init' );
+
+/**
+ * Menu: enqueue scripts, hook actions and filters.
+ */
+function p2020_menu_init() {
+	require_once( get_template_directory() . '/inc/menu/menu.php' );
+	\P2020\Menu\enqueue_scripts();
+}
+
+ add_action( 'after_setup_theme', __NAMESPACE__ . '\p2020_menu_init' );

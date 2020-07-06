@@ -1,0 +1,86 @@
+.p2020-sidebar-menu__pages,
+.p2020-sidebar-menu__nav {
+
+	background-color: inherit;
+
+	ul.is-collapsed {
+		display: none;
+	}
+
+	.page-item,
+	.menu-item {
+		color: var(--color-white);
+		display: block;
+
+		.menu-item-link {
+			color: inherit;
+			display: inline-block;
+			font-size: pxrem(13);
+			font-weight: 400;
+			text-decoration: none;
+			line-height: 2.5;
+		}
+
+		.menu-item-toggle {
+			&::before {
+				@include icon("custom-chevron-right", pxrem(18), currentColor);
+			}
+
+			&.is-expanded::before {
+				transform: rotate(90deg);
+			}
+
+			border: none;
+			background-color: inherit;
+			color: inherit;
+			display: inline-block;
+			line-height: 2.5;
+			vertical-align: middle;
+		}
+	}
+
+	/* Hide toggle if no subtree */
+	.page-item:not(.page-item-has-children) {
+		.menu-item-toggle {
+			display: none;
+		}
+	}
+
+	.menu-item:not(.menu-item-has-children) {
+		.menu-item-toggle {
+			display: none;
+		}
+	}
+
+	> ul:not(.children) {
+		> .page-item {
+
+			/* Bigger text for first-level items */
+			> .menu-item-link {
+				font-size: pxrem(18);
+				font-weight: 600;
+			}
+
+			/* Unindent first-level subtrees (second-level items) */
+			> ul.children {
+				margin-left: 0;
+			}
+		}
+	}
+
+	> ul:not(.sub-menu) {
+		> .menu-item {
+
+			/* Bigger text for first-level items */
+			> .menu-item-link {
+				font-size: pxrem(18);
+				font-weight: 600;
+			}
+
+			/* Unindent first-level subtrees (second-level items) */
+			> ul.sub-menu {
+				margin-left: 0;
+			}
+		}
+	}
+}

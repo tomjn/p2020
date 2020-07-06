@@ -2558,123 +2558,48 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 })(jQuery);
 
 (function ($) {
-  var attrHiddenItem = 'data-header-menu-hidden';
-  var attrMenuMore = 'data-header-menu-more'; // If there are menu items that overflow the available space,
-  // hide them inside the "More" menu item at the end.
-
-  function handleOverflowingMenuItems() {
-    var $hiddenMenuItems = $("[".concat(attrHiddenItem, "]"));
-    var $moreItemsNode = $("[".concat(attrMenuMore, "]"));
-
-    if ($hiddenMenuItems.length) {
-      // "Reset" items that were already hidden (For window resize events)
-      resetHiddenMenuItems($hiddenMenuItems, $moreItemsNode); // Defer until resetHiddenMenuItems() has rendered
-
-      window.setTimeout(function () {
-        return moveOverflowingItemsToMore($moreItemsNode);
-      }, 0);
-    } else {
-      moveOverflowingItemsToMore($moreItemsNode);
-    }
-  }
-
-  function getRightOffset($item) {
-    return $item.offset().left + $item.innerWidth();
-  } // Move back any hidden menu items
-
-
-  function resetHiddenMenuItems($hiddenMenuItems, $moreItemsNode) {
-    $hiddenMenuItems.each(function () {
-      $(this).removeAttr(attrHiddenItem);
-      $(this).insertBefore($moreItemsNode);
-    });
-    $moreItemsNode.attr('hidden', true);
-  }
-
-  function moveOverflowingItemsToMore($moreItemsNode) {
-    var $menu = $('[data-header-main] nav');
-    var $menuItems = $menu.find("> ul > li:not(\"[".concat(attrMenuMore, "]\")"));
-
-    var _$$offset = $('[data-header-search]').offset(),
-        searchBoxLeftOffset = _$$offset.left;
-
-    var margin = 24;
-    var threshold = searchBoxLeftOffset - margin;
-    var overflowWidth = getRightOffset($menuItems.last()) - threshold;
-    $menu.removeClass('should-delay-visibility');
-
-    if (overflowWidth <= 0) {
-      return;
-    }
-
-    overflowWidth += $moreItemsNode.innerWidth();
-    $moreItemsNode.removeAttr('hidden');
-    $menuItems.get().reverse().forEach(function (item) {
-      if (overflowWidth > 0) {
-        overflowWidth -= $(item).innerWidth();
-        $(item).attr(attrHiddenItem, true);
-        $moreItemsNode.children('.sub-menu').prepend(item);
-      }
-    });
-  }
-
-  $(document).ready(function () {
-    handleOverflowingMenuItems();
-    $(window).on('resize', $.debounce(200, handleOverflowingMenuItems));
-  });
-})(jQuery);
-
-(function ($) {
   // Also defined in css/src/global/_variables.scss
   var breakpoint = '876px';
-  var originalSidebarContainerId = 'main-wrapper';
-  var mobileMenuClass = 'is-mobile-menu';
-  var modalWrapperClass = 'p2020-modal-wrapper';
-  var sidebarId = 'sidebar';
-  var mobileMenuId = 'mobile-menu';
-  var adminbarId = 'wpadminbar';
-  var adminbarModifierClass = 'is-below-modal';
+  var $button = $('[data-sidebar-mobile-toggle]');
+  var $sidebar = $('#sidebar');
+  var $mainContent = $('#content');
+  var classModifierExpanded = 'is-mobile-expanded';
+  var classModifierStartingExpand = 'has-started-expanding';
+  var mainContentFadeDuration = 300;
 
-  function setupMobileMenu($sidebar) {
-    $sidebar.addClass(mobileMenuClass);
-    $sidebar.attr('role', 'dialog');
-    $sidebar.attr('aria-modal', 'true');
-    $sidebar.wrap("<div id=\"".concat(mobileMenuId, "\" class=\"").concat(modalWrapperClass, "\" data-micromodal-close aria-hidden=\"true\" />"));
-    $(".".concat(modalWrapperClass)).appendTo($('#page'));
-    $("#".concat(adminbarId)).addClass(adminbarModifierClass);
-  }
-
-  function teardownMobileMenu($sidebar) {
-    if ($("#".concat(mobileMenuId)).attr('aria-hidden') === false) {
-      MicroModal.close(mobileMenuId);
-    }
-
-    $sidebar.removeClass(mobileMenuClass);
-    $sidebar.removeAttr('role');
-    $sidebar.removeAttr('aria-modal');
-    $sidebar.unwrap();
-    $sidebar.prependTo($("#".concat(originalSidebarContainerId)));
-    $("#".concat(adminbarId)).removeClass(adminbarModifierClass);
-  }
-
-  function initMobileMenu() {
-    var $sidebar = $("#".concat(sidebarId));
-    var mql = window.matchMedia("( max-width: ".concat(breakpoint, " )"));
-
-    if (mql.matches) {
-      setupMobileMenu($sidebar);
-    }
-
-    mql.addListener(function (event) {
-      return event.matches ? setupMobileMenu($sidebar) : teardownMobileMenu($sidebar);
+  function expandMenu() {
+    $button.attr('aria-expanded', true);
+    $mainContent.fadeOut(mainContentFadeDuration, function () {
+      $sidebar.addClass(classModifierStartingExpand);
+      window.setTimeout(function () {
+        $sidebar.addClass(classModifierExpanded);
+      }, 100);
     });
   }
 
-  $(document).ready(function () {
-    $('[data-mobile-menu-toggle]').click(function () {
-      MicroModal.show(mobileMenuId);
-    });
-    initMobileMenu();
+  function collapseMenu() {
+    $button.attr('aria-expanded', false);
+    $sidebar.removeClass(classModifierExpanded);
+    window.setTimeout(function () {
+      $sidebar.removeClass(classModifierStartingExpand);
+      $mainContent.fadeIn(mainContentFadeDuration);
+    }, 400);
+  }
+
+  function toggleMenu() {
+    if ($button.attr('aria-expanded') === 'true') {
+      collapseMenu();
+    } else {
+      expandMenu();
+    }
+  }
+
+  $button.click(toggleMenu);
+  var mql = window.matchMedia("( max-width: ".concat(breakpoint, " )"));
+  mql.addListener(function (event) {
+    if (!event.matches) {
+      collapseMenu();
+    }
   });
 })(jQuery);
 /**
@@ -2789,7 +2714,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   // so the P2tenberg sticky header can be offset to the proper Y position.
   function setTopOffset() {
     var adminbarHeight = $('#wpadminbar').height();
-    var headerHeight = $('#masthead').height();
+    var headerHeight = $('#sidebar').height();
     var totalHeight = adminbarHeight + headerHeight;
     document.documentElement.style.setProperty('--editor-header-offset', "".concat(totalHeight, "px"));
   }
@@ -2831,6 +2756,72 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 (function ($) {
   $('#remembered-posts').insertBefore('#sidebar .widget:first-of-type').wrapInner('<div class="p2020-sidebar-padded-container"></div>');
+})(jQuery);
+
+(function ($) {
+  var selectorSeachform = '[data-searchform]';
+  var $searchform = $(selectorSeachform);
+  var $input = $searchform.find('input[type="search"]');
+  var classActive = 'is-active';
+  var $cancelButton = $('[data-searchform-cancel]');
+
+  function activate() {
+    $(this).closest(selectorSeachform).addClass(classActive);
+  }
+
+  function deactivate() {
+    var $form = $(this).is(selectorSeachform) ? $(this) : $(this).closest(selectorSeachform);
+    $form.find('input[type="search"]').attr('value', '');
+    $form.removeClass(classActive);
+  }
+
+  function isActive() {
+    return $(this).val() !== '' || this === document.activeElement;
+  } // If search field is not empty on load, activate
+
+
+  $input.filter(isActive).each(activate); // When search icon is clicked, activate and focus the search field
+
+  $searchform.children('form').on('click', function () {
+    activate();
+    $searchform.find('input[type="search"]').focus();
+  }); // Cancel on Esc key
+
+  $searchform.on('keydown', function (event) {
+    if (event.which === 27
+    /* Esc */
+    ) {
+        deactivate.bind(this)();
+        $(this).find('input').blur();
+      }
+  });
+  $input.on('focus', activate);
+  $input.on('blur', function () {
+    $(this).not(isActive).each(deactivate);
+  });
+  $cancelButton.on('click', deactivate);
+})(jQuery);
+
+(function ($) {
+  var $sidebar = $('#sidebar');
+  var $button = $('[data-sidebar-hamburger]');
+  var sidebarPrimary = document.querySelector('[data-sidebar-primary]');
+  var sidebarSecondary = document.querySelector('[data-sidebar-secondary]');
+  var classModifierDark = 'is-dark';
+
+  function toggleBooleanAttr($element, attr) {
+    var newValue = $element.attr(attr) === 'false';
+    $element.attr(attr, newValue);
+  }
+
+  function toggleMenu() {
+    $sidebar.toggleClass(classModifierDark);
+    toggleBooleanAttr($button, 'aria-expanded');
+    sidebarPrimary.toggleAttribute('hidden');
+    sidebarSecondary.toggleAttribute('hidden');
+  }
+
+  $button.on('click', toggleMenu);
 })(jQuery);
 
 (function ($) {
