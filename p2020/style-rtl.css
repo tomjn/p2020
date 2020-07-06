@@ -641,7 +641,9 @@ body {
       font-size: 0.625rem;
       font-weight: 600;
       letter-spacing: 1px;
-      padding: 0.25rem 0.75rem; }
+      padding: 0.25rem 0.75rem;
+      height: auto;
+      width: auto; }
       @media (max-width: 550px) {
         .sticky.type-page::before, .sticky.type-post::before {
           display: none; } }
@@ -1476,6 +1478,14 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
   height: 100%;
   width: 100%;
   border-radius: 2px; }
+  .p2020-sidebar__info-image.is-placeholder {
+    background: var(--color-link); }
+    .p2020-sidebar__info-image.is-placeholder::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(100% 400% at 0% 0%, rgba(0, 16, 28, 0) 0%, rgba(0, 16, 28, 0.4) 100%); }
 
 .p2020-sidebar__info-title {
   display: flex;
@@ -3245,7 +3255,7 @@ ul.p2020-filter {
   color: var(--color-link);
   cursor: pointer;
   padding: 4px 0;
-  font-family: var(--font-body);
+  font-family: var(--font-default);
   font-size: 0.875rem; }
   .p2020-follow.is-loading {
     pointer-events: none;

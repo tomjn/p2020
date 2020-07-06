@@ -7,6 +7,22 @@
 
 namespace P2020;
 
+function get_blog_url( $path = '' ) {
+	$scheme = 'http://';
+
+	if ( is_ssl() ) {
+		$scheme = 'https://';
+	}
+
+	$url = $scheme . wpcom_get_blog_url( get_blog_details() );
+
+	if ( ! empty( $path ) ) {
+		$url .= $path;
+	}
+
+	return $url;
+}
+
 /**
  * Load My Team widget
  */
@@ -168,7 +184,7 @@ function setup() {
 			$menu_id = wp_create_nav_menu( 'primary' );
 			wp_update_nav_menu_item( $menu_id, 0, [
 				'menu-item-title' => __( 'Home', 'p2020' ),
-				'menu-item-url' => home_url( '/' ),
+				'menu-item-url' => '/',
 				'menu-item-status' => 'publish'
 			] );
 		} else {
@@ -471,6 +487,17 @@ function hide_o2_editor( $o2_options ) {
 }
 
 add_filter( 'o2_options', __NAMESPACE__ . '\hide_o2_editor' );
+
+/**
+ * Replace UI strings in O2
+ */
+function replace_o2_strings( array $o2_options ): array {
+	$o2_options['strings']['noPosts'] = __( 'Ready to publish your first post? Simply use the editor above.', 'p2020' );
+	$o2_options['strings']['noPostsMobile'] = __( 'Tap the + button in the top right corner to begin writing your first post.', 'p2020' );;
+	return $o2_options;
+}
+
+add_filter( 'o2_options', __NAMESPACE__ . '\replace_o2_strings' );
 
 /**
  * Append Contributor block to content on single pages

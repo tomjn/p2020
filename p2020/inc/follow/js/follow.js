@@ -33,13 +33,15 @@
 
 	const updateButton = () => {
 		if ( $followBtn.hasClass( 'follow' ) ) {
-			$followBtn.html( window.p2020FollowData.followingText );
-			$followBtn.prop( 'title', window.p2020FollowData.unfollowText );
+			$followBtn.html(
+				'<span>' + window.p2020FollowData.followingText + '</span>'
+			);
 			$followBtn.removeClass( 'follow' );
 			$followBtn.addClass( 'unfollow' );
 		} else if ( $followBtn.hasClass( 'unfollow' ) ) {
-			$followBtn.html( window.p2020FollowData.followText );
-			$followBtn.prop( 'title', '' );
+			$followBtn.html(
+				'<span>' + window.p2020FollowData.followText + '</span>'
+			);
 			$followBtn.addClass( 'follow' );
 			$followBtn.removeClass( 'unfollow' );
 		}

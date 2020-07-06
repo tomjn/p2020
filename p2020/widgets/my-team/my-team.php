@@ -168,7 +168,7 @@ class My_Team_Widget extends \WP_Widget {
 				?>
 				<li>
 					<a
-						href="<?php echo esc_url( home_url( '/author/' . $member->data->user_nicename ) ) ?>"
+						href="<?php echo esc_url( get_blog_url( '/author/' . $member->data->user_nicename ) ) ?>"
 						class="widget-myteam-item"
 					>
 						<?php echo get_avatar( $member->ID, 40, '', '', [ 'force_display' => true ] ) ?>

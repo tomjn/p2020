@@ -21,8 +21,12 @@ function get_default_color( string $key ): string {
 
 // Whether a color option is set and is a non-default value
 function isCustomColor( array $options, string $key ): bool {
-	$color = $options[$key];
-	return isset( $color ) && ( $color !== get_default_color( $key ) );
+	if ( ! isset( $options[ $key ] ) ) {
+		return false;
+	}
+
+	$color = $options[ $key ];
+	return $color !== get_default_color( $key );
 }
 
 function color_hex_to_rgba( string $hex, float $alpha ): string {
@@ -125,6 +129,10 @@ add_action( 'customize_preview_init', 'P2020\customize_preview_js' );
 function disable_nonrelevant_sections( \WP_Dotcom_Customize $wp_customize ) {
 	// Remove "Homepage Settings".
 	$wp_customize->remove_section( 'static_front_page' );
+
+	// Remove "Theme Options" https://github.com/Automattic/p2/issues/594
+	// https://code.a8c.com/diffusion/WP/browse/trunk/wp-content/mu-plugins/theme-plugins.php$222
+	$wp_customize->remove_section( 'o2_options' );
 
 	// Remove "Additional CSS" (WP Core).
 	$wp_customize->remove_section( 'custom_css' );

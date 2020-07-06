@@ -2,6 +2,8 @@
 
 namespace P2020\Filter;
 
+use function P2020\get_blog_url;
+
 require_once( get_template_directory() . '/inc/filter/unread.php' );
 
 const QUERY_ROWS_LIMIT = 100;
@@ -72,7 +74,7 @@ function get_links() {
 					'p2filter_posts' => true,
 					'ts' => $last_active['posts'],
 				],
-				home_url()
+				get_blog_url()
 			) ),
 			'class' => 'p2020-filter__recent-updates',
 			'read_count_enabled' => true,
@@ -84,7 +86,7 @@ function get_links() {
 					'p2filter_comments' => true,
 					'ts' => $last_active['comments'],
 				],
-				home_url()
+				get_blog_url()
 			) ),
 			'class' => 'p2020-filter__recent-comments',
 			'read_count_enabled' => true,
@@ -96,14 +98,14 @@ function get_links() {
 					'mentions' => $user->user_nicename,
 					'ts' => $last_active['mentions'],
 				],
-				home_url()
+				get_blog_url()
 			) ),
 			'class' => 'p2020-filter__mentions',
 			'read_count_enabled' => true,
 		],
 		'myposts' => [
 			'label' => __( 'My posts', 'p2020' ),
-			'url' => esc_url( home_url( '/author/' . $user->user_nicename ) ),
+			'url' => esc_url( get_blog_url( '/author/' . $user->user_nicename ) ),
 			'class' => 'p2020-filter__my-posts',
 			'read_count_enabled' => false,
 		],
@@ -114,7 +116,7 @@ function get_links() {
 	if ( is_automattic() && $is_resolved_posts_active ) {
 		$filters['unresolved'] = [
 			'label' => __( 'Unresolved Posts', 'p2020' ),
-			'url' => esc_url( add_query_arg( 'resolved', 'unresolved', home_url() ) ),
+			'url' => esc_url( add_query_arg( 'resolved', 'unresolved', get_blog_url() ) ),
 			'class' => 'p2020-filter__unresolved-posts',
 			'read_count_enabled' => false,
 		];
@@ -205,7 +207,7 @@ function scripts() {
 	if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
 		wp_enqueue_script( 'p2020-filter-no-posts', get_template_directory_uri() . '/inc/filter/js/no-posts.js', [ 'jquery' ], false, true );
 		$data = [
-			'homeUrl' => esc_url( home_url() ),
+			'homeUrl' => esc_url( get_blog_url() ),
 			'homeMessage' => __( 'Return to home', 'p2020' ),
 		];
 		wp_localize_script( 'p2020-filter-no-posts', 'p2020FilterNoPosts', $data );
