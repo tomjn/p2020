@@ -194,21 +194,12 @@ function setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
 
 /**
- * Register widgetized area and update sidebar with default widgets
+ * Register widgetized area
  */
 function widget_areas_init() {
 	register_sidebar( [
-		'name' => __( 'Sidebar for Posts', 'p2020' ),
+		'name' => __( 'Primary Sidebar', 'p2020' ),
 		'id' => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s"><div class="p2020-sidebar-padded-container">',
-		'after_widget' => '</div></aside>',
-		'before_title' => '<h2 class="widget-title">',
-		'after_title' => '</h2>',
-	] );
-
-	register_sidebar( [
-		'name' => __( 'Sidebar for Pages', 'p2020' ),
-		'id' => 'sidebar-pages',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s"><div class="p2020-sidebar-padded-container">',
 		'after_widget' => '</div></aside>',
 		'before_title' => '<h2 class="widget-title">',
@@ -371,19 +362,6 @@ function editor_assets() {
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\editor_assets', 11 );
 
 /**
- * Add a no-sidebar body class, if there are no widgets in the sidebar.
- */
-function check_no_sidebar( $body_classes ) {
-	if ( ! is_active_sidebar( 'sidebar-1' ) && ! ( is_page() && is_active_sidebar( 'sidebar-pages' ) ) ) {
-		$body_classes[] = 'no-sidebar';
-	}
-
-	return $body_classes;
-}
-
-add_filter( 'body_class', __NAMESPACE__ . '\check_no_sidebar' );
-
-/**
  * Implement the Custom Header feature
  */
 require( get_template_directory() . '/inc/custom-header.php' );
@@ -404,66 +382,45 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\set_homepage_display', 102 );
  * Add recommended widgets to sidebar
  */
 function enable_default_widgets() {
+	$widget_no = 3;
+
 	$setup_option = get_option( 'p2020_sidebar_setup' );
-	$sidebars_widgets = [];
+	if ( empty( $setup_option ) ) {
+		return;
+	}
+
 	if ( $setup_option === 'reset' ) {
-		$sidebars_widgets['sidebar-1'] = [];
-		$sidebars_widgets['sidebar-pages'] = [];
+		$sidebars_widgets = [];
 	} else {
 		$sidebars_widgets = get_option( 'sidebars_widgets' );
 	}
+	$sidebars_widgets['sidebar-1'] = $sidebars_widgets['sidebar-1'] ?? [];
 
-	if ( $setup_option === 'reset' || $setup_option === 'add' ) {
-		$widget_no = 3;
+	// My Team widget (widgets/myteam)
+	$widget_instance = "p2020-my-team-widget-{$widget_no}";
+	if ( empty( $sidebars_widgets['sidebar-1'] ) || ! in_array( $widget_instance, $sidebars_widgets['sidebar-1'] ) ) {
+		$team_widget_settings = [
+			$widget_no => [
+				'title' => __( 'Team', 'p2020' ),
+				'limit' => 14,
+			]
+		];
+		update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
 
-		// My Team widget (widgets/myteam)
-		if ( empty( $sidebars_widgets['sidebar-1'] ) ||
-		     ! in_array( "p2020-my-team-widget-{$widget_no}", $sidebars_widgets['sidebar-1'] ) ) {
-			$team_widget_settings = [
-				$widget_no => [
-					'title' => __( 'Team', 'p2020' ),
-					'limit' => 17,
-				]
-			];
-			update_option( 'widget_p2020-my-team-widget', $team_widget_settings );
-			$sidebars_widgets['sidebar-1'][] = "p2020-my-team-widget-{$widget_no}";
-		}
-
-		// P2020 Filter widget (widgets/filter)
-		if ( empty( $sidebars_widgets['sidebar-1'] ) ||
-		     ! in_array( "p2020-filter-widget-{$widget_no}", $sidebars_widgets['sidebar-1'] ) ) {
-			$filter_widget_settings = [
-				$widget_no => []
-			];
-			update_option( 'widget_p2020-filter-widget', $filter_widget_settings );
-			$sidebars_widgets['sidebar-1'][] = "p2020-filter-widget-{$widget_no}";
-		}
-
-		// Pages widget
-		if ( empty( $sidebars_widgets['sidebar-pages'] ) ||
-		     ! in_array( "p2020-pages-widget-{$widget_no}", $sidebars_widgets['sidebar-pages'] ) ) {
-
-			$pages_widget_settings = [
-				$widget_no => [
-					'title' => __( 'Pages', 'p2020' ),
-					'sortby' => 'menu_order',
-				],
-			];
-			update_option( 'widget_p2020-pages-widget', $pages_widget_settings );
-			$sidebars_widgets['sidebar-pages'][] = "p2020-pages-widget-{$widget_no}";
-		}
-
-		// Save sidebar updates
-		$sidebars_widgets['array_version'] = 3;
-		update_option( 'sidebars_widgets', $sidebars_widgets );
-
-		// Clear setup flag afterwards
-		update_option( 'p2020_sidebar_setup', '' );
-
-		// Refresh sidebars_widgets cache
-		global $_wp_sidebars_widgets;
-		$_wp_sidebars_widgets = $sidebars_widgets;
+		// Add to head of sidebar-1 widgets
+		array_unshift( $sidebars_widgets['sidebar-1'], "p2020-my-team-widget-{$widget_no}" );
 	}
+
+	// Save sidebar updates
+	$sidebars_widgets['array_version'] = 3;
+	update_option( 'sidebars_widgets', $sidebars_widgets );
+
+	// Clear sidebar setup flag afterwards
+	update_option( 'p2020_sidebar_setup', false );
+
+	// Refresh sidebars_widgets cache
+	global $_wp_sidebars_widgets;
+	$_wp_sidebars_widgets = $sidebars_widgets;
 }
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_default_widgets' );
@@ -590,4 +547,4 @@ function p2020_menu_init() {
 	\P2020\Menu\enqueue_scripts();
 }
 
- add_action( 'after_setup_theme', __NAMESPACE__ . '\p2020_menu_init' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\p2020_menu_init' );

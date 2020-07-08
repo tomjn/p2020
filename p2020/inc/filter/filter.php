@@ -61,7 +61,7 @@ function get_active_filter() {
  */
 function get_links() {
 	if ( ! is_user_logged_in() ) {
-		return;
+		return [];
 	}
 
 	$user = wp_get_current_user();

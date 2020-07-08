@@ -1458,6 +1458,53 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
 .p2020-sidebar-header__hamburger-button[aria-expanded="true"] {
   background: var(--color-link); }
 
+.p2020-sidebar-info {
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--color-white); }
+
+.p2020-sidebar-info__image {
+  display: block;
+  margin: 0 auto 24px;
+  height: 100%;
+  width: 100%;
+  border-radius: 2px; }
+  .p2020-sidebar-info__image.is-placeholder {
+    background: var(--color-link); }
+    .p2020-sidebar-info__image.is-placeholder::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(100% 400% at 0% 0%, rgba(0, 16, 28, 0) 0%, rgba(0, 16, 28, 0.4) 100%); }
+
+.p2020-sidebar-info__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px; }
+
+.p2020-sidebar-info__header-ellipsis {
+  margin-top: 2px;
+  margin-right: 16px; }
+
+.p2020-sidebar-info__header-blogname {
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: var(--color-text); }
+  .p2020-sidebar-info__header-blogname a {
+    text-decoration: none;
+    color: currentColor; }
+
+.p2020-sidebar-info__follow {
+  margin-bottom: 16px; }
+
+.p2020-sidebar-info__blogdescription {
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 16px; }
+
 .p2020-sidebar-padded-container {
   padding-right: 48px;
   padding-left: 48px; }
@@ -1514,48 +1561,10 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
       background-position: bottom;
       transition: background-position 200ms cubic-bezier(0.55, 0.09, 0.68, 0.53) 40ms; } }
 
-.p2020-sidebar__info-header,
 .p2020-sidebar__menu-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 8px; }
-
-.p2020-sidebar__info {
-  padding-bottom: 24px;
-  border-bottom: 2px solid var(--color-white); }
-
-.p2020-sidebar__info-image {
-  display: block;
-  margin: 0 auto 24px;
-  height: 100%;
-  width: 100%;
-  border-radius: 2px; }
-  .p2020-sidebar__info-image.is-placeholder {
-    background: var(--color-link); }
-    .p2020-sidebar__info-image.is-placeholder::before {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(100% 400% at 0% 0%, rgba(0, 16, 28, 0) 0%, rgba(0, 16, 28, 0.4) 100%); }
-
-.p2020-sidebar__info-header-blogname {
-  font-weight: 800;
-  font-size: 1.5rem;
-  line-height: 1.4;
-  color: var(--color-text);
-  max-width: 265px;
-  text-decoration: none; }
-
-.p2020-sidebar__info-follow {
-  margin-bottom: 8px; }
-
-.p2020-sidebar__info-blogdescription {
-  font-size: 0.875rem;
-  line-height: 1.8;
-  color: var(--color-text);
-  margin-bottom: 16px; }
 
 .p2020-sidebar__menu {
   padding: 1.5rem 0;
