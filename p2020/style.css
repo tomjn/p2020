@@ -2360,7 +2360,8 @@ header nav.o2-dropdown-actions {
     padding-right: 16px; }
   body.is-fullscreen-mode .o2-editor-footer {
     top: -6px; }
-  .o2-editor-footer .o2-post-form-options,
+  .o2-editor-footer .o2-post-form-options {
+    display: none; }
   .o2-editor-footer .o2-comment-form-options {
     order: -1;
     margin: 0 24px 0 0;
@@ -2370,7 +2371,7 @@ header nav.o2-dropdown-actions {
   .o2-editor-footer .post-subscription-form {
     display: none; }
   .o2-editor-footer .comment-subscription-form {
-    margin: 0 !important; }
+    display: none; }
   .o2-editor-footer #post_subscribe_label {
     margin-bottom: 0 !important; }
   .o2-editor-footer a.o2-save {

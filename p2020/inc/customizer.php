@@ -74,12 +74,20 @@ function customize_register( \WP_Dotcom_Customize $wp_customize ) {
 	// Rename Site Identity section to P2 Info
 	$wp_customize->get_section( 'title_tagline' )->title = __( 'P2 Identity', 'p2020' );
 
+	// Site Title
+	$wp_customize->get_control( 'blogname' )->priority = 1;
+
 	// Rename Tagline to Description and convert to textarea type
 	$wp_customize->get_control( 'blogdescription' )->label = 'Description';
 	$wp_customize->get_control( 'blogdescription' )->type = 'textarea';
+	$wp_customize->get_control( 'blogdescription' )->priority = 2;
+
+	// Site Icon
+	$wp_customize->get_control( 'site_icon' )->priority = 3;
 
 	// Move Header Image control to this section
 	$wp_customize->get_control( 'header_image' )->section = 'title_tagline';
+	$wp_customize->get_control( 'header_image' )->priority = 4;
 }
 
 add_action( 'customize_register', 'P2020\customize_register' );

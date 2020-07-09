@@ -90,3 +90,9 @@ add_filter( 'wp_title', 'P2020\wp_title', 10, 2 );
 function html_output( string $str ): string {
 	return $str;
 }
+
+/**
+ * Auto subscribe author to their post/comments (check the hidden o2 checkbox)
+ */
+add_filter( 'subscribe_author_to_comments_override', '__return_true' );
+add_filter( 'subscribe_to_comments_override', '__return_true' );

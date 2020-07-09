@@ -2723,18 +2723,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     setTopOffset();
     $(window).on('resize', $.debounce(200, setTopOffset));
   });
-})(jQuery);
-
-(function ($) {
-  // Enable "Notify me of new comments via email" on new posts by default and hide the form
-  function subscribeToCommentsOnNewPostsByDefault() {
-    $('input[type="checkbox"]#post_subscribe').prop('checked', true);
-    $('.o2-post-form-options').hide();
-  }
-
-  $(document).ready(function () {
-    subscribeToCommentsOnNewPostsByDefault();
-  });
 })(jQuery); // Polyfills for things that don't need to block the rest of the JS
 
 
