@@ -25,6 +25,9 @@
  * Breakpoints
  */
 /**
+ * Column widths
+ */
+/**
  * Spacing
  */
 :root {
@@ -46,9 +49,9 @@
   --color-mentions-highlight: rgba(179, 94, 177, 0.1);
   --color-white: #fff;
   --color-black: #000;
-  --color-green: #1cca7b;
-  --color-green-dark: rgb(18, 160, 96);
-  --color-green-light: #d4f8d4;
+  --color-green: #12ff61;
+  --color-green-dark: #00db41;
+  --color-yellow: #f6fa53;
   /* CUSTOMIZABLE COLORS */
   --color-sidebar-background: #f3f3f3;
   /* TYPOGRAPHY */
@@ -132,7 +135,8 @@ body blockquote {
   font-style: italic;
   margin: 0 0 1.2em;
   padding: 2em;
-  overflow: auto; }
+  overflow: auto;
+  border-radius: 2px; }
   body blockquote code {
     border: 1px solid var(--color-border);
     background: var(--color-white); }

@@ -14,13 +14,9 @@ Note: you have to use !important as the widget elements have a `style="display: 
 be overwritten in any other way.
 */
 #available-widgets-list [id*="p2020-my-team"],
-#widget-list [id*="p2020-my-team"] {
-  display: block !important; }
-
-#available-widgets-list [id*="p2020-filter"],
-#widget-list [id*="p2020-filter"] {
-  display: block !important; }
-
-#available-widgets-list [id*="p2020-pages"],
-#widget-list [id*="p2020-pages"] {
+#available-widgets-list [id^="widget-tpl-media_image-"],
+#available-widgets-list [id^="widget-tpl-text-"],
+#widget-list [id*="p2020-my-team"],
+#widget-list [id^="widget-tpl-media_image-"],
+#widget-list [id^="widget-tpl-text-"] {
   display: block !important; }

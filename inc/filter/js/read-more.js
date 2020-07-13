@@ -172,11 +172,23 @@
 					);
 					trimSeenComments( articleId );
 					collapseCommentThreads( articleId );
+				} else if (
+					mutation.addedNodes.length > 0 &&
+					mutation.removedNodes.length > 0 &&
+					mutation.target.className === 'o2-post'
+				) {
+					// Content changed (e.g. p2tenberg opening/closing), expand post
+					untrimPost( $( mutation.target ) );
 				}
 			}
 		};
 		const observer = new MutationObserver( callback );
 		observer.observe( targetNode, config );
+	};
+
+	const untrimPost = ( $post ) => {
+		$post.closest( 'article' ).removeClass( 'p2020-post-read-more' );
+		$post.find( '.p2020-post-read-more-mask' ).remove();
 	};
 
 	$( function () {
@@ -192,9 +204,7 @@
 		'click',
 		'.p2020-post-read-more-trigger',
 		function () {
-			$( this ).closest( '.post' ).removeClass( 'p2020-post-read-more' );
-
-			$( this ).closest( '.p2020-post-read-more-mask' ).remove();
+			untrimPost( $( this ).closest( '.o2-post' ) );
 		}
 	);
 
