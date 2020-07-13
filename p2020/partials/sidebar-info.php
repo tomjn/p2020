@@ -13,8 +13,9 @@ require_once( get_template_directory() . '/inc/follow/follow.php' );
 
 $site_slug = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
 
-$customizer_url = 'https://wordpress.com/customize/' . $site_slug;
-$customizer_identity_url = 'https://wordpress.com/customize/identity/' . $site_slug;
+$return_home_param = '?return=' . esc_url( get_blog_url() );
+$customizer_url = 'https://wordpress.com/customize/' . $site_slug . $return_home_param;
+$customizer_identity_url = 'https://wordpress.com/customize/identity/' . $site_slug . $return_home_param;
 $settings_url = 'https://wordpress.com/settings/general/' . $site_slug;
 
 $header_image_height = get_theme_support( 'custom-header', 'height' ) / 2 . 'px';
