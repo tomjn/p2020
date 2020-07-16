@@ -348,6 +348,8 @@ function editor_assets() {
 			'core-embed/crowdsignal',
 			'core/file',
 			'a8c/posts-carousel',
+			'premium-content/buttons',
+			'premium-content/login-button',
 		] );
 	}
 
