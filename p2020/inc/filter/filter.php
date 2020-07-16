@@ -301,6 +301,9 @@ function custom_classes_for_posts( $classes, $class, $post_id ) {
 	// If a post appears in the recent comments filter view, automatically add "trim post" class
 	if ( is_filter_active( 'comments' ) ) {
 		$classes[] = 'p2020-post-read-more';
+		// Remove project thread class to avoid styling clashes -- project thread posts are usually styled
+		//    differently, but inside the comments view, we want them to be just regular posts
+		$classes = array_diff( $classes, [ 'tag-project-thread' ] );
 	}
 
 	// If a post appears in the recent mentions view, we need to cross-check it against list

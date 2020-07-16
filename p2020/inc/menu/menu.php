@@ -70,8 +70,8 @@ function format_items( $menu_type, $menu_html ) {
 	}
 
 	$replacement = '$1
-		<a href="$3" class="menu-item-link">$4</a>
-		<button class="menu-item-toggle" aria-label="Expand" aria-expanded=false></button>';
+		<button class="menu-item-toggle" aria-label="Expand" aria-expanded=false></button>
+		<a href="$3" class="menu-item-link">$4</a>';
 	$menu_html = preg_replace( $pattern, $replacement, $menu_html );
 
 	return $menu_html;

@@ -425,6 +425,9 @@ body {
   body.is-fullscreen-mode #sidebar {
     display: none; }
 
+.lockscroll .p2tenberg-is-editing #sidebar, .lockscroll .p2tenberg-is-editing #wpadminbar {
+  display: none; }
+
 @media (max-width: 876px) {
   input[type="checkbox"] {
     font-size: 2em; } }
@@ -696,23 +699,6 @@ body {
         margin-left: calc((100vw - 1420px) / -2 + (0% - 40px));
         margin-right: calc((100vw - 1420px) / -2 + (0% - 40px));
         width: calc(100vw - 400px); } }
-  .sticky.type-page::after, .sticky.type-post::after {
-    content: "Pinned";
-    color: var(--color-text);
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOCA4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8Y2lyY2xlIGN4PSI0IiBjeT0iNCIgcj0iNCIgZmlsbD0iIzAyNjdGRiIvPgo8L3N2Zz4K);
-    background-repeat: no-repeat;
-    background-position: left center;
-    padding-left: 16px;
-    font-size: 0.6875rem;
-    line-height: 1.5;
-    height: auto;
-    width: auto; }
-    @media (max-width: 550px) {
-      .sticky.type-page::after, .sticky.type-post::after {
-        display: none; } }
   body.search-results .type-page .highlight, body.search-results .type-post .highlight {
     background: var(--color-yellow); }
 
@@ -731,26 +717,26 @@ body {
 /**
  * Styles for a blockquote
  */
-.p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote {
+.p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content:not(.is-editing) blockquote, .o2-editor-preview blockquote {
   background: var(--color-background-very-light);
   font-style: italic;
   margin: 0 0 1.2em;
   padding: 2em;
   overflow: auto;
   border-radius: 2px; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content blockquote code {
+  .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content:not(.is-editing) blockquote code, .o2-editor-preview blockquote code {
     border: 1px solid var(--color-border);
     background: var(--color-white); }
-  .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content blockquote em {
+  .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content:not(.is-editing) blockquote em, .o2-editor-preview blockquote em {
     font-style: normal; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content blockquote.wp-embedded-content {
+  .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content:not(.is-editing) blockquote.wp-embedded-content, .o2-editor-preview blockquote.wp-embedded-content {
     padding: 1.2em; }
 
 .p2tenberg-editor .wp-block-pullquote__citation,
 .entry-content .wp-block-pullquote__citation,
 .comment-content .wp-block-pullquote__citation, .p2tenberg-editor .wp-block-quote__citation,
 .entry-content .wp-block-quote__citation,
-.comment-content .wp-block-quote__citation, .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content blockquote cite {
+.comment-content .wp-block-quote__citation, .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content:not(.is-editing) blockquote cite, .o2-editor-preview blockquote cite {
   display: block;
   margin-top: 1em;
   text-align: right; }
@@ -758,7 +744,7 @@ body {
   .entry-content .wp-block-pullquote__citation::before,
   .comment-content .wp-block-pullquote__citation::before, .p2tenberg-editor .wp-block-quote__citation::before,
   .entry-content .wp-block-quote__citation::before,
-  .comment-content .wp-block-quote__citation::before, .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content blockquote cite::before {
+  .comment-content .wp-block-quote__citation::before, .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content:not(.is-editing) blockquote cite::before, .o2-editor-preview blockquote cite::before {
     content: "—\0000a0"; }
 
 .o2-editor-footer a.o2-save, .o2-editor-footer a.o2-comment-save, .o2-editor-footer a.o2-cancel,
@@ -818,28 +804,29 @@ body {
 /**
  * Styles for <code>, <kbd>
  */
-.p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content code,
+.p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content:not(.is-editing) code, .o2-editor-preview code,
 .p2tenberg-editor .block-editor-writing-flow kbd,
 .comment-content kbd,
-.entry-content kbd {
+.entry-content:not(.is-editing) kbd,
+.o2-editor-preview kbd {
   border-radius: 3px;
   background: var(--color-background-very-light);
   padding: 0.3em 0.55em;
   font-family: var(--font-mono);
   font-size: 0.8em; }
 
-.entry-content .p2020-contributors {
+.entry-content:not(.is-editing) .p2020-contributors {
   clear: both;
   margin: 4em 0 3em; }
 
-.entry-content .p2020-contributors__heading {
+.entry-content:not(.is-editing) .p2020-contributors__heading {
   position: relative;
   margin-bottom: 2.5em;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 400;
-  color: var(--color-text-light);
+  color: var(--color-text);
   letter-spacing: -0.01em; }
-  .entry-content .p2020-contributors__heading::before {
+  .entry-content:not(.is-editing) .p2020-contributors__heading::before {
     content: "";
     position: absolute;
     top: 0;
@@ -850,13 +837,13 @@ body {
     margin: auto 0;
     background: var(--color-border); }
 
-.entry-content .p2020-contributors__heading-text {
+.entry-content:not(.is-editing) .p2020-contributors__heading-text {
   position: relative;
   z-index: 1;
-  padding: 0 8px 0 0;
+  padding: 0 12px 0 0;
   background: var(--color-white); }
 
-.entry-content .p2020-contributors__list {
+.entry-content:not(.is-editing) .p2020-contributors__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -865,27 +852,26 @@ body {
   list-style: none;
   line-height: 1.3; }
   @media (max-width: 640px) {
-    .entry-content .p2020-contributors__list {
+    .entry-content:not(.is-editing) .p2020-contributors__list {
       grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 550px) {
-    .entry-content .p2020-contributors__list {
+    .entry-content:not(.is-editing) .p2020-contributors__list {
       grid-template-columns: 1fr; } }
 
-.entry-content .p2020-contributors__item {
+.entry-content:not(.is-editing) .p2020-contributors__item {
   display: flex;
   align-items: flex-start; }
 
-.entry-content .p2020-contributors__item-avatar {
+.entry-content:not(.is-editing) .p2020-contributors__item-avatar {
   flex: 0 0 auto;
   margin-right: 10px; }
 
-.entry-content .p2020-contributors__item-name {
+.entry-content:not(.is-editing) .p2020-contributors__item-name {
   font-size: 0.9375rem;
   font-weight: 600;
-  text-decoration: none;
-  word-break: break-all; }
+  text-decoration: none; }
 
-.entry-content .p2020-contributors__item-revisions {
+.entry-content:not(.is-editing) .p2020-contributors__item-revisions {
   font-size: 0.75rem;
   color: var(--color-text-light);
   line-height: 1.5; }
@@ -938,26 +924,26 @@ body {
 /**
  * Styles for a blockquote
  */
-.p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote {
+.p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content:not(.is-editing) blockquote, .o2-editor-preview blockquote {
   background: var(--color-background-very-light);
   font-style: italic;
   margin: 0 0 1.2em;
   padding: 2em;
   overflow: auto;
   border-radius: 2px; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content blockquote code {
+  .p2tenberg-editor .block-editor-writing-flow blockquote code, .comment-content blockquote code, .entry-content:not(.is-editing) blockquote code, .o2-editor-preview blockquote code {
     border: 1px solid var(--color-border);
     background: var(--color-white); }
-  .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content blockquote em {
+  .p2tenberg-editor .block-editor-writing-flow blockquote em, .comment-content blockquote em, .entry-content:not(.is-editing) blockquote em, .o2-editor-preview blockquote em {
     font-style: normal; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content blockquote.wp-embedded-content {
+  .p2tenberg-editor .block-editor-writing-flow blockquote.wp-embedded-content, .comment-content blockquote.wp-embedded-content, .entry-content:not(.is-editing) blockquote.wp-embedded-content, .o2-editor-preview blockquote.wp-embedded-content {
     padding: 1.2em; }
 
 .p2tenberg-editor .wp-block-pullquote__citation,
 .entry-content .wp-block-pullquote__citation,
 .comment-content .wp-block-pullquote__citation, .p2tenberg-editor .wp-block-quote__citation,
 .entry-content .wp-block-quote__citation,
-.comment-content .wp-block-quote__citation, .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content blockquote cite {
+.comment-content .wp-block-quote__citation, .p2tenberg-editor .block-editor-writing-flow blockquote cite, .comment-content blockquote cite, .entry-content:not(.is-editing) blockquote cite, .o2-editor-preview blockquote cite {
   display: block;
   margin-top: 1em;
   text-align: right; }
@@ -965,67 +951,74 @@ body {
   .entry-content .wp-block-pullquote__citation::before,
   .comment-content .wp-block-pullquote__citation::before, .p2tenberg-editor .wp-block-quote__citation::before,
   .entry-content .wp-block-quote__citation::before,
-  .comment-content .wp-block-quote__citation::before, .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content blockquote cite::before {
+  .comment-content .wp-block-quote__citation::before, .p2tenberg-editor .block-editor-writing-flow blockquote cite::before, .comment-content blockquote cite::before, .entry-content:not(.is-editing) blockquote cite::before, .o2-editor-preview blockquote cite::before {
     content: "—\0000a0"; }
 
 /**
  * Styles for <code>, <kbd>
  */
-.p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content code,
+.p2tenberg-editor .block-editor-writing-flow code, .comment-content code, .entry-content:not(.is-editing) code, .o2-editor-preview code,
 .p2tenberg-editor .block-editor-writing-flow kbd,
 .comment-content kbd,
-.entry-content kbd {
+.entry-content:not(.is-editing) kbd,
+.o2-editor-preview kbd {
   border-radius: 3px;
   background: var(--color-background-very-light);
   padding: 0.3em 0.55em;
   font-family: var(--font-mono);
   font-size: 0.8em; }
 
-.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
+.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content:not(.is-editing) h1, .o2-editor-preview h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
   font-family: var(--font-default);
   font-weight: 800;
   font-size: 2rem;
   line-height: 1.35;
   letter-spacing: -0.01em; }
   @media (max-width: 876px) {
-    .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
+    .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content:not(.is-editing) h1, .o2-editor-preview h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
       font-size: 1.625rem; } }
 
-.p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2,
+.p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content:not(.is-editing) h2, .o2-editor-preview h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2,
 .p2tenberg-editor .block-editor-writing-flow h3,
 .comment-content h3,
-.entry-content h3,
+.entry-content:not(.is-editing) h3,
+.o2-editor-preview h3,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
 .p2tenberg-editor .block-editor-writing-flow h4,
 .comment-content h4,
-.entry-content h4,
+.entry-content:not(.is-editing) h4,
+.o2-editor-preview h4,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4,
 .p2tenberg-editor .block-editor-writing-flow h5,
 .comment-content h5,
-.entry-content h5,
+.entry-content:not(.is-editing) h5,
+.o2-editor-preview h5,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5,
 .p2tenberg-editor .block-editor-writing-flow h6,
 .comment-content h6,
-.entry-content h6,
+.entry-content:not(.is-editing) h6,
+.o2-editor-preview h6,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   font-family: var(--font-default);
   line-height: 1.1;
   font-weight: 700; }
 
-.p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2 {
+.p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content:not(.is-editing) h2, .o2-editor-preview h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2 {
   font-size: 1.5rem; }
 
 
 .p2tenberg-editor .block-editor-writing-flow h3,
 .comment-content h3,
-.entry-content h3,
+.entry-content:not(.is-editing) h3,
+.o2-editor-preview h3,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3 {
   font-size: 1.25rem; }
 
 
 .p2tenberg-editor .block-editor-writing-flow h4,
 .comment-content h4,
-.entry-content h4,
+.entry-content:not(.is-editing) h4,
+.o2-editor-preview h4,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4 {
   font-size: 0.9375rem;
   text-transform: uppercase;
@@ -1034,7 +1027,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4 {
 
 .p2tenberg-editor .block-editor-writing-flow h5,
 .comment-content h5,
-.entry-content h5,
+.entry-content:not(.is-editing) h5,
+.o2-editor-preview h5,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5 {
   font-size: 0.8125rem;
   text-transform: uppercase; }
@@ -1042,18 +1036,20 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5 {
 
 .p2tenberg-editor .block-editor-writing-flow h6,
 .comment-content h6,
-.entry-content h6,
+.entry-content:not(.is-editing) h6,
+.o2-editor-preview h6,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   font-size: 0.6875rem;
   text-transform: uppercase; }
 
 @media (max-width: 876px) {
-  .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2 {
+  .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content:not(.is-editing) h2, .o2-editor-preview h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2 {
     font-size: 1.3125rem; }
   
   .p2tenberg-editor .block-editor-writing-flow h3,
   .comment-content h3,
-  .entry-content h3,
+  .entry-content:not(.is-editing) h3,
+  .o2-editor-preview h3,
   body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3 {
     font-size: 1.125rem; } }
 
@@ -1062,7 +1058,7 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
  */
 .p2tenberg-editor .wp-block-code,
 .entry-content .wp-block-code,
-.comment-content .wp-block-code, .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content pre {
+.comment-content .wp-block-code, .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content:not(.is-editing) pre, .o2-editor-preview pre {
   background: var(--color-background-very-light);
   margin-bottom: 1.2em;
   padding: 2em;
@@ -1071,27 +1067,29 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   font-family: var(--font-mono);
   font-size: 0.8em; }
 
-.p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
+.p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content:not(.is-editing) table, .o2-editor-preview table {
   border-top: 1px solid var(--color-border-dark);
   line-height: 1.4;
   text-align: left; }
-  .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content table thead,
+  .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content:not(.is-editing) table thead, .o2-editor-preview table thead,
   .p2tenberg-editor .block-editor-writing-flow table tfoot,
   .comment-content table tfoot,
-  .entry-content table tfoot {
+  .entry-content:not(.is-editing) table tfoot,
+  .o2-editor-preview table tfoot {
     border: 0;
     font-weight: 600; }
-  .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content table td,
+  .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content:not(.is-editing) table td, .o2-editor-preview table td,
   .p2tenberg-editor .block-editor-writing-flow table th,
   .comment-content table th,
-  .entry-content table th {
+  .entry-content:not(.is-editing) table th,
+  .o2-editor-preview table th {
     padding: 0.75em 1em;
     border-top: 0;
     border-right: 0;
     border-bottom: 1px solid var(--color-border);
     border-left: 0; }
 
-.p2tenberg-editor .block-editor-writing-flow, .comment-content, .entry-content {
+.p2tenberg-editor .block-editor-writing-flow, .comment-content, .entry-content:not(.is-editing), .o2-editor-preview {
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.8;
@@ -1104,123 +1102,141 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   /**
 	 * Block margins
 	 */ }
-  .p2tenberg-editor .block-editor-writing-flow p a, .comment-content p a, .entry-content p a,
+  .p2tenberg-editor .block-editor-writing-flow p a, .comment-content p a, .entry-content:not(.is-editing) p a, .o2-editor-preview p a,
   .p2tenberg-editor .block-editor-writing-flow li a,
   .comment-content li a,
-  .entry-content li a {
+  .entry-content:not(.is-editing) li a,
+  .o2-editor-preview li a {
     color: var(--color-link);
     text-decoration: underline; }
-    .p2tenberg-editor .block-editor-writing-flow p a:hover, .comment-content p a:hover, .entry-content p a:hover,
+    .p2tenberg-editor .block-editor-writing-flow p a:hover, .comment-content p a:hover, .entry-content:not(.is-editing) p a:hover, .o2-editor-preview p a:hover,
     .p2tenberg-editor .block-editor-writing-flow li a:hover,
     .comment-content li a:hover,
-    .entry-content li a:hover {
+    .entry-content:not(.is-editing) li a:hover,
+    .o2-editor-preview li a:hover {
       color: var(--color-link-dark); }
-  .p2tenberg-editor .block-editor-writing-flow p, .comment-content p, .entry-content p {
+  .p2tenberg-editor .block-editor-writing-flow p, .comment-content p, .entry-content:not(.is-editing) p, .o2-editor-preview p {
     margin: 0 0 1.8em; }
-    .p2tenberg-editor .block-editor-writing-flow p:empty, .comment-content p:empty, .entry-content p:empty {
+    .p2tenberg-editor .block-editor-writing-flow p:empty, .comment-content p:empty, .entry-content:not(.is-editing) p:empty, .o2-editor-preview p:empty {
       margin-bottom: 0; }
-  .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1,
+  .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content:not(.is-editing) h1, .o2-editor-preview h1,
   .p2tenberg-editor .block-editor-writing-flow h2,
   .comment-content h2,
-  .entry-content h2,
+  .entry-content:not(.is-editing) h2,
+  .o2-editor-preview h2,
   .p2tenberg-editor .block-editor-writing-flow h3,
   .comment-content h3,
-  .entry-content h3,
+  .entry-content:not(.is-editing) h3,
+  .o2-editor-preview h3,
   .p2tenberg-editor .block-editor-writing-flow h4,
   .comment-content h4,
-  .entry-content h4,
+  .entry-content:not(.is-editing) h4,
+  .o2-editor-preview h4,
   .p2tenberg-editor .block-editor-writing-flow h5,
   .comment-content h5,
-  .entry-content h5,
+  .entry-content:not(.is-editing) h5,
+  .o2-editor-preview h5,
   .p2tenberg-editor .block-editor-writing-flow h6,
   .comment-content h6,
-  .entry-content h6 {
+  .entry-content:not(.is-editing) h6,
+  .o2-editor-preview h6 {
     margin: 3rem 0 1rem; }
-  .p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
+  .p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content:not(.is-editing) table, .o2-editor-preview table {
     margin-bottom: 1.8em; }
-  .p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content blockquote,
+  .p2tenberg-editor .block-editor-writing-flow blockquote, .comment-content blockquote, .entry-content:not(.is-editing) blockquote, .o2-editor-preview blockquote,
   .p2tenberg-editor .block-editor-writing-flow pre,
   .comment-content pre,
-  .entry-content pre {
+  .entry-content:not(.is-editing) pre,
+  .o2-editor-preview pre {
     margin-bottom: 1.8em; }
-    .p2tenberg-editor .block-editor-writing-flow blockquote > :last-child, .comment-content blockquote > :last-child, .entry-content blockquote > :last-child,
+    .p2tenberg-editor .block-editor-writing-flow blockquote > :last-child, .comment-content blockquote > :last-child, .entry-content:not(.is-editing) blockquote > :last-child, .o2-editor-preview blockquote > :last-child,
     .p2tenberg-editor .block-editor-writing-flow pre > :last-child,
     .comment-content pre > :last-child,
-    .entry-content pre > :last-child {
+    .entry-content:not(.is-editing) pre > :last-child,
+    .o2-editor-preview pre > :last-child {
       margin-bottom: 0; }
-  .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item), .comment-content li:not(.blocks-gallery-item), .entry-content li:not(.blocks-gallery-item) {
+  .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item), .comment-content li:not(.blocks-gallery-item), .entry-content:not(.is-editing) li:not(.blocks-gallery-item), .o2-editor-preview li:not(.blocks-gallery-item) {
     margin-bottom: 0.5em; }
-    .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item) > ul, .comment-content li:not(.blocks-gallery-item) > ul, .entry-content li:not(.blocks-gallery-item) > ul,
+    .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item) > ul, .comment-content li:not(.blocks-gallery-item) > ul, .entry-content:not(.is-editing) li:not(.blocks-gallery-item) > ul, .o2-editor-preview li:not(.blocks-gallery-item) > ul,
     .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item) > ol,
     .comment-content li:not(.blocks-gallery-item) > ol,
-    .entry-content li:not(.blocks-gallery-item) > ol {
+    .entry-content:not(.is-editing) li:not(.blocks-gallery-item) > ol,
+    .o2-editor-preview li:not(.blocks-gallery-item) > ol {
       margin-top: 0.5em; }
-    .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item) ul, .comment-content li:not(.blocks-gallery-item) ul, .entry-content li:not(.blocks-gallery-item) ul {
+    .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item) ul, .comment-content li:not(.blocks-gallery-item) ul, .entry-content:not(.is-editing) li:not(.blocks-gallery-item) ul, .o2-editor-preview li:not(.blocks-gallery-item) ul {
       list-style-type: circle; }
-  .p2tenberg-editor .block-editor-writing-flow .wp-block-image:not(.wp-block), .comment-content .wp-block-image:not(.wp-block), .entry-content .wp-block-image:not(.wp-block),
+  .p2tenberg-editor .block-editor-writing-flow .wp-block-image:not(.wp-block), .comment-content .wp-block-image:not(.wp-block), .entry-content:not(.is-editing) .wp-block-image:not(.wp-block), .o2-editor-preview .wp-block-image:not(.wp-block),
   .p2tenberg-editor .block-editor-writing-flow .wp-block-cover-image,
   .comment-content .wp-block-cover-image,
-  .entry-content .wp-block-cover-image,
+  .entry-content:not(.is-editing) .wp-block-cover-image,
+  .o2-editor-preview .wp-block-cover-image,
   .p2tenberg-editor .block-editor-writing-flow .wp-caption,
   .comment-content .wp-caption,
-  .entry-content .wp-caption {
+  .entry-content:not(.is-editing) .wp-caption,
+  .o2-editor-preview .wp-caption {
     margin-bottom: 1.8em; }
-  .p2tenberg-editor .block-editor-writing-flow .alignleft, .comment-content .alignleft, .entry-content .alignleft {
+  .p2tenberg-editor .block-editor-writing-flow .alignleft, .comment-content .alignleft, .entry-content:not(.is-editing) .alignleft, .o2-editor-preview .alignleft {
     float: left;
     margin-right: 1.8em;
     margin-bottom: 1.8em; }
-  .p2tenberg-editor .block-editor-writing-flow .alignright, .comment-content .alignright, .entry-content .alignright {
+  .p2tenberg-editor .block-editor-writing-flow .alignright, .comment-content .alignright, .entry-content:not(.is-editing) .alignright, .o2-editor-preview .alignright {
     float: right;
     margin-left: 1.8em;
     margin-bottom: 1.8em; }
-  .p2tenberg-editor .block-editor-writing-flow .wp-block-file, .comment-content .wp-block-file, .entry-content .wp-block-file {
+  .p2tenberg-editor .block-editor-writing-flow .wp-block-file, .comment-content .wp-block-file, .entry-content:not(.is-editing) .wp-block-file, .o2-editor-preview .wp-block-file {
     margin-bottom: 1.8em; }
 
-.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
+.p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content:not(.is-editing) h1, .o2-editor-preview h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
   font-family: var(--font-default);
   font-weight: 800;
   font-size: 2rem;
   line-height: 1.35;
   letter-spacing: -0.01em; }
   @media (max-width: 876px) {
-    .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
+    .p2tenberg-editor .block-editor-writing-flow .editor-post-title__input, .p2tenberg-editor .block-editor-writing-flow h1, .comment-content h1, .entry-content:not(.is-editing) h1, .o2-editor-preview h1, .entry-title, .p2tenberg-editor .block-editor-writing-flow .p2tenberg-auto-title {
       font-size: 1.625rem; } }
 
-.p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2,
+.p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content:not(.is-editing) h2, .o2-editor-preview h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2,
 .p2tenberg-editor .block-editor-writing-flow h3,
 .comment-content h3,
-.entry-content h3,
+.entry-content:not(.is-editing) h3,
+.o2-editor-preview h3,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3,
 .p2tenberg-editor .block-editor-writing-flow h4,
 .comment-content h4,
-.entry-content h4,
+.entry-content:not(.is-editing) h4,
+.o2-editor-preview h4,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4,
 .p2tenberg-editor .block-editor-writing-flow h5,
 .comment-content h5,
-.entry-content h5,
+.entry-content:not(.is-editing) h5,
+.o2-editor-preview h5,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5,
 .p2tenberg-editor .block-editor-writing-flow h6,
 .comment-content h6,
-.entry-content h6,
+.entry-content:not(.is-editing) h6,
+.o2-editor-preview h6,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   font-family: var(--font-default);
   line-height: 1.1;
   font-weight: 700; }
 
-.p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2 {
+.p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content:not(.is-editing) h2, .o2-editor-preview h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2 {
   font-size: 1.5rem; }
 
 
 .p2tenberg-editor .block-editor-writing-flow h3,
 .comment-content h3,
-.entry-content h3,
+.entry-content:not(.is-editing) h3,
+.o2-editor-preview h3,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3 {
   font-size: 1.25rem; }
 
 
 .p2tenberg-editor .block-editor-writing-flow h4,
 .comment-content h4,
-.entry-content h4,
+.entry-content:not(.is-editing) h4,
+.o2-editor-preview h4,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4 {
   font-size: 0.9375rem;
   text-transform: uppercase;
@@ -1229,7 +1245,8 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h4 {
 
 .p2tenberg-editor .block-editor-writing-flow h5,
 .comment-content h5,
-.entry-content h5,
+.entry-content:not(.is-editing) h5,
+.o2-editor-preview h5,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5 {
   font-size: 0.8125rem;
   text-transform: uppercase; }
@@ -1237,18 +1254,20 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h5 {
 
 .p2tenberg-editor .block-editor-writing-flow h6,
 .comment-content h6,
-.entry-content h6,
+.entry-content:not(.is-editing) h6,
+.o2-editor-preview h6,
 body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   font-size: 0.6875rem;
   text-transform: uppercase; }
 
 @media (max-width: 876px) {
-  .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2 {
+  .p2tenberg-editor .block-editor-writing-flow h2, .comment-content h2, .entry-content:not(.is-editing) h2, .o2-editor-preview h2, body.gutenberg .p2tenberg-editor .block-editor-writing-flow h2 {
     font-size: 1.3125rem; }
   
   .p2tenberg-editor .block-editor-writing-flow h3,
   .comment-content h3,
-  .entry-content h3,
+  .entry-content:not(.is-editing) h3,
+  .o2-editor-preview h3,
   body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3 {
     font-size: 1.125rem; } }
 
@@ -1335,7 +1354,7 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
  */
 .p2tenberg-editor .wp-block-code,
 .entry-content .wp-block-code,
-.comment-content .wp-block-code, .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content pre {
+.comment-content .wp-block-code, .p2tenberg-editor .block-editor-writing-flow pre, .comment-content pre, .entry-content:not(.is-editing) pre, .o2-editor-preview pre {
   background: var(--color-background-very-light);
   margin-bottom: 1.2em;
   padding: 2em;
@@ -1567,7 +1586,8 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
   font-weight: 800;
   font-size: 1.5rem;
   line-height: 1.5;
-  color: var(--color-text); }
+  color: var(--color-text);
+  max-width: 260px; }
   .p2020-sidebar-info__header-blogname a {
     text-decoration: none;
     color: currentColor; }
@@ -1640,13 +1660,14 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
 .p2020-sidebar__menu-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px; }
 
 .p2020-sidebar__menu {
   padding: 1.5rem 0;
   border-bottom: 2px solid var(--color-border-very-dark); }
   .p2020-sidebar__menu .p2020-sidebar__menu-header h2 {
-    color: var(--color-yellow);
+    color: var(--color-link);
     font-size: 0.8125rem; }
 
 .p2020-sidebar__footer {
@@ -1694,20 +1715,22 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
     background: currentColor;
     margin-right: 8px; }
 
-.p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content table {
+.p2tenberg-editor .block-editor-writing-flow table, .comment-content table, .entry-content:not(.is-editing) table, .o2-editor-preview table {
   border-top: 1px solid var(--color-border-dark);
   line-height: 1.4;
   text-align: left; }
-  .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content table thead,
+  .p2tenberg-editor .block-editor-writing-flow table thead, .comment-content table thead, .entry-content:not(.is-editing) table thead, .o2-editor-preview table thead,
   .p2tenberg-editor .block-editor-writing-flow table tfoot,
   .comment-content table tfoot,
-  .entry-content table tfoot {
+  .entry-content:not(.is-editing) table tfoot,
+  .o2-editor-preview table tfoot {
     border: 0;
     font-weight: 600; }
-  .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content table td,
+  .p2tenberg-editor .block-editor-writing-flow table td, .comment-content table td, .entry-content:not(.is-editing) table td, .o2-editor-preview table td,
   .p2tenberg-editor .block-editor-writing-flow table th,
   .comment-content table th,
-  .entry-content table th {
+  .entry-content:not(.is-editing) table th,
+  .o2-editor-preview table th {
     padding: 0.75em 1em;
     border-top: 0;
     border-right: 0;
@@ -1890,33 +1913,41 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
     text-decoration: underline; }
 
 /***************************************************************************************************
- * Master Threads as Sticky
+ * Project Threads as Sticky (previously called Master Threads)
  */
+.blog .post.sticky.tag-project-thread,
 .blog .post.sticky.tag-master-thread {
   position: relative;
   margin-bottom: 4px;
   border: none;
   box-shadow: none;
   transition: none; }
+  .blog .post.sticky.tag-project-thread:not(.p2020-post-read-more),
   .blog .post.sticky.tag-master-thread:not(.p2020-post-read-more) {
     background: var(--color-background-very-light); }
-  .blog .post.sticky.tag-master-thread::before, .blog .post.sticky.tag-master-thread::after {
+  .blog .post.sticky.tag-project-thread::before, .blog .post.sticky.tag-project-thread::after,
+  .blog .post.sticky.tag-master-thread::before,
+  .blog .post.sticky.tag-master-thread::after {
     display: none; }
-  .blog .post.sticky.tag-master-thread + .post:not(.tag-master-thread) {
+  .blog .post.sticky.tag-project-thread + .post:not(.tag-project-thread):not(.tag-master-thread),
+  .blog .post.sticky.tag-master-thread + .post:not(.tag-project-thread):not(.tag-master-thread) {
     margin-top: 40px; }
+  .blog .post.sticky.tag-project-thread .o2-post,
   .blog .post.sticky.tag-master-thread .o2-post {
     border: 0;
     padding: 20px 10% 16px; }
     @media (max-width: 550px) {
+      .blog .post.sticky.tag-project-thread .o2-post,
       .blog .post.sticky.tag-master-thread .o2-post {
         padding-left: 2em;
         padding-right: 2em;
         font-size: 0.875rem; } }
+    .blog .post.sticky.tag-project-thread .o2-post::before,
     .blog .post.sticky.tag-master-thread .o2-post::before {
       content: "";
       display: block;
-      -webkit-mask: url(img/icons/custom-master-thread.svg) no-repeat;
-              mask: url(img/icons/custom-master-thread.svg) no-repeat;
+      -webkit-mask: url(img/icons/custom-project-thread.svg) no-repeat;
+              mask: url(img/icons/custom-project-thread.svg) no-repeat;
       -webkit-mask-size: cover;
               mask-size: cover;
       width: 1.5rem;
@@ -1924,23 +1955,35 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
       background: var(--color-text);
       position: absolute;
       top: 50%;
+      left: unset;
+      margin-top: 0;
       transform: translateY(-50%); }
+    .blog .post.sticky.tag-project-thread .o2-post::after,
+    .blog .post.sticky.tag-master-thread .o2-post::after {
+      display: none; }
+    .blog .post.sticky.tag-project-thread .o2-post .entry-header,
     .blog .post.sticky.tag-master-thread .o2-post .entry-header {
       margin: 0; }
+  .blog .post.sticky.tag-project-thread .entry-title,
   .blog .post.sticky.tag-master-thread .entry-title {
     margin-bottom: 0;
     margin-left: 0;
     padding-left: 40px !important;
     font-size: 1.375rem; }
+    .blog .post.sticky.tag-project-thread .entry-title::before,
     .blog .post.sticky.tag-master-thread .entry-title::before {
-      content: "Master Thread";
+      content: "Project Thread";
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       color: var(--color-text-light);
       letter-spacing: 0.01em;
+      text-transform: none;
       font-weight: 400;
       line-height: 1;
-      margin-bottom: 2px; }
+      margin-bottom: 3px; }
+  .blog .post.sticky.tag-project-thread .entry-content,
+  .blog .post.sticky.tag-project-thread .entry-meta,
+  .blog .post.sticky.tag-project-thread .author-avatar,
   .blog .post.sticky.tag-master-thread .entry-content,
   .blog .post.sticky.tag-master-thread .entry-meta,
   .blog .post.sticky.tag-master-thread .author-avatar {
@@ -2000,42 +2043,48 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
 /**
  * https://opengrok.a8c.com/source/xref/trunk/wp-content/mu-plugins/inline-terms/
  */
-.p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention,
+.p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content:not(.is-editing) .mention, .o2-editor-preview .mention,
 .p2tenberg-editor .block-editor-writing-flow .tag,
 .comment-content .tag,
-.entry-content .tag,
+.entry-content:not(.is-editing) .tag,
+.o2-editor-preview .tag,
 .p2tenberg-editor .block-editor-writing-flow .p2-xpost,
 .comment-content .p2-xpost,
-.entry-content .p2-xpost {
+.entry-content:not(.is-editing) .p2-xpost,
+.o2-editor-preview .p2-xpost {
   text-decoration: none;
   font-weight: 500;
   padding: 2px 4px;
   border-radius: 3px; }
-  .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content .mention:hover,
+  .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content:not(.is-editing) .mention:hover, .o2-editor-preview .mention:hover,
   .p2tenberg-editor .block-editor-writing-flow .tag:hover,
   .comment-content .tag:hover,
-  .entry-content .tag:hover,
+  .entry-content:not(.is-editing) .tag:hover,
+  .o2-editor-preview .tag:hover,
   .p2tenberg-editor .block-editor-writing-flow .p2-xpost:hover,
   .comment-content .p2-xpost:hover,
-  .entry-content .p2-xpost:hover {
+  .entry-content:not(.is-editing) .p2-xpost:hover,
+  .o2-editor-preview .p2-xpost:hover {
     text-decoration: underline; }
 
-.p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content .mention {
+.p2tenberg-editor .block-editor-writing-flow .mention, .comment-content .mention, .entry-content:not(.is-editing) .mention, .o2-editor-preview .mention {
   color: var(--color-mentions);
   background: var(--color-mentions-highlight); }
-  .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content .mention:hover {
+  .p2tenberg-editor .block-editor-writing-flow .mention:hover, .comment-content .mention:hover, .entry-content:not(.is-editing) .mention:hover, .o2-editor-preview .mention:hover {
     color: var(--color-mentions); }
-  .p2tenberg-editor .block-editor-writing-flow .mention.mention-highlight, .comment-content .mention.mention-highlight, .entry-content .mention.mention-highlight, .p2tenberg-editor .block-editor-writing-flow .mention.mention-current-user, .comment-content .mention.mention-current-user, .entry-content .mention.mention-current-user {
+  .p2tenberg-editor .block-editor-writing-flow .mention.mention-highlight, .comment-content .mention.mention-highlight, .entry-content:not(.is-editing) .mention.mention-highlight, .o2-editor-preview .mention.mention-highlight, .p2tenberg-editor .block-editor-writing-flow .mention.mention-current-user, .comment-content .mention.mention-current-user, .entry-content:not(.is-editing) .mention.mention-current-user, .o2-editor-preview .mention.mention-current-user {
     background: var(--color-mentions);
     color: var(--color-white); }
 
 
 .p2tenberg-editor .block-editor-writing-flow .tag,
 .comment-content .tag,
-.entry-content .tag,
+.entry-content:not(.is-editing) .tag,
+.o2-editor-preview .tag,
 .p2tenberg-editor .block-editor-writing-flow .p2-xpost,
 .comment-content .p2-xpost,
-.entry-content .p2-xpost {
+.entry-content:not(.is-editing) .p2-xpost,
+.o2-editor-preview .p2-xpost {
   color: var(--color-link);
   background: var(--color-background-very-light); }
 
@@ -2178,6 +2227,10 @@ footer.entry-meta {
   body.page .o2-app-page-title {
     display: none; }
 
+.o2-comment-awaiting-approval {
+  font-style: italic;
+  color: var(--color-text-light); }
+
 div.o2-comment-footer-actions li {
   line-height: 1; }
 
@@ -2213,6 +2266,9 @@ div.o2-comment-footer-actions .comment-like-feedback {
 .o2-comment {
   padding: 2em 10%;
   position: relative; }
+  @media (max-width: 550px) {
+    .o2-comment {
+      padding: 2em; } }
   .o2-comment.depth-1::before, .o2-comment.comment-new::before {
     content: "";
     display: block;
@@ -2226,6 +2282,10 @@ div.o2-comment-footer-actions .comment-like-feedback {
       .o2-comment.depth-1::before, .o2-comment.comment-new::before {
         left: 2em;
         right: 2em; } }
+  .o2-comment#respond .o2-timestamp {
+    display: none; }
+  .o2-comment .o2-editor {
+    margin: 8px 0; }
   .o2-comment .p2tenberg-editor {
     margin: 0; }
   .o2-comment .o2-comment-footer-actions {
@@ -2234,30 +2294,16 @@ div.o2-comment-footer-actions .comment-like-feedback {
     .o2-comment .o2-comment-footer-actions li,
     .o2-comment .o2-comment-footer-actions p {
       margin-bottom: 0; }
-  @media (max-width: 550px) {
-    .o2-comment {
-      padding: 2em; } }
-  .o2-comment#respond .o2-timestamp {
-    display: none; }
-  .o2-comment .o2-editor {
-    margin: 8px 0; }
 
 .o2-child-comments {
   padding-left: 2.5em; }
   .o2-child-comments .o2-comment {
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0; }
+    padding: 2.5em 0 0; }
+    .o2-child-comments .o2-comment.comment-new::before {
+      display: none; }
   @media (max-width: 550px) {
     .o2-child-comments {
-      padding-top: 2em;
-      padding-left: 0; }
-      .o2-child-comments .o2-comment {
-        padding: 4px 0 4px 1em; } }
-
-.o2-comment-awaiting-approval {
-  font-style: italic;
-  color: var(--color-text-light); }
+      padding-left: 1em; } }
 
 .o2-display-comments-toggle {
   margin-top: 20px;
@@ -2461,14 +2507,29 @@ header nav.o2-dropdown-actions {
     order: 3;
     margin-left: 8px; }
 
+.o2-editor-preview h1:first-child,
+.o2-editor-preview h2:first-child,
+.o2-editor-preview h3:first-child,
+.o2-editor-preview h4:first-child,
+.o2-editor-preview h5:first-child,
+.o2-editor-preview h6:first-child {
+  margin-top: 0; }
+
 .o2-editor .o2-editor-wrapper {
-  border: 0; }
+  border-width: 0; }
+
+.o2-comment .o2-editor-wrapper {
+  border-width: 1px; }
 
 .o2-editor {
   border-radius: 2px;
   background: var(--color-white); }
   .o2-app-new-post .o2-editor {
     border: 1px solid #e2e4e7; }
+    @media (max-width: 550px) {
+      .o2-app-new-post .o2-editor {
+        border-left-width: 0;
+        border-right-width: 0; } }
   body.is-fullscreen-mode .o2-editor {
     border: 0; }
 
@@ -2529,8 +2590,6 @@ header nav.o2-dropdown-actions {
   flex-direction: column;
   align-items: center;
   justify-content: center; }
-  .o2-no-posts-post .o2-post {
-    padding: 0; }
   .o2-no-posts-post p {
     display: flex;
     flex-direction: column;
@@ -2559,26 +2618,53 @@ header nav.o2-dropdown-actions {
     .type-post:not(.p2020-post-read-more) .o2-post-comments {
       margin-top: 0; } }
 
-.o2-post-footer-actions {
+.entry-content:not(.is-editing) .o2-post-footer-actions {
   margin-top: 32px; }
-  .o2-post-footer-actions div.jetpack-likes-widget-wrapper {
+  .entry-content:not(.is-editing) .o2-post-footer-actions a {
+    text-decoration: none; }
+  .entry-content:not(.is-editing) .o2-post-footer-actions .o2-reply,
+  .entry-content:not(.is-editing) .o2-post-footer-actions .o2-follow[data-actionstate="normal"],
+  .entry-content:not(.is-editing) .o2-post-footer-actions .o2-resolve-link {
+    color: #777; }
+    .entry-content:not(.is-editing) .o2-post-footer-actions .o2-reply:hover,
+    .entry-content:not(.is-editing) .o2-post-footer-actions .o2-follow[data-actionstate="normal"]:hover,
+    .entry-content:not(.is-editing) .o2-post-footer-actions .o2-resolve-link:hover {
+      color: #555;
+      background: #fafafa;
+      border: 1px solid #999; }
+  .entry-content:not(.is-editing) .o2-post-footer-actions .o2-follow[data-actionstate="subscribed"]:hover {
+    color: var(--color-white); }
+  .entry-content:not(.is-editing) .o2-post-footer-actions .jetpack-likes-widget-wrapper {
     height: 29px; }
 
-nav.o2-post-footer-actions ul li > a,
-nav.o2-post-footer-actions ul li > span > a {
+.entry-content:not(.is-editing) .o2-post-footer-action > a {
   padding: 2px 8px 0 5px;
-  line-height: 23px;
-  color: #777; }
-
-nav.o2-post-footer-actions ul li > a:hover,
-nav.o2-post-footer-actions ul li > span > a:hover {
-  color: #555;
-  background: #fafafa;
-  border: 1px solid #999; }
+  line-height: 23px; }
 
 .sticky .o2-post {
   border: 0;
   background: transparent; }
+  .sticky .o2-post::before, .sticky .o2-post::after {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    display: block; }
+    @media (max-width: 550px) {
+      .sticky .o2-post::before, .sticky .o2-post::after {
+        display: none; } }
+  .sticky .o2-post::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin-top: 0.25rem;
+    background: var(--color-link);
+    border-radius: 50%; }
+  .sticky .o2-post::after {
+    content: "Pinned";
+    color: var(--color-text);
+    padding-left: 16px;
+    font-size: 0.6875rem;
+    line-height: 1.5; }
 
 .widget.o2-extend-resolved-posts-unresolved-posts-widget li {
   padding: 0.5em 0; }
@@ -2856,14 +2942,14 @@ article.tag-p2-xpost .comment .avatar {
 .p2tenberg-editor__newpost {
   border: 0;
   background: transparent; }
-  .p2tenberg-editor__newpost .edit-post-header {
-    border-radius: 4px 4px 0 0; }
 
 .p2tenberg-preview__header {
   padding: 1em 1em 1em 2em;
   border-bottom: 1px solid var(--color-border); }
+  .o2-comment .p2tenberg-preview__header {
+    border-bottom: 0; }
   .p2tenberg-preview__header p {
-    margin: 0; }
+    margin: 0 !important; }
   .p2tenberg-preview__header .components-button.is-primary:hover:not(:disabled) {
     background: var(--color-link); }
 
@@ -3102,27 +3188,76 @@ ul.p2020-filter {
   .p2020-sidebar-menu__nav .page-item,
   .p2020-sidebar-menu__nav .menu-item {
     color: var(--color-white);
-    display: block; }
+    display: block;
+    position: relative; }
     .p2020-sidebar-menu__pages .page-item .menu-item-link,
     .p2020-sidebar-menu__pages .menu-item .menu-item-link,
     .p2020-sidebar-menu__nav .page-item .menu-item-link,
     .p2020-sidebar-menu__nav .menu-item .menu-item-link {
       color: inherit;
-      display: inline-block;
       font-size: 0.8125rem;
       font-weight: 400;
       text-decoration: none;
-      line-height: 2.5; }
+      line-height: 1.5;
+      padding: 6px 0;
+      margin-bottom: 6px;
+      position: relative;
+      display: block; }
+      .p2020-sidebar-menu__pages .page-item .menu-item-link::before,
+      .p2020-sidebar-menu__pages .menu-item .menu-item-link::before,
+      .p2020-sidebar-menu__nav .page-item .menu-item-link::before,
+      .p2020-sidebar-menu__nav .menu-item .menu-item-link::before {
+        transition: var(--transition-quick); }
+      .p2020-sidebar-menu__pages .page-item .menu-item-link:focus,
+      .p2020-sidebar-menu__pages .menu-item .menu-item-link:focus,
+      .p2020-sidebar-menu__nav .page-item .menu-item-link:focus,
+      .p2020-sidebar-menu__nav .menu-item .menu-item-link:focus {
+        outline: 0; }
+      .p2020-sidebar-menu__pages .page-item .menu-item-link:hover::before, .p2020-sidebar-menu__pages .page-item .menu-item-link:focus::before,
+      .p2020-sidebar-menu__pages .menu-item .menu-item-link:hover::before,
+      .p2020-sidebar-menu__pages .menu-item .menu-item-link:focus::before,
+      .p2020-sidebar-menu__nav .page-item .menu-item-link:hover::before,
+      .p2020-sidebar-menu__nav .page-item .menu-item-link:focus::before,
+      .p2020-sidebar-menu__nav .menu-item .menu-item-link:hover::before,
+      .p2020-sidebar-menu__nav .menu-item .menu-item-link:focus::before {
+        content: "";
+        position: absolute;
+        display: block;
+        left: -6px;
+        right: 0;
+        top: 0;
+        height: 100%;
+        box-shadow: 0 0 0 1.5px var(--color-link);
+        border-radius: 1px; }
+    .p2020-sidebar-menu__pages .page-item a:not(.menu-item-link),
+    .p2020-sidebar-menu__pages .menu-item a:not(.menu-item-link),
+    .p2020-sidebar-menu__nav .page-item a:not(.menu-item-link),
+    .p2020-sidebar-menu__nav .menu-item a:not(.menu-item-link) {
+      color: inherit;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      text-decoration: none;
+      line-height: 1.5;
+      padding: 6px 0;
+      margin-bottom: 6px;
+      position: relative;
+      display: block;
+      opacity: 0.5; }
     .p2020-sidebar-menu__pages .page-item .menu-item-toggle,
     .p2020-sidebar-menu__pages .menu-item .menu-item-toggle,
     .p2020-sidebar-menu__nav .page-item .menu-item-toggle,
     .p2020-sidebar-menu__nav .menu-item .menu-item-toggle {
+      padding: 1px;
       border: none;
       background-color: inherit;
       color: inherit;
       display: inline-block;
       line-height: 2.5;
-      vertical-align: middle; }
+      position: absolute;
+      left: -28px;
+      top: 4px;
+      border-radius: 1px;
+      outline: 0; }
       .p2020-sidebar-menu__pages .page-item .menu-item-toggle::before,
       .p2020-sidebar-menu__pages .menu-item .menu-item-toggle::before,
       .p2020-sidebar-menu__nav .page-item .menu-item-toggle::before,
@@ -3135,12 +3270,24 @@ ul.p2020-filter {
                 mask-size: cover;
         width: 1.125rem;
         height: 1.125rem;
-        background: currentColor; }
+        background: currentColor;
+        transition: var(--transition-quick);
+        opacity: 0.8; }
       .p2020-sidebar-menu__pages .page-item .menu-item-toggle.is-expanded::before,
       .p2020-sidebar-menu__pages .menu-item .menu-item-toggle.is-expanded::before,
       .p2020-sidebar-menu__nav .page-item .menu-item-toggle.is-expanded::before,
       .p2020-sidebar-menu__nav .menu-item .menu-item-toggle.is-expanded::before {
         transform: rotate(90deg); }
+      .p2020-sidebar-menu__pages .page-item .menu-item-toggle:focus-visible,
+      .p2020-sidebar-menu__pages .menu-item .menu-item-toggle:focus-visible,
+      .p2020-sidebar-menu__nav .page-item .menu-item-toggle:focus-visible,
+      .p2020-sidebar-menu__nav .menu-item .menu-item-toggle:focus-visible {
+        box-shadow: 0 0 0 1.5px var(--color-link); }
+      .p2020-sidebar-menu__pages .page-item .menu-item-toggle:hover::before,
+      .p2020-sidebar-menu__pages .menu-item .menu-item-toggle:hover::before,
+      .p2020-sidebar-menu__nav .page-item .menu-item-toggle:hover::before,
+      .p2020-sidebar-menu__nav .menu-item .menu-item-toggle:hover::before {
+        opacity: 1; }
   .p2020-sidebar-menu__pages .page-item:not(.page-item-has-children) .menu-item-toggle,
   .p2020-sidebar-menu__nav .page-item:not(.page-item-has-children) .menu-item-toggle {
     display: none; }
@@ -3149,23 +3296,40 @@ ul.p2020-filter {
     display: none; }
   .p2020-sidebar-menu__pages > ul:not(.children) > .page-item,
   .p2020-sidebar-menu__nav > ul:not(.children) > .page-item {
+    margin-bottom: 4px;
     /* Bigger text for first-level items */
     /* Unindent first-level subtrees (second-level items) */ }
     .p2020-sidebar-menu__pages > ul:not(.children) > .page-item > .menu-item-link,
     .p2020-sidebar-menu__nav > ul:not(.children) > .page-item > .menu-item-link {
-      font-size: 1.125rem;
-      font-weight: 600; }
-    .p2020-sidebar-menu__pages > ul:not(.children) > .page-item > ul.children,
-    .p2020-sidebar-menu__nav > ul:not(.children) > .page-item > ul.children {
-      margin-left: 0; }
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 4px 0; }
+    .p2020-sidebar-menu__pages > ul:not(.children) > .page-item ul.children,
+    .p2020-sidebar-menu__nav > ul:not(.children) > .page-item ul.children {
+      margin-left: 16px; }
   .p2020-sidebar-menu__pages > ul:not(.sub-menu) > .menu-item,
   .p2020-sidebar-menu__nav > ul:not(.sub-menu) > .menu-item {
     /* Bigger text for first-level items */
     /* Unindent first-level subtrees (second-level items) */ }
     .p2020-sidebar-menu__pages > ul:not(.sub-menu) > .menu-item > .menu-item-link,
-    .p2020-sidebar-menu__nav > ul:not(.sub-menu) > .menu-item > .menu-item-link {
-      font-size: 1.125rem;
-      font-weight: 600; }
-    .p2020-sidebar-menu__pages > ul:not(.sub-menu) > .menu-item > ul.sub-menu,
-    .p2020-sidebar-menu__nav > ul:not(.sub-menu) > .menu-item > ul.sub-menu {
-      margin-left: 0; }
+    .p2020-sidebar-menu__pages > ul:not(.sub-menu) > .menu-item > a,
+    .p2020-sidebar-menu__nav > ul:not(.sub-menu) > .menu-item > .menu-item-link,
+    .p2020-sidebar-menu__nav > ul:not(.sub-menu) > .menu-item > a {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 4px 0; }
+    .p2020-sidebar-menu__pages > ul:not(.sub-menu) > .menu-item ul.sub-menu,
+    .p2020-sidebar-menu__nav > ul:not(.sub-menu) > .menu-item ul.sub-menu {
+      margin-left: 16px; }
+  .p2020-sidebar-menu__pages .current-page-item > a::before,
+  .p2020-sidebar-menu__nav .current-page-item > a::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: var(--color-link);
+    box-shadow: 0 0 0 1.5px var(--color-link);
+    border-radius: 2px;
+    z-index: -1; }

@@ -11,31 +11,84 @@
 	.menu-item {
 		color: var(--color-white);
 		display: block;
+		position: relative;
 
 		.menu-item-link {
 			color: inherit;
-			display: inline-block;
 			font-size: pxrem(13);
 			font-weight: 400;
 			text-decoration: none;
-			line-height: 2.5;
+			line-height: 1.5;
+			padding: 6px 0;
+			margin-bottom: 6px;
+			position: relative;
+			display: block;
+
+			&::before {
+				transition: var(--transition-quick);
+			}
+
+			&:focus {
+				outline: 0;
+			}
+
+			&:hover::before,
+			&:focus::before {
+				content: "";
+				position: absolute;
+				display: block;
+				left: -6px;
+				right: 0;
+				top: 0;
+				height: 100%;
+				box-shadow: 0 0 0 1.5px var(--color-link);
+				border-radius: 1px;
+			}
+		}
+
+		a:not(.menu-item-link) {
+			color: inherit;
+			font-size: pxrem(13);
+			font-weight: 400;
+			text-decoration: none;
+			line-height: 1.5;
+			padding: 6px 0;
+			margin-bottom: 6px;
+			position: relative;
+			display: block;
+			opacity: 0.5;
 		}
 
 		.menu-item-toggle {
+			padding: 1px;
+			border: none;
+			background-color: inherit;
+			color: inherit;
+			display: inline-block;
+			line-height: 2.5;
+			position: absolute;
+			left: -28px;
+			top: 4px;
+			border-radius: 1px;
+			outline: 0;
+
 			&::before {
 				@include icon("custom-chevron-right", pxrem(18), currentColor);
+				transition: var(--transition-quick);
+				opacity: 0.8;
 			}
 
 			&.is-expanded::before {
 				transform: rotate(90deg);
 			}
 
-			border: none;
-			background-color: inherit;
-			color: inherit;
-			display: inline-block;
-			line-height: 2.5;
-			vertical-align: middle;
+			&:focus-visible {
+				box-shadow: 0 0 0 1.5px var(--color-link);
+			}
+
+			&:hover::before {
+				opacity: 1;
+			}
 		}
 	}
 
@@ -54,16 +107,18 @@
 
 	> ul:not(.children) {
 		> .page-item {
+			margin-bottom: 4px;
 
 			/* Bigger text for first-level items */
 			> .menu-item-link {
-				font-size: pxrem(18);
+				font-size: pxrem(15);
 				font-weight: 600;
+				padding: 4px 0;
 			}
 
 			/* Unindent first-level subtrees (second-level items) */
-			> ul.children {
-				margin-left: 0;
+			ul.children {
+				margin-left: 16px;
 			}
 		}
 	}
@@ -72,15 +127,30 @@
 		> .menu-item {
 
 			/* Bigger text for first-level items */
-			> .menu-item-link {
-				font-size: pxrem(18);
+			> .menu-item-link,
+			> a {
+				font-size: pxrem(15);
 				font-weight: 600;
+				padding: 4px 0;
 			}
 
 			/* Unindent first-level subtrees (second-level items) */
-			> ul.sub-menu {
-				margin-left: 0;
+			ul.sub-menu {
+				margin-left: 16px;
 			}
 		}
+	}
+
+	.current-page-item > a::before {
+		content: "";
+		position: absolute;
+		left: -6px;
+		right: 0;
+		top: 0;
+		height: 100%;
+		background: var(--color-link);
+		box-shadow: 0 0 0 1.5px var(--color-link);
+		border-radius: 2px;
+		z-index: -1;
 	}
 }
