@@ -468,26 +468,6 @@ function append_contributors_block( $content ) {
 add_filter( 'the_content', __NAMESPACE__ . '\append_contributors_block' );
 
 /**
- * Add a "More" container for overflowed menu items
- */
-function append_more_container( string $items, object $args ): string {
-	$more_container = '<li class="menu-item menu-item-has-children" hidden data-header-menu-more>'
-	                  . '<a href="#">'
-	                  . esc_html( 'More', 'p2020' )
-	                  . '</a>'
-	                  . '<ul class="sub-menu" />'
-	                  . '</li>';
-
-	if ( $args->theme_location === 'primary' ) {
-		$items .= $more_container;
-	}
-
-	return $items;
-}
-
-add_filter( 'wp_nav_menu_items', __NAMESPACE__ . '\append_more_container', 10, 2 );
-
-/**
  * Hide widgets with P2 replacement versions:
  *  - o2 Filter widget
  *  - Pages widget

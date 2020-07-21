@@ -21,9 +21,14 @@ function scripts() {
 }
 
 function render() {
+	$blog_id = get_current_blog_id();
+	if ( ! is_a8c_p2( $blog_id ) ) {
+		return;
+	}
+
 	$is_following = wpcom_subs_is_subscribed( [
 		'user_id' => get_current_user_id(),
-		'blog_id' => get_current_blog_id(),
+		'blog_id' => $blog_id,
 	] );
 	$label = $is_following ? __( 'Following', 'p2020' ) : __( 'Follow', 'p2020' );
 	$class = $is_following ? 'unfollow' : 'follow';

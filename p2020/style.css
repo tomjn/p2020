@@ -1166,6 +1166,10 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
     .p2tenberg-editor .block-editor-writing-flow li:not(.blocks-gallery-item) ul, .comment-content li:not(.blocks-gallery-item) ul, .entry-content:not(.is-editing) li:not(.blocks-gallery-item) ul, .o2-editor-preview li:not(.blocks-gallery-item) ul {
       list-style-type: circle; }
   .p2tenberg-editor .block-editor-writing-flow .wp-block-image:not(.wp-block), .comment-content .wp-block-image:not(.wp-block), .entry-content:not(.is-editing) .wp-block-image:not(.wp-block), .o2-editor-preview .wp-block-image:not(.wp-block),
+  .p2tenberg-editor .block-editor-writing-flow .wp-block-cover,
+  .comment-content .wp-block-cover,
+  .entry-content:not(.is-editing) .wp-block-cover,
+  .o2-editor-preview .wp-block-cover,
   .p2tenberg-editor .block-editor-writing-flow .wp-block-cover-image,
   .comment-content .wp-block-cover-image,
   .entry-content:not(.is-editing) .wp-block-cover-image,
@@ -2944,7 +2948,7 @@ article.tag-p2-xpost .comment .avatar {
   background: transparent; }
 
 .p2tenberg-preview__header {
-  padding: 1em 1em 1em 2em;
+  padding: 1em 1em 1em 2em !important;
   border-bottom: 1px solid var(--color-border); }
   .o2-comment .p2tenberg-preview__header {
     border-bottom: 0; }
