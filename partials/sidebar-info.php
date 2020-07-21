@@ -63,10 +63,10 @@ $header_image_height = get_theme_support( 'custom-header', 'height' ) / 2 . 'px'
 								$info_menu->add_item( __( 'Upload a header image', 'p2020' ), $customizer_identity_url );
 							}
 							if ( current_user_can( 'customize' ) ) {
-								$info_menu->add_item( __( 'Customize', 'p2020' ), $customizer_url );
+								$info_menu->add_item( __( 'Customize sidebar', 'p2020' ), $customizer_url );
 							}
 							if ( current_user_can( 'manage_options' ) ) {
-								$info_menu->add_item( __( 'Settings', 'p2020' ), $settings_url );
+								$info_menu->add_item( __( 'Site settings', 'p2020' ), $settings_url );
 							}
 							echo html_output( $info_menu->generate() );
 						?>

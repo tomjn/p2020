@@ -96,3 +96,14 @@ function html_output( string $str ): string {
  */
 add_filter( 'subscribe_author_to_comments_override', '__return_true' );
 add_filter( 'subscribe_to_comments_override', '__return_true' );
+
+/**
+ * Hide intralink for P2 Pages
+ */
+function p2_show_intralinks( $a, $b ) {
+	if ( is_page() ) {
+		return false;
+	}
+	return true;
+}
+add_filter( 'a8c_show_intralinks', 'P2020\p2_show_intralinks', 10, 2 );

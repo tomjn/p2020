@@ -59,7 +59,7 @@ $pages_url = 'https://wordpress.com/pages/' . $site_slug;
 							<div class="p2020-sidebar__menu-header-ellipsis">
 								<?php
 									$pages_menu = new \P2020\EllipsisMenu();
-									$pages_menu->add_item( __( 'Manage pages', 'p2020' ), $pages_url );
+									$pages_menu->add_item( __( 'Manage documents', 'p2020' ), $pages_url );
 									echo html_output( $pages_menu->generate() );
 								?>
 							</div>
