@@ -2,8 +2,11 @@
 namespace P2020\Filter\Unread;
 
 require_once( WPMU_PLUGIN_DIR . '/inline-terms/mentions.php' );
+require_lib( 'seen-posts' );
+require_lib( 'statsd-client' );
 
 use function P2020\Filter\is_filter_active;
+use \FeedBag;
 
 /**
 * Register additional URL query vars, so we can pull them via
@@ -97,8 +100,16 @@ function log_user_visit() {
 		return;
 	}
 
-	if ( is_filter_active( 'posts' ) ) {
-		update_last_active( 'posts' );
+	if ( is_single() && is_automattician() ) {
+		mark_as_seen();
+	} elseif ( is_filter_active( 'posts' ) ) {
+		if( is_automattician() ) {
+			// use new seen system for a12s
+			mark_all_as_seen();
+		} else {
+			// use old high watermark for non a12s (to be removed)
+			update_last_active( 'posts' );
+		}
 	} elseif ( is_filter_active( 'comments' ) ) {
 		update_last_active( 'comments' );
 	} elseif ( is_filter_active( 'mentions' ) ) {
@@ -117,7 +128,7 @@ if ( is_user_logged_in() ) {
  *
  * @return array Posts (IDs only).
  */
-function get_posts_after_ts( $ts = null, $limit = null ) {
+function get_posts_after_ts( $ts = null, $limit = null, $fields = 'ids' ) {
 	if ( empty( $ts ) ) {
 		return [];
 	}
@@ -126,7 +137,7 @@ function get_posts_after_ts( $ts = null, $limit = null ) {
 		'post_type' => 'post',
 		'posts_per_page' => $limit ?? -1,
 		'author' => -1 * get_current_user_id(),
-		'fields' => 'ids',
+		'fields' => $fields,
 	];
 
 	// If $ts is set, we filter on that
@@ -218,35 +229,58 @@ function get_mentions_after_ts( $ts = null, $limit = null ) {
 }
 
 /**
- * Get unread count statistics.
+ * Log timers to statsd
  *
- * @return array Unread count for posts, comments and mentions.
+ * @param string $stat_name name of the timer stat
+ * @param int $start_time unix timestamp for when the action started
  */
-function get_unread_count( $limit = null ) {
+function log_timing( $stat_name, $start_time ) {
+	// log time taken
+	$end_time  = microtime( true );
+	$_timediff = ( ( $end_time - $start_time ) * 1000 );
+	$statsd    = new \StatsD();
+	$statsd->timing( $stat_name, $_timediff );
+}
+
+/**
+ * Get unread count statistics for given filter
+ *
+ * @param string $key filter type
+ * @param int|null $limit
+ * @return 0 Unread count for posts, comments and mentions.
+ */
+function get_unread_count( $key, $limit = null ) {
 	if ( ! is_user_logged_in() ) {
 		return null;
 	}
 
 	$last_active = get_last_active();
 
-	$unread_count = [];
+	switch( $key ) {
+		case 'posts':
+			if( is_automattician() ) {
+				// use new seen system for a12s
+				return get_unseen_posts_count();
+			} else {
+				// use old high watermark for non a12s (to be removed)
+				return ( ! empty( $last_active['posts'] ) ) ? count( get_posts_after_ts( $last_active['posts'], $limit ) ) : 0;
+			}
 
-	$unread_count['posts'] = ( ! empty( $last_active['posts'] ) ) ?
-		count( get_posts_after_ts( $last_active['posts'], $limit ) ) :
-		0;
+		case 'comments':
+			return ( ! empty( $last_active['comments'] ) ) ?
+				count(	get_comments_after_ts( $last_active['comments'], $limit ) ) :
+				0;
 
-	$unread_count['comments'] = ( ! empty( $last_active['comments'] ) ) ?
-		count(	get_comments_after_ts( $last_active['comments'], $limit ) ) :
-		0;
+		case 'mentions':
+			if ( ! empty( $last_active['mentions'] ) ) {
+				$unread_mentions = get_mentions_after_ts( $last_active['mentions'], $limit );
+				return count( $unread_mentions['posts'] ) + count( $unread_mentions['comments'] );
+			}
+			return 0;
 
-	if ( ! empty( $last_active['mentions'] ) ) {
-		$unread_mentions = get_mentions_after_ts( $last_active['mentions'], $limit );
-		$unread_count['mentions'] =  count( $unread_mentions['posts'] ) + count( $unread_mentions['comments'] );
-	} else {
-		$unread_count['mentions'] = 0;
+		default:
+			return 0;
 	}
-
-	return $unread_count;
 }
 
 /**
@@ -267,4 +301,175 @@ function get_content_cutoff_ts( $content_type ) {
 
 	$last_active = get_last_active();
 	return $last_active[ $content_type ];
+}
+
+/**
+ * Get post ids after given timestamp
+ *
+ * @param int null $timestamp given timestamp
+ * @return array
+ */
+function get_post_ids_after( $timestamp = null ) {
+	if ( empty( $timestamp ) ) {
+		return [];
+	}
+
+	$args = [
+		'post_type' => 'post',
+		'fields' => 'ids',
+		'posts_per_page' => -1
+	];
+
+	// If $ts is set, we filter on that
+	$ts_condition = [
+		'after' => date( 'Y-m-d H:i:s e', $timestamp ),
+		'inclusive' => true,
+	];
+	$args['date_query'] = [ $ts_condition ];
+
+	$query = new \WP_Query( $args );
+	return $query->posts;
+}
+
+/**
+ * Mark a blog post as seen
+ */
+function mark_as_seen() {
+	$user_id = get_current_user_id();
+
+	// get feed id
+	$blog_id = (int) get_current_blog_id();
+	$feed_id = (int) FeedBag::get_feed_id_for_blog_id( $blog_id );
+
+	// get feed item id
+	$post_object = get_post();
+	$post_hash = FeedBag::hash_post( $post_object );
+	$feed_item_id = (int) FeedBag::get_feed_item_by_hash( $feed_id, $post_hash );
+
+	// mark as seen
+	\SeenPosts\mark_as_seen( $user_id, $feed_id, [ $feed_item_id ], \SeenPosts\Constants\SOURCE_FRONTEND_P2 );
+}
+
+/**
+ * Mark a blog as seen
+ */
+function mark_all_as_seen() {
+	$user_id = get_current_user_id();
+
+	// get feed id
+	$blog_id = (int) get_current_blog_id();
+	$feed_id = (int) FeedBag::get_feed_id_for_blog_id( $blog_id );
+
+	// mark all as seen
+	\SeenPosts\mark_all_as_seen( $user_id, [ $feed_id ], \SeenPosts\Constants\SOURCE_FRONTEND_P2 );
+}
+
+/**
+ * Get user subscription date for current blog/user
+ *
+ * @return string|null
+ */
+function get_user_subscription_timestamp() {
+	$user_id = get_current_user_id();
+	$blog_id = get_current_blog_id();
+
+	$user_subscription_date = userfeed_get_subscription_date_by_blog_id( $user_id, $blog_id );
+	if ( ! $user_subscription_date ) {
+		return 0;
+	}
+
+	return \SeenPosts\get_timestamp_threshold( strtotime( $user_subscription_date ) );
+}
+
+/**
+ * Get unseen posts count for the current blog/user
+ *
+ * @return int
+ */
+function get_unseen_posts_count() {
+	$start_time = microtime( true );
+	$stat_name  = 'com.wordpress.seen_posts.p2_get_unseen_posts_count';
+	$user_id    = get_current_user_id();
+	$blog_id    = get_current_blog_id();
+
+	// get feed id for blog
+	$feed_id = FeedBag::get_feed_id_for_blog_id( $blog_id );
+
+	$user_subscription_date = userfeed_get_subscription_date_by_blog_id( $user_id, $blog_id );
+	if ( ! $user_subscription_date ) {
+		// we have no subscription date for this feed => 0 unseen items
+		log_timing( $stat_name . '.1', $start_time );
+		return 0;
+	}
+
+	// get feed items after threshold
+	$feed_items_count  = \SeenPosts\get_feed_items_count( $feed_id, strtotime( $user_subscription_date ) );
+
+	// get user feed seen counts
+	$seen_entries = \SeenPosts\Repositories\SeenCounts::get_by_user_and_feed_ids( $user_id, [ $feed_id ] );
+
+	if ( ! $seen_entries ) {
+		// no seen entries available => all unseen items
+		log_timing( $stat_name . '.2', $start_time );
+		return $feed_items_count;
+	}
+
+	// get seen counts
+	$seen_counts = [];
+	foreach ( $seen_entries as $seen_entry ) {
+		$entry_feed_id                 = (int) $seen_entry['feed_id'];
+		$count                         = (int) $seen_entry['counts'];
+		$seen_counts[ $entry_feed_id ] = $count;
+	}
+	$seen_count = $seen_counts[ $feed_id ];
+
+	log_timing( $stat_name . '.3', $start_time );
+	return max( $feed_items_count - $seen_count, 0 );
+}
+
+/**
+ * Get unseen blog posts ids
+ *
+ * @param int $user_subscription_timestamp
+ * @return array list of posts ids that were not seen
+ */
+function get_unseen_blog_posts( $user_subscription_timestamp ) {
+	$start_time = microtime( true );
+	$stat_name  = 'com.wordpress.seen_posts.p2_get_unseen_blog_posts';
+	$user_id = get_current_user_id();
+	$blog_id = get_current_blog_id();
+
+	// get blog posts ids after user subscribed
+	$blog_posts_ids = get_post_ids_after( $user_subscription_timestamp );
+
+	// get feed id for blog
+	$feed_id = FeedBag::get_feed_id_for_blog_id( $blog_id );
+	if( ! $feed_id ) {
+		log_timing( $stat_name . '.1', $start_time );
+		return $blog_posts_ids;
+	}
+
+	// get seen entries
+	$feed_items = \SeenPosts\Repositories\Seen::get_by_feed_id( $user_id, $feed_id );
+	if( ! $feed_items ) {
+		log_timing( $stat_name . '.2', $start_time );
+		return $blog_posts_ids;
+	}
+
+	// get feed info based on feed items
+	$feed_items_data = FeedBag::get_item_data_by_ids( $feed_items );
+	if( ! $feed_items_data ) {
+		log_timing( $stat_name . '.3', $start_time );
+		return $blog_posts_ids;
+	}
+
+	// get post ids from feed data
+	$seen_post_ids = [];
+	foreach( $feed_items_data as $feed_item_data ) {
+		$post_object = maybe_unserialize( $feed_item_data['data'] );
+		$seen_post_ids[] = $post_object->post_id;
+	}
+
+	log_timing( $stat_name . '.4', $start_time );
+	return array_diff( $blog_posts_ids, $seen_post_ids );
 }

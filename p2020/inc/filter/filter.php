@@ -5,6 +5,7 @@ namespace P2020\Filter;
 use function P2020\get_blog_url;
 
 require_once( get_template_directory() . '/inc/filter/unread.php' );
+require_lib( 'seen-posts' );
 
 const QUERY_ROWS_LIMIT = 100;
 const UNREAD_COUNT_DISPLAY_LIMIT = 99; // displays "99+" if unread is > 99
@@ -146,10 +147,10 @@ function get_unread_count_display( $count ) {
 }
 
 function render_link_item( $key, $item ) {
-	$unread_count = \P2020\Filter\Unread\get_unread_count( $limit = UNREAD_COUNT_DISPLAY_LIMIT + 1 );
-	$unread_count_display = get_unread_count_display( $unread_count[ $key ] ?? 0 );
+	$unread_count = \P2020\Filter\Unread\get_unread_count( $key, $limit = UNREAD_COUNT_DISPLAY_LIMIT + 1 );
+	$unread_count_display = get_unread_count_display( $unread_count );
 
-	$unread_class = get_unread_class( $item, $unread_count[ $key ] ?? 0 );
+	$unread_class = get_unread_class( $item, $unread_count );
 	$active_class = is_filter_active( $key ) ? 'is-active' : '';
 
 	return <<<P2020_FILTER_ITEM
@@ -239,14 +240,34 @@ function alter_query_for_filter_views( $query ) {
 	}
 
 	if ( is_filter_active( 'posts' ) ) {
-		$query->set( 'author', -1 * get_current_user_id() );
-		$posts_cutoff = \P2020\Filter\Unread\get_content_cutoff_ts( 'posts' );
+		if( is_automattician() ) {
+			// Use new seen system for a12s
+			// posts after user subscription joined / feature release date
+			$user_subscription_timestamp = \P2020\Filter\Unread\get_user_subscription_timestamp();
+			if ( $user_subscription_timestamp ) {
+				$query->set( 'date_query', [
+						'after' => date( 'Y-m-d H:i:s e', $user_subscription_timestamp ),
+						'inclusive' => true,
+					]
+				);
+			}
 
-		if ( ! empty ( $posts_cutoff ) ) {
-			$query->set( 'date_query', [
-				'after' => date( 'Y-m-d H:i:s e', \P2020\Filter\Unread\get_content_cutoff_ts( 'posts' ) ),
-				'inclusive' => true,
-			] );
+			// post id not in seen
+			$unseen_posts_ids = \P2020\Filter\Unread\get_unseen_blog_posts( $user_subscription_timestamp );
+			if( ! empty( $unseen_posts_ids ) ) {
+				$query->set( 'post__in', $unseen_posts_ids );
+			}
+
+		} else {
+			// use old high watermark for non a12s (to be removed)
+			$query->set( 'author', -1 * get_current_user_id() );
+			$posts_cutoff = \P2020\Filter\Unread\get_content_cutoff_ts( 'posts' );
+			if ( ! empty ( $posts_cutoff ) ) {
+				$query->set( 'date_query', [
+					'after' => date( 'Y-m-d H:i:s e', \P2020\Filter\Unread\get_content_cutoff_ts( 'posts' ) ),
+					'inclusive' => true,
+				] );
+			}
 		}
 	}
 }
