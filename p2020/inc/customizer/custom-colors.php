@@ -15,6 +15,8 @@ function get_default_color( string $key ): string {
 	$default_colors = [
 		'color_link' => '#0267ff',
 		'color_mentions' => '#b35eb1',
+		'color_sidebar_background' => '#f3f3f3',
+		'color_sidebar_content' => '#00101c',
 	];
 	return $default_colors[$key];
 }
@@ -56,6 +58,8 @@ function register_color( \WP_Dotcom_Customize $wp_customize, string $key, string
 function customize_register_colors( \WP_Dotcom_Customize $wp_customize ) {
 	register_color( $wp_customize, 'color_link', __( 'Links', 'p2020' ) );
 	register_color( $wp_customize, 'color_mentions', __( 'Mentions', 'p2020' ) );
+	register_color( $wp_customize, 'color_sidebar_background', __( 'Sidebar background', 'p2020' ) );
+	register_color( $wp_customize, 'color_sidebar_content', __( 'Sidebar content', 'p2020' ) );
 }
 
 add_action( 'customize_register', __NAMESPACE__ . '\customize_register_colors' );
@@ -74,18 +78,29 @@ function color_styles() {
 ?>
 	<style type="text/css">
 		:root {
-			<? if ( isCustomColor( $options, 'color_link' ) ): ?>
+			<?php if ( isCustomColor( $options, 'color_link' ) ): ?>
 				<?php $color_link = new Color( $options['color_link'] ); ?>
 				<?php $color_link_background = color_hex_to_rgba( $options['color_link'], 0.1 ); ?>
+
 				--color-link: <?php echo esc_html( $options['color_link'] ) ?>;
 				--color-link-dark: <?php echo sprintf( '#%s;', esc_html( $color_link->darken( 13 ) ) ); ?>;
 				--color-link-background: <?php echo esc_html( $color_link_background ); ?>;
-			<? endif; ?>
-			<? if ( isCustomColor( $options, 'color_mentions' ) ): ?>
+			<?php endif; ?>
+
+			<?php if ( isCustomColor( $options, 'color_mentions' ) ): ?>
 				<?php $color_mentions_highlight = color_hex_to_rgba( $options['color_mentions'], 0.1 ); ?>
+
 				--color-mentions: <?php echo esc_html( $options['color_mentions'] ) ?>;
 				--color-mentions-highlight: <?php echo esc_html( $color_mentions_highlight ); ?>;
-			<? endif; ?>
+			<?php endif; ?>
+
+			<?php if ( isCustomColor( $options, 'color_sidebar_background' ) ): ?>
+				--color-sidebar-background: <?php echo esc_html( $options['color_sidebar_background'] ) ?>;
+			<?php endif; ?>
+
+			<?php if ( isCustomColor( $options, 'color_sidebar_content' ) ): ?>
+				--color-sidebar-content: <?php echo esc_html( $options['color_sidebar_content'] ) ?>;
+			<?php endif; ?>
 		}
 	</style>
 <?php

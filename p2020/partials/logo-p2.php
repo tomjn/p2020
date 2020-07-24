@@ -16,7 +16,5 @@ namespace P2020;
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"
 >
-	<rect class="p2020-logo-p2__background" width="31.9649" height="32" rx="2" />
-	<rect class="p2020-logo-p2__foreground" x="9.40149" y="7.5293" width="12.692" height="8.47059" />
-	<rect class="p2020-logo-p2__foreground" x="9.40149" y="18.8232" width="8.46131" height="5.64706"/>
+	<path d="M2 0H29.9649C31.0695 0 31.9649 0.89543 31.9649 2V30C31.9649 31.1046 31.0695 32 29.9649 32H2C0.89543 32 0 31.1046 0 30V2C0 0.89543 0.89543 0 2 0ZM22.0935 7.5293H9.40149V15.9999H22.0935V7.5293ZM17.8628 18.8232H9.40149V24.4703H17.8628V18.8232Z" />
 </svg>
