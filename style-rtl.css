@@ -2589,7 +2589,7 @@ header nav.o2-dropdown-actions {
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  height: 70vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2610,7 +2610,7 @@ header nav.o2-dropdown-actions {
               mask-size: cover;
       width: 4rem;
       height: 4rem;
-      background: var(--color-green-dark); }
+      background: var(--color-link); }
     .o2-no-posts-post p .p2020-no-posts-return-home {
       font-size: 0.875rem;
       font-weight: 400; }

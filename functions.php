@@ -120,7 +120,7 @@ function setup() {
 	/**
 	 * Customizer additions
 	 */
-	require( get_template_directory() . '/inc/customizer.php' );
+	require( get_template_directory() . '/inc/customizer/customizer.php' );
 
 	/**
 	 * Make theme available for translation
@@ -248,6 +248,9 @@ function hide_pages_from_admin_menu() {
 
 add_action( 'admin_menu', __NAMESPACE__ . '\hide_pages_from_admin_menu', 40 );
 
+// Block direct access to wp-admin/themes.php (Super Admins are exempt)
+add_action( 'load-themes.php', 'wpcom_disable_admin_page' );
+
 /**
  * Remove the Contributor role in wp-admin (if there are no existing Contributors)
  */
@@ -363,11 +366,6 @@ function editor_assets() {
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\editor_assets', 11 );
 
 /**
- * Implement the Custom Header feature
- */
-require( get_template_directory() . '/inc/custom-header.php' );
-
-/**
  * Set Homepage display to latest posts.
  */
 function set_homepage_display() {
@@ -451,6 +449,16 @@ function replace_o2_strings( array $o2_options ): array {
 }
 
 add_filter( 'o2_options', __NAMESPACE__ . '\replace_o2_strings' );
+
+/**
+ * P2tenberg setup
+ */
+function config_p2tenberg_comment_editor( array $settings ): array {
+	$settings['alignWide'] = false;
+	return $settings;
+}
+
+add_filter ( 'p2tenberg_comment_editor', __NAMESPACE__ . '\config_p2tenberg_comment_editor' );
 
 /**
  * Append Contributor block to content on single pages
