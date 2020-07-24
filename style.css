@@ -36,6 +36,9 @@ and Blueprint http://www.blueprintcss.org/
  * Shadows
  */
 /**
+ * Borders
+ */
+/**
  * WP Admin Bar
  */
 /**
@@ -48,7 +51,11 @@ and Blueprint http://www.blueprintcss.org/
  * Spacing
  */
 :root {
-  /* COLORS (Keep in sync with inc/customizer.php) */
+  /**
+	 * COLORS
+	 *
+	 * Keep in sync with inc/customizer.php
+	 */
   --color-text: #00101c;
   --color-text-light: #6b6b6b;
   --color-link: #0267ff;
@@ -69,8 +76,8 @@ and Blueprint http://www.blueprintcss.org/
   --color-green: #12ff61;
   --color-green-dark: #00db41;
   --color-yellow: #f6fa53;
-  /* CUSTOMIZABLE COLORS */
-  --color-sidebar-background: #f3f3f3;
+  --color-sidebar-background: var(--color-background-light);
+  --color-sidebar-content: var(--color-text);
   /* TYPOGRAPHY */
   --font-default: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
   --font-body: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
@@ -503,7 +510,7 @@ body {
   padding-top: 32px;
   padding-bottom: 32px; }
   .widget + .widget {
-    border-top: 2px solid var(--color-white); }
+    border-top: 2px solid rgba(255, 255, 255, 0.7); }
   .widget select {
     max-width: 100%; }
 
@@ -1275,17 +1282,9 @@ body.gutenberg .p2tenberg-editor .block-editor-writing-flow h6 {
   body.gutenberg .p2tenberg-editor .block-editor-writing-flow h3 {
     font-size: 1.125rem; } }
 
-.p2020-logo-p2__background {
-  fill: var(--color-background-dark);
-  transition: fill 200ms ease-in; }
-  #sidebar.is-dark .p2020-logo-p2__background {
-    fill: var(--color-white); }
-
-.p2020-logo-p2__foreground {
-  fill: var(--color-white);
-  transition: fill 200ms ease-in; }
-  #sidebar.is-dark .p2020-logo-p2__foreground {
-    fill: var(--color-background-dark); }
+.p2020-logo-p2 {
+  display: block;
+  fill: currentColor; }
 
 .p2020-mobile-new-post {
   display: none;
@@ -1480,9 +1479,13 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
 .p2020-sidebar-header__heading {
   display: block;
   flex-shrink: 0; }
-  .p2020-sidebar-header__heading a,
-  .p2020-sidebar-header__heading svg {
-    display: block; }
+
+.p2020-sidebar-header__logo {
+  display: block;
+  transition: color 200ms ease-in;
+  color: currentColor; }
+  .p2020-sidebar-header__logo:hover {
+    color: inherit; }
 
 .p2020-sidebar-header__mobile-title {
   display: none;
@@ -1516,9 +1519,9 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
   border-radius: 2px;
   padding: 0;
   width: 32px;
-  height: 32px; }
-  #sidebar.is-dark .p2020-sidebar-header__mobile-toggle-button, #sidebar.is-dark .p2020-sidebar-header__hamburger-button {
-    color: var(--color-white); }
+  height: 32px;
+  color: inherit;
+  background: transparent; }
 
 .p2020-sidebar-header__mobile-toggle-button {
   display: none;
@@ -1559,7 +1562,7 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
 
 .p2020-sidebar-info {
   padding-bottom: 24px;
-  border-bottom: 2px solid var(--color-white); }
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7); }
 
 .p2020-sidebar-info__image {
   display: block;
@@ -1590,8 +1593,7 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
   font-weight: 800;
   font-size: 1.5rem;
   line-height: 1.5;
-  color: var(--color-text);
-  max-width: 260px; }
+  max-width: calc(100% - 46px); }
   .p2020-sidebar-info__header-blogname a {
     text-decoration: none;
     color: currentColor; }
@@ -1602,7 +1604,6 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
 .p2020-sidebar-info__blogdescription {
   font-size: 0.875rem;
   line-height: 1.8;
-  color: var(--color-text);
   margin-bottom: 16px; }
 
 .p2020-sidebar-padded-container {
@@ -1614,6 +1615,7 @@ body.gutenberg .p2tenberg-preview .o2-editor-wrapper .o2-editor-preview, .o2-pos
       padding-right: 32px; } }
 
 .p2020-sidebar {
+  color: var(--color-sidebar-content);
   background-size: 200% 100%;
   background-image: linear-gradient(to right, var(--color-sidebar-background) 50%, var(--color-background-dark) 50%); }
   .p2020-sidebar.is-dark {
@@ -3048,7 +3050,7 @@ ul.p2020-filter {
           background: currentColor;
           vertical-align: middle; }
     ul.p2020-filter .p2020-filter__item .p2020-filter__item-link {
-      color: var(--color-text);
+      color: currentColor;
       font-size: 0.875rem;
       padding: 8px;
       text-decoration: none;
@@ -3064,8 +3066,7 @@ ul.p2020-filter {
         background: var(--color-link);
         color: var(--color-white); }
     ul.p2020-filter .p2020-filter__item.p2020-filter__my-posts .p2020-filter__item-icon, ul.p2020-filter .p2020-filter__item.p2020-filter__unresolved-posts .p2020-filter__item-icon {
-      background: transparent;
-      color: var(--color-text); }
+      background: transparent; }
     ul.p2020-filter .p2020-filter__item.p2020-filter__my-posts .is-active .p2020-filter__item-icon, ul.p2020-filter .p2020-filter__item.p2020-filter__unresolved-posts .is-active .p2020-filter__item-icon {
       background: var(--color-white); }
   ul.p2020-filter .p2020-filter__my-posts > a > .p2020-filter__item-icon::before {

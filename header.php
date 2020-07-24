@@ -16,7 +16,7 @@
 <meta http-equiv="cleartype" content="on">
 
 <?php // Will be overwritten with git commit hash on `gulp build` (see gulpfile) ?>
-<meta name="p2020-build" revision="04e57de">
+<meta name="p2020-build" revision="cf61fb6">
 
 <title><?php wp_title( '–', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />

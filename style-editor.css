@@ -19,6 +19,9 @@
  * Shadows
  */
 /**
+ * Borders
+ */
+/**
  * WP Admin Bar
  */
 /**
@@ -31,7 +34,11 @@
  * Spacing
  */
 :root {
-  /* COLORS (Keep in sync with inc/customizer.php) */
+  /**
+	 * COLORS
+	 *
+	 * Keep in sync with inc/customizer.php
+	 */
   --color-text: #00101c;
   --color-text-light: #6b6b6b;
   --color-link: #0267ff;
@@ -52,8 +59,8 @@
   --color-green: #12ff61;
   --color-green-dark: #00db41;
   --color-yellow: #f6fa53;
-  /* CUSTOMIZABLE COLORS */
-  --color-sidebar-background: #f3f3f3;
+  --color-sidebar-background: var(--color-background-light);
+  --color-sidebar-content: var(--color-text);
   /* TYPOGRAPHY */
   --font-default: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
   --font-body: inter, -apple-system, system-ui, blinkmacsystemfont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
