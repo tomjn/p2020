@@ -18,21 +18,13 @@
 
 namespace P2020;
 
-/**
- * Setup the WordPress core custom header feature.
- *
- * @package p2020
- */
-function custom_header_setup() {
-	$args = [
-		'default-text-color' => '000',
-		'width' => 304 * 2, /* 2x resolution */
-		'height' => 152 * 2, /* 2x resolution */
-		'flex-width' => true,
-		'flex-height' => true,
-		'header-text' => false,
-	];
+$args = [
+	'default-text-color' => '000',
+	'width' => 304 * 2, /* 2x resolution */
+	'height' => 152 * 2, /* 2x resolution */
+	'flex-width' => true,
+	'flex-height' => true,
+	'header-text' => false,
+];
 
-	add_theme_support( 'custom-header', apply_filters( 'p2020_custom_header_args', $args ) );
-}
-add_action( 'after_setup_theme', 'P2020\custom_header_setup' );
+add_theme_support( 'custom-header',  $args );
