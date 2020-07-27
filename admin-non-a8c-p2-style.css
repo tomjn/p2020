@@ -16,7 +16,9 @@ be overwritten in any other way.
 #available-widgets-list [id*="p2020-my-team"],
 #available-widgets-list [id^="widget-tpl-media_image-"],
 #available-widgets-list [id^="widget-tpl-text-"],
+#available-widgets-list [id^="widget-tpl-custom_html-"],
 #widget-list [id*="p2020-my-team"],
 #widget-list [id^="widget-tpl-media_image-"],
-#widget-list [id^="widget-tpl-text-"] {
+#widget-list [id^="widget-tpl-text-"],
+#widget-list [id^="widget-tpl-custom_html-"] {
   display: block !important; }
