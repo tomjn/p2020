@@ -13,15 +13,29 @@ function scripts() {
 }
 
 function render_page_menu() {
-	$pages_html = wp_page_menu( [
-		'title_li' => '',
+	$options = [
+		'title_li'    => '',
 		'sort_column' => 'menu_order, post_title',
-		'exclude' => '',
-		'echo' => false,
-		'container' => 'div',
-		'menu_class' => 'p2020-sidebar-menu p2020-sidebar-menu__pages',
-		'show_home' => false,
-	] );
+		'exclude'     => '',
+		'echo'        => false,
+		'container'   => 'div',
+		'menu_class'  => 'p2020-sidebar-menu p2020-sidebar-menu__pages',
+		'show_home'   => false,
+	];
+
+	$pages_html = wp_page_menu( $options );
+
+	// empty list
+	$container = $options['container'];
+	$classes   = $options['menu_class'];
+	if ( $pages_html === "<$container class=\"$classes\"></$container>" ) {
+		$scheme           = is_ssl() ? 'https' : 'http';
+		$site_slug        = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+		$page_editor_link = "{$scheme}://wordpress.com/block-editor/page/{$site_slug}";
+		echo html_output( '<div class="empty-menu-list">No documents — <a href="' . $page_editor_link . '">Start one</a></div>' );
+
+		return;
+	}
 
 	if ( ! empty( $pages_html ) ) {
 		$pages_html = normalize_classnames( $pages_html );
@@ -34,10 +48,10 @@ function render_nav_menu() {
 	$menu_locations = get_nav_menu_locations();
 
 	$nav_html = wp_nav_menu( [
-		'echo' => false,
-		'container' => 'div',
+		'echo'            => false,
+		'container'       => 'div',
 		'container_class' => 'p2020-sidebar-menu p2020-sidebar-menu__nav',
-		'menu' => $menu_locations['primary'] ?? null,
+		'menu'            => $menu_locations['primary'] ?? null,
 	] );
 
 	if ( ! empty( $nav_html ) ) {
@@ -72,7 +86,7 @@ function format_items( $menu_type, $menu_html ) {
 	$replacement = '$1
 		<button class="menu-item-toggle" aria-label="Expand" aria-expanded=false></button>
 		<a href="$3" class="menu-item-link">$4</a>';
-	$menu_html = preg_replace( $pattern, $replacement, $menu_html );
+	$menu_html   = preg_replace( $pattern, $replacement, $menu_html );
 
 	return $menu_html;
 }
@@ -83,10 +97,10 @@ function format_items( $menu_type, $menu_html ) {
  */
 function normalize_classnames( $pages_html ) {
 	$classnames = [
-		'page_item' => 'page-item',
+		'page_item'              => 'page-item',
 		'page_item_has_children' => 'page-item-has-children',
-		'current_page_item' => 'current-page-item',
-		'current_page_ancestor' => 'current-page-ancestor',
+		'current_page_item'      => 'current-page-item',
+		'current_page_ancestor'  => 'current-page-ancestor',
 	];
 	foreach ( $classnames as $original => $replacement ) {
 		$pages_html = preg_replace( "/(\b)$original(\b)/", "$1$replacement$2", $pages_html );

@@ -172,22 +172,38 @@ function setup() {
 	 * Add a menu with Home item, if location is empty.
 	 */
 	$locations = get_theme_mod( 'nav_menu_locations' );
+	$menu_link = [
+		'menu-item-title' => __( 'Learn more about P2', 'p2020' ),
+		'menu-item-url' => 'https://wordpress.com/p2/',
+		'menu-item-status' => 'publish'
+	];
+
 	if ( empty( $locations['primary'] ) ) {
 		// Check if menu object already exists
 		$menu = wp_get_nav_menu_object( 'primary' );
 		if ( ! $menu ) {
 			$menu_id = wp_create_nav_menu( 'primary' );
-			wp_update_nav_menu_item( $menu_id, 0, [
-				'menu-item-title' => __( 'Home', 'p2020' ),
-				'menu-item-url' => '/',
-				'menu-item-status' => 'publish'
-			] );
+			wp_update_nav_menu_item( $menu_id, 0, $menu_link );
 		} else {
 			$menu_id = $menu->term_id;
 		}
 
 		$locations['primary'] = $menu_id;
 		set_theme_mod( 'nav_menu_locations', $locations );
+
+	} else {
+		$menu = wp_get_nav_menu_object( 'primary' );
+		if( $menu ) {
+			$menu_items = wp_get_nav_menu_items( $menu );
+			if( $menu_items ) {
+				foreach( $menu_items as $menu_item ) {
+					// replace existing Home link with `Learn about P2`
+					if( $menu_item->post_title === 'Home' && $menu_item->url === '/' ) {
+						wp_update_nav_menu_item( $menu->term_id, $menu_item->ID, $menu_link );
+					}
+				}
+			}
+		}
 	}
 }
 

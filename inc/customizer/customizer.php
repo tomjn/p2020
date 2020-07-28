@@ -26,23 +26,24 @@ function customize_register( \WP_Dotcom_Customize $wp_customize ) {
 	/**
 	 * Add P2 Identity section with site title, tagline and header image controls.
 	 */
-	// Rename Site Identity section to P2 Info
-	$wp_customize->get_section( 'title_tagline' )->title = __( 'P2 Identity', 'p2020' );
+	// Rename Site Identity section to Name and description
+	$wp_customize->get_section( 'title_tagline' )->title = __( 'Name and description', 'p2020' );
+	$wp_customize->get_section( 'title_tagline' )->priority = 1;
 
 	// Site Title
 	$wp_customize->get_control( 'blogname' )->priority = 1;
 
 	// Rename Tagline to Description and convert to textarea type
-	$wp_customize->get_control( 'blogdescription' )->label = 'Description';
+	$wp_customize->get_control( 'blogdescription' )->label = __( 'Description', 'p2020' );
 	$wp_customize->get_control( 'blogdescription' )->type = 'textarea';
 	$wp_customize->get_control( 'blogdescription' )->priority = 2;
 
 	// Site Icon
 	$wp_customize->get_control( 'site_icon' )->priority = 3;
 
-	// Move Header Image control to this section
-	$wp_customize->get_control( 'header_image' )->section = 'title_tagline';
-	$wp_customize->get_control( 'header_image' )->priority = 4;
+	// Move Header Image section to after Name and description
+	$wp_customize->get_section( 'header_image' )->title = __( 'Header image', 'p2020' );
+	$wp_customize->get_section( 'header_image' )->priority = 2;
 }
 
 add_action( 'customize_register', 'P2020\customize_register' );
