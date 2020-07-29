@@ -1,0 +1,169 @@
+# Translation of WordPress.com - Themes - P2020 in Portuguese (Brazil)
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-21 12:02:27+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: pt_BR\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "WordPress for Teams."
+msgstr "WordPress para equipes."
+
+#: widgets/my-team/my-team.php:193 widgets/my-team/my-team.php:194
+msgid "Invite people"
+msgstr "Convidar pessoas"
+
+#: widgets/my-team/my-team.php:152
+msgid "Manage"
+msgstr "Gerenciar"
+
+#: widgets/my-team/my-team.php:67
+msgid "Display team members with role:"
+msgstr "Mostrar as pessoas da equipe com a função:"
+
+#: widgets/my-team/my-team.php:62
+msgid "Limit no. of team members displayed to:"
+msgstr "Número de membros da equipe para exibir:"
+
+#: widgets/my-team/my-team.php:57
+msgid "Title:"
+msgstr "Título"
+
+#: widgets/my-team/my-team.php:19
+msgid "A widget to showcase your team members."
+msgstr "Um widget para mostrar a lista de sua equipe."
+
+#: widgets/filter/filter.php:170
+msgid "You’re all caught up!"
+msgstr "Você está em dia!"
+
+#: widgets/filter/filter.php:109
+msgid " more comment(s)"
+msgstr "mais comentários"
+
+#: widgets/filter/filter.php:108
+msgid "Read more"
+msgstr "Leia mais"
+
+#: widgets/filter/filter.php:107
+msgid "Read full post"
+msgstr "Ler o post completo"
+
+#: widgets/filter/filter.php:99
+msgid "Return to home"
+msgstr "Retornar à página inicial"
+
+#: widgets/filter/filter.php:54
+msgid "My posts"
+msgstr "Meus posts"
+
+#: widgets/filter/filter.php:48
+msgid "Mentions"
+msgstr "Menções"
+
+#: widgets/filter/filter.php:42
+msgid "Recent comments"
+msgstr "Comentários"
+
+#: widgets/filter/filter.php:36
+msgid "Recent updates"
+msgstr "Atualizações recentes"
+
+#: widgets/filter/filter.php:25
+msgid "An extension of the o2 filter widget, with unread counts."
+msgstr "Uma extensão do widget de filtro do o2 com números não lidos."
+
+#: sidebar.php:73
+msgid "Powered by WordPress.com"
+msgstr "Com tecnologia WordPress.com"
+
+#: sidebar.php:67
+msgid "Help"
+msgstr "Ajuda"
+
+#: sidebar.php:62
+msgid "Keyboard shortcuts"
+msgstr "Atalhos do teclado"
+
+#: sidebar.php:51
+msgid "Customize your site"
+msgstr "Personalizar seu site"
+
+#: sidebar.php:44
+msgid "Invite people to your team"
+msgstr "Convidar pessoas para a sua equipe"
+
+#: searchform.php:14 searchform.php:15
+msgctxt "placeholder"
+msgid "Search"
+msgstr "Pesquisar"
+
+#: index.php:36
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: index.php:30
+msgid "New posts"
+msgstr "Novo posts"
+
+#: inc/extras.php:71
+msgid "Page %s"
+msgstr "Página %s"
+
+#: inc/custom-header.php:43
+msgid "Default Header Image"
+msgstr "Imagem padrão do cabeçalho"
+
+#: inc/contributors.php:77
+msgid "Contributors"
+msgstr "Colaboradores"
+
+#. translators: %s is replaced with the number of revisions
+#: inc/contributors.php:51
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] "%s revisão"
+msgstr[1] "%s revisões"
+
+#. translators: %1$s is replaced with the user's display name; %2$s is the
+#. user's nicename
+#: inc/contributors.php:42 widgets/my-team/my-team.php:168
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "Posts por %1$s ( @%2$s )"
+
+#: header.php:62
+msgid "Menu"
+msgstr "Menu"
+
+#: header.php:38
+msgid "Skip to content"
+msgstr "Ir para conteúdo"
+
+#: functions.php:296 widgets/my-team/my-team.php:17
+#: widgets/my-team/my-team.php:27
+msgid "Team"
+msgstr "Equipe"
+
+#: functions.php:197
+msgctxt "Sans: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:179
+msgid "Sidebar"
+msgstr "Barra lateral"
+
+#: functions.php:160
+msgid "Home"
+msgstr "Página inicial"
+
+#: functions.php:147
+msgid "Primary Menu"
+msgstr "Menu principal"
