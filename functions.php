@@ -346,6 +346,7 @@ function editor_assets() {
 		'premium-content/container',
 		'premium-content/logged-out-view',
 		'premium-content/subscriber-view',
+		'core/social-links',
 	];
 
 	if ( ! is_a8c_p2() ) {
