@@ -2943,6 +2943,7 @@ article.tag-p2-xpost .comment .avatar {
 
 .p2tenberg-editor {
   font-size: inherit;
+  border: none !important;
   /**
 	 * Temporary, p2tenberg-specific "hacks"
 	 *
