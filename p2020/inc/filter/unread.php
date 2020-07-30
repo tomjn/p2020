@@ -385,7 +385,7 @@ function get_user_subscription_timestamp() {
  */
 function get_unseen_posts_count() {
 	$start_time = microtime( true );
-	$stat_name  = 'com.wordpress.seen_posts.p2_get_unseen_posts_count';
+	$stat_name  = 'com.wordpress.seen_posts.p2.function.get_unseen_posts_count';
 	$user_id    = get_current_user_id();
 	$blog_id    = get_current_blog_id();
 
@@ -445,7 +445,7 @@ function get_unseen_posts_count() {
  */
 function get_unseen_blog_posts( $user_subscription_timestamp ) {
 	$start_time = microtime( true );
-	$stat_name  = 'com.wordpress.seen_posts.p2_get_unseen_blog_posts';
+	$stat_name  = 'com.wordpress.seen_posts.p2.function.get_unseen_blog_posts';
 	$user_id    = get_current_user_id();
 	$blog_id    = get_current_blog_id();
 
