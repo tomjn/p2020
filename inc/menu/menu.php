@@ -2,7 +2,7 @@
 
 namespace P2020\Menu;
 
-use function \P2020\html_output;
+use function P2020\html_output;
 
 function enqueue_scripts() {
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );
@@ -14,23 +14,23 @@ function scripts() {
 
 function render_page_menu() {
 	$options = [
-		'title_li'    => '',
+		'title_li' => '',
 		'sort_column' => 'menu_order, post_title',
-		'exclude'     => '',
-		'echo'        => false,
-		'container'   => 'div',
-		'menu_class'  => 'p2020-sidebar-menu p2020-sidebar-menu__pages',
-		'show_home'   => false,
+		'exclude' => '',
+		'echo' => false,
+		'container' => 'div',
+		'menu_class' => 'p2020-sidebar-menu p2020-sidebar-menu__pages',
+		'show_home' => false,
 	];
 
 	$pages_html = wp_page_menu( $options );
 
 	// empty list
 	$container = $options['container'];
-	$classes   = $options['menu_class'];
+	$classes = $options['menu_class'];
 	if ( $pages_html === "<$container class=\"$classes\"></$container>" ) {
-		$scheme           = is_ssl() ? 'https' : 'http';
-		$site_slug        = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+		$scheme = is_ssl() ? 'https' : 'http';
+		$site_slug = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
 		$page_editor_link = "{$scheme}://wordpress.com/block-editor/page/{$site_slug}";
 		echo html_output( '<div class="empty-menu-list">No documents — <a href="' . $page_editor_link . '">Start one</a></div>' );
 
@@ -48,10 +48,10 @@ function render_nav_menu() {
 	$menu_locations = get_nav_menu_locations();
 
 	$nav_html = wp_nav_menu( [
-		'echo'            => false,
-		'container'       => 'div',
+		'echo' => false,
+		'container' => 'div',
 		'container_class' => 'p2020-sidebar-menu p2020-sidebar-menu__nav',
-		'menu'            => $menu_locations['primary'] ?? null,
+		'menu' => $menu_locations['primary'] ?? null,
 	] );
 
 	if ( ! empty( $nav_html ) ) {
@@ -83,10 +83,18 @@ function format_items( $menu_type, $menu_html ) {
 		$pattern = '/(<li .* menu-item-([0-9]+).*>)<a href="(.*)".*>(.*)<\/a>/i';
 	}
 
+	$site_slug = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+	$page_editor_link = "https://wordpress.com/block-editor/page/{$site_slug}";
 	$replacement = '$1
 		<button class="menu-item-toggle" aria-label="Expand" aria-expanded=false></button>
-		<a href="$3" class="menu-item-link">$4</a>';
-	$menu_html   = preg_replace( $pattern, $replacement, $menu_html );
+		<span class="menu-item-links">
+		<a href="$3" class="menu-item-title">$4</a>';
+	if ( $menu_type === 'pages' ) {
+		$replacement .= '<a href="' . esc_url( $page_editor_link . '?parent_post=$2' ) . '" class="menu-item-add"' .
+			' data-tippy-content="' . __( 'New subdocument', 'p2020' ) . '"><span class="screen-reader-text">' . __( 'New subdocument', 'p2020' ) . '</span></a>';
+	}
+	$replacement .= '</span>';
+	$menu_html = preg_replace( $pattern, $replacement, $menu_html );
 
 	return $menu_html;
 }
@@ -97,10 +105,10 @@ function format_items( $menu_type, $menu_html ) {
  */
 function normalize_classnames( $pages_html ) {
 	$classnames = [
-		'page_item'              => 'page-item',
+		'page_item' => 'page-item',
 		'page_item_has_children' => 'page-item-has-children',
-		'current_page_item'      => 'current-page-item',
-		'current_page_ancestor'  => 'current-page-ancestor',
+		'current_page_item' => 'current-page-item',
+		'current_page_ancestor' => 'current-page-ancestor',
 	];
 	foreach ( $classnames as $original => $replacement ) {
 		$pages_html = preg_replace( "/(\b)$original(\b)/", "$1$replacement$2", $pages_html );
