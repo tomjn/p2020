@@ -18,6 +18,7 @@ $signup_url = 'https://wordpress.com/start/p2';
 $customizer_menu_url = 'https://wordpress.com/customize/menus/' . $site_slug;
 $help_url = 'https://wordpress.com/help';
 $pages_url = 'https://wordpress.com/pages/' . $site_slug;
+$editor_page_url = 'https://wordpress.com/block-editor/page/' . $site_slug;
 ?>
 
 <div id="sidebar" class="p2020-sidebar <?php if ( is_page() ) echo esc_attr( 'is-dark' ); ?>">
@@ -59,6 +60,7 @@ $pages_url = 'https://wordpress.com/pages/' . $site_slug;
 							<div class="p2020-sidebar__menu-header-ellipsis">
 								<?php
 									$pages_menu = new \P2020\EllipsisMenu();
+									$pages_menu->add_item( __( 'New document', 'p2020' ), $editor_page_url );
 									$pages_menu->add_item( __( 'Manage documents', 'p2020' ), $pages_url );
 									echo html_output( $pages_menu->generate() );
 								?>

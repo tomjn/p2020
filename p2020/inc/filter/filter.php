@@ -33,7 +33,9 @@ function is_filter_active( string $type ): bool {
 		case 'myposts':
 			return ( strpos( $wp->request, 'author/' . $user->user_nicename ) === 0 );
 		case 'unresolved':
-			return isset( $_GET['resolved'] );
+			return isset( $_GET['resolved'] ) && $_GET['resolved'] === 'unresolved';
+		case 'resolved':
+			return isset( $_GET['resolved'] ) && $_GET['resolved'] === 'resolved';
 	}
 
 	return false;
@@ -45,7 +47,7 @@ function is_filter_active( string $type ): bool {
  * @return string|null The active filter view.
  */
 function get_active_filter() {
-	$types = [ 'posts', 'comments', 'mentions', 'myposts' ];
+	$types = [ 'posts', 'comments', 'mentions', 'myposts', 'resolved', 'unresolved' ];
 	foreach ( $types as $type ) {
 		if ( is_filter_active( $type ) ) {
 			return $type;
@@ -116,7 +118,7 @@ function get_links() {
 	$is_resolved_posts_active = ! empty ( $o2_options['enable_resolved_posts'] );
 	if ( is_automattic() && $is_resolved_posts_active ) {
 		$filters['unresolved'] = [
-			'label' => __( 'Unresolved Posts', 'p2020' ),
+			'label' => __( 'To do', 'p2020' ),
 			'url' => esc_url( add_query_arg( 'resolved', 'unresolved', get_blog_url() ) ),
 			'class' => 'p2020-filter__unresolved-posts',
 			'read_count_enabled' => false,
@@ -181,8 +183,11 @@ function enqueue_scripts() {
 }
 
 function add_hooks() {
-	// For changing the page title, to indicate active filter
-	add_filter( 'o2_page_title', __NAMESPACE__ . '\page_title' );
+	// For changing the page title, i.e <title></title>
+	add_filter( 'wp_title_parts', __NAMESPACE__ . '\page_title' );
+
+	// For changing the page title at the top of the posts feed
+	add_filter( 'o2_page_title', __NAMESPACE__ . '\o2_page_title' );
 
 	// Modify o2 options for filter views
 	add_filter( 'o2_options', __NAMESPACE__ . '\hide_editor_for_filter_views' );
@@ -388,7 +393,8 @@ function no_posts_message( $o2_options ) {
  * Hide the front-page editor when inside a filter view.
  */
 function hide_editor_for_filter_views( $o2_options ) {
-	if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
+	$active_filter = get_active_filter();
+	if ( ! empty( $active_filter ) ) {
 		$o2_options['options']['showFrontSidePostBox'] = false;
 	}
 
@@ -409,9 +415,9 @@ function hide_app_controls_for_comment_view( $o2_options ) {
 
 /**
  * Callback for 'o2_page_title' filter hook.
- * Modify the page title when inside a filter view.
+ * Modify the page/feed title when inside a filter view.
  */
-function page_title( $title ) {
+function o2_page_title( $title ) {
 	$active_filter = get_active_filter();
 
 	if ( empty( $active_filter ) ) {
@@ -419,6 +425,16 @@ function page_title( $title ) {
 	}
 
 	global $wp_query;
+
+	if ( $active_filter === 'unresolved' ) {
+		/* translators: %d is the number of posts marked as "To Do" */
+		return sprintf( __( 'To do (%d)', 'p2020' ), $wp_query->found_posts );
+	}
+
+	if ( $active_filter === 'resolved' ) {
+		/* translators: %d is the number of posts marked as "To Do" */
+		return sprintf( __( 'Done (%d)', 'p2020' ), $wp_query->found_posts );
+	}
 
 	if ( $active_filter === 'posts' &&  $wp_query->found_posts === 0 ) {
 		return '';
@@ -434,6 +450,24 @@ function page_title( $title ) {
 	}
 
 	return $title;
+}
+
+/**
+ * Callback for 'wp_title_parts' filter hook.
+ * Modify the page title when inside a filter view.
+ */
+function page_title( $title_parts ) {
+	$active_filter = get_active_filter();
+
+	if ( $active_filter === 'unresolved' ) {
+		return [ __( 'To do', 'p2020' ) ];
+	}
+
+	if ( $active_filter === 'resolved' ) {
+		return [ __( 'Done', 'p2020' ) ];
+	}
+
+	return $title_parts;
 }
 
 /**
