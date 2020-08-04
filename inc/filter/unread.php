@@ -2,7 +2,7 @@
 
 namespace P2020\Filter\Unread;
 
-require_once( WPMU_PLUGIN_DIR . '/inline-terms/mentions.php' );
+require_once WPMU_PLUGIN_DIR . '/inline-terms/mentions.php';
 require_lib( 'seen-posts' );
 
 use function P2020\Filter\is_filter_active;
@@ -147,7 +147,7 @@ function get_posts_after_ts( $ts = null, $limit = null, $fields = 'ids' ) {
 
 	// If $ts is set, we filter on that
 	$ts_condition       = [
-		'after'     => date( 'Y-m-d H:i:s e', $ts ),
+		'after'     => gmdate( 'Y-m-d H:i:s e', $ts ),
 		'inclusive' => true,
 	];
 	$args['date_query'] = [ $ts_condition ];
@@ -178,7 +178,7 @@ function get_comments_after_ts( $ts = null, $limit = null ) {
 	];
 
 	$ts_condition = [
-		'after'     => date( 'Y-m-d H:i:s e', $ts ),
+		'after'     => gmdate( 'Y-m-d H:i:s e', $ts ),
 		'inclusive' => true,
 	];
 
@@ -217,16 +217,16 @@ function get_mentions_after_ts( $ts = null, $limit = null ) {
 	$unread_posts = get_posts_after_ts( $ts, $limit );
 	foreach ( $unread_posts as $post_id ) {
 		$post_mentions = \Jetpack_Mentions::get_post_mentions( $post_id );
-		if ( in_array( $user->user_nicename, $post_mentions ) ) {
-			$mentions['posts'][] = $post_id;
+		if ( in_array( $user->user_nicename, $post_mentions, true ) ) {
+			$mentions['posts'][] = (int) $post_id;
 		}
 	}
 
 	$unread_comments = get_comments_after_ts( $ts, $limit );
 	foreach ( $unread_comments as $comment_id ) {
 		$comment_mentions = \Jetpack_Mentions::get_comment_mentions( $comment_id );
-		if ( in_array( $user->user_nicename, $comment_mentions ) ) {
-			$mentions['comments'][] = $comment_id;
+		if ( in_array( $user->user_nicename, $comment_mentions, true ) ) {
+			$mentions['comments'][] = (int) $comment_id;
 		}
 	}
 
@@ -284,7 +284,7 @@ function get_unread_count( $key, $limit = null ) {
  * @param string $content_type
  */
 function get_content_cutoff_ts( $content_type ) {
-	if ( ! in_array( $content_type, [ 'posts', 'comments', 'mentions' ] ) ) {
+	if ( ! in_array( $content_type, [ 'posts', 'comments', 'mentions' ], true ) ) {
 		return null;
 	}
 
@@ -313,12 +313,12 @@ function get_post_ids_after( $timestamp = null ) {
 	$args = [
 		'post_type'      => 'post',
 		'fields'         => 'ids',
-		'posts_per_page' => - 1
+		'posts_per_page' => - 1,
 	];
 
 	// If $ts is set, we filter on that
 	$ts_condition       = [
-		'after'     => date( 'Y-m-d H:i:s e', $timestamp ),
+		'after'     => gmdate( 'Y-m-d H:i:s e', $timestamp ),
 		'inclusive' => true,
 	];
 	$args['date_query'] = [ $ts_condition ];
@@ -408,11 +408,15 @@ function get_unseen_posts_count() {
 
 	if ( ! $seen_entries ) {
 		// no seen entries available => all unseen items
-		\SeenPosts\log_timing( $stat_name . '.2', $start_time, [
-			'blog_id'                => $blog_id,
-			'user_subscription_date' => $user_subscription_date,
-			'feed_items_count'       => $feed_items_count,
-		] );
+		\SeenPosts\log_timing(
+			$stat_name . '.2',
+			$start_time,
+			[
+				'blog_id'                => $blog_id,
+				'user_subscription_date' => $user_subscription_date,
+				'feed_items_count'       => $feed_items_count,
+			]
+		);
 
 		return $feed_items_count;
 	}
@@ -426,12 +430,16 @@ function get_unseen_posts_count() {
 	}
 	$seen_count = $seen_counts[ $feed_id ];
 
-	\SeenPosts\log_timing( $stat_name . '.3', $start_time, [
-		'blog_id'                => $blog_id,
-		'user_subscription_date' => $user_subscription_date,
-		'feed_items_count'       => $feed_items_count,
-		'seen_count'             => $seen_count
-	] );
+	\SeenPosts\log_timing(
+		$stat_name . '.3',
+		$start_time,
+		[
+			'blog_id'                => $blog_id,
+			'user_subscription_date' => $user_subscription_date,
+			'feed_items_count'       => $feed_items_count,
+			'seen_count'             => $seen_count,
+		]
+	);
 
 	return max( $feed_items_count - $seen_count, 0 );
 }
@@ -483,15 +491,19 @@ function get_unseen_blog_posts( $user_subscription_timestamp ) {
 		$seen_post_ids[] = $post_object->post_id;
 	}
 
-	\SeenPosts\log_timing( $stat_name . '.4', $start_time, [
-		'blog_id'                     => $blog_id,
-		'feed_id'                     => $feed_id,
-		'user_subscription_timestamp' => $user_subscription_timestamp,
-		'blog_posts_ids'              => count( $blog_posts_ids ),
-		'feed_items'                  => count( $feed_items ),
-		'feed_items_data'             => count( $feed_items_data ),
-		'seen_post_ids'               => count( $seen_post_ids )
-	] );
+	\SeenPosts\log_timing(
+		$stat_name . '.4',
+		$start_time,
+		[
+			'blog_id'                     => $blog_id,
+			'feed_id'                     => $feed_id,
+			'user_subscription_timestamp' => $user_subscription_timestamp,
+			'blog_posts_ids'              => count( $blog_posts_ids ),
+			'feed_items'                  => count( $feed_items ),
+			'feed_items_data'             => count( $feed_items_data ),
+			'seen_post_ids'               => count( $seen_post_ids ),
+		]
+	);
 
 	return array_diff( $blog_posts_ids, $seen_post_ids );
 }

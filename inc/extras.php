@@ -8,15 +8,6 @@
  */
 
 namespace P2020;
-/**
- * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
- */
-function page_menu_args( $args ) {
-	$args['show_home'] = true;
-	return $args;
-}
-
-//add_filter( 'wp_page_menu_args', 'P2020\page_menu_args' );
 
 /**
  * Adds custom classes to the array of body classes.
@@ -30,7 +21,7 @@ function body_classes( array $classes ): array {
 		$classes[] = 'group-blog';
 	}
 
-	if( has_nav_menu( 'primary' ) ){
+	if ( has_nav_menu( 'primary' ) ) {
 		$classes[] = 'custom-menu';
 	}
 
@@ -46,12 +37,14 @@ add_filter( 'body_class', 'P2020\body_classes' );
  * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
  */
 function enhanced_image_navigation( $url, $id ) {
-	if ( ! is_attachment() && ! wp_attachment_is_image( $id ) )
+	if ( ! is_attachment() && ! wp_attachment_is_image( $id ) ) {
 		return $url;
+	}
 
 	$image = get_post( $id );
-	if ( ! empty( $image->post_parent ) && $image->post_parent != $id )
+	if ( ! empty( $image->post_parent ) && (int) $image->post_parent !== (int) $id ) {
 		$url .= '#main';
+	}
 
 	return $url;
 }
@@ -63,16 +56,18 @@ add_filter( 'attachment_link', 'P2020\enhanced_image_navigation', 10, 2 );
 function wp_title( string $title, string $sep ): string {
 	global $page, $paged;
 
-	if ( is_feed() )
+	if ( is_feed() ) {
 		return $title;
+	}
 
 	// Add the blog name
 	$title .= get_bloginfo( 'name' );
 
 	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
+	if ( $paged >= 2 || $page >= 2 ) {
 		/* translators: %s is replaced with the page number */
 		$title .= " $sep " . sprintf( __( 'Page %s', 'p2020' ), max( $paged, $page ) );
+	}
 
 	return $title;
 }
@@ -100,10 +95,10 @@ add_filter( 'subscribe_to_comments_override', '__return_true' );
 /**
  * Hide intralink for P2 Pages
  */
-function p2_show_intralinks( $a, $b ) {
+function p2_show_intralinks() {
 	if ( is_page() ) {
 		return false;
 	}
 	return true;
 }
-add_filter( 'a8c_show_intralinks', 'P2020\p2_show_intralinks', 10, 2 );
+add_filter( 'a8c_show_intralinks', 'P2020\p2_show_intralinks' );

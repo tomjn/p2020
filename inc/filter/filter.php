@@ -4,12 +4,12 @@ namespace P2020\Filter;
 
 use function P2020\get_blog_url;
 
-require_once( get_template_directory() . '/inc/filter/unread.php' );
+require_once get_template_directory() . '/inc/filter/unread.php';
 require_lib( 'seen-posts' );
 
-const QUERY_ROWS_LIMIT = 100;
+const QUERY_ROWS_LIMIT           = 100;
 const UNREAD_COUNT_DISPLAY_LIMIT = 99; // displays "99+" if unread is > 99
-const DAY_IN_SECONDS = 60 * 60 * 24;
+const DAY_IN_SECONDS             = 60 * 60 * 24;
 
 /**
  * Checks whether the current page is a 'filter page'.
@@ -22,20 +22,24 @@ function is_filter_active( string $type ): bool {
 	global $wp;
 	$user = wp_get_current_user();
 
+	if ( isset( $_GET['nonce'] ) ) {
+		$nonce_check = wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'p2-filter' );
+	}
+
 	switch ( $type ) {
 		case 'posts':
-			return (bool)get_query_var( 'p2filter_posts' );
+			return (bool) get_query_var( 'p2filter_posts' );
 		case 'comments':
-			return (bool)get_query_var( 'p2filter_comments' );
+			return (bool) get_query_var( 'p2filter_comments' );
 		case 'mentions':
-			return ( strpos( $wp->request, 'mentions/' . $user->user_nicename ) === 0 ) ||
-				isset( $_GET['mentions'] );
+			return ( ( strpos( $wp->request, 'mentions/' . $user->user_nicename ) === 0 )
+				|| isset( $_GET['mentions'] ) && $nonce_check );
 		case 'myposts':
-			return ( strpos( $wp->request, 'author/' . $user->user_nicename ) === 0 );
+			return ( strpos( $wp->request, 'author/' . $user->user_nicename ) === 0 ) && $nonce_check;
 		case 'unresolved':
-			return isset( $_GET['resolved'] ) && $_GET['resolved'] === 'unresolved';
+			return isset( $_GET['resolved'] ) && 'unresolved' === $_GET['resolved'] && $nonce_check;
 		case 'resolved':
-			return isset( $_GET['resolved'] ) && $_GET['resolved'] === 'resolved';
+			return isset( $_GET['resolved'] ) && 'resolved' === $_GET['resolved'] && $nonce_check;
 	}
 
 	return false;
@@ -62,65 +66,88 @@ function get_active_filter() {
  *
  * @return array An array of filter link items.
  */
-function get_links() {
+function get_filters() {
 	if ( ! is_user_logged_in() ) {
 		return [];
 	}
 
-	$user = wp_get_current_user();
+	$user        = wp_get_current_user();
 	$last_active = \P2020\Filter\Unread\get_last_active();
-	$filters = [
-		'posts' => [
-			'label' => __( 'New posts', 'p2020' ),
-			'url' => esc_url( add_query_arg(
-				[
-					'p2filter_posts' => true,
-					'ts' => $last_active['posts'],
-				],
-				get_blog_url()
-			) ),
-			'class' => 'p2020-filter__recent-updates',
+	$nonce       = wp_create_nonce( 'p2-filter' );
+	$filters     = [
+		'posts'    => [
+			'label'              => __( 'New posts', 'p2020' ),
+			'url'                => esc_url(
+				add_query_arg(
+					[
+						'p2filter_posts' => true,
+						'ts'             => $last_active['posts'],
+					],
+					get_blog_url()
+				)
+			),
+			'class'              => 'p2020-filter__recent-updates',
 			'read_count_enabled' => true,
 		],
 		'comments' => [
-			'label' => __( 'New comments', 'p2020' ),
-			'url' => esc_url( add_query_arg(
-				[
-					'p2filter_comments' => true,
-					'ts' => $last_active['comments'],
-				],
-				get_blog_url()
-			) ),
-			'class' => 'p2020-filter__recent-comments',
+			'label'              => __( 'New comments', 'p2020' ),
+			'url'                => esc_url(
+				add_query_arg(
+					[
+						'p2filter_comments' => true,
+						'ts'                => $last_active['comments'],
+					],
+					get_blog_url()
+				)
+			),
+			'class'              => 'p2020-filter__recent-comments',
 			'read_count_enabled' => true,
 		],
 		'mentions' => [
-			'label' => __( 'My mentions ', 'p2020' ),
-			'url' => esc_url( add_query_arg(
-				[
-					'mentions' => $user->user_nicename,
-					'ts' => $last_active['mentions'],
-				],
-				get_blog_url()
-			) ),
-			'class' => 'p2020-filter__mentions',
+			'label'              => __( 'My mentions ', 'p2020' ),
+			'url'                => esc_url(
+				add_query_arg(
+					[
+						'mentions' => $user->user_nicename,
+						'ts'       => $last_active['mentions'],
+						'nonce'    => $nonce,
+					],
+					get_blog_url()
+				)
+			),
+			'class'              => 'p2020-filter__mentions',
 			'read_count_enabled' => true,
 		],
-		'myposts' => [
-			'label' => __( 'My posts', 'p2020' ),
-			'url' => esc_url( get_blog_url( '/author/' . $user->user_nicename ) ),
-			'class' => 'p2020-filter__my-posts',
+		'myposts'  => [
+			'label'              => __( 'My posts', 'p2020' ),
+			'url'                => esc_url(
+				add_query_arg(
+					[
+						'nonce' => $nonce,
+					],
+					get_blog_url( '/author/' . $user->user_nicename )
+				)
+			),
+			'class'              => 'p2020-filter__my-posts',
 			'read_count_enabled' => false,
 		],
 	];
 
-	$o2_options = get_option( 'o2_options' );
-	$is_resolved_posts_active = ! empty ( $o2_options['enable_resolved_posts'] );
+	$o2_options               = get_option( 'o2_options' );
+	$is_resolved_posts_active = ! empty( $o2_options['enable_resolved_posts'] );
 	if ( is_automattic() && $is_resolved_posts_active ) {
 		$filters['unresolved'] = [
-			'label' => __( 'To do', 'p2020' ),
-			'url' => esc_url( add_query_arg( 'resolved', 'unresolved', get_blog_url() ) ),
-			'class' => 'p2020-filter__unresolved-posts',
+			'label'              => __( 'To do', 'p2020' ),
+			'url'                => esc_url(
+				add_query_arg(
+					[
+						'resolved' => 'unresolved',
+						'nonce'    => $nonce,
+					],
+					get_blog_url()
+				)
+			),
+			'class'              => 'p2020-filter__unresolved-posts',
 			'read_count_enabled' => false,
 		];
 	}
@@ -141,15 +168,15 @@ function get_unread_count_display( $count ) {
 		return UNREAD_COUNT_DISPLAY_LIMIT . '+';
 	}
 
-	if ( $count === 0 ) {
+	if ( 0 === $count ) {
 		return '';
 	}
 
 	return $count;
 }
 
-function render_link_item( $key, $item ) {
-	$unread_count = \P2020\Filter\Unread\get_unread_count( $key, $limit = UNREAD_COUNT_DISPLAY_LIMIT + 1 );
+function render_filter_item( $key, $item ) {
+	$unread_count         = \P2020\Filter\Unread\get_unread_count( $key, UNREAD_COUNT_DISPLAY_LIMIT + 1 );
 	$unread_count_display = get_unread_count_display( $unread_count );
 
 	$unread_class = get_unread_class( $item, $unread_count );
@@ -168,12 +195,12 @@ P2020_FILTER_ITEM;
 }
 
 function render() {
-	$links = get_links();
+	$filters = get_filters();
 
 	echo '<ul class="p2020-filter">';
-	foreach ( $links as $key => $item ) {
+	foreach ( $filters as $key => $item ) {
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo render_link_item( $key, $item );
+		echo render_filter_item( $key, $item );
 	}
 	echo '</ul>';
 }
@@ -210,20 +237,20 @@ function add_hooks() {
 }
 
 function scripts() {
-	if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
-		wp_enqueue_script( 'p2020-filter-no-posts', get_template_directory_uri() . '/inc/filter/js/no-posts.js', [ 'jquery' ], false, true );
+	if ( is_filter_active( 'posts' ) || is_filter_active( 'comments' ) ) {
+		wp_enqueue_script( 'p2020-filter-no-posts', get_template_directory_uri() . '/inc/filter/js/no-posts.js', [ 'jquery' ], '20200801', true );
 		$data = [
-			'homeUrl' => esc_url( get_blog_url() ),
+			'homeUrl'     => esc_url( get_blog_url() ),
 			'homeMessage' => __( 'Return to home', 'p2020' ),
 		];
 		wp_localize_script( 'p2020-filter-no-posts', 'p2020FilterNoPosts', $data );
 	}
 
 	if ( is_filter_active( 'comments' ) ) {
-		wp_enqueue_script( 'p2020-filter-read-more', get_template_directory_uri() . '/inc/filter/js/read-more.js', [ 'jquery' ], false, true );
+		wp_enqueue_script( 'p2020-filter-read-more', get_template_directory_uri() . '/inc/filter/js/read-more.js', [ 'jquery' ], '20200801', true );
 		$data = [
-			'readPost' => __( 'Read full post', 'p2020' ),
-			'readComment' => __( 'Read more', 'p2020' ),
+			'readPost'     => __( 'Read full post', 'p2020' ),
+			'readComment'  => __( 'Read more', 'p2020' ),
 			'moreComments' => __( ' more comment(s)', 'p2020' ),
 		];
 		wp_localize_script( 'p2020-filter-read-more', 'p2020FilterReadMore', $data );
@@ -245,13 +272,15 @@ function alter_query_for_filter_views( $query ) {
 	}
 
 	if ( is_filter_active( 'posts' ) ) {
-		if( is_automattician() ) {
+		if ( is_automattician() ) {
 			// Use new seen system for a12s
 			// posts after user subscription joined / feature release date
 			$user_subscription_timestamp = \P2020\Filter\Unread\get_user_subscription_timestamp();
 			if ( $user_subscription_timestamp ) {
-				$query->set( 'date_query', [
-						'after' => date( 'Y-m-d H:i:s e', $user_subscription_timestamp ),
+				$query->set(
+					'date_query',
+					[
+						'after'     => gmdate( 'Y-m-d H:i:s e', $user_subscription_timestamp ),
 						'inclusive' => true,
 					]
 				);
@@ -259,19 +288,21 @@ function alter_query_for_filter_views( $query ) {
 
 			// post id not in seen
 			$unseen_posts_ids = \P2020\Filter\Unread\get_unseen_blog_posts( $user_subscription_timestamp );
-			if( ! empty( $unseen_posts_ids ) ) {
+			if ( ! empty( $unseen_posts_ids ) ) {
 				$query->set( 'post__in', $unseen_posts_ids );
 			}
-
 		} else {
 			// use old high watermark for non a12s (to be removed)
 			$query->set( 'author', -1 * get_current_user_id() );
 			$posts_cutoff = \P2020\Filter\Unread\get_content_cutoff_ts( 'posts' );
-			if ( ! empty ( $posts_cutoff ) ) {
-				$query->set( 'date_query', [
-					'after' => date( 'Y-m-d H:i:s e', \P2020\Filter\Unread\get_content_cutoff_ts( 'posts' ) ),
-					'inclusive' => true,
-				] );
+			if ( ! empty( $posts_cutoff ) ) {
+				$query->set(
+					'date_query',
+					[
+						'after'     => gmdate( 'Y-m-d H:i:s e', \P2020\Filter\Unread\get_content_cutoff_ts( 'posts' ) ),
+						'inclusive' => true,
+					]
+				);
 			}
 		}
 	}
@@ -295,7 +326,7 @@ function alter_query_for_comment_view( $clauses, $wp_query ) {
 	if ( is_filter_active( 'comments' ) ) {
 		// "SELECT $found_rows $distinct $fields FROM $wpdb->posts $join WHERE 1=1 $where $groupby $orderby $limits";
 		$clauses['fields'] = "$wpdb->posts.*, MAX($wpdb->comments.comment_date_gmt) cdate";
-		$clauses['join'] = "RIGHT JOIN $wpdb->comments ON (ID = comment_post_id)";
+		$clauses['join']   = "RIGHT JOIN $wpdb->comments ON (ID = comment_post_id)";
 
 		// Exclude xposts from recent comments queries
 		$clauses['where'] = "AND ( $wpdb->posts.post_title NOT LIKE 'x-post%' AND $wpdb->posts.post_content NOT LIKE 'x-post%' AND $wpdb->posts.post_content NOT LIKE 'x-comment%' )" .
@@ -307,8 +338,8 @@ function alter_query_for_comment_view( $clauses, $wp_query ) {
 			$clauses['where'] .= " AND $wpdb->comments.comment_date_gmt >= FROM_UNIXTIME({$comments_cutoff})";
 		}
 
-		$clauses['groupby'] = "ID";
-		$clauses['orderby'] = "cdate DESC";
+		$clauses['groupby'] = 'ID';
+		$clauses['orderby'] = 'cdate DESC';
 	}
 
 	return $clauses;
@@ -318,6 +349,9 @@ function alter_query_for_comment_view( $clauses, $wp_query ) {
  * Callback for 'post_class' filter hook.
  * Add special CSS classes for unread posts, and posts with unread comments and mentions.
  */
+// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+// phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed
+// Reason: $class unused but passed by filter
 function custom_classes_for_posts( $classes, $class, $post_id ) {
 	// If a post appears in the recent posts filter view, automatically add "unread" class
 	if ( is_filter_active( 'posts' ) ) {
@@ -337,25 +371,29 @@ function custom_classes_for_posts( $classes, $class, $post_id ) {
 	if ( is_filter_active( 'mentions' ) ) {
 		$mentions_cutoff = \P2020\Filter\Unread\get_content_cutoff_ts( 'mentions' );
 		$unread_mentions = \P2020\Filter\Unread\get_mentions_after_ts( $mentions_cutoff, QUERY_ROWS_LIMIT );
-		if ( is_array( $unread_mentions['posts'] ) && in_array( $post_id, $unread_mentions['posts'] ) ) {
+		if ( is_array( $unread_mentions['posts'] ) && in_array( $post_id, $unread_mentions['posts'], true ) ) {
 			$classes[] = 'p2020-unread-mention';
 		}
 	}
 
 	return $classes;
 }
+// phpcs:enable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+// phpcs:enable Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed
 
 /**
  * Callback for 'comment_class' filter hook.
  * Add special CSS classes for unread comments and comments with unread mentions.
  */
-
+// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+// phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed
+// Reason: $class unused but passed by filter
 function custom_classes_for_comments( $classes, $class, $comment_id ) {
 	// Flag unread comments, trim everything else
 	if ( is_filter_active( 'comments' ) ) {
 		$comments_cutoff = \P2020\Filter\Unread\get_content_cutoff_ts( 'comments' );
 		$unread_comments = \P2020\Filter\Unread\get_comments_after_ts( $comments_cutoff, QUERY_ROWS_LIMIT );
-		if ( is_array( $unread_comments ) && in_array( $comment_id, $unread_comments ) ) {
+		if ( is_array( $unread_comments ) && in_array( $comment_id, $unread_comments, true ) ) {
 			$classes[] = 'p2020-unread-comment';
 		} else {
 			$classes[] = 'p2020-comment-read-more';
@@ -366,23 +404,25 @@ function custom_classes_for_comments( $classes, $class, $comment_id ) {
 	if ( is_filter_active( 'mentions' ) ) {
 		$mentions_cutoff = \P2020\Filter\Unread\get_content_cutoff_ts( 'mentions' );
 		$unread_mentions = \P2020\Filter\Unread\get_mentions_after_ts( $mentions_cutoff, QUERY_ROWS_LIMIT );
-		if ( is_array( $unread_mentions['comments'] ) && in_array( $comment_id, $unread_mentions['comments'] ) ) {
+		if ( is_array( $unread_mentions['comments'] ) && in_array( $comment_id, $unread_mentions['comments'], true ) ) {
 			$classes[] = 'p2020-unread-mention';
 		}
 	}
 
 	return $classes;
 }
+// phpcs:enable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+// phpcs:enable Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed
 
 /**
  * Callback for 'o2_options' filter hook.
  * Modify the empty page message.
  */
 function no_posts_message( $o2_options ) {
-	if ( is_filter_active( 'posts' )  || is_filter_active( 'comments' ) ) {
-		$noPostsMessage = __( "You’re all caught up!", 'p2020' );
-		$o2_options['strings']['noPosts'] = $noPostsMessage;
-		$o2_options['strings']['noPostsMobile'] = $noPostsMessage;
+	if ( is_filter_active( 'posts' ) || is_filter_active( 'comments' ) ) {
+		$no_posts_message                       = __( 'You’re all caught up!', 'p2020' );
+		$o2_options['strings']['noPosts']       = $no_posts_message;
+		$o2_options['strings']['noPostsMobile'] = $no_posts_message;
 	}
 
 	return $o2_options;
@@ -426,27 +466,27 @@ function o2_page_title( $title ) {
 
 	global $wp_query;
 
-	if ( $active_filter === 'unresolved' ) {
+	if ( 'unresolved' === $active_filter ) {
 		/* translators: %d is the number of posts marked as "To Do" */
 		return sprintf( __( 'To do (%d)', 'p2020' ), $wp_query->found_posts );
 	}
 
-	if ( $active_filter === 'resolved' ) {
+	if ( 'resolved' === $active_filter ) {
 		/* translators: %d is the number of posts marked as "To Do" */
 		return sprintf( __( 'Done (%d)', 'p2020' ), $wp_query->found_posts );
 	}
 
-	if ( $active_filter === 'posts' &&  $wp_query->found_posts === 0 ) {
+	if ( 'posts' === $active_filter && 0 === $wp_query->found_posts ) {
 		return '';
 	}
 
-	if ( $active_filter === 'comments' && $wp_query->found_posts === 0 ) {
+	if ( 'comments' === $active_filter && 0 === $wp_query->found_posts ) {
 		return '';
 	}
 
-	$links = get_links();
-	if ( ! empty( $links[ $active_filter ]['label'] ) ) {
-		return $links[ $active_filter ]['label'];
+	$filters = get_filters();
+	if ( ! empty( $filters[ $active_filter ]['label'] ) ) {
+		return $filters[ $active_filter ]['label'];
 	}
 
 	return $title;
@@ -459,11 +499,11 @@ function o2_page_title( $title ) {
 function page_title( $title_parts ) {
 	$active_filter = get_active_filter();
 
-	if ( $active_filter === 'unresolved' ) {
+	if ( 'unresolved' === $active_filter ) {
 		return [ __( 'To do', 'p2020' ) ];
 	}
 
-	if ( $active_filter === 'resolved' ) {
+	if ( 'resolved' === $active_filter ) {
 		return [ __( 'Done', 'p2020' ) ];
 	}
 
@@ -482,9 +522,9 @@ function infinite_scroll_ajax_url( $ajax_url ) {
 	}
 
 	$query_args = [];
-	if ( $active_filter === 'posts' ) {
+	if ( 'posts' === $active_filter ) {
 		$query_args = [ 'p2filter_posts' => true ];
-	} elseif ( $active_filter === 'comments' ) {
+	} elseif ( 'comments' === $active_filter ) {
 		$query_args = [ 'p2filter_comments' => true ];
 	}
 	$query_args['ts'] = \P2020\Filter\Unread\get_content_cutoff_ts( $active_filter );
@@ -509,9 +549,9 @@ function infinite_scroll_query_args( $query_args ) {
 		return $query_args;
 	}
 
-	if ( $active_filter === 'posts' ) {
+	if ( 'posts' === $active_filter ) {
 		$query_args['p2filter_posts'] = true;
-	} elseif ( $active_filter === 'comments' ) {
+	} elseif ( 'comments' === $active_filter ) {
 		$query_args['p2filter_comments'] = true;
 	}
 	$query_args['ts'] = \P2020\Filter\Unread\get_content_cutoff_ts( $active_filter );

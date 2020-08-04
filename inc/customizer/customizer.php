@@ -7,8 +7,8 @@
 
 namespace P2020;
 
-require( get_template_directory() . '/inc/customizer/custom-header.php' );
-require( get_template_directory() . '/inc/customizer/custom-colors.php' );
+require get_template_directory() . '/inc/customizer/custom-header.php';
+require get_template_directory() . '/inc/customizer/custom-colors.php';
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
@@ -16,33 +16,36 @@ require( get_template_directory() . '/inc/customizer/custom-colors.php' );
  * @param WP_Dotcom_Customize $wp_customize Theme Customizer object.
  */
 function customize_register( \WP_Dotcom_Customize $wp_customize ) {
-	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
-	$wp_customize->selective_refresh->add_partial( 'header_image', [
-		'selector' => '#p2020-custom-header-partial',
-	] );
+	$wp_customize->selective_refresh->add_partial(
+		'header_image',
+		[
+			'selector' => '#p2020-custom-header-partial',
+		]
+	);
 
 	/**
 	 * Add P2 Identity section with site title, tagline and header image controls.
 	 */
 	// Rename Site Identity section to Name and description
-	$wp_customize->get_section( 'title_tagline' )->title = __( 'Name and description', 'p2020' );
+	$wp_customize->get_section( 'title_tagline' )->title    = __( 'Name and description', 'p2020' );
 	$wp_customize->get_section( 'title_tagline' )->priority = 1;
 
 	// Site Title
 	$wp_customize->get_control( 'blogname' )->priority = 1;
 
 	// Rename Tagline to Description and convert to textarea type
-	$wp_customize->get_control( 'blogdescription' )->label = __( 'Description', 'p2020' );
-	$wp_customize->get_control( 'blogdescription' )->type = 'textarea';
+	$wp_customize->get_control( 'blogdescription' )->label    = __( 'Description', 'p2020' );
+	$wp_customize->get_control( 'blogdescription' )->type     = 'textarea';
 	$wp_customize->get_control( 'blogdescription' )->priority = 2;
 
 	// Site Icon
 	$wp_customize->get_control( 'site_icon' )->priority = 3;
 
 	// Move Header Image section to after Name and description
-	$wp_customize->get_section( 'header_image' )->title = __( 'Header image', 'p2020' );
+	$wp_customize->get_section( 'header_image' )->title    = __( 'Header image', 'p2020' );
 	$wp_customize->get_section( 'header_image' )->priority = 2;
 }
 

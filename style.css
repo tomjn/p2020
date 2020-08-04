@@ -522,13 +522,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end; }
-
-.widget-title-secondary-action {
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: var(--color-link); }
-  .widget-title-secondary-action:hover, .widget-title-secondary-action:focus {
-    text-decoration: underline; }
+  .widget-title .p2020-ellipsis-menu {
+    font-weight: 400; }
 
 /**
  * Core widgets

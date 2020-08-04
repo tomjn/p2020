@@ -16,14 +16,11 @@
 <meta http-equiv="cleartype" content="on">
 
 <?php // Will be overwritten with git commit hash on `gulp build` (see gulpfile) ?>
-<meta name="p2020-build" revision="215e249">
+<meta name="p2020-build" revision="c80dab5">
 
 <title><?php wp_title( '–', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<!--[if lt IE 9]>
-<script src="<?php echo esc_attr( get_template_directory_uri() ); ?>/js/vendor/html5.js" type="text/javascript"></script>
-<![endif]-->
 
 <?php
 	wp_head();

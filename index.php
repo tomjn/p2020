@@ -27,20 +27,23 @@ get_header(); ?>
 	<div class="p2020-mobile-new-post" data-p2020-mobile-new-post-controls>
 		<button
 			class="p2020-mobile-new-post__new"
-			title="<?php esc_attr_e( 'New post', 'p2020' ) ?>"
+			title="<?php esc_attr_e( 'New post', 'p2020' ); ?>"
 		>
 		</button>
 		<button
 			class="p2020-mobile-new-post__cancel"
 		>
-			<?php esc_html_e( 'Cancel', 'p2020' ) ?>
+			<?php esc_html_e( 'Cancel', 'p2020' ); ?>
 		</button>
 	</div>
 
 
 	<main id="content">
 
-		<?php while ( have_posts() ) : the_post(); ?>
+		<?php
+		while ( have_posts() ) :
+			the_post();
+			?>
 			<?php
 				get_template_part( 'content', get_post_format() );
 			?>

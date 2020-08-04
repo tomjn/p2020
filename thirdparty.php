@@ -13,8 +13,8 @@ namespace P2020;
  * @return bool
  */
 function is_p2tenberg_user_enabled(): bool {
-	$user = wp_get_current_user();
-	$current_blog_id = get_current_blog_id();
+	$user             = wp_get_current_user();
+	$current_blog_id  = get_current_blog_id();
 	$use_block_editor = get_user_attribute( $user->data->ID, 'o2_use_p2tenberg_' . $current_blog_id );
 
 	return 'disabled' !== $use_block_editor;
@@ -46,13 +46,15 @@ function enable_inline_terms() {
 	wp_enqueue_script(
 		'inline-terms-mentions-js',
 		plugins_url( 'wpcom-mentions.js', WPMU_PLUGIN_DIR . '/inline-terms/inline-terms.php' ),
-		[ 'jquery.wpcom-proxy-request' ]
+		[ 'jquery.wpcom-proxy-request' ],
+		'20200801',
+		true
 	);
 
-	require_once( WPMU_PLUGIN_DIR . '/inline-terms/wpcom-email-templates.php' );
-	require_once( WPMU_PLUGIN_DIR . '/inline-terms/inline-terms.php' );
-	require_once( WPMU_PLUGIN_DIR . '/inline-terms/mentions.php' );
-	require_once( WPMU_PLUGIN_DIR . '/inline-terms/wpcom.php' );
+	require_once WPMU_PLUGIN_DIR . '/inline-terms/wpcom-email-templates.php';
+	require_once WPMU_PLUGIN_DIR . '/inline-terms/inline-terms.php';
+	require_once WPMU_PLUGIN_DIR . '/inline-terms/mentions.php';
+	require_once WPMU_PLUGIN_DIR . '/inline-terms/wpcom.php';
 }
 
 /**
@@ -66,18 +68,28 @@ function enable_notifications() {
 	require_once WPMU_PLUGIN_DIR . '/notes/notes-hooks.php';
 	require_once WPMU_PLUGIN_DIR . '/notes/chrome-push-notifications.php';
 
-	add_action( 'init', function() {
-		if ( ! wp_style_is( 'noticons', 'registered' ) ) {
-			wp_register_style(
-				'noticons',
-				staticize_subdomain( '//wordpress.com/i/noticons/noticons.css' ),
-				null,
-				Notifications_UI::CACHE_BUSTER,
-				'all' );
-		}
-	}, -1 );
+	add_action(
+		'init',
+		function() {
+			if ( ! wp_style_is( 'noticons', 'registered' ) ) {
+				wp_register_style(
+					'noticons',
+					staticize_subdomain( '//wordpress.com/i/noticons/noticons.css' ),
+					null,
+					Notifications_UI::CACHE_BUSTER,
+					'all'
+				);
+			}
+		},
+		-1
+	);
 }
 
+function enable_emoji() {
+	require_once WP_PLUGIN_DIR . '/emoji-autocomplete-gutenberg/emoji-autocomplete-gutenberg.php';
+}
+
+add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_emoji', 100 );
 add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_inline_terms', 100 );
 add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_notifications', 100 );
 add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_o2', 101 );
