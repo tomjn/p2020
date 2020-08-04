@@ -15,10 +15,10 @@ $site_name = get_bloginfo( 'name', 'display' );
 	<div class="p2020-sidebar-header__group-left">
 		<h1 class="p2020-sidebar-header__heading">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
-			  class="p2020-sidebar-header__logo"
-				aria-label="<? echo esc_attr( $site_name ); ?> P2"
-		  >
-				<? get_template_part( 'partials/logo-p2' ); ?>
+				class="p2020-sidebar-header__logo"
+				aria-label="<?php echo esc_attr( $site_name ); ?> P2"
+			>
+				<?php get_template_part( 'partials/logo-p2' ); ?>
 			</a>
 		</h1>
 
@@ -32,7 +32,7 @@ $site_name = get_bloginfo( 'name', 'display' );
 	</div>
 
 	<span class="p2020-sidebar-header__mobile-title" aria-hidden="true">
-		<? echo esc_attr( $site_name ); ?>
+		<?php echo esc_attr( $site_name ); ?>
 	</span>
 
 	<div class="p2020-sidebar-header__group-right">

@@ -22,23 +22,26 @@ class EllipsisMenu {
 	public function add_item( string $label, string $url ) {
 		$this->items[] = [
 			'label' => $label,
-			'url' => $url,
+			'url'   => $url,
 		];
 	}
 
 	private function make_list(): string {
-		$list_items = array_map( function ( array $item ): string {
-			$label = esc_html( $item['label'] );
-			$url = esc_url( $item['url'] );
+		$list_items = array_map(
+			function ( array $item ): string {
+				$label = esc_html( $item['label'] );
+				$url   = esc_url( $item['url'] );
 
-			return <<<ITEM
+				return <<<ITEM
 				<li role="menuitem">
 					<a href="$url">
 						$label
 					</a>
 				</li>
 ITEM;
-		}, $this->items );
+			},
+			$this->items
+		);
 
 		return '<ul class="p2020-ellipsis-menu" role="menu">' . implode( $list_items ) . '</ul>';
 	}
@@ -47,7 +50,7 @@ ITEM;
 	 * Returns the HTML for the menu.
 	 */
 	public function generate(): string {
-		$list = $this->make_list();
+		$list       = $this->make_list();
 		$menu_label = esc_attr__( 'More', 'p2020' );
 
 		// Outer div is required for proper tab order
@@ -66,7 +69,5 @@ ITEM;
 				</div>
 			</div>
 MENU;
-
-		return $list;
 	}
 }

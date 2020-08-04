@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable
 
 /**
  * Author: Arlo Carreon <http://arlocarreon.com>
@@ -335,7 +336,7 @@ class Color {
         // Return the new value in HEX
         return self::hslToHex($hsl);
     }
-    
+
     /**
      * Returns your color's HSL array
      */
@@ -354,7 +355,7 @@ class Color {
     public function getRgb() {
         return $this->_rgb;
     }
-    
+
     /**
      * Returns the cross browser CSS3 gradient
      * @param int $amount Optional: percentage amount to light/darken the gradient
@@ -516,7 +517,7 @@ class Color {
 
         return $color;
     }
-    
+
     /**
      * Converts object into its string representation
      * @return string Color

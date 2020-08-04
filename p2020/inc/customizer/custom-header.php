@@ -20,11 +20,11 @@ namespace P2020;
 
 $args = [
 	'default-text-color' => '000',
-	'width' => 304 * 2, /* 2x resolution */
-	'height' => 152 * 2, /* 2x resolution */
-	'flex-width' => true,
-	'flex-height' => true,
-	'header-text' => false,
+	'width'              => 304 * 2, /* 2x resolution */
+	'height'             => 152 * 2, /* 2x resolution */
+	'flex-width'         => true,
+	'flex-height'        => true,
+	'header-text'        => false,
 ];
 
-add_theme_support( 'custom-header',  $args );
+add_theme_support( 'custom-header', $args );
