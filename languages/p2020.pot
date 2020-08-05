@@ -1,0 +1,293 @@
+# Copyright (C) 2020 Automattic
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: P2020 1.0-wpcom\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/p2020\n"
+"POT-Creation-Date: 2020-08-05 15:34:31+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: functions.php:169
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:178
+msgid "Learn more about P2"
+msgstr ""
+
+#: functions.php:220
+msgid "Primary Sidebar"
+msgstr ""
+
+#: functions.php:240
+msgctxt "Sans: on or off"
+msgid "on"
+msgstr ""
+
+#: functions.php:439 widgets/my-team/my-team.php:29
+msgid "Team"
+msgstr ""
+
+#: functions.php:477
+msgid "Ready to publish your first post? Simply use the editor above."
+msgstr ""
+
+#: functions.php:478
+msgid ""
+"Tap the + button in the top right corner to begin writing your first post."
+msgstr ""
+
+#: inc/class-ellipsis-menu.php:54
+msgid "More"
+msgstr ""
+
+#. translators: %1$s is replaced with the user's display name; %2$s is the
+#. user's nicename
+#: inc/contributors.php:43 widgets/my-team/my-team.php:173
+msgid "Posts by %1$s ( @%2$s )"
+msgstr ""
+
+#. translators: %s is replaced with the number of revisions
+#: inc/contributors.php:52
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/contributors.php:81
+msgid "Contributors"
+msgstr ""
+
+#: inc/customizer/custom-colors.php:68 sidebar.php:92
+msgid "Links"
+msgstr ""
+
+#: inc/customizer/custom-colors.php:69
+msgid "Mentions"
+msgstr ""
+
+#: inc/customizer/custom-colors.php:70
+msgid "Sidebar background"
+msgstr ""
+
+#: inc/customizer/custom-colors.php:71
+msgid "Sidebar content"
+msgstr ""
+
+#: inc/customizer/customizer.php:33
+msgid "Name and description"
+msgstr ""
+
+#: inc/customizer/customizer.php:40
+msgid "Description"
+msgstr ""
+
+#: inc/customizer/customizer.php:48
+msgid "Header image"
+msgstr ""
+
+#. translators: %s is replaced with the page number
+#: inc/extras.php:69
+msgid "Page %s"
+msgstr ""
+
+#: inc/filter/filter.php:79
+msgid "New posts"
+msgstr ""
+
+#: inc/filter/filter.php:93
+msgid "New comments"
+msgstr ""
+
+#: inc/filter/filter.php:107
+msgid "My mentions "
+msgstr ""
+
+#: inc/filter/filter.php:122
+msgid "My posts"
+msgstr ""
+
+#: inc/filter/filter.php:140 inc/filter/filter.php:503
+msgid "To do"
+msgstr ""
+
+#: inc/filter/filter.php:244
+msgid "Return to home"
+msgstr ""
+
+#: inc/filter/filter.php:252
+msgid "Read full post"
+msgstr ""
+
+#: inc/filter/filter.php:253
+msgid "Read more"
+msgstr ""
+
+#: inc/filter/filter.php:254
+msgid " more comment(s)"
+msgstr ""
+
+#: inc/filter/filter.php:423
+msgid "You’re all caught up!"
+msgstr ""
+
+#. translators: %d is the number of posts marked as "To Do"
+#: inc/filter/filter.php:471
+msgid "To do (%d)"
+msgstr ""
+
+#. translators: %d is the number of posts marked as "To Do"
+#: inc/filter/filter.php:476
+msgid "Done (%d)"
+msgstr ""
+
+#: inc/filter/filter.php:507
+msgid "Done"
+msgstr ""
+
+#: inc/follow/follow.php:15 inc/follow/follow.php:35
+msgid "Follow"
+msgstr ""
+
+#: inc/follow/follow.php:16
+msgid "Unfollow"
+msgstr ""
+
+#: inc/follow/follow.php:17 inc/follow/follow.php:35
+msgid "Following"
+msgstr ""
+
+#: inc/menu/menu.php:96
+msgid "New subdocument"
+msgstr ""
+
+#: index.php:30
+msgid "New post"
+msgstr ""
+
+#: index.php:36
+msgid "Cancel"
+msgstr ""
+
+#: partials/sidebar-header.php:27
+msgid "Menu"
+msgstr ""
+
+#: partials/sidebar-header.php:42
+msgid "Documents and Links"
+msgstr ""
+
+#: partials/sidebar-info.php:65
+msgid "Upload a header image"
+msgstr ""
+
+#: partials/sidebar-info.php:68
+msgid "Customize sidebar"
+msgstr ""
+
+#: partials/sidebar-info.php:71
+msgid "Site settings"
+msgstr ""
+
+#: searchform.php:17
+msgid "Search"
+msgstr ""
+
+#: searchform.php:22
+msgid "Cancel search"
+msgstr ""
+
+#: sidebar.php:31 sidebar.php:32
+msgid "Skip to content"
+msgstr ""
+
+#: sidebar.php:73
+msgid "Documents"
+msgstr ""
+
+#: sidebar.php:78
+msgid "New document"
+msgstr ""
+
+#: sidebar.php:79
+msgid "Manage documents"
+msgstr ""
+
+#: sidebar.php:97
+msgid "Manage links"
+msgstr ""
+
+#: sidebar.php:114
+msgid "Create a new P2"
+msgstr ""
+
+#: sidebar.php:124
+msgid "Keyboard shortcuts"
+msgstr ""
+
+#: sidebar.php:129
+msgid "Help"
+msgstr ""
+
+#: sidebar.php:135
+msgid "Powered by WordPress.com"
+msgstr ""
+
+#: widgets/my-team/my-team.php:18
+msgid "P2 Team"
+msgstr ""
+
+#: widgets/my-team/my-team.php:20
+msgid "Allows you to showcase your team members."
+msgstr ""
+
+#: widgets/my-team/my-team.php:59
+msgid "Title:"
+msgstr ""
+
+#: widgets/my-team/my-team.php:64
+msgid "Limit no. of team members displayed to:"
+msgstr ""
+
+#: widgets/my-team/my-team.php:69
+msgid "Display team members with role:"
+msgstr ""
+
+#: widgets/my-team/my-team.php:153
+msgid "Manage team"
+msgstr ""
+
+#: widgets/my-team/my-team.php:154 widgets/my-team/my-team.php:200
+#: widgets/my-team/my-team.php:201
+msgid "Invite people"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "P2020"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "http://p2theme.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "WordPress for Teams."
+msgstr ""
+
+#. Author of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "Automattic"
+msgstr ""
+
+#. Author URI of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "https://wordpress.com/themes/"
+msgstr ""
