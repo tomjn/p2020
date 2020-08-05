@@ -1,0 +1,249 @@
+# Translation of WordPress.com - Themes - P2020 in Portuguese (Brazil)
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-08-05 15:35:05+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: pt_BR\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
+
+#: sidebar.php:78
+msgid "New document"
+msgstr "Novo documento"
+
+#: inc/filter/filter.php:507
+msgid "Done"
+msgstr "Concluído"
+
+#: widgets/my-team/my-team.php:18
+msgid "P2 Team"
+msgstr "Equipe do P2"
+
+#: sidebar.php:114
+msgid "Create a new P2"
+msgstr "Criar um novo P2"
+
+#: sidebar.php:97
+msgid "Manage links"
+msgstr "Gerenciar links"
+
+#: sidebar.php:79
+msgid "Manage documents"
+msgstr "Gerenciar documentos"
+
+#: sidebar.php:73
+msgid "Documents"
+msgstr "Documentos"
+
+#: searchform.php:22
+msgid "Cancel search"
+msgstr "Cancelar pesquisa"
+
+#: searchform.php:17
+msgid "Search"
+msgstr "Pesquisar"
+
+#: partials/sidebar-info.php:71
+msgid "Site settings"
+msgstr "Configurações do site"
+
+#: partials/sidebar-info.php:68
+msgid "Customize sidebar"
+msgstr "Personalizar barra lateral"
+
+#: partials/sidebar-info.php:65
+msgid "Upload a header image"
+msgstr "Enviar uma imagem de cabeçalho"
+
+#: partials/sidebar-header.php:42
+msgid "Documents and Links"
+msgstr "Documentos e links"
+
+#: inc/follow/follow.php:17 inc/follow/follow.php:35
+msgid "Following"
+msgstr "Seguindo"
+
+#: inc/follow/follow.php:16
+msgid "Unfollow"
+msgstr "Não seguir"
+
+#: inc/follow/follow.php:15 inc/follow/follow.php:35
+msgid "Follow"
+msgstr "Seguir"
+
+#: inc/filter/filter.php:107
+msgid "My mentions "
+msgstr "Minhas menções"
+
+#: inc/filter/filter.php:93
+msgid "New comments"
+msgstr "Novos comentários"
+
+#: inc/filter/filter.php:79
+msgid "New posts"
+msgstr "Novos posts"
+
+#: inc/customizer/customizer.php:48
+msgid "Header image"
+msgstr "Imagem do Cabeçalho"
+
+#: inc/customizer/customizer.php:40
+msgid "Description"
+msgstr "Descrição"
+
+#: inc/customizer/customizer.php:33
+msgid "Name and description"
+msgstr "Nome e descrição"
+
+#: inc/customizer/custom-colors.php:71
+msgid "Sidebar content"
+msgstr "Conteúdo da barra lateral"
+
+#: inc/customizer/custom-colors.php:70
+msgid "Sidebar background"
+msgstr "Fundo da barra lateral"
+
+#: inc/customizer/custom-colors.php:68 sidebar.php:92
+msgid "Links"
+msgstr "Links"
+
+#: inc/class-ellipsis-menu.php:54
+msgid "More"
+msgstr "Mais"
+
+#: functions.php:478
+msgid "Tap the + button in the top right corner to begin writing your first post."
+msgstr "Clique no botão + no lado direito superior para escrever seu primeiro post."
+
+#: functions.php:477
+msgid "Ready to publish your first post? Simply use the editor above."
+msgstr "Tudo pronto para publicar seu primeiro post? Use o editor acima."
+
+#: functions.php:220
+msgid "Primary Sidebar"
+msgstr "Barra lateral principal"
+
+#: functions.php:178
+msgid "Learn more about P2"
+msgstr "Saiba mais sobre o P2"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "WordPress for Teams."
+msgstr "WordPress para equipes."
+
+#: widgets/my-team/my-team.php:154 widgets/my-team/my-team.php:200
+#: widgets/my-team/my-team.php:201
+msgid "Invite people"
+msgstr "Convidar pessoas"
+
+#: widgets/my-team/my-team.php:69
+msgid "Display team members with role:"
+msgstr "Mostrar as pessoas da equipe com a função:"
+
+#: widgets/my-team/my-team.php:64
+msgid "Limit no. of team members displayed to:"
+msgstr "Número de membros da equipe para exibir:"
+
+#: widgets/my-team/my-team.php:59
+msgid "Title:"
+msgstr "Título"
+
+#: widgets/my-team/my-team.php:20
+msgid "Allows you to showcase your team members."
+msgstr "Permite que você mostre uma lista dos membros de sua equipe."
+
+#: inc/filter/filter.php:423
+msgid "You’re all caught up!"
+msgstr "Você está em dia!"
+
+#: inc/filter/filter.php:254
+msgid " more comment(s)"
+msgstr "mais comentários"
+
+#: inc/filter/filter.php:253
+msgid "Read more"
+msgstr "Leia mais"
+
+#: inc/filter/filter.php:252
+msgid "Read full post"
+msgstr "Ler o post completo"
+
+#: inc/filter/filter.php:244
+msgid "Return to home"
+msgstr "Retornar à página inicial"
+
+#: inc/filter/filter.php:122
+msgid "My posts"
+msgstr "Meus posts"
+
+#: inc/customizer/custom-colors.php:69
+msgid "Mentions"
+msgstr "Menções"
+
+#: sidebar.php:135
+msgid "Powered by WordPress.com"
+msgstr "Com tecnologia WordPress.com"
+
+#: sidebar.php:129
+msgid "Help"
+msgstr "Ajuda"
+
+#: sidebar.php:124
+msgid "Keyboard shortcuts"
+msgstr "Atalhos do teclado"
+
+#: index.php:36
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: index.php:30
+msgid "New post"
+msgstr "Novo post"
+
+#. translators: %s is replaced with the page number
+#: inc/extras.php:69
+msgid "Page %s"
+msgstr "Página %s"
+
+#: inc/contributors.php:81
+msgid "Contributors"
+msgstr "Colaboradores"
+
+#. translators: %s is replaced with the number of revisions
+#: inc/contributors.php:52
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] "%s revisão"
+msgstr[1] "%s revisões"
+
+#. translators: %1$s is replaced with the user's display name; %2$s is the
+#. user's nicename
+#: inc/contributors.php:43 widgets/my-team/my-team.php:173
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "Posts por %1$s ( @%2$s )"
+
+#: partials/sidebar-header.php:27
+msgid "Menu"
+msgstr "Menu"
+
+#: sidebar.php:31 sidebar.php:32
+msgid "Skip to content"
+msgstr "Ir para conteúdo"
+
+#: functions.php:439 widgets/my-team/my-team.php:29
+msgid "Team"
+msgstr "Equipe"
+
+#: functions.php:240
+msgctxt "Sans: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:169
+msgid "Primary Menu"
+msgstr "Menu principal"

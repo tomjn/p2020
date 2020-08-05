@@ -1,0 +1,233 @@
+# Translation of WordPress.com - Themes - P2020 in Swedish
+# This file is distributed under the same license as the WordPress.com - Themes - P2020 package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-08-05 15:35:05+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: sv_SE\n"
+"Project-Id-Version: WordPress.com - Themes - P2020\n"
+
+#: sidebar.php:78
+msgid "New document"
+msgstr "Nytt dokument"
+
+#: inc/filter/filter.php:507
+msgid "Done"
+msgstr "Klart"
+
+#: sidebar.php:73
+msgid "Documents"
+msgstr "Dokument"
+
+#: sidebar.php:97
+msgid "Manage links"
+msgstr "Hantera länkar"
+
+#: sidebar.php:79
+msgid "Manage documents"
+msgstr "Hantera dokument"
+
+#: searchform.php:22
+msgid "Cancel search"
+msgstr "Avbryt sök"
+
+#: widgets/my-team/my-team.php:18
+msgid "P2 Team"
+msgstr "P2-team"
+
+#: inc/follow/follow.php:16
+msgid "Unfollow"
+msgstr "Sluta följ"
+
+#: inc/follow/follow.php:17 inc/follow/follow.php:35
+msgid "Following"
+msgstr "Följer"
+
+#: searchform.php:17
+msgid "Search"
+msgstr "Sök"
+
+#: partials/sidebar-info.php:71
+msgid "Site settings"
+msgstr "Webbplatsinställningar"
+
+#: partials/sidebar-info.php:68
+msgid "Customize sidebar"
+msgstr "Anpassad sidopanel"
+
+#: partials/sidebar-header.php:42
+msgid "Documents and Links"
+msgstr "Dokument och länkar"
+
+#: partials/sidebar-info.php:65
+msgid "Upload a header image"
+msgstr "Ladda upp en sidhuvudbild"
+
+#: inc/customizer/customizer.php:40
+msgid "Description"
+msgstr "Beskrivning"
+
+#: inc/customizer/customizer.php:48
+msgid "Header image"
+msgstr "Bild för sidhuvud"
+
+#: inc/follow/follow.php:15 inc/follow/follow.php:35
+msgid "Follow"
+msgstr "Följ"
+
+#: inc/filter/filter.php:107
+msgid "My mentions "
+msgstr "Mina omnämnanden"
+
+#: inc/filter/filter.php:93
+msgid "New comments"
+msgstr "Nya kommentarer"
+
+#: inc/filter/filter.php:79
+msgid "New posts"
+msgstr "Nya inlägg"
+
+#: inc/customizer/custom-colors.php:71
+msgid "Sidebar content"
+msgstr "Sidopanelens innehåll"
+
+#: inc/customizer/customizer.php:33
+msgid "Name and description"
+msgstr "Namn och beskrivning"
+
+#: inc/customizer/custom-colors.php:70
+msgid "Sidebar background"
+msgstr "Sidopanelens bakgrund"
+
+#: inc/customizer/custom-colors.php:68 sidebar.php:92
+msgid "Links"
+msgstr "Länkar"
+
+#: functions.php:178
+msgid "Learn more about P2"
+msgstr "Lär dig mer om P2"
+
+#: functions.php:220
+msgid "Primary Sidebar"
+msgstr "Primär sidopanel"
+
+#: inc/class-ellipsis-menu.php:54
+msgid "More"
+msgstr "Mer"
+
+#: widgets/my-team/my-team.php:154 widgets/my-team/my-team.php:200
+#: widgets/my-team/my-team.php:201
+msgid "Invite people"
+msgstr "Bjud in personer"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/p2020/style.css
+msgid "WordPress for Teams."
+msgstr "WordPress för team."
+
+#: widgets/my-team/my-team.php:59
+msgid "Title:"
+msgstr "Rubrik:"
+
+#: widgets/my-team/my-team.php:69
+msgid "Display team members with role:"
+msgstr "Visa teammedlemmar med roll:"
+
+#: inc/filter/filter.php:254
+msgid " more comment(s)"
+msgstr "fler kommentarer"
+
+#: widgets/my-team/my-team.php:64
+msgid "Limit no. of team members displayed to:"
+msgstr "Begränsningsantal av teammedlemmar visad till:"
+
+#: widgets/my-team/my-team.php:20
+msgid "Allows you to showcase your team members."
+msgstr "Låter dig presentera dina teammedlemmar."
+
+#: sidebar.php:135
+msgid "Powered by WordPress.com"
+msgstr "Drivs med WordPress.com"
+
+#: inc/filter/filter.php:253
+msgid "Read more"
+msgstr "Läs mer"
+
+#: inc/filter/filter.php:122
+msgid "My posts"
+msgstr "Mina inlägg"
+
+#: inc/filter/filter.php:244
+msgid "Return to home"
+msgstr "Tillbaka till hem"
+
+#: inc/filter/filter.php:252
+msgid "Read full post"
+msgstr "Läs hela inlägget"
+
+#: inc/customizer/custom-colors.php:69
+msgid "Mentions"
+msgstr "Omnämnanden"
+
+#: sidebar.php:124
+msgid "Keyboard shortcuts"
+msgstr "Tangentbordsgenvägar"
+
+#: sidebar.php:129
+msgid "Help"
+msgstr "Hjälp"
+
+#: index.php:30
+msgid "New post"
+msgstr "Nytt inlägg"
+
+#: index.php:36
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: inc/contributors.php:81
+msgid "Contributors"
+msgstr "Bidragslämnare"
+
+#. translators: %s is replaced with the page number
+#: inc/extras.php:69
+msgid "Page %s"
+msgstr "Sida %s"
+
+#. translators: %s is replaced with the number of revisions
+#: inc/contributors.php:52
+msgid "%s revision"
+msgid_plural "%s revisions"
+msgstr[0] "%s version"
+msgstr[1] "%s versioner"
+
+#. translators: %1$s is replaced with the user's display name; %2$s is the
+#. user's nicename
+#: inc/contributors.php:43 widgets/my-team/my-team.php:173
+msgid "Posts by %1$s ( @%2$s )"
+msgstr "Inlägg av %1$s ( @%2$s )"
+
+#: partials/sidebar-header.php:27
+msgid "Menu"
+msgstr "Meny"
+
+#: functions.php:439 widgets/my-team/my-team.php:29
+msgid "Team"
+msgstr "Team"
+
+#: sidebar.php:31 sidebar.php:32
+msgid "Skip to content"
+msgstr "Hoppa till innehåll"
+
+#: functions.php:240
+msgctxt "Sans: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:169
+msgid "Primary Menu"
+msgstr "Primär meny"
