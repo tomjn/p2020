@@ -13,6 +13,7 @@ namespace P2020;
  * @return bool
  */
 function is_p2tenberg_user_enabled(): bool {
+	return true;
 	$user             = wp_get_current_user();
 	$current_blog_id  = get_current_blog_id();
 	$use_block_editor = get_user_attribute( $user->data->ID, 'o2_use_p2tenberg_' . $current_blog_id );
@@ -89,8 +90,8 @@ function enable_emoji() {
 	require_once WP_PLUGIN_DIR . '/emoji-autocomplete-gutenberg/emoji-autocomplete-gutenberg.php';
 }
 
-add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_emoji', 100 );
-add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_inline_terms', 100 );
-add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_notifications', 100 );
+//add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_emoji', 100 );
+//add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_inline_terms', 100 );
+//add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_notifications', 100 );
 add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_o2', 101 );
-add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_p2tenberg', 102 );
+//add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_p2tenberg', 102 );

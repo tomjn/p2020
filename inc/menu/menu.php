@@ -30,9 +30,10 @@ function render_page_menu() {
 	$classes   = $options['menu_class'];
 	if ( "<$container class=\"$classes\"></$container>" === $pages_html ) {
 		$scheme           = is_ssl() ? 'https' : 'http';
-		$site_slug        = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+		$site_slug        = 'test';//\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
 		$page_editor_link = "{$scheme}://wordpress.com/block-editor/page/{$site_slug}";
 		echo html_output( '<div class="empty-menu-list">No documents — <a href="' . $page_editor_link . '">Start one</a></div>' );
+		echo '<div class="empty-menu-list">No documents — <a href="' . $page_editor_link . '">Start one</a></div>';
 
 		return;
 	}
@@ -85,7 +86,7 @@ function format_items( $menu_type, $menu_html ) {
 		$pattern = '/(<li .* menu-item-([0-9]+).*>)<a href="(.*)".*>(.*)<\/a>/i';
 	}
 
-	$site_slug        = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+	$site_slug        = 'test';//\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
 	$page_editor_link = "https://wordpress.com/block-editor/page/{$site_slug}";
 	$replacement      = '$1
 		<button class="menu-item-toggle" aria-label="Expand" aria-expanded=false></button>

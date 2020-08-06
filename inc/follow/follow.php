@@ -22,7 +22,7 @@ function scripts() {
 
 function render() {
 	$blog_id = get_current_blog_id();
-	if ( ! is_a8c_p2( $blog_id ) ) {
+	if ( ! \P2020\is_a8c_p2( $blog_id ) ) {
 		return;
 	}
 

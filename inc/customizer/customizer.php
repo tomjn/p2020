@@ -8,14 +8,14 @@
 namespace P2020;
 
 require get_template_directory() . '/inc/customizer/custom-header.php';
-require get_template_directory() . '/inc/customizer/custom-colors.php';
+//require get_template_directory() . '/inc/customizer/custom-colors.php';
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
  *
  * @param WP_Dotcom_Customize $wp_customize Theme Customizer object.
  */
-function customize_register( \WP_Dotcom_Customize $wp_customize ) {
+function customize_register( \WP_Customize_Manager $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
@@ -60,7 +60,7 @@ function customize_preview_js() {
 
 add_action( 'customize_preview_init', 'P2020\customize_preview_js' );
 
-function disable_nonrelevant_sections( \WP_Dotcom_Customize $wp_customize ) {
+function disable_nonrelevant_sections( \WP_Customize_Manager $wp_customize ) {
 	// Remove "Homepage Settings".
 	$wp_customize->remove_section( 'static_front_page' );
 

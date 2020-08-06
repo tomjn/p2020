@@ -7,8 +7,18 @@
 
 namespace P2020;
 
+function is_automattician() {
+	return false;
+}
+
+function is_a8c_p2() {
+	return false;
+}
+
 function get_blog_url( $path = '' ) {
-	$scheme = 'http://';
+
+	return site_url( $path );
+/*	$scheme = 'http://';
 
 	if ( is_ssl() ) {
 		$scheme = 'https://';
@@ -20,7 +30,7 @@ function get_blog_url( $path = '' ) {
 		$url .= $path;
 	}
 
-	return $url;
+	return $url;*/
 }
 
 /**
@@ -75,7 +85,7 @@ function social_init() {
 	}
 }
 
-add_action( 'after_setup_theme', __NAMESPACE__ . '\social_init' );
+//add_action( 'after_setup_theme', __NAMESPACE__ . '\social_init' );
 
 /**
  * Disable related posts feature
@@ -96,7 +106,7 @@ function disable_related_posts() {
 	}
 }
 
-add_action( 'after_setup_theme', __NAMESPACE__ . '\disable_related_posts' );
+//add_action( 'after_setup_theme', __NAMESPACE__ . '\disable_related_posts' );
 
 /*
  * Load Jetpack compatibility file.
@@ -266,7 +276,7 @@ function hide_pages_from_admin_menu() {
 	remove_submenu_page( 'themes.php', 'themes.php' ); // Appearance -> Themes
 }
 
-add_action( 'admin_menu', __NAMESPACE__ . '\hide_pages_from_admin_menu', 40 );
+//add_action( 'admin_menu', __NAMESPACE__ . '\hide_pages_from_admin_menu', 40 );
 
 // Block direct access to wp-admin/themes.php (Super Admins are exempt)
 add_action( 'load-themes.php', 'wpcom_disable_admin_page' );
@@ -505,7 +515,7 @@ function append_contributors_block( $content ) {
 	return $content . get_contributors_block();
 }
 
-add_filter( 'the_content', __NAMESPACE__ . '\append_contributors_block' );
+//add_filter( 'the_content', __NAMESPACE__ . '\append_contributors_block' );
 
 /**
  * Hide widgets with P2 replacement versions:

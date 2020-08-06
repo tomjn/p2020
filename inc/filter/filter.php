@@ -5,7 +5,7 @@ namespace P2020\Filter;
 use function P2020\get_blog_url;
 
 require_once get_template_directory() . '/inc/filter/unread.php';
-require_lib( 'seen-posts' );
+//require_lib( 'seen-posts' );
 
 const QUERY_ROWS_LIMIT           = 100;
 const UNREAD_COUNT_DISPLAY_LIMIT = 99; // displays "99+" if unread is > 99
@@ -81,7 +81,7 @@ function get_filters() {
 				add_query_arg(
 					[
 						'p2filter_posts' => true,
-						'ts'             => $last_active['posts'],
+						'ts'             => [],//$last_active['posts'],
 					],
 					get_blog_url()
 				)
@@ -95,7 +95,7 @@ function get_filters() {
 				add_query_arg(
 					[
 						'p2filter_comments' => true,
-						'ts'                => $last_active['comments'],
+						'ts'                => [],//$last_active['comments'],
 					],
 					get_blog_url()
 				)
@@ -109,7 +109,7 @@ function get_filters() {
 				add_query_arg(
 					[
 						'mentions' => $user->user_nicename,
-						'ts'       => $last_active['mentions'],
+						'ts'       => [],//$last_active['mentions'],
 						'nonce'    => $nonce,
 					],
 					get_blog_url()
@@ -135,6 +135,8 @@ function get_filters() {
 
 	$o2_options               = get_option( 'o2_options' );
 	$is_resolved_posts_active = ! empty( $o2_options['enable_resolved_posts'] );
+	return $filters;
+
 	if ( is_automattic() && $is_resolved_posts_active ) {
 		$filters['unresolved'] = [
 			'label'              => __( 'To do', 'p2020' ),

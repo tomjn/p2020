@@ -12,7 +12,7 @@ require_once get_template_directory() . '/inc/menu/menu.php';
 
 use function \P2020\html_output;
 
-$site_slug = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+$site_slug = 'test';//\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
 
 $signup_url          = 'https://wordpress.com/start/p2';
 $customizer_menu_url = 'https://wordpress.com/customize/menus/' . $site_slug;
