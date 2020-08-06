@@ -20,11 +20,17 @@ function scripts() {
 	wp_localize_script( 'p2020-follow', 'p2020FollowData', $data );
 }
 
+if ( ! function_exists( 'wpcom_subs_is_subscribed' ) ) {
+	function wpcom_subs_is_subscribed( array $args ) : bool {
+		return is_user_member_of_blog( $args['user_id'], $args['blog_id'] );
+	}
+}
+
 function render() {
 	$blog_id = get_current_blog_id();
-	if ( ! \P2020\is_a8c_p2( $blog_id ) ) {
+	/*if ( ! \P2020\is_a8c_p2( $blog_id ) ) {
 		return;
-	}
+	}*/
 
 	$is_following = wpcom_subs_is_subscribed(
 		[
