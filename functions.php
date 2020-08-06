@@ -320,6 +320,11 @@ function scripts() {
 // Our stylesheets need to be loaded after the O2 stylesheets to take priority
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts', 11 );
 
+function genericons() {
+	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons.css', [], '20200801' );
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\genericons', 1 );
+
 function admin_styles() {
 	wp_enqueue_style(
 		'p2020-admin-common-style',
