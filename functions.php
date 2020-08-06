@@ -7,30 +7,20 @@
 
 namespace P2020;
 
-function is_automattician() {
+function is_automattician() : bool {
 	return false;
 }
 
-function is_a8c_p2() {
+function is_automattic() : bool {
 	return false;
 }
 
-function get_blog_url( $path = '' ) {
+function is_a8c_p2() : bool {
+	return false;
+}
 
+function get_blog_url( $path = '' ) : string {
 	return site_url( $path );
-/*	$scheme = 'http://';
-
-	if ( is_ssl() ) {
-		$scheme = 'https://';
-	}
-
-	$url = $scheme . wpcom_get_blog_url( get_blog_details() );
-
-	if ( ! empty( $path ) ) {
-		$url .= $path;
-	}
-
-	return $url;*/
 }
 
 /**
