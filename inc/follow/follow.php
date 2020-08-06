@@ -28,9 +28,9 @@ if ( ! function_exists( 'wpcom_subs_is_subscribed' ) ) {
 
 function render() {
 	$blog_id = get_current_blog_id();
-	/*if ( ! \P2020\is_a8c_p2( $blog_id ) ) {
+	if ( ! \P2020\is_a8c_p2( $blog_id ) ) {
 		return;
-	}*/
+	}
 
 	$is_following = wpcom_subs_is_subscribed(
 		[
