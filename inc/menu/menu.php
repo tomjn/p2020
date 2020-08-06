@@ -29,9 +29,7 @@ function render_page_menu() {
 	$container = $options['container'];
 	$classes   = $options['menu_class'];
 	if ( "<$container class=\"$classes\"></$container>" === $pages_html ) {
-		$scheme           = is_ssl() ? 'https' : 'http';
-		$site_slug        = 'test';//\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
-		$page_editor_link = "{$scheme}://wordpress.com/block-editor/page/{$site_slug}";
+		$page_editor_link = admin_url( 'post-new.php?post_type=page' );
 		echo html_output( '<div class="empty-menu-list">No documents — <a href="' . $page_editor_link . '">Start one</a></div>' );
 		echo '<div class="empty-menu-list">No documents — <a href="' . $page_editor_link . '">Start one</a></div>';
 
@@ -86,14 +84,13 @@ function format_items( $menu_type, $menu_html ) {
 		$pattern = '/(<li .* menu-item-([0-9]+).*>)<a href="(.*)".*>(.*)<\/a>/i';
 	}
 
-	$site_slug        = 'test';//\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
-	$page_editor_link = "https://wordpress.com/block-editor/page/{$site_slug}";
+	$page_editor_link = admin_url( 'post-new.php?post_type=page' );
 	$replacement      = '$1
 		<button class="menu-item-toggle" aria-label="Expand" aria-expanded=false></button>
 		<span class="menu-item-links">
 		<a href="$3" class="menu-item-title">$4</a>';
 	if ( 'pages' === $menu_type ) {
-		$replacement .= '<a href="' . esc_url( $page_editor_link . '?parent_post=$2' ) . '" class="menu-item-add"' .
+		$replacement .= '<a href="' . esc_url( $page_editor_link . '&parent_post=$2' ) . '" class="menu-item-add"' .
 			' data-tippy-content="' . __( 'New subdocument', 'p2020' ) . '"><span class="screen-reader-text">' . __( 'New subdocument', 'p2020' ) . '</span></a>';
 	}
 	$replacement .= '</span>';
