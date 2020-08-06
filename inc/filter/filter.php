@@ -135,9 +135,8 @@ function get_filters() {
 
 	$o2_options               = get_option( 'o2_options' );
 	$is_resolved_posts_active = ! empty( $o2_options['enable_resolved_posts'] );
-	return $filters;
 
-	if ( is_automattic() && $is_resolved_posts_active ) {
+	if ( \P2020\is_automattic() && $is_resolved_posts_active ) {
 		$filters['unresolved'] = [
 			'label'              => __( 'To do', 'p2020' ),
 			'url'                => esc_url(
@@ -274,9 +273,9 @@ function alter_query_for_filter_views( $query ) {
 	}
 
 	if ( is_filter_active( 'posts' ) ) {
-		if ( is_automattician() ) {
+		if ( \P2020\is_automattician() ) {
 			// Use new seen system for a12s
-			// posts after user subscription joined / feature release date
+			// posts after user subscription joined / feature release date.
 			$user_subscription_timestamp = \P2020\Filter\Unread\get_user_subscription_timestamp();
 			if ( $user_subscription_timestamp ) {
 				$query->set(
