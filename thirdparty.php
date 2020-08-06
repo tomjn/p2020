@@ -25,10 +25,14 @@ function is_p2tenberg_user_enabled(): bool {
  * Enable o2 plugin for front-page editing
  */
 function enable_o2() {
-	if ( is_admin() ) {
+	if ( class_exists( 'o2' ) ) {
 		return;
 	}
-	if ( !file_exists( WP_PLUGIN_DIR . '/o2/o2.php' ) ) {
+
+	if ( ! file_exists( WP_PLUGIN_DIR . '/o2/o2.php' ) ) {
+		if ( is_admin() ) {
+			return;
+		}
 		wp_die( 'The O2 plugin is needed to use this theme! Get it from <a href="https://github.com/automattic/o2">https://github.com/automattic/o2</a>' );
 	}
 	require_once WP_PLUGIN_DIR . '/o2/o2.php';
@@ -38,12 +42,16 @@ function enable_o2() {
  * Enable p2tenberg for Gutenberg for the front-page editor
  */
 function enable_p2tenberg() {
-	if ( is_p2tenberg_user_enabled() ) {
-		require_once WP_PLUGIN_DIR . '/p2tenberg/p2tenberg.php';
+	if ( file_exists( WP_PLUGIN_DIR . '/p2tenberg/p2tenberg.php' ) ) {
+		if ( is_p2tenberg_user_enabled() ) {
+			require_once WP_PLUGIN_DIR . '/p2tenberg/p2tenberg.php';
+		}
 	}
 
 	// Load plugin code for displaying p2tenberg toggle
-	require_once WP_PLUGIN_DIR . '/p2tenberg-wpcom/p2tenberg-wpcom.php';
+	if ( file_exists( WP_PLUGIN_DIR . '/p2tenberg-wpcom/p2tenberg-wpcom.php' ) ) {
+		require_once WP_PLUGIN_DIR . '/p2tenberg-wpcom/p2tenberg-wpcom.php';
+	}
 }
 
 /**
@@ -93,11 +101,13 @@ function enable_notifications() {
 }
 
 function enable_emoji() {
-	require_once WP_PLUGIN_DIR . '/emoji-autocomplete-gutenberg/emoji-autocomplete-gutenberg.php';
+	if ( file_exists( WP_PLUGIN_DIR . '/emoji-autocomplete-gutenberg/emoji-autocomplete-gutenberg.php' ) ) {
+		require_once WP_PLUGIN_DIR . '/emoji-autocomplete-gutenberg/emoji-autocomplete-gutenberg.php';
+	}
 }
 
-//add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_emoji', 100 );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_emoji', 100 );
 //add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_inline_terms', 100 );
 //add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_notifications', 100 );
 add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_o2', 101 );
-//add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_p2tenberg', 102 );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\enable_p2tenberg', 102 );
