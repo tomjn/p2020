@@ -8,7 +8,7 @@
 namespace P2020;
 
 require get_template_directory() . '/inc/customizer/custom-header.php';
-//require get_template_directory() . '/inc/customizer/custom-colors.php';
+require get_template_directory() . '/inc/customizer/custom-colors.php';
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
