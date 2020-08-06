@@ -75,7 +75,7 @@ function social_init() {
 	}
 }
 
-//add_action( 'after_setup_theme', __NAMESPACE__ . '\social_init' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\social_init' );
 
 /**
  * Disable related posts feature
@@ -96,7 +96,7 @@ function disable_related_posts() {
 	}
 }
 
-//add_action( 'after_setup_theme', __NAMESPACE__ . '\disable_related_posts' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\disable_related_posts' );
 
 /*
  * Load Jetpack compatibility file.
