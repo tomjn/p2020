@@ -195,6 +195,11 @@ function render_filter_item( $key, $item ) {
 P2020_FILTER_ITEM;
 }
 
+/**
+ * Display the filters
+ *
+ * @return void
+ */
 function render() {
 	$filters = get_filters();
 
@@ -206,15 +211,20 @@ function render() {
 	echo '</ul>';
 }
 
+/**
+ * Register enqueue scripts function.
+ *
+ * @return void
+ */
 function enqueue_scripts() {
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );
 }
 
 function add_hooks() {
-	// For changing the page title, i.e <title></title>
+	// For changing the page title, i.e <title></title>.
 	add_filter( 'wp_title_parts', __NAMESPACE__ . '\page_title' );
 
-	// For changing the page title at the top of the posts feed
+	// For changing the page title at the top of the posts feed.
 	add_filter( 'o2_page_title', __NAMESPACE__ . '\o2_page_title' );
 
 	// Modify o2 options for filter views
@@ -223,16 +233,16 @@ function add_hooks() {
 
 	// Add CSS class for unread content
 	// We do the is_filter_active() check inside the function, because our custom param
-	//    isn't registered until then!
+	// isn't registered until then!
 	add_filter( 'post_class', __NAMESPACE__ . '\custom_classes_for_posts', 10, 3 );
 	add_filter( 'comment_class', __NAMESPACE__ . '\custom_classes_for_comments', 10, 3 );
 
-	// Modify the posts query depending on which filter is active
+	// Modify the posts query depending on which filter is active.
 	add_action( 'pre_get_posts', __NAMESPACE__ . '\alter_query_for_filter_views' );
 	add_filter( 'posts_clauses', __NAMESPACE__ . '\alter_query_for_comment_view', 10, 2 );
 	add_filter( 'o2_options', __NAMESPACE__ . '\no_posts_message' );
 
-	// Infinite Scroll
+	// Infinite Scroll.
 	add_filter( 'infinite_scroll_ajax_url', __NAMESPACE__ . '\infinite_scroll_ajax_url' );
 	add_filter( 'infinite_scroll_query_args', __NAMESPACE__ . '\infinite_scroll_query_args' );
 }
@@ -354,7 +364,7 @@ function alter_query_for_comment_view( $clauses, $wp_query ) {
 // phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed
 // Reason: $class unused but passed by filter
 function custom_classes_for_posts( $classes, $class, $post_id ) {
-	// If a post appears in the recent posts filter view, automatically add "unread" class
+	// If a post appears in the recent posts filter view, automatically add "unread" class.
 	if ( is_filter_active( 'posts' ) ) {
 		$classes[] = 'p2020-unread-post';
 	}
@@ -363,7 +373,7 @@ function custom_classes_for_posts( $classes, $class, $post_id ) {
 	if ( is_filter_active( 'comments' ) ) {
 		$classes[] = 'p2020-post-read-more';
 		// Remove project thread class to avoid styling clashes -- project thread posts are usually styled
-		//    differently, but inside the comments view, we want them to be just regular posts
+		// differently, but inside the comments view, we want them to be just regular posts.
 		$classes = array_diff( $classes, [ 'tag-project-thread' ] );
 	}
 

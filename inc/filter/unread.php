@@ -2,8 +2,12 @@
 
 namespace P2020\Filter\Unread;
 
-//require_once WPMU_PLUGIN_DIR . '/inline-terms/mentions.php';
-//require_lib( 'seen-posts' );
+if ( file_exists( WPMU_PLUGIN_DIR . '/inline-terms/mentions.php' ) ) {
+	require_once WPMU_PLUGIN_DIR . '/inline-terms/mentions.php';
+}
+if ( function_exists( 'require_lib' ) ) {
+	require_lib( 'seen-posts' );
+}
 
 use function P2020\Filter\is_filter_active;
 use function P2020\is_automattician;
@@ -13,11 +17,11 @@ use \FeedBag;
  * Register additional URL query vars, so we can pull them via
  *     get_query_var(...) later.
  *
- * @param $vars
+ * @param array $vars
  *
  * @return array
  */
-function add_unread_query_vars( $vars ) {
+function add_unread_query_vars( array $vars ) : array {
 	$vars[] = 'p2filter_posts';
 	$vars[] = 'p2filter_comments';
 	$vars[] = 'ts';
@@ -29,11 +33,13 @@ add_filter( 'query_vars', __NAMESPACE__ . '\add_unread_query_vars' );
 
 /**
  * Get user meta 'p2020_last_active', used for tracking user visit across
- *  special pages.
+ * special pages.
+ *
+ * @param bool $all_sites get last active for this site or all sites?
  *
  * @return array
  */
-function get_last_active( $all_sites = false ) {
+function get_last_active( $all_sites = false ) : array {
 	if ( ! is_user_logged_in() ) {
 		return [];
 	}
@@ -55,8 +61,8 @@ function get_last_active( $all_sites = false ) {
  * Update the user meta 'p2020_last_active, used for tracking user visit across
  *     special pages.
  *
- * @param $type The filter type, e.g. 'posts' for unread posts,
- *    'comments' for unread comments
+ * @param string $type The filter type, e.g. 'posts' for unread posts,
+ *    'comments' for unread comments.
  */
 function update_last_active( $type ) {
 	if ( ! is_user_logged_in() ) {
@@ -131,10 +137,12 @@ if ( is_user_logged_in() ) {
  *     Own posts not included. If $ts is empty, return all posts.
  *
  * @param $ts Optional timestamp.
+ * @param $limit Optional
+ * @param $fields Optional
  *
  * @return array Posts (IDs only).
  */
-function get_posts_after_ts( $ts = null, $limit = null, $fields = 'ids' ) {
+function get_posts_after_ts( $ts = null, $limit = null, $fields = 'ids' ) : array {
 	if ( empty( $ts ) ) {
 		return [];
 	}
