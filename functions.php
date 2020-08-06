@@ -7,20 +7,20 @@
 
 namespace P2020;
 
-function get_blog_url( $path = '' ) {
-	$scheme = 'http://';
+function is_automattician() : bool {
+	return false;
+}
 
-	if ( is_ssl() ) {
-		$scheme = 'https://';
-	}
+function is_automattic() : bool {
+	return false;
+}
 
-	$url = $scheme . wpcom_get_blog_url( get_blog_details() );
+function is_a8c_p2() : bool {
+	return false;
+}
 
-	if ( ! empty( $path ) ) {
-		$url .= $path;
-	}
-
-	return $url;
+function get_blog_url( $path = '' ) : string {
+	return site_url( $path );
 }
 
 /**
@@ -266,10 +266,10 @@ function hide_pages_from_admin_menu() {
 	remove_submenu_page( 'themes.php', 'themes.php' ); // Appearance -> Themes
 }
 
-add_action( 'admin_menu', __NAMESPACE__ . '\hide_pages_from_admin_menu', 40 );
+//add_action( 'admin_menu', __NAMESPACE__ . '\hide_pages_from_admin_menu', 40 );
 
 // Block direct access to wp-admin/themes.php (Super Admins are exempt)
-add_action( 'load-themes.php', 'wpcom_disable_admin_page' );
+//add_action( 'load-themes.php', 'wpcom_disable_admin_page' );
 
 /**
  * Remove the Contributor role in wp-admin (if there are no existing Contributors)
@@ -282,7 +282,7 @@ function maybe_remove_contributor_role() {
 	}
 }
 
-add_action( 'wp_loaded', __NAMESPACE__ . '\maybe_remove_contributor_role' );
+//add_action( 'wp_loaded', __NAMESPACE__ . '\maybe_remove_contributor_role' );
 
 /**
  * Enqueue scripts and styles
@@ -319,6 +319,11 @@ function scripts() {
 
 // Our stylesheets need to be loaded after the O2 stylesheets to take priority
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts', 11 );
+
+function genericons() {
+	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons.css', [], '20200801' );
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\genericons', 1 );
 
 function admin_styles() {
 	wp_enqueue_style(

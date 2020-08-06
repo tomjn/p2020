@@ -2,10 +2,11 @@
 
 namespace P2020\Filter\Unread;
 
-require_once WPMU_PLUGIN_DIR . '/inline-terms/mentions.php';
-require_lib( 'seen-posts' );
+//require_once WPMU_PLUGIN_DIR . '/inline-terms/mentions.php';
+//require_lib( 'seen-posts' );
 
 use function P2020\Filter\is_filter_active;
+use function P2020\is_automattician;
 use \FeedBag;
 
 /**

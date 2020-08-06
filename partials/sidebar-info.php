@@ -11,7 +11,7 @@ require_once get_template_directory() . '/inc/class-ellipsis-menu.php';
 require_once get_template_directory() . '/inc/filter/filter.php';
 require_once get_template_directory() . '/inc/follow/follow.php';
 
-$site_slug = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+$site_slug = 'test';//\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
 
 $return_home_param       = '?return=' . esc_url( get_blog_url() );
 $customizer_url          = 'https://wordpress.com/customize/' . $site_slug . $return_home_param;

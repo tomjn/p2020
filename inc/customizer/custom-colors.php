@@ -38,7 +38,7 @@ function color_hex_to_rgba( string $hex, float $alpha ): string {
 }
 
 // Utility function to add a single color setting and control
-function register_color( \WP_Dotcom_Customize $wp_customize, string $key, string $label ) {
+function register_color( \WP_Customize_Manager $wp_customize, string $key, string $label ) {
 	$wp_customize->add_setting(
 		"p2020_theme_options[$key]",
 		[
@@ -62,9 +62,9 @@ function register_color( \WP_Dotcom_Customize $wp_customize, string $key, string
 /**
  * Add color settings to Customizer
  *
- * @param WP_Dotcom_Customize $wp_customize Theme Customizer object.
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function customize_register_colors( \WP_Dotcom_Customize $wp_customize ) {
+function customize_register_colors( \WP_Customize_Manager $wp_customize ) {
 	register_color( $wp_customize, 'color_link', __( 'Links', 'p2020' ) );
 	register_color( $wp_customize, 'color_mentions', __( 'Mentions', 'p2020' ) );
 	register_color( $wp_customize, 'color_sidebar_background', __( 'Sidebar background', 'p2020' ) );

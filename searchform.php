@@ -6,7 +6,7 @@
  */
 ?>
 <div class="p2020-searchform" data-searchform>
-	<form method="get" class="p2020-searchform__form" action="<?php echo esc_url( \P2020\get_blog_url( '/' ) ); ?>" role="search">
+	<form method="get" class="p2020-searchform__form" action="<?php echo esc_url( get_search_link() ); ?>" role="search">
 		<input
 			type="search"
 			id="s"
