@@ -282,7 +282,7 @@ function maybe_remove_contributor_role() {
 	}
 }
 
-add_action( 'wp_loaded', __NAMESPACE__ . '\maybe_remove_contributor_role' );
+//add_action( 'wp_loaded', __NAMESPACE__ . '\maybe_remove_contributor_role' );
 
 /**
  * Enqueue scripts and styles
