@@ -12,19 +12,16 @@ require_once get_template_directory() . '/inc/menu/menu.php';
 
 use function \P2020\html_output;
 
-$site_slug = 'test';//\WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
-
-$signup_url          = 'https://wordpress.com/start/p2';
-$customizer_menu_url = 'https://wordpress.com/customize/menus/' . $site_slug;
-$help_url            = 'https://wordpress.com/help';
-$pages_url           = 'https://wordpress.com/pages/' . $site_slug;
-$editor_page_url     = 'https://wordpress.com/block-editor/page/' . $site_slug;
+$customizer_menu_url = admin_url( 'nav-menus.php' );
+$pages_url           = admin_url( 'edit.php?post_type=page' );
+$editor_page_url     = admin_url( 'post-new.php?post_type=page' );
 ?>
 
 <div id="sidebar" class="p2020-sidebar 
 <?php
 if ( is_page() ) {
-	echo esc_attr( 'is-dark' );}
+	echo 'is-dark';
+}
 ?>
 ">
 	<div class="screen-reader-text skip-link">
@@ -110,11 +107,6 @@ if ( is_page() ) {
 			<div class="p2020-sidebar-padded-container">
 				<ul class="p2020-sidebar__footer-links">
 					<li>
-						<a href="<?php echo esc_url( $signup_url ); ?>">
-							<?php esc_html_e( 'Create a new P2', 'p2020' ); ?>
-						</a>
-					</li>
-					<li>
 						<?php
 							// CAUTION: This class is a fragile hack to get O2 to attach its
 							// cheatsheet toggling event listener to this element.
@@ -124,15 +116,10 @@ if ( is_page() ) {
 							<?php esc_html_e( 'Keyboard shortcuts', 'p2020' ); ?>
 						</button>
 					</li>
-					<li>
-						<a href="<?php echo esc_url( $help_url ); ?>">
-							<?php esc_html_e( 'Help', 'p2020' ); ?>
-						</a>
-					</li>
 				</ul>
 
 				<p class="p2020-sidebar__footer-credit">
-					<?php esc_html_e( 'Powered by WordPress.com', 'p2020' ); ?>
+					<?php esc_html_e( 'Powered by WordPress', 'p2020' ); ?>
 				</p>
 			</div>
 		</footer>
