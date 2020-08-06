@@ -269,7 +269,7 @@ function hide_pages_from_admin_menu() {
 //add_action( 'admin_menu', __NAMESPACE__ . '\hide_pages_from_admin_menu', 40 );
 
 // Block direct access to wp-admin/themes.php (Super Admins are exempt)
-add_action( 'load-themes.php', 'wpcom_disable_admin_page' );
+//add_action( 'load-themes.php', 'wpcom_disable_admin_page' );
 
 /**
  * Remove the Contributor role in wp-admin (if there are no existing Contributors)
