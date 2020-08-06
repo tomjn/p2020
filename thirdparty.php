@@ -14,11 +14,11 @@ namespace P2020;
  */
 function is_p2tenberg_user_enabled(): bool {
 	return true;
-	$user             = wp_get_current_user();
+	/*$user             = wp_get_current_user();
 	$current_blog_id  = get_current_blog_id();
 	$use_block_editor = get_user_attribute( $user->data->ID, 'o2_use_p2tenberg_' . $current_blog_id );
 
-	return 'disabled' !== $use_block_editor;
+	return 'disabled' !== $use_block_editor;*/
 }
 
 /**

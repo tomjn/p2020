@@ -505,7 +505,7 @@ function append_contributors_block( $content ) {
 	return $content . get_contributors_block();
 }
 
-//add_filter( 'the_content', __NAMESPACE__ . '\append_contributors_block' );
+add_filter( 'the_content', __NAMESPACE__ . '\append_contributors_block' );
 
 /**
  * Hide widgets with P2 replacement versions:
