@@ -25,6 +25,12 @@ function is_p2tenberg_user_enabled(): bool {
  * Enable o2 plugin for front-page editing
  */
 function enable_o2() {
+	if ( is_admin() ) {
+		return;
+	}
+	if ( !file_exists( WP_PLUGIN_DIR . '/o2/o2.php' ) ) {
+		wp_die( 'The O2 plugin is needed to use this theme! Get it from <a href="https://github.com/automattic/o2">https://github.com/automattic/o2</a>' );
+	}
 	require_once WP_PLUGIN_DIR . '/o2/o2.php';
 }
 
