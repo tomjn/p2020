@@ -146,9 +146,8 @@ class My_Team_Widget extends \WP_Widget {
 			$widget_title = $args['before_title'] . $title;
 
 			if ( is_user_member_of_blog() && current_user_can( 'administrator' ) ) {
-				$site_slug         = \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
-				$manage_team_url   = "https://wordpress.com/people/team/{$site_slug}";
-				$invite_people_url = "https://wordpress.com/people/new/{$site_slug}";
+				$manage_team_url   = admin_url( 'users.php' );
+				$invite_people_url = admin_url( 'user-new.php' );
 				$myteam_menu       = new \P2020\EllipsisMenu();
 				$myteam_menu->add_item( __( 'Manage team', 'p2020' ), esc_url( $manage_team_url ) );
 				$myteam_menu->add_item( __( 'Invite people', 'p2020' ), esc_url( $invite_people_url ) );
@@ -191,7 +190,7 @@ class My_Team_Widget extends \WP_Widget {
 
 			$hidden_count = $my_team['size'] - count( $my_team_members );
 			if ( is_user_member_of_blog() && current_user_can( 'administrator' ) ) {
-				$manage_team_link = 'https://wordpress.com/people/new/' . \WPCOM_Masterbar::get_calypso_site_slug( get_current_blog_id() );
+				$manage_team_link = admin_url( 'users.php' );
 				?>
 				<li class="widget-myteam-manage-icon">
 					<a
@@ -223,17 +222,26 @@ class My_Team_Widget extends \WP_Widget {
 
 		// phpcs:ignore WordPress.Security.EscapeOutput -- HTML from theme
 		echo $args['after_widget'];
-		stats_extra( 'widget_view', 'p2020-my-team-widget' );
+		if ( function_exists( 'stats_extra' ) ) {
+			stats_extra( 'widget_view', 'p2020-my-team-widget' );
+		}
 	}
 
+	/**
+	 * Get the team info
+	 *
+	 * @param integer|null $limit
+	 * @param array|null $roles
+	 * @return array
+	 */
 	protected function get_team_info( ?int $limit = null, ?array $roles = null ): array {
 		global $blog_id;
 		$team_info = [];
 
 		if ( empty( $roles ) ) {
 			return [
-				members => [],
-				size    => 0,
+				'members' => [],
+				'size'    => 0,
 			];
 		}
 
@@ -255,7 +263,7 @@ class My_Team_Widget extends \WP_Widget {
 		$users             = $users_data['users'];
 
 		// Check if current user is part of team
-		// If yes, place in front
+		// If yes, place in front.
 		$me = get_users(
 			[
 				'blog_id'  => $blog_id,
@@ -273,6 +281,12 @@ class My_Team_Widget extends \WP_Widget {
 		return $team_info;
 	}
 
+	/**
+	 *
+	 *
+	 * @param array $options
+	 * @return array
+	 */
 	protected function extend_default_options( array $options = [] ): array {
 		global $wp_roles;
 		$all_roles = array_keys( $wp_roles->roles );
@@ -292,7 +306,7 @@ class My_Team_Widget extends \WP_Widget {
 		return $merged;
 	}
 
-	private function get_users_data( $args = [] ) {
+	private function get_users_data( array $args = [] ) : array {
 		$args                = wp_parse_args( $args );
 		$args['count_total'] = true;
 
