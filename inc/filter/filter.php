@@ -22,6 +22,8 @@ function is_filter_active( string $type ): bool {
 	global $wp;
 	$user = wp_get_current_user();
 
+	$nonce_check = false;
+
 	if ( isset( $_GET['nonce'] ) ) {
 		$nonce_check = wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'p2-filter' );
 	}
@@ -66,7 +68,7 @@ function get_active_filter() {
  *
  * @return array An array of filter link items.
  */
-function get_filters() {
+function get_filters() : array {
 	if ( ! is_user_logged_in() ) {
 		return [];
 	}
