@@ -7,18 +7,40 @@
 
 namespace P2020;
 
+/**
+ * You're probably not an Automattician but it insists on asking!
+ *
+ * @return boolean
+ */
 function is_automattician() : bool {
 	return false;
 }
 
+/**
+ * Are we Automattic? Or are we dancer?
+ *
+ * @return boolean
+ */
 function is_automattic() : bool {
 	return false;
 }
 
+/**
+ * Is this an Automattic P2?
+ *
+ * @return boolean
+ */
 function is_a8c_p2() : bool {
 	return false;
 }
 
+/**
+ * Automatticians have forgootten about the site_url function.
+ *
+ * @param string $path the path to use in the full URL.
+ *
+ * @return string
+ */
 function get_blog_url( $path = '' ) : string {
 	return site_url( $path );
 }
