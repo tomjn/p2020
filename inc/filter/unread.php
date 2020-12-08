@@ -222,6 +222,10 @@ function get_mentions_after_ts( $ts = null, $limit = null ) {
 		return $mentions;
 	}
 
+	if ( ! class_exists( 'Jetpack_Mentions' ) ) {
+		return $mentions;
+	}
+
 	$user         = wp_get_current_user();
 	$unread_posts = get_posts_after_ts( $ts, $limit );
 	foreach ( $unread_posts as $post_id ) {
