@@ -83,7 +83,7 @@ function get_filters() : array {
 				add_query_arg(
 					[
 						'p2filter_posts' => true,
-						'ts'             => [],//$last_active['posts'],
+						'ts'             => $last_active['posts'],
 					],
 					get_blog_url()
 				)
@@ -97,27 +97,12 @@ function get_filters() : array {
 				add_query_arg(
 					[
 						'p2filter_comments' => true,
-						'ts'                => [],//$last_active['comments'],
+						'ts'                => $last_active['comments'],
 					],
 					get_blog_url()
 				)
 			),
 			'class'              => 'p2020-filter__recent-comments',
-			'read_count_enabled' => true,
-		],
-		'mentions' => [
-			'label'              => __( 'My mentions ', 'p2020' ),
-			'url'                => esc_url(
-				add_query_arg(
-					[
-						'mentions' => $user->user_nicename,
-						'ts'       => [],//$last_active['mentions'],
-						'nonce'    => $nonce,
-					],
-					get_blog_url()
-				)
-			),
-			'class'              => 'p2020-filter__mentions',
 			'read_count_enabled' => true,
 		],
 		'myposts'  => [
@@ -134,6 +119,24 @@ function get_filters() : array {
 			'read_count_enabled' => false,
 		],
 	];
+
+	if ( class_exists( 'Jetpack_Mentions' ) ) {
+		$filters['mentions'] = [
+			'label'              => __( 'My mentions ', 'p2020' ),
+			'url'                => esc_url(
+				add_query_arg(
+					[
+						'mentions' => $user->user_nicename,
+						'ts'       => $last_active['mentions'],
+						'nonce'    => $nonce,
+					],
+					get_blog_url()
+				)
+			),
+			'class'              => 'p2020-filter__mentions',
+			'read_count_enabled' => true,
+		];
+	}
 
 	$o2_options               = get_option( 'o2_options' );
 	$is_resolved_posts_active = ! empty( $o2_options['enable_resolved_posts'] );
@@ -158,7 +161,7 @@ function get_filters() : array {
 	return $filters;
 }
 
-function get_unread_class( $item, $count ) {
+function get_unread_class( $item, $count ) : string {
 	if ( empty( $item['read_count_enabled'] ) ) {
 		return 'no-counts';
 	}
